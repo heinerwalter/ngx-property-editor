@@ -11,6 +11,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "ngx-property-editor": [
+        "dist/ngx-property-editor"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
