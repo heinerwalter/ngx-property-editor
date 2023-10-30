@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { components } from './components/components';
 
@@ -8,6 +9,7 @@ import { components } from './components/components';
     ...components,
   ],
   imports: [
+    CommonModule,
     FormsModule,
   ],
   exports: [

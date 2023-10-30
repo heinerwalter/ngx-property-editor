@@ -25,7 +25,7 @@
 
 <ng-container *ngIf="type == 'radio'">
 
-  <app-radio-input [label]="label"
+  <npe-radio-input [label]="label"
                    [inlineLabel]="inlineLabel"
                    [noFormGroup]="noFormGroup"
                    [id]="id"
@@ -40,6 +40,6 @@
                    displayPropertyName="name"
                    [(value)]="value"
                    (valueChange)="emitValueChange($event)">
-  </app-radio-input>
+  </npe-radio-input>
 
 </ng-container>

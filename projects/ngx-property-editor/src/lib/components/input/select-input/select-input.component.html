@@ -2,12 +2,12 @@
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </ng-container>
 
-<app-form-group *ngIf="!noFormGroup"
+<npe-form-group *ngIf="!noFormGroup"
                 [for]="id"
                 [label]="label"
                 [inlineLabel]="inlineLabel">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-</app-form-group>
+</npe-form-group>
 
 <ng-template #contentTemplate>
   <select class="form-select"
@@ -16,7 +16,7 @@
           [disabled]="disabled || readonly"
           [required]="required"
           [multiple]="multiple"
-          [ngModel]="[value]"
+          [ngModel]="multiple ? value : [value]"
           (ngModelChange)="value = multiple ? $event : $event?.length ? $event[0] : undefined; emitValueChange(value)">
     <option *ngIf="placeholder" disabled>{{placeholder}}</option>
     <option *ngIf="allowEmpty"

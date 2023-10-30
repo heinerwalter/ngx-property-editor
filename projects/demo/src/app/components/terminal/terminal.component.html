@@ -1,0 +1,8 @@
+<div class="terminal">
+  <ng-container *ngIf="lines?.length">
+    <pre><span *ngFor="let line of displayLines">{{line}}<br/></span></pre>
+  </ng-container>
+  <ng-container *ngIf="!lines?.length">
+    <pre><ng-content></ng-content></pre>
+  </ng-container>
+</div>

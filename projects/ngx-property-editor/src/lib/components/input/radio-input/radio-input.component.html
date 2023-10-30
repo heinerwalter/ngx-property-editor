@@ -2,16 +2,16 @@
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </ng-container>
 
-<app-form-group *ngIf="!noFormGroup"
+<npe-form-group *ngIf="!noFormGroup"
                 [for]="id"
                 [label]="label"
                 [inlineLabel]="inlineLabel">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-</app-form-group>
+</npe-form-group>
 
 <ng-template #contentTemplate>
   <ng-container *ngFor="let item of dataSource; let i = index">
-    <app-single-radio-input [label]="evaluateDisplayPropertyName(item)"
+    <npe-single-radio-input [label]="evaluateDisplayPropertyName(item)"
                             [id]="id + i"
                             [name]="name || id"
                             [disabled]="disabled"
@@ -20,6 +20,6 @@
                             [option]="evaluateValuePropertyName(item)"
                             [(value)]="value"
                             (valueChange)="emitValueChange($event)">
-    </app-single-radio-input>
+    </npe-single-radio-input>
   </ng-container>
 </ng-template>

@@ -4,7 +4,7 @@ import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons';
 import { InputBaseWithValue } from '../input-base';
 
 @Component({
-  selector: 'app-rating-input',
+  selector: 'npe-rating-input',
   templateUrl: './rating-input.component.html',
   styleUrls: ['./rating-input.component.scss'],
 })

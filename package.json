@@ -11,11 +11,11 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build && cd projects/ngx-property-editor && npm run build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "ng lint",
+    "start": "ng serve demo",
+    "build": "ng build ngx-property-editor && cd projects/ngx-property-editor && npm run build",
+    "watch": "ng build ngx-property-editor --watch --configuration development",
+    "test": "ng test ngx-property-editor",
+    "lint": "ng lint ngx-property-editor",
     "publish": "cd dist/ngx-property-editor/ && npm publish"
   },
   "private": true,

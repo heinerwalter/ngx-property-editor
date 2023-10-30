@@ -1,17 +1,17 @@
-<app-form-group [for]="id"
+<npe-form-group [for]="id"
                 [label]="label"
                 [inlineLabel]="inlineLabel"
                 [noFormGroup]="noFormGroup">
   <ng-container *ngFor="let item of dataSource; let i = index">
-    <app-boolean-input [noFormGroup]="true"
+    <npe-boolean-input [noFormGroup]="true"
                        [id]="id + i"
                        type="checkbox"  
                        [label]="evaluateDisplayPropertyName(item)"
                        [value]="value?.includes(evaluateValuePropertyName(item))"
                        (valueChange)="onItemValueChanged(item, $event)">
-    </app-boolean-input>
+    </npe-boolean-input>
   </ng-container>
-  <app-boolean-input *ngIf="showSelectAll"
+  <npe-boolean-input *ngIf="showSelectAll"
                      style="font-style: italic"
                      [noFormGroup]="true"
                      [id]="id + '-select-all'"
@@ -20,5 +20,5 @@
                      [allowIndeterminate]="true"
                      [value]="value?.length == 0 ? false : value?.length == dataSource.length ? true : undefined"
                      (valueChange)="onSelectAllClicked($event)">
-  </app-boolean-input>
-</app-form-group>
+  </npe-boolean-input>
+</npe-form-group>

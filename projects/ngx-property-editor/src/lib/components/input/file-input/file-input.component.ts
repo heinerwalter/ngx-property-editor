@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { InputBase } from '../input-base';
 
 @Component({
-  selector: 'app-file-input',
+  selector: 'npe-file-input',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
 })
