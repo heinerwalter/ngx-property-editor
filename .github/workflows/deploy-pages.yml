@@ -38,9 +38,7 @@ jobs:
           node-version: '16.x'
           cache: 'npm'
       - run: npm ci
-      - run: |
-          cd projects/ngx-property-editor
-          npm link
+      #- run: npm link projects/ngx-property-editor
       - name: Build Library
         run: npm run build:demo
       - name: Build Demo Application
