@@ -14,7 +14,7 @@ describe('RadioInputComponent', () => {
         RadioInputComponent,
         FormGroupComponent,
         SingleRadioInputComponent,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(RadioInputComponent);
     component = fixture.componentInstance;

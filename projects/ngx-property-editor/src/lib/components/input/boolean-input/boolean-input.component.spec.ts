@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooleanInputComponent } from './boolean-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
 import { RadioInputComponent } from '../radio-input/radio-input.component';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +13,7 @@ describe('BooleanInputComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         BooleanInputComponent,
+        FormGroupComponent,
         RadioInputComponent,
       ],
       imports: [ FormsModule ],
