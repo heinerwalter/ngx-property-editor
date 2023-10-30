@@ -1,15 +1,22 @@
 {
   "name": "ngx-property-editor",
   "version": "0.0.1",
+  "scripts": {
+    "build": "tsc -p tsconfig.schematics.json",
+    "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ngx-property-editor/"
+  },
+  "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0"
+    "@angular/core": "^16.2.0",
+    "bootstrap": "^5.3.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "peerDependencies": {
-    "bootstrap": "^5.3.2"
+  "devDependencies": {
+    "copyfiles": "file:../../node_modules/copyfiles",
+    "typescript": "file:../../node_modules/typescript"
   },
   "sideEffects": false
 }
