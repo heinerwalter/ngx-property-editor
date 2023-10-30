@@ -26,5 +26,5 @@ jobs:
     - run: npm ci
     - name: Build Library
       run: npm run build
-    #- name: Test Library
-    #  run: npm test
+    - name: Test Library
+      run: npm test -- --browsers=ChromeHeadless --watch=false --code-coverage
