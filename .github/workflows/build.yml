@@ -1,6 +1,6 @@
 # This workflow will build the Angular library package and the demo application and run all tests
 
-name: Build demo application
+name: Build and test library
 
 on:
   push:
