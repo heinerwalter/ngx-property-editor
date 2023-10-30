@@ -13,7 +13,7 @@ component.
 ## Installation
 
 Add this library to your Angular CLI project by running the following command:
-```
+```console
 ng add ngx-property-editor
 ```
 
