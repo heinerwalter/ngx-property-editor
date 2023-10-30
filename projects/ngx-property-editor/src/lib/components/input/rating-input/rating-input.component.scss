@@ -1,0 +1,56 @@
+@mixin star-inactive() {
+  color: var(--bs-gray-dark);
+  .star-inactive-icon {
+    display: inline;
+  }
+
+  .star-active-icon {
+    display: none;
+  }
+}
+
+@mixin star-active() {
+  color: var(--bs-yellow);
+  .star-inactive-icon {
+    display: none;
+  }
+
+  .star-active-icon {
+    display: inline;
+  }
+}
+
+
+.stars-container {
+
+  .star {
+    font-size: 1.5em;
+
+    &:not(.active) {
+      @include star-inactive;
+    }
+
+    &.active {
+      @include star-active;
+    }
+  }
+
+  &:hover {
+    .star, .star.active, .star:not(.active) {
+      opacity: 70%;
+
+      // Stars before the hovered one:
+      @include star-active;
+
+      // The hovered star:
+      &:hover {
+
+        // Stars after the hovered one:
+        & ~ .star {
+          @include star-inactive;
+        }
+      }
+    }
+  }
+
+}

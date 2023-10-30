@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
-//import { PropertyEditorComponent } from './property-editor.component';
-
+import { FormsModule } from '@angular/forms';
+import { components } from './components/components';
 
 
 @NgModule({
   declarations: [
-    //PropertyEditorComponent,
+    ...components,
   ],
   imports: [
+    FormsModule,
   ],
   exports: [
-    //PropertyEditorComponent,
+    ...components,
   ]
 })
 export class PropertyEditorModule { }

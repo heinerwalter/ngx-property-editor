@@ -1,0 +1,18 @@
+<app-form-group [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel"
+                [noFormGroup]="noFormGroup">
+  <input class="form-control"
+         type="number"
+         [id]="id"
+         [name]="name || id"
+         [placeholder]="placeholder || ''"
+         [disabled]="disabled"
+         [readonly]="readonly"
+         [required]="required"
+         [min]="min?.toString() || ''"
+         [max]="max?.toString() || ''"
+         [step]="step?.toString() || ''"
+         [(ngModel)]="value"
+         (ngModelChange)="emitValueChange($event)" />
+</app-form-group>

@@ -1,0 +1,16 @@
+<app-form-group [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel"
+                [noFormGroup]="noFormGroup">
+  <textarea class="form-control"
+            [id]="id"
+            [name]="name || id"
+            [placeholder]="placeholder || ''"
+            [disabled]="disabled"
+            [readonly]="readonly"
+            [required]="required"
+            [rows]="height || 5"
+            [(ngModel)]="value"
+            (ngModelChange)="emitValueChange($event)">
+  </textarea>
+</app-form-group>

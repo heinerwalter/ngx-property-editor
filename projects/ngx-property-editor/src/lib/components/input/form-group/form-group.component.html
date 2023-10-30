@@ -1,0 +1,19 @@
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<div *ngIf="!noFormGroup"
+     [class]="'form-group mb-3' + (inlineLabel ? ' label-inline' : '')">
+  <label *ngIf="label"
+         [for]="for"
+         class="form-label">
+    {{labelWithColon}}
+  </label>
+  <div class="form-group-content">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</div>
+
+<ng-template #contentTemplate>
+  <ng-content></ng-content>
+</ng-template>

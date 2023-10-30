@@ -1,0 +1,18 @@
+<app-form-group [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel"
+                [noFormGroup]="noFormGroup">
+  <span class="stars-container">
+    <ng-container *ngFor="let i of ratingOptions">
+      <span class="star"
+            [class.active]="value && i <= value"
+            tabindex="0"
+            (click)="onStarClick(i)"
+            (keydown.enter)="onStarClick(i)"
+            (keydown.space)="onStarClick(i)">
+        <fa-icon class="star-inactive-icon" [icon]="iconStarInactive"></fa-icon>
+        <fa-icon class="star-active-icon" [icon]="iconStarActive"></fa-icon>
+      </span>
+    </ng-container>
+  </span>
+</app-form-group>

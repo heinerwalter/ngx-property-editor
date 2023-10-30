@@ -1,0 +1,16 @@
+<app-form-group [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel"
+                [noFormGroup]="noFormGroup">
+  <input class="form-control"
+         type="file"
+         [id]="id"
+         [name]="name || id"
+         [placeholder]="placeholder || ''"
+         [disabled]="disabled"
+         [readonly]="readonly"
+         [required]="required"
+         [accept]="accept"
+         [multiple]="multiple"
+         (change)="onChange($event)" />
+</app-form-group>

@@ -1,0 +1,29 @@
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<app-form-group *ngIf="!noFormGroup"
+                [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</app-form-group>
+
+<ng-template #contentTemplate>
+  <select class="form-select"
+          [id]="id"
+          [name]="name || id"
+          [disabled]="disabled || readonly"
+          [required]="required"
+          [multiple]="multiple"
+          [ngModel]="[value]"
+          (ngModelChange)="value = multiple ? $event : $event?.length ? $event[0] : undefined; emitValueChange(value)">
+    <option *ngIf="placeholder" disabled>{{placeholder}}</option>
+    <option *ngIf="allowEmpty"
+            [ngValue]="undefined"></option>
+    <option *ngFor="let item of dataSource"
+            [ngValue]="evaluateValuePropertyName(item)">
+      {{evaluateDisplayPropertyName(item)}}
+    </option>
+  </select>
+</ng-template>

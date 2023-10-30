@@ -1,0 +1,45 @@
+<ng-container *ngIf="type == 'checkbox' || type == 'switch'">
+
+  <div class="form-check"
+       [class.form-switch]="type == 'switch'">
+    <input class="form-check-input"
+           type="checkbox"
+           [attr.role]="type == 'switch' ? 'switch' : 'checkbox'"
+           [id]="id || label"
+           [name]="name || id"
+           [placeholder]="placeholder || ''"
+           [disabled]="disabled"
+           [readonly]="readonly"
+           [required]="required"
+           [(ngModel)]="value"
+           [indeterminate]="allowIndeterminate && value == undefined"
+           (ngModelChange)="emitValueChange($event)">
+    <label *ngIf="label"
+           class="form-check-label"
+           [for]="id || label">
+      {{label}}
+    </label>
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="type == 'radio'">
+
+  <app-radio-input [label]="label"
+                   [inlineLabel]="inlineLabel"
+                   [noFormGroup]="noFormGroup"
+                   [id]="id"
+                   [name]="name"
+                   [placeholder]="placeholder"
+                   [disabled]="disabled"
+                   [readonly]="readonly"
+                   [required]="required"
+                   [inline]="true"
+                   [dataSource]="allowIndeterminate ? [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }, { value: undefined, name: 'Keine Angabe' }] : [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }]"
+                   valuePropertyName="value"
+                   displayPropertyName="name"
+                   [(value)]="value"
+                   (valueChange)="emitValueChange($event)">
+  </app-radio-input>
+
+</ng-container>

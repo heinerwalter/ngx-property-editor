@@ -1,0 +1,15 @@
+<app-form-group [for]="id"
+                [label]="label"
+                [inlineLabel]="inlineLabel"
+                [noFormGroup]="noFormGroup">
+  <input class="form-control"
+         [type]="type || 'date'"
+         [id]="id"
+         [name]="name || id"
+         [placeholder]="placeholder || ''"
+         [disabled]="disabled"
+         [readonly]="readonly"
+         [required]="required"
+         [valueAsDate]="value"
+         (change)="onInputChange($event)"/>
+</app-form-group>
