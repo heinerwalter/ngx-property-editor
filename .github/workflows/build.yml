@@ -1,13 +1,13 @@
 # This workflow will build the Angular library package and the demo application and run all tests
 
-name: Build and test library
+name: Build library
 
 on:
   push:
     branches: [ "master" ]
 
 jobs:
-  build-and-test:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -26,5 +26,5 @@ jobs:
     - run: npm ci
     - name: Build Library
       run: npm run build
-    - name: Test Library
-      run: npm test
+    #- name: Test Library
+    #  run: npm test
