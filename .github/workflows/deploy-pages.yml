@@ -1,5 +1,5 @@
 # This workflow builds and deploys the Angular demo application to GitHub Pages
-name: Deploy demo application to Pages
+name: deploy GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
