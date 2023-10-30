@@ -1,5 +1,7 @@
 # ngx-property-editor
 
+[![npm version](https://img.shields.io/npm/v/ngx-property-editor?logo=npm&logoColor=fff)](https://www.npmjs.com/package/ngx-property-editor)
+
 This is an Angular library containing simple input components for different data types
 (styled with bootstrap). Based on the input components this library provides a property
 editor component which automatically builds a form for editing all properties of any
