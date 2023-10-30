@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooleanInputComponent } from './boolean-input.component';
 import { RadioInputComponent } from '../radio-input/radio-input.component';
+import { FormsModule } from '@angular/forms';
 
 describe('BooleanInputComponent', () => {
   let component: BooleanInputComponent;
@@ -12,7 +13,8 @@ describe('BooleanInputComponent', () => {
       declarations: [
         BooleanInputComponent,
         RadioInputComponent,
-      ]
+      ],
+      imports: [ FormsModule ],
     });
     fixture = TestBed.createComponent(BooleanInputComponent);
     component = fixture.componentInstance;

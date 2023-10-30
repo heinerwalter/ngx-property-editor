@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectInputComponent } from './select-input.component';
 import { FormGroupComponent } from '../form-group/form-group.component';
+import { FormsModule } from '@angular/forms';
 
 describe('SelectInputComponent', () => {
   let component: SelectInputComponent;
@@ -12,7 +13,8 @@ describe('SelectInputComponent', () => {
       declarations: [
         SelectInputComponent,
         FormGroupComponent,
-      ]
+      ],
+      imports: [ FormsModule ],
     });
     fixture = TestBed.createComponent(SelectInputComponent);
     component = fixture.componentInstance;

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NumberInputComponent } from './number-input.component';
 import { FormGroupComponent } from '../form-group/form-group.component';
+import { FormsModule } from '@angular/forms';
 
 describe('NumberInputComponent', () => {
   let component: NumberInputComponent;
@@ -12,7 +13,8 @@ describe('NumberInputComponent', () => {
       declarations: [
         NumberInputComponent,
         FormGroupComponent,
-      ]
+      ],
+      imports: [ FormsModule ],
     });
     fixture = TestBed.createComponent(NumberInputComponent);
     component = fixture.componentInstance;
