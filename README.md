@@ -38,7 +38,7 @@ ng add @ng-bootstrap/ng-bootstrap --project myProject
 
 ### Option 2: Install `bootstrap`
 
-Only if you have not installed option 1!
+***Choose either Option 1 or Option 2; not both!***
 
 Install the `bootstrap` package from npm:
 ```
@@ -49,7 +49,7 @@ Not add Bootstrap CSS or SCSS to your project.
 
 In case you're using CSS, you just need to add Bootstrap styles to your `angular.json`
 configuration:
-```
+```json
 "yourApp": {
   "architect": {
     "build": {
@@ -64,7 +64,7 @@ configuration:
 ```
 
 In case you're using SCSS, please add this to your `styles.scss` directly:
-```
+```scss
 @import "bootstrap/scss/bootstrap";
 /*
 or import only the bootstrap scss files that your application actually needs,
