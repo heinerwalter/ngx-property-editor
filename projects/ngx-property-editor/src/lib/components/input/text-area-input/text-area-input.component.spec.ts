@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextAreaInputComponent } from './text-area-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
 
 describe('TextAreaInputComponent', () => {
   let component: TextAreaInputComponent;
@@ -8,7 +9,10 @@ describe('TextAreaInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TextAreaInputComponent]
+      declarations: [
+        TextAreaInputComponent,
+        FormGroupComponent,
+      ]
     });
     fixture = TestBed.createComponent(TextAreaInputComponent);
     component = fixture.componentInstance;

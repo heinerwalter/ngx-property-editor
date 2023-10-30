@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RatingInputComponent } from './rating-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
 
 describe('RatingInputComponent', () => {
   let component: RatingInputComponent;
@@ -8,7 +9,10 @@ describe('RatingInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RatingInputComponent]
+      declarations: [
+        RatingInputComponent,
+        FormGroupComponent,
+      ]
     });
     fixture = TestBed.createComponent(RatingInputComponent);
     component = fixture.componentInstance;

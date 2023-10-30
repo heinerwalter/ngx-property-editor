@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DateInputComponent } from './date-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
 
 describe('DateInputComponent', () => {
   let component: DateInputComponent;
@@ -8,7 +9,10 @@ describe('DateInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DateInputComponent]
+      declarations: [
+        DateInputComponent,
+        FormGroupComponent,
+      ]
     });
     fixture = TestBed.createComponent(DateInputComponent);
     component = fixture.componentInstance;

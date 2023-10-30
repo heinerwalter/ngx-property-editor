@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RadioInputComponent } from './radio-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
+import { SingleRadioInputComponent } from '../single-radio-input/single-radio-input.component';
 
 describe('RadioInputComponent', () => {
   let component: RadioInputComponent;
@@ -8,7 +10,11 @@ describe('RadioInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioInputComponent]
+      declarations: [
+        RadioInputComponent,
+        FormGroupComponent,
+        SingleRadioInputComponent,
+      ]
     });
     fixture = TestBed.createComponent(RadioInputComponent);
     component = fixture.componentInstance;

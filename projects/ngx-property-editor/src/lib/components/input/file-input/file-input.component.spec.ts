@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FileInputComponent } from './file-input.component';
+import { FormGroupComponent } from '../form-group/form-group.component';
 
 describe('FileInputComponent', () => {
   let component: FileInputComponent;
@@ -8,7 +9,10 @@ describe('FileInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FileInputComponent]
+      declarations: [
+        FileInputComponent,
+        FormGroupComponent,
+      ]
     });
     fixture = TestBed.createComponent(FileInputComponent);
     component = fixture.componentInstance;
