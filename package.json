@@ -2,7 +2,7 @@
   "name": "ngx-property-editor-workspace",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "An Angular library containing simple input components and a property e$
+  "description": "An Angular library containing simple input components and a property editor component which automatically builds a form for editing all properties of any object.",
   "keywords": ["angular", "bootstrap", "input"],
   "author": "Heiner Walter",
   "repository": {
@@ -15,7 +15,8 @@
     "build": "ng build && cd projects/ngx-property-editor && npm run build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "publish": "cd dist/ngx-property-editor/ && npm publish"
   },
   "private": true,
   "dependencies": {

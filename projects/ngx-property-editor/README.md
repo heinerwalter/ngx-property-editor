@@ -10,6 +10,14 @@ component.
 
 ## Installation
 
+Add this library to your Angular CLI project by running the following command:
+```
+ng add ngx-property-editor
+```
+
+
+### Install Bootstrap (dependency)
+
 The `ngx-property-editor` package uses bootstrap style classes. For them to work, the
 bootstrap package must be installed in your project and its styles must be added. If
 you are already using bootstrap in your project this should be already done and working.
@@ -22,9 +30,11 @@ some Angular components, too.
 The following bootstrap installation instructions are taken from
 [ng-bootstrap.github.io](https://ng-bootstrap.github.io/#/getting-started).
 
-### Option 1: Install `ng-bootstrap`
+#### Option 1: Install Angular Package ng-bootstrap
 
-We [that is the author of `ng-bootstrap`] strongly recommend using [Angular CLI](https://cli.angular.io/) for setting up a new project. If you have an Angular CLI project, you could simply use our schematics to add ng-bootstrap library to it.
+We [that is the author of `ng-bootstrap`] strongly recommend using
+[Angular CLI](https://cli.angular.io/) for setting up a new project. If you have an
+Angular CLI project, you could simply use our schematics to add ng-bootstrap library to it.
 
 Just run the following:
 ```
@@ -36,7 +46,7 @@ It will install ng-bootstrap for the default application specified in your `angu
 ng add @ng-bootstrap/ng-bootstrap --project myProject
 ```
 
-### Option 2: Install `bootstrap`
+### Option 2: Install bootstrap (styles only)
 
 ***Choose either Option 1 or Option 2; not both!***
 
