@@ -8,7 +8,7 @@ import { DateInputComponent } from './date-input/date-input.component';
 import { FileInputComponent } from './file-input/file-input.component';
 import { NumberInputComponent } from './number-input/number-input.component';
 import { RadioInputComponent } from './radio-input/radio-input.component';
-// TODO: import { RatingInputComponent } from './rating-input/rating-input.component';
+import { RatingInputComponent } from './rating-input/rating-input.component';
 import { SelectInputComponent } from './select-input/select-input.component';
 import { SingleRadioInputComponent } from './single-radio-input/single-radio-input.component';
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
@@ -26,7 +26,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
   FileInputComponent,
   NumberInputComponent,
   RadioInputComponent,
-  // TODO: RatingInputComponent,
+  RatingInputComponent,
   SelectInputComponent,
   SingleRadioInputComponent,
   TextAreaInputComponent,
