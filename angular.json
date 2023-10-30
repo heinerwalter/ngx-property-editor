@@ -12,7 +12,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-property-editor/ng-package.json"
+            "project": "projects/ngx-property-editor/ng-package.json",
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ]
           },
           "configurations": {
             "production": {
