@@ -1,6 +1,14 @@
 {
   "name": "ngx-property-editor",
   "version": "0.0.1",
+  "license": "MIT",
+  "description": "An Angular library containing simple input components and a property editor component which automatically builds a form for editing all properties of any object.",
+  "keywords": ["angular", "bootstrap", "input"],
+  "author": "Heiner Walter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heinerwalter/ngx-property-editor.git"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.schematics.json",
     "postbuild": "copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../dist/ngx-property-editor/"
