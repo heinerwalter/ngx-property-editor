@@ -17,7 +17,7 @@ export class FileInputComponent extends InputBase {
     * This event is triggered when the user selected on or multiple files.
     * The selected files are passed as event argument.
     */
-  @Output() readonly filesChange: EventEmitter<File[]> = new EventEmitter<File[]>();
+  @Output() readonly valueChange: EventEmitter<File[]> = new EventEmitter<File[]>();
 
   /**
    * The user selected one or multiple file.
@@ -26,7 +26,7 @@ export class FileInputComponent extends InputBase {
     const inputElement = event?.target as HTMLInputElement;
     if (!inputElement) return;
 
-    this.filesChange.emit(inputElement.files?.length ? Array.from(inputElement.files) : []);
+    this.valueChange.emit(inputElement.files?.length ? Array.from(inputElement.files) : []);
   }
 
 }

@@ -10,10 +10,14 @@ object passed to the property editor component. The property editor input fields
 be configured by passing an additional configuration object to the property editor
 component.
 
+## Demo
+
+See [demo page](https://heinerwalter.github.io/ngx-property-editor/).
 
 ## Installation
 
 Add this library to your Angular CLI project by running the following command:
+
 ```console
 ng add ngx-property-editor
 ```

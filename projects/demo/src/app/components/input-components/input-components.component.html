@@ -1,62 +1,79 @@
-<npe-boolean-input label="BooleanInputComponent"
+<h2>Input Components</h2>
+
+<h4>Boolean Input</h4>
+<npe-boolean-input label="Boolean input"
                    (valueChange)="onInputValueChange('boolean', $event)">
 </npe-boolean-input>
 
-<npe-checkbox-select-input label="CheckboxSelectInputComponent"
-                           [dataSource]="inputDataSource"
-                           displayPropertyName="name"
-                           valuePropertyName="value"
-                           [showSelectAll]="true"
-                           [value]="[]"
-                           (valueChange)="onInputValueChange('checkbox select', $event)">
-</npe-checkbox-select-input>
-
-<npe-date-input label="DateInputComponent"
+<h4>Date Input</h4>
+<npe-date-input label="Date input"
                 (valueChange)="onInputValueChange('date', $event)">
 </npe-date-input>
 
-<npe-file-input label="FileInputComponent"
-                (valueChange)="onInputValueChange('file', $event)">
-</npe-file-input>
-
-<npe-number-input label="NumberInputComponent"
+<h4>Number Input</h4>
+<npe-number-input label="Number input"
                   (valueChange)="onInputValueChange('number', $event)">
 </npe-number-input>
 
-<npe-radio-input label="RadioInputComponent"
-                 [dataSource]="inputDataSource"
-                 displayPropertyName="name"
-                 valuePropertyName="value"
-                 (valueChange)="onInputValueChange('radio', $event)">
-</npe-radio-input>
+<h4>Text Input</h4>
+<npe-text-input label="Single line text input"
+                (valueChange)="onInputValueChange('text', $event)">
+</npe-text-input>
+<npe-text-area-input label="Multi line text input (textarea)"
+                     (valueChange)="onInputValueChange('multiline text', $event)">
+</npe-text-area-input>
 
-<npe-rating-input label="RatingInputComponent"
-                  (valueChange)="onInputValueChange('rating', $event)">
-</npe-rating-input>
+<h4>File Input</h4>
+<npe-file-input label="File input"
+                (valueChange)="onInputValueChange('file', $event)">
+</npe-file-input>
 
-<npe-select-input label="SelectInputComponent"
+<h4>Selection</h4>
+<npe-select-input label="Single selection"
                   [dataSource]="inputDataSource"
                   displayPropertyName="name"
                   valuePropertyName="value"
-                  (valueChange)="onInputValueChange('select', $event)">
+                  (valueChange)="onInputValueChange('single select', $event)">
 </npe-select-input>
 
-<npe-select-input label="SelectInputComponent (multiple)"
+<npe-select-input label="Multiple selection"
                   [dataSource]="inputDataSource"
                   displayPropertyName="name"
                   valuePropertyName="value"
                   [multiple]="true"
-                  (valueChange)="onInputValueChange('multiple select', $event)">
+                  (valueChange)="onInputValueChange('multi select', $event)">
 </npe-select-input>
 
-<npe-single-radio-input label="SingleRadioInputComponent"
-                        (valueChange)="onInputValueChange('single radio', $event)">
-</npe-single-radio-input>
+<npe-radio-input label="Single selection with radio inputs"
+                 [dataSource]="inputDataSource"
+                 displayPropertyName="name"
+                 valuePropertyName="value"
+                 (valueChange)="onInputValueChange('single select (radio)', $event)">
+</npe-radio-input>
 
-<npe-text-area-input label="TextAreaInputComponent"
-                     (valueChange)="onInputValueChange('textarea', $event)">
-</npe-text-area-input>
+<npe-form-group label="Single selection with separate radio inputs...">
+  <npe-single-radio-input label="First radio input with value 'option 1'"
+                          name="single-radio-input"
+                          option="option 1"
+                          (valueChange)="onInputValueChange('single select (separate radio)', $event)">
+  </npe-single-radio-input>
+  <label>... and arbitrary content between them.</label>
+  <npe-single-radio-input label="Second one with value 'option 2'"
+                          name="single-radio-input"
+                          option="option 2"
+                          (valueChange)="onInputValueChange('single select (separate radio)', $event)">
+  </npe-single-radio-input>
+</npe-form-group>
 
-<npe-text-input label="TextInputComponent"
-                (valueChange)="onInputValueChange('text', $event)">
-</npe-text-input>
+<npe-checkbox-select-input label="Multiple selection with checkboxes"
+                           [dataSource]="inputDataSource"
+                           displayPropertyName="name"
+                           valuePropertyName="value"
+                           [showSelectAll]="true"
+                           (valueChange)="onInputValueChange('multi select (checkbox)', $event)">
+</npe-checkbox-select-input>
+
+<h4>Special Types</h4>
+<npe-rating-input label="Rating input"
+                  (valueChange)="onInputValueChange('rating', $event)">
+</npe-rating-input>

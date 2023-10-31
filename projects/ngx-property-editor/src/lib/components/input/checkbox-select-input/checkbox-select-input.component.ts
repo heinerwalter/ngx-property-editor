@@ -12,6 +12,7 @@ export class CheckboxSelectInputComponent extends InputBaseWithValueAndDataSourc
 
   constructor() {
     super();
+    this.value = [];
   }
 
   onItemValueChanged(item: any, newSelectionValue: boolean) {
