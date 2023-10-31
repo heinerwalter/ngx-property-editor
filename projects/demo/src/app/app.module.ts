@@ -11,13 +11,14 @@ import { InputComponentsComponent } from './components/input-components/input-co
   declarations: [
     AppComponent,
     TerminalComponent,
-    InputComponentsComponent
+    InputComponentsComponent,
   ],
   imports: [
     BrowserModule,
     PropertyEditorModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

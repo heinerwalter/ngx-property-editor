@@ -11,7 +11,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve demo",
+    "start:demo": "ng serve demo",
     "build": "ng build ngx-property-editor && cd projects/ngx-property-editor && npm run build",
     "build:demo": "ng build demo --configuration production",
     "watch": "ng build ngx-property-editor --watch --configuration development",

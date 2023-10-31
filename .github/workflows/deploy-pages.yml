@@ -35,6 +35,8 @@ jobs:
           node-version: '16.x'
           cache: 'npm'
       - run: npm ci
+      - name: Change base URL for GitHub Pages
+        run: node projects/demo/scripts/changeBaseUrl.js "/ngx-property-editor"
       - name: Build Library
         run: npm run build
       - name: Build Demo Application
@@ -64,7 +66,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: . 
+          path: .
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
