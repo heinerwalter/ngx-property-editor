@@ -11,12 +11,14 @@ const path = require('path');
  * This node script file can receive a base URL from the command line and write
  * it into the file index.html. Run this node script like:
  * ```
- * node projects/demo/scripts/changeBaseUrl.js "/"
+ * node projects/demo/scripts/changeBaseUrl.js "/subdirectory/"
  * ```
+ * Important: Don't forget the '/' at the end!
  */
-let baseUrl = '/';
 
-// Get first command line argument:
+
+// Get baseUrl from first command line argument:
+let baseUrl = '/';
 if (process.argv?.length > 2) {
   baseUrl = process.argv[2] || '/';
 }
