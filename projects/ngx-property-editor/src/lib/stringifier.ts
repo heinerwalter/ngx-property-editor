@@ -64,7 +64,7 @@ export class Stringifier {
    *                     is too short, zeros are added at the beginning.
    * @see String.prototype.padStart
    */
-  toPaddedString(value: number, targetLength: number): string {
+  public static toPaddedString(value: number, targetLength: number): string {
     return (value?.toString() || '').padStart(targetLength, '0');
   }
 
