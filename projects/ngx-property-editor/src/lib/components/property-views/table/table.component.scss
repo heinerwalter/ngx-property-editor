@@ -1,0 +1,22 @@
+tr.separator {
+  border-top: solid 1px var(--bs-table-border-color);
+  border-bottom: solid 1px var(--bs-table-border-color);
+
+  * {
+    padding: 0;
+    margin: 0;
+    height: 3px;
+  }
+}
+
+tr.separator-after {
+  & > th, & > td {
+    padding-bottom: 1.5em;
+  }
+
+  & + tr {
+    & > th, & > td {
+      padding-top: 1.5em;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div app-row *ngIf="data && configuration"
+     [id]=id>
+  <ng-container *ngFor="let row of configuration; let i = index">
+
+    <ng-container *ngIf="row?.separator">
+      <div app-col *ngIf="!row.isHidden(data)">
+        <hr [style]="i == 0 ? '' : 'margin-top: 0'"/>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, !readonly)">
+
+      <div app-col [md]="row.getBootstrapColumnMD(data)">
+        <app-property-input [configuration]="row"
+                            [data]="data"
+                            [readonly]="readonly">
+        </app-property-input>
+      </div>
+
+    </ng-container>
+
+  </ng-container>
+</div>

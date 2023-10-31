@@ -1,0 +1,27 @@
+@import "../../../../variables";
+
+.view-and-edit-container-btn-group {
+  float: right;
+  margin-bottom: $default-margin;
+}
+
+.card {
+  & > .card-header {
+    & > .view-and-edit-container-header-text {
+      display: inline-block;
+      padding-top: 0.25em;
+    }
+
+    & > .view-and-edit-container-btn-group {
+      margin-bottom: 0;
+    }
+  }
+
+  &.card-without-body > .card-header {
+    border-bottom: none;
+  }
+}
+
+.view-and-edit-container-content {
+  clear: both;
+}

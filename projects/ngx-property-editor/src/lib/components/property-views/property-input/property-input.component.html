@@ -1,0 +1,111 @@
+<ng-container *ngIf="configuration && data && !configuration?.separator && !configuration.isHidden(data, !readonly)">
+
+  <ng-container
+    *ngIf="configuration.propertyType == 'boolean' || configuration.propertyType == 'boolean-indeterminate'">
+    <npe-boolean-input [id]="configuration.propertyName || id"
+                       [name]="configuration.propertyName"
+                       [label]="configuration.getLabel(data)"
+                       [readonly]="readonly"
+                       [disabled]="!readonly && !configuration.isEditable(data)"
+                       [required]="configuration.isRequired(data)"
+                       [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
+                       [value]="configuration.getValue(data)"
+                       (valueChange)="configuration.setValue(data, $event)">
+    </npe-boolean-input>
+  </ng-container>
+
+  <ng-container
+    *ngIf="configuration.propertyType == 'date' || configuration.propertyType == 'datetime' || configuration.propertyType == 'time' || configuration.propertyType == 'month'">
+    <npe-date-input [id]="configuration.propertyName || id"
+                    [name]="configuration.propertyName"
+                    [label]="configuration.getLabel(data)"
+                    [readonly]="readonly"
+                    [disabled]="!readonly && !configuration.isEditable(data)"
+                    [required]="configuration.isRequired(data)"
+                    [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
+                    [value]="configuration.getValue(data)"
+                    (valueChange)="configuration.setValue(data, $event)">
+    </npe-date-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'number'">
+    <npe-number-input [id]="configuration.propertyName || id"
+                      [name]="configuration.propertyName"
+                      [label]="configuration.getLabel(data)"
+                      [readonly]="readonly"
+                      [disabled]="!readonly && !configuration.isEditable(data)"
+                      [required]="configuration.isRequired(data)"
+                      [value]="configuration.getValue(data)"
+                      (valueChange)="configuration.setValue(data, $event)">
+    </npe-number-input>
+  </ng-container>
+
+  <ng-container
+    *ngIf="configuration.propertyType == 'string' || configuration.propertyType == 'id'">
+    <npe-text-input [id]="configuration.propertyName || id"
+                    [name]="configuration.propertyName"
+                    [label]="configuration.getLabel(data)"
+                    [readonly]="readonly"
+                    [disabled]="!readonly && !configuration.isEditable(data)"
+                    [required]="configuration.isRequired(data)"
+                    [value]="configuration.getValue(data)"
+                    (valueChange)="configuration.setValue(data, $event)">
+    </npe-text-input>
+  </ng-container>
+
+  <ng-container
+    *ngIf="configuration.propertyType == 'password' || configuration.propertyType == 'tel' || configuration.propertyType == 'email' || configuration.propertyType == 'url' || configuration.propertyType == 'color'">
+    <npe-text-input [id]="configuration.propertyName || id"
+                    [name]="configuration.propertyName"
+                    [label]="configuration.getLabel(data)"
+                    [readonly]="readonly"
+                    [disabled]="!readonly && !configuration.isEditable(data)"
+                    [required]="configuration.isRequired(data)"
+                    [type]="configuration.propertyType"
+                    [value]="configuration.getValue(data)"
+                    (valueChange)="configuration.setValue(data, $event)">
+    </npe-text-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'string-multiline'">
+    <npe-text-area-input [id]="configuration.propertyName || id"
+                         [name]="configuration.propertyName"
+                         [label]="configuration.getLabel(data)"
+                         [readonly]="readonly"
+                         [disabled]="!readonly && !configuration.isEditable(data)"
+                         [required]="configuration.isRequired(data)"
+                         [value]="configuration.getValue(data)"
+                         (valueChange)="configuration.setValue(data, $event)">
+    </npe-text-area-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'rating'">
+    <npe-rating-input [id]="configuration.propertyName || id"
+                      [name]="configuration.propertyName"
+                      [label]="configuration.getLabel(data)"
+                      [readonly]="readonly"
+                      [disabled]="!readonly && !configuration.isEditable(data)"
+                      [required]="configuration.isRequired(data)"
+                      [value]="configuration.getValue(data)"
+                      (valueChange)="configuration.setValue(data, $event)">
+    </npe-rating-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'select'">
+    <npe-select-input [id]="configuration.propertyName || id"
+                      [name]="configuration.propertyName"
+                      [label]="configuration.getLabel(data)"
+                      [readonly]="readonly"
+                      [disabled]="!readonly && !configuration.isEditable(data)"
+                      [required]="configuration.isRequired(data)"
+                      [dataSource]="configuration.getDataSource(data)"
+                      [valuePropertyName]="configuration.valuePropertyName"
+                      [displayPropertyName]="configuration.displayPropertyName"
+                      [multiple]="false"
+                      [allowEmpty]="true"
+                      [value]="configuration.getValue(data)"
+                      (valueChange)="configuration.setValue(data, $event)">
+    </npe-select-input>
+  </ng-container>
+
+</ng-container>

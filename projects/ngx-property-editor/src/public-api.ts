@@ -17,9 +17,19 @@ export * from './lib/components/input/select-input/select-input.component';
 export * from './lib/components/input/single-radio-input/single-radio-input.component';
 export * from './lib/components/input/text-area-input/text-area-input.component';
 export * from './lib/components/input/text-input/text-input.component';
+// - property views
+export * from './lib/components/property-views/property-configuration';
+export * from './lib/components/property-views/table-configuration';
+export * from './lib/components/property-views/property-editor/property-editor.component';
+export * from './lib/components/property-views/property-input/property-input.component';
+export * from './lib/components/property-views/property-table/property-table.component';
+export * from './lib/components/property-views/property-view-and-edit/property-view-and-edit.component';
+export * from './lib/components/property-views/table/table.component';
+export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container.component';
+export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
 
 // Others:
-//export * from './lib/global-functions';
+export * from './lib/global-functions';
 export * from './lib/stringifier';
 
 // Module:
