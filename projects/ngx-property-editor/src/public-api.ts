@@ -20,6 +20,7 @@ export * from './lib/components/input/text-input/text-input.component';
 
 // Others:
 //export * from './lib/global-functions';
+export * from './lib/stringifier';
 
 // Module:
 export * from './lib/property-editor.module';
