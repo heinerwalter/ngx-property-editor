@@ -9,14 +9,17 @@ object passed to the property editor component. The property editor input fields
 be configured by passing an additional configuration object to the property editor
 component.
 
+## Demo
+
+See [demo page](https://heinerwalter.github.io/ngx-property-editor/).
 
 ## Installation
 
 Add this library to your Angular CLI project by running the following command:
+
 ```console
 ng add ngx-property-editor
 ```
-
 
 ### Install Bootstrap (dependency)
 
@@ -39,11 +42,13 @@ We [that is the author of `ng-bootstrap`] strongly recommend using
 Angular CLI project, you could simply use our schematics to add ng-bootstrap library to it.
 
 Just run the following:
+
 ```console
 ng add @ng-bootstrap/ng-bootstrap
 ```
 
 It will install ng-bootstrap for the default application specified in your `angular.json`. If you have multiple projects and you want to target a specific application, you could specify the `--project` option
+
 ```console
 ng add @ng-bootstrap/ng-bootstrap --project myProject
 ```
@@ -53,6 +58,7 @@ ng add @ng-bootstrap/ng-bootstrap --project myProject
 ***Choose either Option 1 or Option 2; not both!***
 
 Install the `bootstrap` package from npm:
+
 ```console
 npm install --save bootstrap
 ```
@@ -61,6 +67,7 @@ Not add Bootstrap CSS or SCSS to your project.
 
 In case you're using CSS, you just need to add Bootstrap styles to your `angular.json`
 configuration:
+
 ```json
 "yourApp": {
   "architect": {
@@ -76,6 +83,7 @@ configuration:
 ```
 
 In case you're using SCSS, please add this to your `styles.scss` directly:
+
 ```scss
 @import "bootstrap/scss/bootstrap";
 /*
