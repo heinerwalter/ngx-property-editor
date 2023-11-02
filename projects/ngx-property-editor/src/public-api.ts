@@ -3,6 +3,9 @@
  */
 
 // Components:
+// - bootstrap
+export * from './lib/components/bootstrap/column/column.component';
+export * from './lib/components/bootstrap/row/row.component';
 // - input
 export * from './lib/components/input/input-base';
 export * from './lib/components/input/form-group/form-group.component';
