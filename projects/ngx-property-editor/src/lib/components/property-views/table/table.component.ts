@@ -7,7 +7,7 @@ import { TableData, TableCell } from '../table-configuration';
  * from an array of table `data`.
  */
 @Component({
-  selector: 'npe-table',
+  selector: 'pe-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })

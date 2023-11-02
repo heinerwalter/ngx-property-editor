@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 
 @Component({
-  selector: 'npe-checkbox-select-input',
+  selector: 'pe-checkbox-select-input',
   templateUrl: './checkbox-select-input.component.html',
   styleUrls: ['./checkbox-select-input.component.scss'],
 })

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 
 @Component({
-  selector: 'npe-rating-input',
+  selector: 'pe-rating-input',
   templateUrl: './rating-input.component.html',
   styleUrls: ['./rating-input.component.scss'],
 })

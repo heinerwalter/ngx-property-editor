@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 
 @Component({
-  selector: 'npe-select-input',
+  selector: 'pe-select-input',
   templateUrl: './select-input.component.html',
   styleUrls: ['./select-input.component.scss'],
 })

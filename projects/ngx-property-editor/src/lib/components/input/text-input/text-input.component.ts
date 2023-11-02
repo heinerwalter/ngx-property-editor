@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 
 @Component({
-  selector: 'npe-text-input',
+  selector: 'pe-text-input',
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss'],
 })

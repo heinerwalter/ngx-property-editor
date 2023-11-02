@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'npe-form-group',
+  selector: 'pe-form-group',
   templateUrl: './form-group.component.html',
   styleUrls: ['./form-group.component.scss'],
 })

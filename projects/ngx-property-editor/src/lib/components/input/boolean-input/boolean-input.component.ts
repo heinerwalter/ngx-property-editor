@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 
 @Component({
-  selector: 'npe-boolean-input',
+  selector: 'pe-boolean-input',
   templateUrl: './boolean-input.component.html',
   styleUrls: ['./boolean-input.component.scss'],
 })

@@ -2,7 +2,7 @@
 
   <ng-container
     *ngIf="configuration.propertyType == 'boolean' || configuration.propertyType == 'boolean-indeterminate'">
-    <npe-boolean-input [id]="configuration.propertyName || id"
+    <pe-boolean-input [id]="configuration.propertyName || id"
                        [name]="configuration.propertyName"
                        [label]="configuration.getLabel(data)"
                        [readonly]="readonly"
@@ -11,12 +11,12 @@
                        [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
                        [value]="configuration.getValue(data)"
                        (valueChange)="configuration.setValue(data, $event)">
-    </npe-boolean-input>
+    </pe-boolean-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'date' || configuration.propertyType == 'datetime' || configuration.propertyType == 'time' || configuration.propertyType == 'month'">
-    <npe-date-input [id]="configuration.propertyName || id"
+    <pe-date-input [id]="configuration.propertyName || id"
                     [name]="configuration.propertyName"
                     [label]="configuration.getLabel(data)"
                     [readonly]="readonly"
@@ -25,11 +25,11 @@
                     [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
                     [value]="configuration.getValue(data)"
                     (valueChange)="configuration.setValue(data, $event)">
-    </npe-date-input>
+    </pe-date-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'number'">
-    <npe-number-input [id]="configuration.propertyName || id"
+    <pe-number-input [id]="configuration.propertyName || id"
                       [name]="configuration.propertyName"
                       [label]="configuration.getLabel(data)"
                       [readonly]="readonly"
@@ -37,12 +37,12 @@
                       [required]="configuration.isRequired(data)"
                       [value]="configuration.getValue(data)"
                       (valueChange)="configuration.setValue(data, $event)">
-    </npe-number-input>
+    </pe-number-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'string' || configuration.propertyType == 'id'">
-    <npe-text-input [id]="configuration.propertyName || id"
+    <pe-text-input [id]="configuration.propertyName || id"
                     [name]="configuration.propertyName"
                     [label]="configuration.getLabel(data)"
                     [readonly]="readonly"
@@ -50,12 +50,12 @@
                     [required]="configuration.isRequired(data)"
                     [value]="configuration.getValue(data)"
                     (valueChange)="configuration.setValue(data, $event)">
-    </npe-text-input>
+    </pe-text-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'password' || configuration.propertyType == 'tel' || configuration.propertyType == 'email' || configuration.propertyType == 'url' || configuration.propertyType == 'color'">
-    <npe-text-input [id]="configuration.propertyName || id"
+    <pe-text-input [id]="configuration.propertyName || id"
                     [name]="configuration.propertyName"
                     [label]="configuration.getLabel(data)"
                     [readonly]="readonly"
@@ -64,11 +64,11 @@
                     [type]="configuration.propertyType"
                     [value]="configuration.getValue(data)"
                     (valueChange)="configuration.setValue(data, $event)">
-    </npe-text-input>
+    </pe-text-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'string-multiline'">
-    <npe-text-area-input [id]="configuration.propertyName || id"
+    <pe-text-area-input [id]="configuration.propertyName || id"
                          [name]="configuration.propertyName"
                          [label]="configuration.getLabel(data)"
                          [readonly]="readonly"
@@ -76,11 +76,11 @@
                          [required]="configuration.isRequired(data)"
                          [value]="configuration.getValue(data)"
                          (valueChange)="configuration.setValue(data, $event)">
-    </npe-text-area-input>
+    </pe-text-area-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'rating'">
-    <npe-rating-input [id]="configuration.propertyName || id"
+    <pe-rating-input [id]="configuration.propertyName || id"
                       [name]="configuration.propertyName"
                       [label]="configuration.getLabel(data)"
                       [readonly]="readonly"
@@ -88,11 +88,11 @@
                       [required]="configuration.isRequired(data)"
                       [value]="configuration.getValue(data)"
                       (valueChange)="configuration.setValue(data, $event)">
-    </npe-rating-input>
+    </pe-rating-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'select'">
-    <npe-select-input [id]="configuration.propertyName || id"
+    <pe-select-input [id]="configuration.propertyName || id"
                       [name]="configuration.propertyName"
                       [label]="configuration.getLabel(data)"
                       [readonly]="readonly"
@@ -105,7 +105,7 @@
                       [allowEmpty]="true"
                       [value]="configuration.getValue(data)"
                       (valueChange)="configuration.setValue(data, $event)">
-    </npe-select-input>
+    </pe-select-input>
   </ng-container>
 
 </ng-container>

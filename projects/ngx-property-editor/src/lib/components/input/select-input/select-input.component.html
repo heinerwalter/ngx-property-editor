@@ -2,12 +2,12 @@
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </ng-container>
 
-<npe-form-group *ngIf="!noFormGroup"
+<pe-form-group *ngIf="!noFormGroup"
                 [for]="id"
                 [label]="label"
                 [inlineLabel]="inlineLabel">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-</npe-form-group>
+</pe-form-group>
 
 <ng-template #contentTemplate>
   <select class="form-select"

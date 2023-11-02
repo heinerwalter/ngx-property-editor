@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 
 @Component({
-  selector: 'npe-date-input',
+  selector: 'pe-date-input',
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.scss'],
 })

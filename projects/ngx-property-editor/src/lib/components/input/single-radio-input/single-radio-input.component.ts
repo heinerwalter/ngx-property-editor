@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 
 @Component({
-  selector: 'npe-single-radio-input',
+  selector: 'pe-single-radio-input',
   templateUrl: './single-radio-input.component.html',
   styleUrls: ['./single-radio-input.component.scss'],
 })
