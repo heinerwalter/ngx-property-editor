@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { PropertyViewAndEditComponent } from './property-view-and-edit.component';
 import { PropertyEditorModule } from '../../../property-editor.module';
 
 describe('PropertyViewAndEditComponent', () => {
