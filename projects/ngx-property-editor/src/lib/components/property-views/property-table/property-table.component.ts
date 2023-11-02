@@ -8,7 +8,7 @@ import { PEGlobalFunctions } from '../../../global-functions';
  * with two columns: one for the property name and one for the property value.
  */
 @Component({
-  selector: 'app-property-table',
+  selector: 'pe-property-table',
   templateUrl: './property-table.component.html',
   styleUrls: ['./property-table.component.scss'],
 })

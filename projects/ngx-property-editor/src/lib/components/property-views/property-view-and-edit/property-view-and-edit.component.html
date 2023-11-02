@@ -1,24 +1,24 @@
-<app-view-and-edit-container [id]="id"
-                             [(mode)]="mode"
-                             (modeChange)="modeChange.emit($event)"
-                             [showEditButton]="showEditButton"
-                             [showSaveButton]="showSaveButton"
-                             [showDeleteButton]="showDeleteButton"
-                             [showCancelButton]="showCancelButton"
-                             [hideContentInViewMode]="hideContentInViewMode"
-                             [displayAsCard]="displayAsCard"
-                             [cardHeader]="cardHeader"
-                             (editClick)="editClick.emit()"
-                             (saveClick)="saveClick.emit()"
-                             (deleteClick)="deleteClick.emit()"
-                             (cancelClick)="cancelClick.emit()">
+<pe-view-and-edit-container [id]="id"
+                            [(mode)]="mode"
+                            (modeChange)="modeChange.emit($event)"
+                            [showEditButton]="showEditButton"
+                            [showSaveButton]="showSaveButton"
+                            [showDeleteButton]="showDeleteButton"
+                            [showCancelButton]="showCancelButton"
+                            [hideContentInViewMode]="hideContentInViewMode"
+                            [displayAsCard]="displayAsCard"
+                            [cardHeader]="cardHeader"
+                            (editClick)="editClick.emit()"
+                            (saveClick)="saveClick.emit()"
+                            (deleteClick)="deleteClick.emit()"
+                            (cancelClick)="cancelClick.emit()">
   <div content-both>
 
     <ng-container *ngIf="mode == 'view' && viewModeType == 'table'">
-      <app-property-table [id]="id ? id + '-property-table' : undefined"
-                          [configuration]="configuration"
-                          [data]="data">
-      </app-property-table>
+      <pe-property-table [id]="id ? id + '-property-table' : undefined"
+                         [configuration]="configuration"
+                         [data]="data">
+      </pe-property-table>
     </ng-container>
 
     <ng-container *ngIf="mode == 'view' && viewModeType == 'custom'">
@@ -26,11 +26,11 @@
     </ng-container>
 
     <ng-container *ngIf="(mode == 'view' && viewModeType == 'editor') || (mode == 'edit' && editModeType == 'editor')">
-      <app-property-editor [id]="id ? id + '-property-editor' : undefined"
-                           [configuration]="configuration"
-                           [data]="data"
-                           [readonly]="mode == 'view'">
-      </app-property-editor>
+      <pe-property-editor [id]="id ? id + '-property-editor' : undefined"
+                          [configuration]="configuration"
+                          [data]="data"
+                          [readonly]="mode == 'view'">
+      </pe-property-editor>
     </ng-container>
 
     <ng-container *ngIf="mode == 'edit' && editModeType == 'custom'">
@@ -42,4 +42,4 @@
     </ng-container>
 
   </div>
-</app-view-and-edit-container>
+</pe-view-and-edit-container>

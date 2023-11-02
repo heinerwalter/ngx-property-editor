@@ -12,8 +12,8 @@ export type ViewAndEditContainerMode = 'view' | 'edit';
  * - The <div content-edit> is only displayed in edit mode.
  * - The <div content-both> is displayed in both modes.
  * @example
- * <app-view-and-edit-container (saveClick)="..."
- *                              (cancelClick)="...">
+ * <pe-view-and-edit-container (saveClick)="..."
+ *                             (cancelClick)="...">
  *   <div content-view>
  *     <!-- displayed in view mode -->
  *   </div>
@@ -23,10 +23,10 @@ export type ViewAndEditContainerMode = 'view' | 'edit';
  *   <div content-both>
  *     <!-- displayed in both view and edit mode -->
  *   </div>
- * </app-view-and-edit-container>
+ * </pe-view-and-edit-container>
  */
 @Component({
-    selector: 'app-view-and-edit-container',
+    selector: 'pe-view-and-edit-container',
     templateUrl: './view-and-edit-container.component.html',
     styleUrls: ['./view-and-edit-container.component.scss'],
 })

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { PropertiesConfiguration } from '../property-configuration';
 
 @Component({
-  selector: 'app-property-editor',
+  selector: 'pe-property-editor',
   templateUrl: './property-editor.component.html',
   styleUrls: ['./property-editor.component.scss'],
 })

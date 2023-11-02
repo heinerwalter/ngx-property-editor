@@ -11,7 +11,7 @@ export const EditModeTypeDefault: EditModeType = 'editor';
 
 
 @Component({
-    selector: 'app-property-view-and-edit',
+    selector: 'pe-property-view-and-edit',
     templateUrl: './property-view-and-edit.component.html',
     styleUrls: ['./property-view-and-edit.component.scss'],
 })

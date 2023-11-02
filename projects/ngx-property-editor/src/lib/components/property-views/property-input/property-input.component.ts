@@ -3,7 +3,7 @@ import { PEGlobalFunctions } from '../../../global-functions';
 import { PropertyConfiguration } from '../property-configuration';
 
 @Component({
-  selector: 'app-property-input',
+  selector: 'pe-property-input',
   templateUrl: './property-input.component.html',
   styleUrls: ['./property-input.component.scss'],
 })
