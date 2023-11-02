@@ -20,20 +20,24 @@
           <ng-container *ngIf="cell.style == 'header'">
             <th>
               <span class="preserve-new-line">{{getContent(cell)}}</span>
+              <!-- TODO: Add goto-icon
               <app-goto-icon *ngIf="cell.routerLink"
                              [routerLink]="cell.routerLink"
                              [ngbTooltip]="cell.routerLinkTooltip || ''">
               </app-goto-icon>
+              -->
             </th>
           </ng-container>
 
           <ng-container *ngIf="cell.style == 'data'">
             <td>
               <span class="preserve-new-line">{{getContent(cell)}}</span>
+              <!-- TODO: Add goto-icon
               <app-goto-icon *ngIf="cell.routerLink"
                              [routerLink]="cell.routerLink"
                              [ngbTooltip]="cell.routerLinkTooltip || ''">
               </app-goto-icon>
+              -->
             </td>
           </ng-container>
 
