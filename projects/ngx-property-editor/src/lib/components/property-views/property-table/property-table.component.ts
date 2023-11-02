@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PropertiesConfiguration, PropertyConfiguration } from '../property-configuration';
 import { TableData } from '../table-configuration';
-import { GlobalFunctions } from '../../../global-functions';
+import { PEGlobalFunctions } from '../../../global-functions';
 
 /**
  * This component displays all property values of any object in a table
@@ -76,8 +76,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
           property.valuePropertyName != property.displayPropertyName) {
           const dataSource = property.getDataSource(this.data);
           if (dataSource) {
-            const item = GlobalFunctions.getDataSourceItem(dataSource, property.valuePropertyName, propertyValue);
-            const itemValue = GlobalFunctions.evaluateDisplayPropertyName(property.displayPropertyName, item);
+            const item = PEGlobalFunctions.getDataSourceItem(dataSource, property.valuePropertyName, propertyValue);
+            const itemValue = PEGlobalFunctions.evaluateDisplayPropertyName(property.displayPropertyName, item);
             if (itemValue)
               propertyValue = itemValue;
           }

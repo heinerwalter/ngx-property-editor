@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { GlobalFunctions } from '../../global-functions';
+import { PEGlobalFunctions } from '../../global-functions';
 
 @Component({
   template: '',
@@ -7,7 +7,7 @@ import { GlobalFunctions } from '../../global-functions';
 export class InputBase {
 
   /** ID attribute of the input element (required if a label is defined). */
-  @Input() id: string = GlobalFunctions.generateRandomId();
+  @Input() id: string = PEGlobalFunctions.generateRandomId();
   /** Name attribute of the input element. */
   @Input() name: string | undefined = undefined;
   /** If not empty a label is displayed at the top of this form group. */
@@ -82,7 +82,7 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
    * @param item An item of the `dataSource`.
    */
   evaluateValuePropertyName(item: { [key: string]: any }): any {
-    return GlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
+    return PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
   }
 
   /**
@@ -90,7 +90,7 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
    * @param item An item of the `dataSource`.
    */
   evaluateDisplayPropertyName(item: { [key: string]: any }): string {
-    return GlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item);
+    return PEGlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item);
   }
 
 }

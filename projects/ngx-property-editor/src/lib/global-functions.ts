@@ -1,4 +1,4 @@
-export class GlobalFunctions {
+export class PEGlobalFunctions {
 
   /**
    * Generates a new randim ID for components which don't have an assigned ID.

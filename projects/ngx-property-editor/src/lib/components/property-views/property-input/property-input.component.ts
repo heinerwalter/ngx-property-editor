@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GlobalFunctions } from '../../../global-functions';
+import { PEGlobalFunctions } from '../../../global-functions';
 import { PropertyConfiguration } from '../property-configuration';
 
 @Component({
@@ -10,7 +10,7 @@ import { PropertyConfiguration } from '../property-configuration';
 export class PropertyInputComponent {
 
   /** ID attribute of the input element. */
-  id: string = GlobalFunctions.generateRandomId();
+  id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * Configuration of the displayed property including name, data type, displayed value etc.
