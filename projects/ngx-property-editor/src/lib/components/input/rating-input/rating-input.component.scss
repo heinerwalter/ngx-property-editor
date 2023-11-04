@@ -1,5 +1,7 @@
+@import "../../../styles/styles";
+
 @mixin star-inactive() {
-  color: var(--bs-gray-dark);
+  color: $gray-800;
   .star-inactive-icon {
     display: inline;
   }
@@ -10,7 +12,7 @@
 }
 
 @mixin star-active() {
-  color: var(--bs-yellow);
+  color: $yellow;
   .star-inactive-icon {
     display: none;
   }

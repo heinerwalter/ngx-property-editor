@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewAndEditContainerBaseComponent } from './view-and-edit-container-base.component';
+import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 
 export type ViewAndEditContainerMode = 'view' | 'edit';
@@ -26,35 +27,40 @@ export type ViewAndEditContainerMode = 'view' | 'edit';
  * </pe-view-and-edit-container>
  */
 @Component({
-    selector: 'pe-view-and-edit-container',
-    templateUrl: './view-and-edit-container.component.html',
-    styleUrls: ['./view-and-edit-container.component.scss'],
+  selector: 'pe-view-and-edit-container',
+  templateUrl: './view-and-edit-container.component.html',
+  styleUrls: ['./view-and-edit-container.component.scss'],
 })
 export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseComponent {
 
-    private setMode(mode: ViewAndEditContainerMode): void {
-        this.mode = mode;
-        this.modeChange.emit(mode);
-    }
+  public readonly iconEdit: IconDefinition = faPen;
+  public readonly iconSave: IconDefinition = faFloppyDisk;
+  public readonly iconDelete: IconDefinition = faTrash;
+  public readonly iconCancel: IconDefinition = faBan;
 
-    async onEditClicked(): Promise<void> {
-        this.editClick.emit();
-        this.setMode('edit');
-    }
+  private setMode(mode: ViewAndEditContainerMode): void {
+    this.mode = mode;
+    this.modeChange.emit(mode);
+  }
 
-    async onSaveClicked(): Promise<void> {
-        this.saveClick.emit();
-        this.setMode('view');
-    }
+  async onEditClicked(): Promise<void> {
+    this.editClick.emit();
+    this.setMode('edit');
+  }
 
-    async onDeleteClicked(): Promise<void> {
-        this.deleteClick.emit();
-        this.setMode('view');
-    }
+  async onSaveClicked(): Promise<void> {
+    this.saveClick.emit();
+    this.setMode('view');
+  }
 
-    async onCancelClicked(): Promise<void> {
-        this.cancelClick.emit();
-        this.setMode('view');
-    }
+  async onDeleteClicked(): Promise<void> {
+    this.deleteClick.emit();
+    this.setMode('view');
+  }
+
+  async onCancelClicked(): Promise<void> {
+    this.cancelClick.emit();
+    this.setMode('view');
+  }
 
 }

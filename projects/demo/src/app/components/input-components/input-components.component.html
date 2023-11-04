@@ -98,3 +98,12 @@
                  infoIconTooltip="Component: <pe-rating-input>"
                  (valueChange)="onInputValueChange('rating', $event)">
 </pe-rating-input>
+
+<pe-rating-input label="Rating input with custom icons"
+                 infoIconTooltip='Component: <pe-rating-input [iconInactive]="..." [iconActive]="...">'
+                 [iconInactive]="iconDog"
+                 [iconActive]="iconCat"
+                 iconStyleInactive="padding-right: 0.2em;"
+                 iconStyleActive="padding-right: 0.2em; color: saddlebrown;"
+                 (valueChange)="onInputValueChange('rating (with custom icons)', $event)">
+</pe-rating-input>

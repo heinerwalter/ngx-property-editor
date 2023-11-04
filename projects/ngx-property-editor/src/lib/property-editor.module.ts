@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { components } from './components/components';
 
@@ -16,6 +17,7 @@ import { components } from './components/components';
     FormsModule,
     RouterModule,
     NgbModule,
+    FontAwesomeModule,
   ],
   exports: [
     ...components,

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { faCat, faDog, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'demo-input-components',
@@ -25,6 +26,9 @@ export class InputComponentsComponent {
     { name: 'Item 4', value: 'item 4' },
     { name: 'Item 5', value: 'item 5' },
   ];
+
+  public iconCat: IconDefinition = faCat;
+  public iconDog: IconDefinition = faDog;
 
   public textInputValue: string = '';
 

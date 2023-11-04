@@ -21,6 +21,7 @@
           <th>
             <span class="preserve-new-line">{{getContent(cell)}}</span>
             <pe-goto-icon *ngIf="cell.routerLink"
+                          [paddingLeft]="true"
                           [routerLink]="cell.routerLink"
                           [tooltip]="cell.routerLinkTooltip || ''">
             </pe-goto-icon>
@@ -31,6 +32,7 @@
           <td>
             <span class="preserve-new-line">{{getContent(cell)}}</span>
             <pe-goto-icon *ngIf="cell.routerLink"
+                          [paddingLeft]="true"
                           [routerLink]="cell.routerLink"
                           [tooltip]="cell.routerLinkTooltip || ''">
             </pe-goto-icon>

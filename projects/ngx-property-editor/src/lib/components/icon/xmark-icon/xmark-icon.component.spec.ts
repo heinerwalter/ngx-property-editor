@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InfoIconComponent } from './info-icon.component';
+import { XMarkIconComponent } from './xmark-icon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
-describe('InfoIconComponent', () => {
-  let component: InfoIconComponent;
-  let fixture: ComponentFixture<InfoIconComponent>;
+describe('XmarkIconComponent', () => {
+  let component: XMarkIconComponent;
+  let fixture: ComponentFixture<XMarkIconComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InfoIconComponent],
+      declarations: [XMarkIconComponent],
       imports: [NgbModule, FontAwesomeTestingModule],
     });
-    fixture = TestBed.createComponent(InfoIconComponent);
+    fixture = TestBed.createComponent(XMarkIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

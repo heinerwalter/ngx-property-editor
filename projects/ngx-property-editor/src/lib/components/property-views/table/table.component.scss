@@ -1,6 +1,8 @@
+@import "../../../styles/styles";
+
 tr.separator {
-  border-top: solid 1px var(--bs-table-border-color);
-  border-bottom: solid 1px var(--bs-table-border-color);
+  border-top: solid $table-border-width $table-border-color;
+  border-bottom: solid $table-border-width $table-border-color;
 
   * {
     padding: 0;

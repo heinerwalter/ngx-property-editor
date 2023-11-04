@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InfoIconComponent } from './info-icon.component';
+import { PlusIconComponent } from './plus-icon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
-describe('InfoIconComponent', () => {
-  let component: InfoIconComponent;
-  let fixture: ComponentFixture<InfoIconComponent>;
+describe('PlusIconComponent', () => {
+  let component: PlusIconComponent;
+  let fixture: ComponentFixture<PlusIconComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InfoIconComponent],
+      declarations: [PlusIconComponent],
       imports: [NgbModule, FontAwesomeTestingModule],
     });
-    fixture = TestBed.createComponent(InfoIconComponent);
+    fixture = TestBed.createComponent(PlusIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

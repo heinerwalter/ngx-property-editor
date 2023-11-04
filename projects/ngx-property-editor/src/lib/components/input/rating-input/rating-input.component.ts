@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
+import { faStar as faStarSolid, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'pe-rating-input',
@@ -17,6 +19,19 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
    * Helper array for the Angular template to be able to iterate over the numbers from 1 to `max`.
    */
   ratingOptions: number [] = [1, 2, 3, 4, 5];
+
+  /** Assign an FontAwesome icon here to replace inactive rating icons (default: empty star). */
+  @Input() iconInactive: IconDefinition | undefined = undefined;
+  /** Assign an FontAwesome icon here to replace active rating icons (default: filled star). */
+  @Input() iconActive: IconDefinition | undefined = undefined;
+
+  /** Style attribute applied to inactive rating icons. */
+  @Input() iconStyleInactive: string | undefined = undefined;
+  /** Style attribute applied to active rating icons. */
+  @Input() iconStyleActive: string | undefined = undefined;
+
+  public readonly iconStarActive: IconDefinition = faStarSolid;
+  public readonly iconStarInactive: IconDefinition = faStarRegular;
 
   constructor() {
     super();

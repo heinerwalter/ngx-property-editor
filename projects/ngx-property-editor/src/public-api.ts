@@ -7,9 +7,14 @@
 export * from './lib/components/bootstrap/column/column.component';
 export * from './lib/components/bootstrap/row/row.component';
 // - icon
+export * from './lib/components/icon/check-icon/check-icon.component';
+export * from './lib/components/icon/exclamation-icon/exclamation-icon.component';
 export * from './lib/components/icon/goto-icon/goto-icon.component';
 export * from './lib/components/icon/info-icon/info-icon.component';
+export * from './lib/components/icon/minus-icon/minus-icon.component';
+export * from './lib/components/icon/plus-icon/plus-icon.component';
 export * from './lib/components/icon/question-icon/question-icon.component';
+export * from './lib/components/icon/xmark-icon/xmark-icon.component';
 // - input
 export * from './lib/components/input/input-base';
 export * from './lib/components/input/form-group/form-group.component';

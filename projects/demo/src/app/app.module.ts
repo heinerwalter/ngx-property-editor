@@ -7,6 +7,7 @@ import { TerminalComponent } from './components/terminal/terminal.component';
 import { InputComponentsComponent } from './components/input-components/input-components.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 /**
  * Demo application module.
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     NgbModule,
     RouterModule.forRoot([]),
     PropertyEditorModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
