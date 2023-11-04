@@ -40,7 +40,7 @@ export class TextInputComponent extends InputBaseWithValue<string> {
   public onChange(): void {
     // Trim value after change
     if (this.trimValue) {
-      const value: string = this.value?.trim();
+      const value: string | undefined = this.value?.trim();
       if (value == this.value) return;
       this.value = value;
       this.emitValueChange(value);
