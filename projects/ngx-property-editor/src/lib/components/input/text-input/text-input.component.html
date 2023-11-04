@@ -21,5 +21,6 @@
          [readonly]="readonly"
          [required]="required"
          [(ngModel)]="value"
-         (ngModelChange)="emitValueChange($event)" />
+         (ngModelChange)="emitValueChange($event)"
+         (change)="onChange()"/>
 </ng-template>

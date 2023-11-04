@@ -25,8 +25,26 @@ export class TextInputComponent extends InputBaseWithValue<string> {
     /** Defines a field for entering a URL. */
     'url' = 'text';
 
+  /**
+   * If true, the entered text is automatically trimmed after each change event (enter or focus left).
+   */
+  @Input() trimValue: boolean = false;
+
   constructor() {
     super();
+  }
+
+  /**
+   * Triggered by the input element change event (enter or focus left).
+   */
+  public onChange(): void {
+    // Trim value after change
+    if (this.trimValue) {
+      const value: string = this.value?.trim();
+      if (value == this.value) return;
+      this.value = value;
+      this.emitValueChange(value);
+    }
   }
 
 }

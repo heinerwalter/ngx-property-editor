@@ -3,108 +3,110 @@
   <ng-container
     *ngIf="configuration.propertyType == 'boolean' || configuration.propertyType == 'boolean-indeterminate'">
     <pe-boolean-input [id]="configuration.propertyName || id"
-                       [name]="configuration.propertyName"
-                       [label]="configuration.getLabel(data)"
-                       [readonly]="readonly"
-                       [disabled]="!readonly && !configuration.isEditable(data)"
-                       [required]="configuration.isRequired(data)"
-                       [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
-                       [value]="configuration.getValue(data)"
-                       (valueChange)="configuration.setValue(data, $event)">
+                      [name]="configuration.propertyName"
+                      [label]="configuration.getLabel(data)"
+                      [readonly]="readonly"
+                      [disabled]="!readonly && !configuration.isEditable(data)"
+                      [required]="configuration.isRequired(data)"
+                      [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
+                      [value]="configuration.getValue(data)"
+                      (valueChange)="configuration.setValue(data, $event)">
     </pe-boolean-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'date' || configuration.propertyType == 'datetime' || configuration.propertyType == 'time' || configuration.propertyType == 'month'">
     <pe-date-input [id]="configuration.propertyName || id"
-                    [name]="configuration.propertyName"
-                    [label]="configuration.getLabel(data)"
-                    [readonly]="readonly"
-                    [disabled]="!readonly && !configuration.isEditable(data)"
-                    [required]="configuration.isRequired(data)"
-                    [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
-                    [value]="configuration.getValue(data)"
-                    (valueChange)="configuration.setValue(data, $event)">
+                   [name]="configuration.propertyName"
+                   [label]="configuration.getLabel(data)"
+                   [readonly]="readonly"
+                   [disabled]="!readonly && !configuration.isEditable(data)"
+                   [required]="configuration.isRequired(data)"
+                   [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
+                   [value]="configuration.getValue(data)"
+                   (valueChange)="configuration.setValue(data, $event)">
     </pe-date-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'number'">
     <pe-number-input [id]="configuration.propertyName || id"
-                      [name]="configuration.propertyName"
-                      [label]="configuration.getLabel(data)"
-                      [readonly]="readonly"
-                      [disabled]="!readonly && !configuration.isEditable(data)"
-                      [required]="configuration.isRequired(data)"
-                      [value]="configuration.getValue(data)"
-                      (valueChange)="configuration.setValue(data, $event)">
+                     [name]="configuration.propertyName"
+                     [label]="configuration.getLabel(data)"
+                     [readonly]="readonly"
+                     [disabled]="!readonly && !configuration.isEditable(data)"
+                     [required]="configuration.isRequired(data)"
+                     [value]="configuration.getValue(data)"
+                     (valueChange)="configuration.setValue(data, $event)">
     </pe-number-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'string' || configuration.propertyType == 'id'">
     <pe-text-input [id]="configuration.propertyName || id"
-                    [name]="configuration.propertyName"
-                    [label]="configuration.getLabel(data)"
-                    [readonly]="readonly"
-                    [disabled]="!readonly && !configuration.isEditable(data)"
-                    [required]="configuration.isRequired(data)"
-                    [value]="configuration.getValue(data)"
-                    (valueChange)="configuration.setValue(data, $event)">
+                   [name]="configuration.propertyName"
+                   [label]="configuration.getLabel(data)"
+                   [readonly]="readonly"
+                   [disabled]="!readonly && !configuration.isEditable(data)"
+                   [required]="configuration.isRequired(data)"
+                   [trimValue]="true"
+                   [value]="configuration.getValue(data)"
+                   (valueChange)="configuration.setValue(data, $event)">
     </pe-text-input>
   </ng-container>
 
   <ng-container
     *ngIf="configuration.propertyType == 'password' || configuration.propertyType == 'tel' || configuration.propertyType == 'email' || configuration.propertyType == 'url' || configuration.propertyType == 'color'">
     <pe-text-input [id]="configuration.propertyName || id"
-                    [name]="configuration.propertyName"
-                    [label]="configuration.getLabel(data)"
-                    [readonly]="readonly"
-                    [disabled]="!readonly && !configuration.isEditable(data)"
-                    [required]="configuration.isRequired(data)"
-                    [type]="configuration.propertyType"
-                    [value]="configuration.getValue(data)"
-                    (valueChange)="configuration.setValue(data, $event)">
+                   [name]="configuration.propertyName"
+                   [label]="configuration.getLabel(data)"
+                   [readonly]="readonly"
+                   [disabled]="!readonly && !configuration.isEditable(data)"
+                   [required]="configuration.isRequired(data)"
+                   [type]="configuration.propertyType"
+                   [trimValue]="configuration.propertyType !== 'password'"
+                   [value]="configuration.getValue(data)"
+                   (valueChange)="configuration.setValue(data, $event)">
     </pe-text-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'string-multiline'">
     <pe-text-area-input [id]="configuration.propertyName || id"
-                         [name]="configuration.propertyName"
-                         [label]="configuration.getLabel(data)"
-                         [readonly]="readonly"
-                         [disabled]="!readonly && !configuration.isEditable(data)"
-                         [required]="configuration.isRequired(data)"
-                         [value]="configuration.getValue(data)"
-                         (valueChange)="configuration.setValue(data, $event)">
+                        [name]="configuration.propertyName"
+                        [label]="configuration.getLabel(data)"
+                        [readonly]="readonly"
+                        [disabled]="!readonly && !configuration.isEditable(data)"
+                        [required]="configuration.isRequired(data)"
+                        [value]="configuration.getValue(data)"
+                        (valueChange)="configuration.setValue(data, $event)">
     </pe-text-area-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'rating'">
     <pe-rating-input [id]="configuration.propertyName || id"
-                      [name]="configuration.propertyName"
-                      [label]="configuration.getLabel(data)"
-                      [readonly]="readonly"
-                      [disabled]="!readonly && !configuration.isEditable(data)"
-                      [required]="configuration.isRequired(data)"
-                      [value]="configuration.getValue(data)"
-                      (valueChange)="configuration.setValue(data, $event)">
+                     [name]="configuration.propertyName"
+                     [label]="configuration.getLabel(data)"
+                     [readonly]="readonly"
+                     [disabled]="!readonly && !configuration.isEditable(data)"
+                     [required]="configuration.isRequired(data)"
+                     [value]="configuration.getValue(data)"
+                     (valueChange)="configuration.setValue(data, $event)">
     </pe-rating-input>
   </ng-container>
 
   <ng-container *ngIf="configuration.propertyType == 'select'">
     <pe-select-input [id]="configuration.propertyName || id"
-                      [name]="configuration.propertyName"
-                      [label]="configuration.getLabel(data)"
-                      [readonly]="readonly"
-                      [disabled]="!readonly && !configuration.isEditable(data)"
-                      [required]="configuration.isRequired(data)"
-                      [dataSource]="configuration.getDataSource(data)"
-                      [valuePropertyName]="configuration.valuePropertyName"
-                      [displayPropertyName]="configuration.displayPropertyName"
-                      [multiple]="false"
-                      [allowEmpty]="true"
-                      [value]="configuration.getValue(data)"
-                      (valueChange)="configuration.setValue(data, $event)">
+                     [name]="configuration.propertyName"
+                     [label]="configuration.getLabel(data)"
+                     [readonly]="readonly"
+                     [disabled]="!readonly && !configuration.isEditable(data)"
+                     [required]="configuration.isRequired(data)"
+                     [dataSource]="configuration.getDataSource(data)"
+                     [valuePropertyName]="configuration.valuePropertyName"
+                     [displayPropertyName]="configuration.displayPropertyName"
+                     [multiple]="false"
+                     [allowEmpty]="true"
+                     [value]="configuration.getValue(data)"
+                     (valueChange)="configuration.setValue(data, $event)">
     </pe-select-input>
   </ng-container>
 
