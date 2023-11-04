@@ -3,7 +3,11 @@
   "version": "0.0.6",
   "license": "MIT",
   "description": "An Angular library containing simple input components and a property editor component which automatically builds a form for editing all properties of any object.",
-  "keywords": ["angular", "bootstrap", "input"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "input"
+  ],
   "author": "Heiner Walter",
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0",
     "@angular/forms": "^16.2.0",
+    "@angular/router": "^16.2.0",
     "bootstrap": "^5.3.2"
   },
   "dependencies": {

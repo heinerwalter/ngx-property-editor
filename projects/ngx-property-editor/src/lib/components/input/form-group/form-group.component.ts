@@ -27,6 +27,15 @@ export class FormGroupComponent {
   /** If true, label and content are displayed in a grid in one line. */
   @Input() inlineLabel: boolean = false;
 
+  /** If not empty, an `InfoIconComponent` is added to the end of the label with this text as tooltip. */
+  @Input() infoIconTooltip: string | undefined = undefined;
+
+  /**
+   * If not empty, a `FormTextComponent` is added below the form group content (last child element
+   * of the form group) with this text as content.
+   */
+  @Input() helpText: string | undefined = undefined;
+
   /** If true, the input element is not wrapped inside a FormGroup component. */
   @Input() noFormGroup: boolean = false;
 

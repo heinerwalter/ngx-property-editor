@@ -10,12 +10,28 @@ export class InputBase {
   @Input() id: string = PEGlobalFunctions.generateRandomId();
   /** Name attribute of the input element. */
   @Input() name: string | undefined = undefined;
-  /** If not empty a label is displayed at the top of this form group. */
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If not empty a label is displayed at the top of this form group.
+   */
   @Input() label: string | undefined = undefined;
   /** If not empty a placeholder is displayed in the input field. */
   @Input() placeholder: string | undefined = undefined;
-  /** If true, label and content are displayed in a grid in one line. */
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If true, label and content are displayed in a grid in one line.
+   */
   @Input() inlineLabel: boolean = false;
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If not empty, an `InfoIconComponent` is added to the end of the label with this text as tooltip.
+   */
+  @Input() infoIconTooltip: string | undefined = undefined;
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If not empty, a `FormTextComponent` is added below the input element with this text as content.
+   */
+  @Input() helpText: string | undefined = undefined;
 
   /** If true, the value cannot be changed by the user. */
   @Input() disabled: boolean = false;
@@ -24,7 +40,7 @@ export class InputBase {
   /** If true, an empty value is not valid. */
   @Input() required: boolean = false;
 
-  /** If true, the input element is not wrapped inside a FormGroup component. */
+  /** If true, the input element is not wrapped inside a form group component. */
   @Input() noFormGroup: boolean = false;
 
 }

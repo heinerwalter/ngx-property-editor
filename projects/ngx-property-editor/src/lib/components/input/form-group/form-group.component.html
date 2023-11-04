@@ -8,10 +8,14 @@
          [for]="for"
          class="form-label">
     {{labelWithColon}}
+    <pe-info-icon *ngIf="infoIconTooltip"
+                  [tooltip]="infoIconTooltip">
+    </pe-info-icon>
   </label>
   <div class="form-group-content">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </div>
+  <pe-form-text *ngIf="helpText">{{helpText}}</pe-form-text>
 </div>
 
 <ng-template #contentTemplate>

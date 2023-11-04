@@ -26,20 +26,22 @@
 <ng-container *ngIf="type == 'radio'">
 
   <pe-radio-input [label]="label"
-                   [inlineLabel]="inlineLabel"
-                   [noFormGroup]="noFormGroup"
-                   [id]="id"
-                   [name]="name"
-                   [placeholder]="placeholder"
-                   [disabled]="disabled"
-                   [readonly]="readonly"
-                   [required]="required"
-                   [inline]="true"
-                   [dataSource]="allowIndeterminate ? [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }, { value: undefined, name: 'Keine Angabe' }] : [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }]"
-                   valuePropertyName="value"
-                   displayPropertyName="name"
-                   [(value)]="value"
-                   (valueChange)="emitValueChange($event)">
+                  [inlineLabel]="inlineLabel"
+                  [infoIconTooltip]="infoIconTooltip"
+                  [helpText]="helpText"
+                  [noFormGroup]="noFormGroup"
+                  [id]="id"
+                  [name]="name"
+                  [placeholder]="placeholder"
+                  [disabled]="disabled"
+                  [readonly]="readonly"
+                  [required]="required"
+                  [inline]="true"
+                  [dataSource]="allowIndeterminate ? [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }, { value: undefined, name: 'Keine Angabe' }] : [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }]"
+                  valuePropertyName="value"
+                  displayPropertyName="name"
+                  [(value)]="value"
+                  (valueChange)="emitValueChange($event)">
   </pe-radio-input>
 
 </ng-container>

@@ -1,12 +1,34 @@
+import { $localize } from '@angular/localize/init';
+
 export class Stringifier {
 
   /** Static class. */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {
   }
 
   // region Booleans
 
-  // TODO: add boolean to string function
+  /**
+   * Converts a boolean value to a human-readable string.
+   * @param value A boolean value. If undefined (or any other type but boolean), an empty string is returned.
+   * @param type Choose how to display the boolean value:
+   *             'true-false': true -> 'true'; false -> 'false'
+   *             'yes-no':     true -> 'yes';  false -> 'no'
+   */
+  public static booleanToString(value: boolean | undefined,
+                                type: 'true-false' | 'yes-no' = 'true-false'): string {
+    if (typeof value !== 'boolean') return '';
+
+    switch (type) {
+      case 'true-false':
+        return value ? $localize`:@@true:true` : $localize`:@@false:false`;
+      case 'yes-no':
+        return value ? $localize`:@@yes:Ja` : $localize`:@@no:Nein`;
+    }
+
+    return '';
+  }
 
   // endregion
 
@@ -15,8 +37,9 @@ export class Stringifier {
   /**
    * Gets the month and year of the given date as string using the current locale.
    * @param date A Date.
+   * @returns Month and year of the given date as string (e.g. 'January 2023').
    */
-  public static toMonthString(date: Date | undefined): string {
+  public static dateMonthAndYearToString(date: Date | undefined): string {
     return date?.toLocaleDateString(navigator.language, { year: 'numeric', month: 'long' }) || '';
   }
 
@@ -27,7 +50,7 @@ export class Stringifier {
    * @param includeTime Include time in the result.
    *                    Use 'auto' to include the time, if any date component is different from zero.
    */
-  public static toDateString(date: Date | undefined,
+  public static dateToString(date: Date | undefined,
                              includeDate: boolean = true,
                              includeTime: boolean | 'auto' = 'auto'): string {
     function includeTimeAuto(): boolean {
@@ -42,15 +65,15 @@ export class Stringifier {
   }
 
   /**
-   * Gets a date string as used in file names (format: 'YYYY-MM-DD').
+   * Gets a date string as used as file name prefixes (format: 'YYYY-MM-DD').
    * @param date A Date.
    */
-  public static toDateStringFileName(date: Date | undefined): string {
+  public static dateToStringForFileName(date: Date | undefined): string {
     if (!date) return '';
-    const year: string = this.toPaddedString(date.getFullYear(), 4);
-    const month: string = this.toPaddedString(date.getMonth() + 1, 2);
-    const day: string = this.toPaddedString(date.getDate(), 2);
-    return `${year}-${month}-${day}`;
+    const year: string = this.numberToPaddedString(date.getFullYear(), 4);
+    const month: string = this.numberToPaddedString(date.getMonth() + 1, 2);
+    const day: string = this.numberToPaddedString(date.getDate(), 2);
+    return `${ year }-${ month }-${ day }`;
   }
 
   // endregion
@@ -64,7 +87,7 @@ export class Stringifier {
    *                     is too short, zeros are added at the beginning.
    * @see String.prototype.padStart
    */
-  public static toPaddedString(value: number, targetLength: number): string {
+  public static numberToPaddedString(value: number, targetLength: number): string {
     return (value?.toString() || '').padStart(targetLength, '0');
   }
 
@@ -73,7 +96,7 @@ export class Stringifier {
    * @param amount Amount of a currency.
    * @param currency Optional: currency name or symbol (e.g. '€' or 'EUR').
    */
-  public static toCurrencyString(amount: number | undefined, currency?: string): string {
+  public static numberWithCurrencyToString(amount: number | undefined, currency?: string): string {
     if (amount == undefined || isNaN(amount)) return '';
 
     const amountString: string = amount.toLocaleString(navigator.language, {
@@ -204,8 +227,10 @@ export class Stringifier {
   /**
    * Converts the given text to camel case (first character of each word as upper case;
    * everything else as lower case).
+   * @param str Input string.
+   * @returns the input string without spaces but in camel case (e.g. 'camel case' -> 'CamelCase').
    */
-  public static toCamelCase(str: string): string {
+  public static stringToCamelCase(str: string): string {
     if (!str) return str;
     const words: string[] = str.split(' ').filter(s => !!s);
     return words.map(word => word[0].toUpperCase() + word.substring(1).toLowerCase())
@@ -216,7 +241,16 @@ export class Stringifier {
 
   // region Arrays
 
-  // TODO: add array to string function
+  /**
+   * Converts an array to a string.
+   * @param array An array. If the given value is not an array, an empty string is returned.
+   * @returns A string representation of the given array like '[item 1, item 2, item 3]'.
+   */
+  public static arrayToString(array: any[]): string {
+    if (!Array.isArray(array)) return '';
+
+    return `[${ array.join(', ') }]`;
+  }
 
   // endregion
 

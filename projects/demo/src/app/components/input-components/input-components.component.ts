@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'demo-input-components',
   templateUrl: './input-components.component.html',
-  styleUrls: ['./input-components.component.scss']
+  styleUrls: ['./input-components.component.scss'],
 })
 export class InputComponentsComponent {
 
@@ -26,6 +26,8 @@ export class InputComponentsComponent {
     { name: 'Item 5', value: 'item 5' },
   ];
 
+  public textInputValue: string = '';
+
   /**
    * This method is called when the user changed the value of any input component.
    * @param inputName Name of the input component.
@@ -36,12 +38,18 @@ export class InputComponentsComponent {
     if (value == undefined)
       valueString = 'undefined';
     else if (Array.isArray(value))
-      valueString = `[${value.join(', ')}]`;
+      valueString = `[${ value.join(', ') }]`;
     else
       valueString = value.toString();
 
-    this.terminalLines.push(`value of ${inputName} input changed: ${valueString}`);
+    this.terminalLines.push(`value of ${ inputName } input changed: ${ valueString }`);
     this.terminalLinesChange.emit(this.terminalLines);
   }
 
+  public onTextInputGotoIconClicked(): void {
+    if (!this.textInputValue) return;
+    window.location.assign('https://www.google.com/search?q=' + this.textInputValue);
+  }
+
 }
+

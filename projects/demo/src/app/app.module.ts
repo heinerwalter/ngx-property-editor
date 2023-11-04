@@ -5,8 +5,12 @@ import { PropertyEditorModule } from 'ngx-property-editor';
 import { AppComponent } from './app.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
 import { InputComponentsComponent } from './components/input-components/input-components.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
-
+/**
+ * Demo application module.
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +19,8 @@ import { InputComponentsComponent } from './components/input-components/input-co
   ],
   imports: [
     BrowserModule,
+    NgbModule,
+    RouterModule.forRoot([]),
     PropertyEditorModule,
   ],
   providers: [],

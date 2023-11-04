@@ -1,7 +1,9 @@
 <pe-form-group [for]="id"
-                [label]="label"
-                [inlineLabel]="inlineLabel"
-                [noFormGroup]="noFormGroup">
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [noFormGroup]="noFormGroup">
   <input class="form-control"
          [type]="type || 'date'"
          [id]="id"
@@ -11,5 +13,5 @@
          [readonly]="readonly"
          [required]="required"
          [valueAsDate]="value"
-         (change)="onInputChange($event)"/>
+         (change)="onInputChange($event)" />
 </pe-form-group>

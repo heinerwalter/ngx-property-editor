@@ -6,9 +6,14 @@
 // - bootstrap
 export * from './lib/components/bootstrap/column/column.component';
 export * from './lib/components/bootstrap/row/row.component';
+// - icon
+export * from './lib/components/icon/goto-icon/goto-icon.component';
+export * from './lib/components/icon/info-icon/info-icon.component';
+export * from './lib/components/icon/question-icon/question-icon.component';
 // - input
 export * from './lib/components/input/input-base';
 export * from './lib/components/input/form-group/form-group.component';
+export * from './lib/components/input/form-text/form-text.component';
 export * from './lib/components/input/boolean-input/boolean-input.component';
 export * from './lib/components/input/checkbox-select-input/checkbox-select-input.component';
 export * from './lib/components/input/date-input/date-input.component';

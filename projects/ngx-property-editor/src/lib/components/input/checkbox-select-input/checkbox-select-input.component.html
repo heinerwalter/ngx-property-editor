@@ -1,24 +1,26 @@
 <pe-form-group [for]="id"
-                [label]="label"
-                [inlineLabel]="inlineLabel"
-                [noFormGroup]="noFormGroup">
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [noFormGroup]="noFormGroup">
   <ng-container *ngFor="let item of dataSource; let i = index">
     <pe-boolean-input [noFormGroup]="true"
-                       [id]="id + i"
-                       type="checkbox"
-                       [label]="evaluateDisplayPropertyName(item)"
-                       [value]="value?.includes(evaluateValuePropertyName(item))"
-                       (valueChange)="onItemValueChanged(item, $event)">
+                      [id]="id + i"
+                      type="checkbox"
+                      [label]="evaluateDisplayPropertyName(item)"
+                      [value]="value?.includes(evaluateValuePropertyName(item))"
+                      (valueChange)="onItemValueChanged(item, $event)">
     </pe-boolean-input>
   </ng-container>
   <pe-boolean-input *ngIf="showSelectAll"
-                     style="font-style: italic"
-                     [noFormGroup]="true"
-                     [id]="id + '-select-all'"
-                     type="checkbox"
-                     [label]="'Alle auswählen'"
-                     [allowIndeterminate]="true"
-                     [value]="value?.length == 0 ? false : value?.length == dataSource.length ? true : undefined"
-                     (valueChange)="onSelectAllClicked($event)">
+                    style="font-style: italic"
+                    [noFormGroup]="true"
+                    [id]="id + '-select-all'"
+                    type="checkbox"
+                    [label]="'Alle auswählen'"
+                    [allowIndeterminate]="true"
+                    [value]="value?.length == 0 ? false : value?.length == dataSource.length ? true : undefined"
+                    (valueChange)="onSelectAllClicked($event)">
   </pe-boolean-input>
 </pe-form-group>

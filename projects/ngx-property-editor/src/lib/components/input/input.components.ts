@@ -1,5 +1,7 @@
 import { Type } from '@angular/core';
 import { FormGroupComponent } from './form-group/form-group.component';
+import { FormTextComponent } from './form-text/form-text.component';
+
 import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from './input-base';
 
 import { BooleanInputComponent } from './boolean-input/boolean-input.component';
@@ -16,6 +18,8 @@ import { TextInputComponent } from './text-input/text-input.component';
 
 export const inputComponents: Array<Type<any> | any[]> = [
   FormGroupComponent,
+  FormTextComponent,
+
   InputBase,
   InputBaseWithValue,
   InputBaseWithValueAndDataSource,

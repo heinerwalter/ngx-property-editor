@@ -9,41 +9,37 @@
   <tbody *ngIf="data?.length">
 
   <ng-container *ngFor="let row of data; let i = index">
-      <tr [class.separator]="row.length == 0">
+    <tr [class.separator]="row.length == 0">
 
-        <ng-container *ngIf="row.length == 0 && i + 1 < data.length">
-          <td *ngFor="let cell of data[i + 1]"></td>
+      <ng-container *ngIf="row.length == 0 && i + 1 < data.length">
+        <td *ngFor="let cell of data[i + 1]"></td>
+      </ng-container>
+
+      <ng-container *ngFor="let cell of row">
+
+        <ng-container *ngIf="cell.style == 'header'">
+          <th>
+            <span class="preserve-new-line">{{getContent(cell)}}</span>
+            <pe-goto-icon *ngIf="cell.routerLink"
+                          [routerLink]="cell.routerLink"
+                          [tooltip]="cell.routerLinkTooltip || ''">
+            </pe-goto-icon>
+          </th>
         </ng-container>
 
-        <ng-container *ngFor="let cell of row">
-
-          <ng-container *ngIf="cell.style == 'header'">
-            <th>
-              <span class="preserve-new-line">{{getContent(cell)}}</span>
-              <!-- TODO: Add goto-icon
-              <app-goto-icon *ngIf="cell.routerLink"
-                             [routerLink]="cell.routerLink"
-                             [ngbTooltip]="cell.routerLinkTooltip || ''">
-              </app-goto-icon>
-              -->
-            </th>
-          </ng-container>
-
-          <ng-container *ngIf="cell.style == 'data'">
-            <td>
-              <span class="preserve-new-line">{{getContent(cell)}}</span>
-              <!-- TODO: Add goto-icon
-              <app-goto-icon *ngIf="cell.routerLink"
-                             [routerLink]="cell.routerLink"
-                             [ngbTooltip]="cell.routerLinkTooltip || ''">
-              </app-goto-icon>
-              -->
-            </td>
-          </ng-container>
-
+        <ng-container *ngIf="cell.style == 'data'">
+          <td>
+            <span class="preserve-new-line">{{getContent(cell)}}</span>
+            <pe-goto-icon *ngIf="cell.routerLink"
+                          [routerLink]="cell.routerLink"
+                          [tooltip]="cell.routerLinkTooltip || ''">
+            </pe-goto-icon>
+          </td>
         </ng-container>
 
-      </tr>
+      </ng-container>
+
+    </tr>
   </ng-container>
 
   </tbody>

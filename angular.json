@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/ngx-property-editor",
       "sourceRoot": "projects/ngx-property-editor/src",
-      "prefix": "lib",
+      "prefix": "pe",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"

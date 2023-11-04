@@ -45,7 +45,7 @@ export class TableComponent {
       if (isNaN(cell.content)) return '';
       return cell.content.toLocaleString();
     } else if (cell.content instanceof Date) {
-      return Stringifier.toDateString(cell.content, true, 'auto');
+      return Stringifier.dateToString(cell.content, true, 'auto');
     }
     return cell.content.toString();
   }

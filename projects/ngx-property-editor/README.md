@@ -22,6 +22,14 @@ Add this library to your Angular CLI project by running the following command:
 ng add ngx-property-editor
 ```
 
+It will install `ngx-property-editor` for the default application specified in your
+`angular.json`. If you have multiple projects, and you want to target a specific
+project, you could specify the `--project` option:
+
+```console
+ng add ngx-property-editor --project myProject
+```
+
 ### Install Bootstrap (dependency)
 
 The `ngx-property-editor` package uses bootstrap style classes. For them to work, the
