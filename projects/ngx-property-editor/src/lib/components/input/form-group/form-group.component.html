@@ -15,7 +15,7 @@
   <div class="form-group-content">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
   </div>
-  <pe-form-text *ngIf="helpText">{{helpText}}</pe-form-text>
+  <pe-form-text *ngIf="helpText" [id]="for ? for + '-help' : ''">{{helpText}}</pe-form-text>
 </div>
 
 <ng-template #contentTemplate>

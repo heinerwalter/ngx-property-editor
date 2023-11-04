@@ -1,9 +1,17 @@
-<pe-form-group [for]="id"
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
                [label]="label"
                [inlineLabel]="inlineLabel"
                [infoIconTooltip]="infoIconTooltip"
-               [helpText]="helpText"
-               [noFormGroup]="noFormGroup">
+               [helpText]="helpText">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
+
+<ng-template #contentTemplate>
   <input class="form-control"
          type="file"
          [id]="id"
@@ -15,4 +23,4 @@
          [accept]="accept"
          [multiple]="multiple"
          (change)="onChange($event)" />
-</pe-form-group>
+</ng-template>
