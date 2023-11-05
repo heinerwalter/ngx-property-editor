@@ -107,3 +107,17 @@
                  iconStyleActive="padding-right: 0.2em; color: saddlebrown;"
                  (valueChange)="onInputValueChange('rating (with custom icons)', $event)">
 </pe-rating-input>
+
+
+<!-- Terminal -->
+<pe-form-group>
+  <demo-terminal [lines]="terminalLines"
+                 [maxLines]="terminalMaxLines">
+  </demo-terminal>
+</pe-form-group>
+
+<pe-number-input label="max. displayed line count"
+                 [inlineLabel]="true"
+                 [min]="0"
+                 [(value)]="terminalMaxLines">
+</pe-number-input>

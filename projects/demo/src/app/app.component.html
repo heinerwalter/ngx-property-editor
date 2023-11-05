@@ -46,24 +46,20 @@
 <div class="container" role="main">
 
   <pe-tabs id="demo-tabs">
+ 
     <pe-tabs-item label="Input Components">
-
-      <demo-input-components [(terminalLines)]="terminalLines">
+      <demo-input-components>
       </demo-input-components>
-
-      <!-- Terminal -->
-      <pe-form-group>
-        <demo-terminal [lines]="terminalLines"
-                       [maxLines]="terminalMaxLines"></demo-terminal>
-      </pe-form-group>
-
-      <pe-number-input label="max. displayed line count"
-                       [inlineLabel]="true"
-                       [min]="0"
-                       [(value)]="terminalMaxLines">
-      </pe-number-input>
-  
     </pe-tabs-item>
+
+    <pe-tabs-item label="Property Table">
+      TODO
+    </pe-tabs-item>
+
+    <pe-tabs-item label="Property Editor">
+      TODO
+    </pe-tabs-item>
+
   </pe-tabs>
 
   <!-- Footer -->

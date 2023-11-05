@@ -13,8 +13,14 @@ export class InputComponentsComponent {
    * Whenever the value of an input component has been changed by the user,
    * a new line is added containing the input component name and the changed value.
    */
-  @Input() public terminalLines: string[] = [];
+  @Input() public terminalLines: string[] = [
+    'Welcome to the ngx-property-editor Demo!',
+    'Change the value of any input field above to see the result here.',
+  ];
   @Output() public readonly terminalLinesChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+ 
+  /** Limit displayed lines to this number (show newest/last lines). */
+  public terminalMaxLines: number = 20;
 
   /**
    * Data source for all input components which need a data source.
