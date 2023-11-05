@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { IconBaseComponent } from '../icon-base.component';
+import { CircleIconBaseComponent } from '../icon-base.component';
 import { faCircleExclamation, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'pe-exclamation-icon',
-  template: IconBaseComponent.iconComponentTemplate,
+  template: CircleIconBaseComponent.iconComponentTemplate,
   styleUrls: ['../icon.component.scss'],
 })
-export class ExclamationIconComponent extends IconBaseComponent {
+export class ExclamationIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  override readonly icon: IconDefinition = faCircleExclamation;
+  public override readonly icon: IconDefinition = faCircleExclamation;
 
 }

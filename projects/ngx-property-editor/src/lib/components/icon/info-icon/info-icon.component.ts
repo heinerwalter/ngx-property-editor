@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { IconBaseComponent } from '../icon-base.component';
+import { CircleIconBaseComponent } from '../icon-base.component';
 import { faCircleInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'pe-info-icon',
-  template: IconBaseComponent.iconComponentTemplate,
+  template: CircleIconBaseComponent.iconComponentTemplate,
   styleUrls: ['../icon.component.scss'],
 })
-export class InfoIconComponent extends IconBaseComponent {
+export class InfoIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  override readonly icon: IconDefinition = faCircleInfo;
+  public override readonly icon: IconDefinition = faCircleInfo;
 
 }

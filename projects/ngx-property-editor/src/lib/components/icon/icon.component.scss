@@ -4,12 +4,12 @@ button.icon-btn {
   @include icon-button;
 }
 
-.circle-icon-padding-left,
-button.icon-btn.circle-icon-padding-left {
+.icon-padding-left,
+button.icon-btn.icon-padding-left {
   padding-left: 0.5em;
 }
 
-.circle-icon-padding-right,
-button.icon-btn.circle-icon-padding-right {
+.icon-padding-right,
+button.icon-btn.icon-padding-right {
   padding-right: 0.5em;
 }

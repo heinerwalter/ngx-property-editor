@@ -6,6 +6,7 @@ import { InfoIconComponent } from './info-icon/info-icon.component';
 import { MinusIconComponent } from './minus-icon/minus-icon.component';
 import { PlusIconComponent } from './plus-icon/plus-icon.component';
 import { QuestionIconComponent } from './question-icon/question-icon.component';
+import { ValidityIconComponent } from './validity-icon/validity-icon.component';
 import { XMarkIconComponent } from './xmark-icon/xmark-icon.component';
 
 export const iconComponents: Array<Type<any> | any[]> = [
@@ -16,5 +17,6 @@ export const iconComponents: Array<Type<any> | any[]> = [
   MinusIconComponent,
   PlusIconComponent,
   QuestionIconComponent,
+  ValidityIconComponent,
   XMarkIconComponent,
 ];

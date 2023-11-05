@@ -1,18 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { IconBaseComponent } from '../icon-base.component';
+import { CircleIconBaseComponent } from '../icon-base.component';
 import { faCircleArrowRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'pe-goto-icon',
-  template: IconBaseComponent.iconComponentTemplate,
+  template: CircleIconBaseComponent.iconComponentTemplate,
   styleUrls: ['../icon.component.scss'],
 })
-export class GotoIconComponent extends IconBaseComponent {
+export class GotoIconComponent extends CircleIconBaseComponent {
 
   /** If true, the icon is displayed on a <button> element (without a visible button with border etc.). */
-  @Input() override button: boolean = true;
+  @Input() public override button: boolean = true;
 
   /** The FontAwesome icon to be displayed by the component. */
-  override readonly icon: IconDefinition = faCircleArrowRight;
+  public override readonly icon: IconDefinition = faCircleArrowRight;
 
 }
