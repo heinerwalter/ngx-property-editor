@@ -112,7 +112,7 @@ export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
    * - an item component was registered or unregistered (`registeredItemComponents` changed)
    * - a property of one of the registered item components changed (called by `ItemViewItemBaseComponent.ngOnChanges`).
    */
-  protected updateItems(): void {
+  public updateItems(): void {
     setTimeout(() => {
       const items: ItemDefinition[] = [...this.items];
       for (const registeredItemComponent of this.registeredItemComponents) {
