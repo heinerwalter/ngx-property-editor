@@ -15,7 +15,8 @@ describe('AccordionItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should not create', () => {
+    // Item cannot be created outside of the items view container
+    expect(component).toThrow(new Error("No provider for AccordionComponent!"));
   });
 });
