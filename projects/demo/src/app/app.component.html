@@ -45,24 +45,30 @@
 
 <div class="container" role="main">
 
-  <demo-input-components [(terminalLines)]="terminalLines">
-  </demo-input-components>
+  <pe-tabs id="demo-tabs">
+    <pe-tabs-item label="Input Components">
 
-  <!-- Terminal -->
-  <pe-form-group>
-    <demo-terminal [lines]="terminalLines"
-                   [maxLines]="terminalMaxLines"></demo-terminal>
-  </pe-form-group>
+      <demo-input-components [(terminalLines)]="terminalLines">
+      </demo-input-components>
 
-  <pe-number-input label="max. displayed line count"
-                    [inlineLabel]="true"
-                    [min]="0"
-                    [(value)]="terminalMaxLines">
-  </pe-number-input>
+      <!-- Terminal -->
+      <pe-form-group>
+        <demo-terminal [lines]="terminalLines"
+                       [maxLines]="terminalMaxLines"></demo-terminal>
+      </pe-form-group>
+
+      <pe-number-input label="max. displayed line count"
+                       [inlineLabel]="true"
+                       [min]="0"
+                       [(value)]="terminalMaxLines">
+      </pe-number-input>
+  
+    </pe-tabs-item>
+  </pe-tabs>
 
   <!-- Footer -->
   <footer>
-    Love&nbsp;<code>ngx-property-editor</code>?&nbsp;
+    Love ngx-property-editor?
     <a href="https://github.com/heinerwalter/ngx-property-editor" target="_blank" rel="noopener">
       Give our repo a star.
     </a>

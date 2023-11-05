@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ItemDefinition, ItemViewItemBaseComponent } from './item-view-item-base.component';
+import { PEGlobalFunctions } from '../../../global-functions';
 
 @Component({
   template: '',
@@ -7,10 +8,10 @@ import { ItemDefinition, ItemViewItemBaseComponent } from './item-view-item-base
 export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
 
   /**
-   * You must define an ID, if there is more than one instance
+   * You must define different IDs, if there are more than one instance
    * of this type of item view component on the same page.
    */
-  @Input() public id: string | undefined = undefined;
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * Define labels and related template references for the view items here.
