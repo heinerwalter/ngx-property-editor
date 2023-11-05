@@ -45,7 +45,15 @@
 
 <div class="container" role="main">
 
-  <pe-tabs id="demo-tabs">
+  <pe-select-input label="Choose container type"
+                   [inlineLabel]="true"
+                   [dataSource]="containerTypeDataSource"
+                   displayPropertyName="name"
+                   valuePropertyName="value"
+                   [(value)]="containerType">
+  </pe-select-input>
+
+  <pe-tabs *ngIf="containerType == 'tabs'" id="demo-tabs">
  
     <pe-tabs-item label="Input Components">
       <demo-input-components>
@@ -61,6 +69,23 @@
     </pe-tabs-item>
 
   </pe-tabs>
+
+  <pe-accordion *ngIf="containerType == 'accordion'" id="demo-accordion">
+ 
+    <pe-accordion-item label="Input Components">
+      <demo-input-components>
+      </demo-input-components>
+    </pe-accordion-item>
+
+    <pe-accordion-item label="Property Table">
+      TODO
+    </pe-accordion-item>
+
+    <pe-accordion-item label="Property Editor">
+      TODO
+    </pe-accordion-item>
+
+  </pe-accordion> 
 
   <!-- Footer -->
   <footer>

@@ -10,13 +10,14 @@ describe('AccordionItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AccordionItemComponent]
     });
-    fixture = TestBed.createComponent(AccordionItemComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should not create', () => {
     // Item cannot be created outside of the items view container
-    expect(component).toThrow(new Error("No provider for AccordionComponent!"));
+    expect(() => {
+      fixture = TestBed.createComponent(AccordionItemComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    }).toThrowAnyError();
   });
 });
