@@ -10,6 +10,6 @@ import { faCircleCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons
 export class CheckIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  piblic override readonly icon: IconDefinition = faCircleCheck;
+  public override readonly icon: IconDefinition = faCircleCheck;
 
 }
