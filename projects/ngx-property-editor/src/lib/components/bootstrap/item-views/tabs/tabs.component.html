@@ -1,0 +1,36 @@
+<ng-container *ngIf="_items?.length">
+
+  <div [class]="orientation == 'horizontal' ? 'tabs-horizontal' : 'tabs-vertical d-flex'">
+
+    <div ngbNav #nav="ngbNav"
+         [id]="id"
+         [class]="orientation == 'horizontal' ? 'nav-tabs' : 'nav-pills flex-column'"
+         [orientation]="orientation"
+         [activeId]="id + '-tab' + _defaultItemIndex">
+      <ng-container *ngFor="let item of _items; let i = index">
+
+        <ng-container *ngIf="item && !item.hidden"
+                      [ngbNavItem]="id + '-tab' + i">
+
+          <ng-container *ngIf="!item.routerLink">
+            <button ngbNavLink (click)="onItemClick(item)">{{item.label}}</button>
+            <ng-template ngbNavContent>
+              <ng-template *ngIf="item.contentTemplate"
+                           [ngTemplateOutlet]="item.contentTemplate"
+                           [ngTemplateOutletContext]="{ tab: item.label, index: i }">
+              </ng-template>
+            </ng-template>
+          </ng-container>
+
+          <ng-container *ngIf="item.routerLink">
+            <a ngbNavLink [routerLink]="item.routerLink">{{item.label}}&hellip;</a>
+          </ng-container>
+
+        </ng-container>
+      </ng-container>
+    </div>
+    <div [ngbNavOutlet]="nav"></div>
+
+  </div>
+
+</ng-container>

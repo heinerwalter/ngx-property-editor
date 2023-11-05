@@ -1,0 +1,9 @@
+[ngbAccordion] [ngbAccordionButton] {
+  .ngb-accordion-button-label {
+    flex-grow: 1;
+  }
+
+  .ngb-accordion-button-validity-icon {
+    padding-right: var(--bs-accordion-btn-padding-x);
+  }
+}

@@ -1,0 +1,34 @@
+import { Component, Input } from '@angular/core';
+import { ItemViewBaseComponent } from '../item-view-base.component';
+
+@Component({
+  selector: 'pe-accordion',
+  templateUrl: './accordion.component.html',
+  styleUrls: ['./accordion.component.scss'],
+})
+export class AccordionComponent extends ItemViewBaseComponent {
+
+  /**
+   * If true, only one panel can be opened at a time.
+   */
+  @Input() public closeOthers: boolean = true;
+
+  /**
+   * You can choose to either keep or remove the DOM nodes
+   * of the panels that are not opened.
+   */
+  @Input() public destroyOnHide: boolean = false;
+
+  /**
+   * By default the first item is initially opened.
+   * If this property is true, initially all items are collapsed.
+   */
+  @Input() public allCollapsedInitially: boolean = false;
+
+  @Input() public override disableSaveLastActiveItem: boolean = true;
+
+  public constructor() {
+    super();
+  }
+
+}

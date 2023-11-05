@@ -6,6 +6,12 @@
 // - bootstrap
 export * from './lib/components/bootstrap/column/column.component';
 export * from './lib/components/bootstrap/row/row.component';
+export * from './lib/components/bootstrap/item-views/item-view-base.component';
+export * from './lib/components/bootstrap/item-views/item-view-item-base.component';
+export * from './lib/components/bootstrap/item-views/accordion/accordion.component';
+export * from './lib/components/bootstrap/item-views/accordion-item/accordion-item.component';
+export * from './lib/components/bootstrap/item-views/tabs/tabs.component';
+export * from './lib/components/bootstrap/item-views/tabs-item/tabs-item.component';
 // - icon
 export * from './lib/components/icon/check-icon/check-icon.component';
 export * from './lib/components/icon/exclamation-icon/exclamation-icon.component';

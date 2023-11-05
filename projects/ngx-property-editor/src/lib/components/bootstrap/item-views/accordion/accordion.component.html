@@ -1,0 +1,48 @@
+<ng-container *ngIf="_items?.length">
+
+  <div ngbAccordion
+       [id]="id"
+       [closeOthers]="closeOthers"
+       [destroyOnHide]="destroyOnHide">
+
+    <ng-container *ngFor="let item of _items; let i = index">
+
+      <div ngbAccordionItem *ngIf="item && !item.hidden"
+           [collapsed]="allCollapsedInitially || i != _defaultItemIndex">
+
+        <h2 ngbAccordionHeader>
+          <ng-container *ngIf="!item.routerLink">
+            <button ngbAccordionButton (click)="onItemClick(item)">
+              <span class="ngb-accordion-button-label">{{item.label}}</span>
+              <pe-validity-icon class="ngb-accordion-button-validity-icon"
+                                [isValid]="item.isValid">
+              </pe-validity-icon>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="item.routerLink">
+            <button ngbAccordionButton [routerLink]="item.routerLink">
+              <span class="ngb-accordion-button-label">{{item.label}}&hellip;</span>
+              <pe-validity-icon class="ngb-accordion-button-validity-icon"
+                                [isValid]="item.isValid">
+              </pe-validity-icon>
+            </button>
+          </ng-container>
+        </h2>
+
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody *ngIf="!item.routerLink && item.contentTemplate">
+            <ng-template>
+              <ng-template [ngTemplateOutlet]="item.contentTemplate"
+                           [ngTemplateOutletContext]="{ tab: item.label, index: i }">
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</ng-container>
