@@ -1,11 +1,6 @@
 import { $localize } from '@angular/localize/init';
 
-export class Stringifier {
-
-  /** Static class. */
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private constructor() {
-  }
+export module Stringifier {
 
   // region Booleans
 
@@ -16,8 +11,8 @@ export class Stringifier {
    *             'true-false': true -> 'true'; false -> 'false'
    *             'yes-no':     true -> 'yes';  false -> 'no'
    */
-  public static booleanToString(value: boolean | undefined,
-                                type: 'true-false' | 'yes-no' = 'true-false'): string {
+  export function booleanToString(value: boolean | undefined,
+                                  type: 'true-false' | 'yes-no' = 'true-false'): string {
     if (typeof value !== 'boolean') return '';
 
     switch (type) {
@@ -37,9 +32,10 @@ export class Stringifier {
   /**
    * Gets the month and year of the given date as string using the current locale.
    * @param date A Date.
-   * @returns Month and year of the given date as string (e.g. 'January 2023').
+   * @returns Month and year of the given date as string (e.g. 'January 2023')
+   *          or an empty string, if the given date is undefined.
    */
-  public static dateMonthAndYearToString(date: Date | undefined): string {
+  export function dateMonthAndYearToString(date: Date | undefined): string {
     return date?.toLocaleDateString(navigator.language, { year: 'numeric', month: 'long' }) || '';
   }
 
@@ -49,31 +45,39 @@ export class Stringifier {
    * @param includeDate Include date in the result.
    * @param includeTime Include time in the result.
    *                    Use 'auto' to include the time, if any date component is different from zero.
+   * @returns A string representation of the given date or an empty string, if `date` is undefined.
    */
-  public static dateToString(date: Date | undefined,
-                             includeDate: boolean = true,
-                             includeTime: boolean | 'auto' = 'auto'): string {
+  export function dateToString(date: Date | undefined,
+                               includeDate: boolean = true,
+                               includeTime: boolean | 'auto' = 'auto'): string {
+    if (!date) return '';
+
     function includeTimeAuto(): boolean {
       return !!date &&
         (date.getHours() != 0 || date.getMinutes() != 0 || date.getSeconds() != 0 || date.getMilliseconds() != 0);
     }
 
-    const options: any = {};
-    if (includeDate) options['dateStyle'] = 'medium';
-    if (includeTime == 'auto' ? includeTimeAuto() : includeTime) options['timeStyle'] = 'short';
-    return date?.toLocaleDateString(navigator.language, options) || '';
+    includeTime = includeTime == 'auto' ? includeTimeAuto() : includeTime;
+
+    if (includeDate && !includeTime)
+      return date.toLocaleDateString(navigator.language, { dateStyle: 'medium' });
+    else if (!includeDate && includeTime)
+      return date.toLocaleTimeString(navigator.language, { timeStyle: 'short' });
+    else if (includeDate && includeTime)
+      return date.toLocaleString(navigator.language, { dateStyle: 'medium', timeStyle: 'short' });
+    return '';
   }
 
   /**
    * Gets a date string as used as file name prefixes (format: 'YYYY-MM-DD').
    * @param date A Date.
    */
-  public static dateToStringForFileName(date: Date | undefined): string {
+  export function dateToStringForFileName(date: Date | undefined): string {
     if (!date) return '';
-    const year: string = this.numberToPaddedString(date.getFullYear(), 4);
-    const month: string = this.numberToPaddedString(date.getMonth() + 1, 2);
-    const day: string = this.numberToPaddedString(date.getDate(), 2);
-    return `${ year }-${ month }-${ day }`;
+    const year: string = numberToPaddedString(date.getFullYear(), 4);
+    const month: string = numberToPaddedString(date.getMonth() + 1, 2);
+    const day: string = numberToPaddedString(date.getDate(), 2);
+    return `${year}-${month}-${day}`;
   }
 
   // endregion
@@ -82,13 +86,37 @@ export class Stringifier {
 
   /**
    * Returns the given number as padded string with a minimum length.
-   * @param value Convert this number to a padded string. Works best for integer numbers.
+   *
+   * This function works best for positive integers. When passing negative numbers
+   * the minus is included in the `targetLength` and when passing decimal numbers
+   * the decimal point and the decimal places are included in the `targetLength`.
+   * @param value Convert this number to a padded string.
    * @param targetLength Minimum length of the returned string. If the number
    *                     is too short, zeros are added at the beginning.
    * @see String.prototype.padStart
    */
-  public static numberToPaddedString(value: number, targetLength: number): string {
-    return (value?.toString() || '').padStart(targetLength, '0');
+  export function numberToPaddedString(value: number, targetLength: number): string {
+    let stringValue: string;
+    let isNegative: boolean = false;
+    if (isNaN(value)) {
+      stringValue = '';
+    } else {
+      if (value < 0) {
+        isNegative = true;
+        targetLength--;
+        value = Math.abs(value);
+      }
+      stringValue = value.toLocaleString(navigator.language, {
+        useGrouping: false,
+      });
+    }
+
+    // Pad string with zeros
+    stringValue = stringValue.padStart(targetLength, '0');
+
+    if (isNegative) stringValue = '-' + stringValue;
+
+    return stringValue;
   }
 
   /**
@@ -96,7 +124,7 @@ export class Stringifier {
    * @param amount Amount of a currency.
    * @param currency Optional: currency name or symbol (e.g. '€' or 'EUR').
    */
-  public static numberWithCurrencyToString(amount: number | undefined, currency?: string): string {
+  export function numberWithCurrencyToString(amount: number | undefined, currency?: string): string {
     if (amount == undefined || isNaN(amount)) return '';
 
     const amountString: string = amount.toLocaleString(navigator.language, {
@@ -108,9 +136,9 @@ export class Stringifier {
     switch (currency) {
       case 'USD':
       case '$':
-        return `${ currency } ${ amountString }`.trim();
+        return `${currency} ${amountString}`.trim();
       default:
-        return `${ amountString } ${ currency }`.trim();
+        return `${amountString} ${currency}`.trim();
     }
   }
 
@@ -118,26 +146,26 @@ export class Stringifier {
    * Converts an integer to words as it is spoken.
    * The remainder of a decimal number is ignored.
    * This function only supports the german language yet.
-   * @param value An integer.
-   * @returns The given number as words like "[minus] zweiundvierzig".
+   * @param value An integer (up to 'Billiarden' = 1.000.000.000.000.000).
+   * @returns The given number as words like '[minus] zweiundvierzig'.
    * @see numberToWordsString
    */
-  public static integerToWordsString(value: number) {
+  export function integerToWordsString(value: number): string {
     // In Anlehnung an eine Klassenprogrammierung von Hans W. Hofmann
     const oneToNineteen: string[] = ['', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf', 'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn'];
     const tens: string[] = ['', 'zehn', 'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig'];
-    const thousandsAndMore: string[] = ['', 'tausend', 'millionen', 'milliarden'];
+    const thousandsAndMore: string[] = ['', 'tausend', 'millionen', 'milliarden', 'billionen', 'billiarden'];
 
     /** Converts the last three digits of a number to a word. */
     function lastThreeDigitsToWordsString(value: number): string {
       let result: string;
-      const belowOnehundred: number = value % 100;
-      if (belowOnehundred < 20) {
-        result = oneToNineteen[belowOnehundred];
+      const belowOneHundred: number = value % 100;
+      if (belowOneHundred < 20) {
+        result = oneToNineteen[belowOneHundred];
       } else {
-        result = oneToNineteen[belowOnehundred % 10] + (belowOnehundred % 10 > 0 ? 'und' : '') + tens[Math.trunc(belowOnehundred / 10)];
+        result = oneToNineteen[belowOneHundred % 10] + (belowOneHundred % 10 > 0 ? 'und' : '') + tens[Math.trunc(belowOneHundred / 10)];
       }
-      const hundred: number = ((value % 1000) - belowOnehundred) / 100;
+      const hundred: number = ((value % 1000) - belowOneHundred) / 100;
       if (hundred > 0) {
         result = oneToNineteen[hundred] + 'hundert' + result;
       }
@@ -189,12 +217,12 @@ export class Stringifier {
    * @param includeDecimalPlaces Include this amount of decimal places in the result (if 0, no decimal places are included).
    * @param unit Add this string as unit after the integer part.
    * @param decimalUnit Add this string as unit after the decimal places (if any).
-   * @returns The given number as words like "[minus] zweiundvierzig [{unit}] [einundzwanzig [{decimalUnit}]]".
+   * @returns The given number as words like '[minus] zweiundvierzig [{unit}] [einundzwanzig [{decimalUnit}]]'.
    * @see integerToWordsString
    */
-  public static numberToWordsString(value: number, includeDecimalPlaces: number = 2, unit?: string, decimalUnit?: string) {
+  export function numberToWordsString(value: number, includeDecimalPlaces: number = 2, unit?: string, decimalUnit?: string): string {
     const integer: number = Math.trunc(value);
-    const decimalPlaces: number = Math.trunc((Math.abs(value) - Math.abs(integer)) * Math.pow(10, Math.max(includeDecimalPlaces, 0)));
+    const decimalPlaces: number = Math.round((Math.abs(value) - Math.abs(integer)) * Math.pow(10, Math.max(includeDecimalPlaces, 0)));
 
     // Add space before units, if not empty
     unit = unit?.trim() || '';
@@ -203,9 +231,9 @@ export class Stringifier {
     if (decimalUnit) decimalUnit = ' ' + decimalUnit;
 
     if (decimalPlaces == 0) {
-      return this.integerToWordsString(integer) + unit;
+      return integerToWordsString(integer) + unit;
     } else {
-      return this.integerToWordsString(integer) + unit + ' ' + this.integerToWordsString(decimalPlaces) + decimalUnit;
+      return integerToWordsString(integer) + unit + ' ' + integerToWordsString(decimalPlaces) + decimalUnit;
     }
   }
 
@@ -213,11 +241,11 @@ export class Stringifier {
    * Converts an amount of euros to words as it is spoken.
    * This function only supports the german language yet.
    * @param value A currency number.
-   * @returns The given number as words like "[minus] zweiundvierzig Euro [einundzwanzig Cent".
+   * @returns The given number as words like '[minus] zweiundvierzig Euro [einundzwanzig Cent]'.
    * @see numberToWordsString
    */
-  public static euroToWordsString(value: number) {
-    return this.numberToWordsString(value, 2, 'Euro', 'Cent');
+  export function euroToWordsString(value: number): string {
+    return numberToWordsString(value, 2, 'Euro', 'Cent');
   }
 
   // endregion
@@ -228,13 +256,14 @@ export class Stringifier {
    * Converts the given text to camel case (first character of each word as upper case;
    * everything else as lower case).
    * @param str Input string.
-   * @returns the input string without spaces but in camel case (e.g. 'camel case' -> 'CamelCase').
+   * @param removeSpaces If true, all spaces are removed (e.g. 'camel case' -> 'CamelCase').
+   * @returns The input string without spaces but in camel case (e.g. 'camel case' -> 'Camel Case').
    */
-  public static stringToCamelCase(str: string): string {
+  export function stringToCamelCase(str: string, removeSpaces: boolean = false): string {
     if (!str) return str;
     const words: string[] = str.split(' ').filter(s => !!s);
     return words.map(word => word[0].toUpperCase() + word.substring(1).toLowerCase())
-      .join(' ');
+      .join(removeSpaces ? '' : ' ');
   }
 
   // endregion
@@ -246,10 +275,10 @@ export class Stringifier {
    * @param array An array. If the given value is not an array, an empty string is returned.
    * @returns A string representation of the given array like '[item 1, item 2, item 3]'.
    */
-  public static arrayToString(array: any[]): string {
+  export function arrayToString(array: any[]): string {
     if (!Array.isArray(array)) return '';
 
-    return `[${ array.join(', ') }]`;
+    return `[${array.join(', ')}]`;
   }
 
   // endregion
