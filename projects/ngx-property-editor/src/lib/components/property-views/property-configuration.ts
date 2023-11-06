@@ -343,7 +343,7 @@ export function generatePropertyTypeFromData(propertyValue: any): PropertyType |
  
     case 'function':
       try {
-        return generatePropertyTypeFromValue(propertyValue());
+        return generatePropertyTypeFromData(propertyValue());
       } catch {
         return undefined;
       }
