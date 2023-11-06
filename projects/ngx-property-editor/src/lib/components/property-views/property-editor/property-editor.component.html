@@ -1,6 +1,6 @@
-<ngb-row *ngIf="data && configuration"
+<ngb-row *ngIf="data && _configuration"
      [id]=id>
-  <ng-container *ngFor="let row of configuration; let i = index">
+  <ng-container *ngFor="let row of _configuration; let i = index">
 
     <ng-container *ngIf="row?.separator">
       <ngb-col *ngIf="!row.isHidden(data)">
@@ -12,8 +12,8 @@
 
       <ngb-col [md]="row.getBootstrapColumnMD(data)">
         <pe-property-input [configuration]="row"
-                            [data]="data"
-                            [readonly]="readonly">
+                           [data]="data"
+                           [readonly]="readonly">
         </pe-property-input>
       </ngb-col>
 
