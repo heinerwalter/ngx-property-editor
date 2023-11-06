@@ -19,7 +19,7 @@
     "build": "ng build ngx-property-editor && cd projects/ngx-property-editor && npm run build",
     "build:demo": "ng build demo --configuration production",
     "watch": "ng build ngx-property-editor --watch --configuration development",
-    "test": "ng test ngx-property-editor",
+    "test": "ng test ngx-property-editor --code-coverage",
     "test-headless": "ng test ngx-property-editor --browsers=ChromeHeadless --watch=false --code-coverage",
     "lint": "ng lint ngx-property-editor",
     "publish": "cd dist/ngx-property-editor/ && npm publish"
