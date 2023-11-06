@@ -87,7 +87,7 @@
 
   <!-- Footer -->
   <footer>
-    Love ngx-property-editor?
+    Love ngx-property-editor?&nbsp;
     <a href="https://github.com/heinerwalter/ngx-property-editor" target="_blank" rel="noopener">
       Give our repo a star.
     </a>
@@ -107,6 +107,8 @@
 </ng-template>
 
 <ng-template #propertyEditorTemplate>
-  <pe-property-editor [data]="data">
-  </pe-property-editor>
+  <pe-property-view-and-edit [data]="data"
+                             viewModeType="editor"
+                             editModeType="editor">
+  </pe-property-view-and-edit>
 </ng-template>
