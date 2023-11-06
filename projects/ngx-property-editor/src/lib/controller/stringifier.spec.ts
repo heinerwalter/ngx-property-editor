@@ -76,6 +76,7 @@ describe('Stringifier', () => {
 
   it('integerToWordsString', () => {
     expect(Stringifier.integerToWordsString(0)).toEqual('null');
+    expect(Stringifier.integerToWordsString(-0)).toEqual('null');
     expect(Stringifier.integerToWordsString(1)).toEqual('eins');
     expect(Stringifier.integerToWordsString(42)).toEqual('zweiundvierzig');
     expect(Stringifier.integerToWordsString(-42)).toEqual('minus zweiundvierzig');
@@ -84,27 +85,57 @@ describe('Stringifier', () => {
 
     expect(Stringifier.integerToWordsString(112042)).toEqual('einhundertzwölftausendzweiundvierzig');
     expect(Stringifier.integerToWordsString(123410205100)).toEqual('einhundertdreiundzwanzigmilliardenvierhundertzehnmillionenzweihundertfünftausendeinhundert');
+    expect(Stringifier.integerToWordsString(1005123410205100)).toEqual('einebilliardefünfbillioneneinhundertdreiundzwanzigmilliardenvierhundertzehnmillionenzweihundertfünftausendeinhundert');
+  });
+
+  it('decimalPlacesToWordsString', () => {
+    expect(Stringifier.decimalPlacesToWordsString(0)).toEqual('');
+    expect(Stringifier.decimalPlacesToWordsString(-0)).toEqual('');
+    expect(Stringifier.decimalPlacesToWordsString(1.0019, 2)).toEqual('');
+    expect(Stringifier.decimalPlacesToWordsString(1.123456, 0)).toEqual('');
+    expect(Stringifier.decimalPlacesToWordsString(1.123456, -10)).toEqual('');
+    expect(Stringifier.decimalPlacesToWordsString(1.123456)).toEqual('eins-zwei');
+    expect(Stringifier.decimalPlacesToWordsString(1.123456, 2)).toEqual('eins-zwei');
+    expect(Stringifier.decimalPlacesToWordsString(1.123456, 10)).toEqual('eins-zwei-drei-vier-fünf-sechs');
+    expect(Stringifier.decimalPlacesToWordsString(1.00700, 10)).toEqual('null-null-sieben');
   });
 
   it('numberToWordsString', () => {
     expect(Stringifier.numberToWordsString(0, 2)).toEqual('null');
+    expect(Stringifier.numberToWordsString(-0, 2)).toEqual('null');
     expect(Stringifier.numberToWordsString(1, 2)).toEqual('eins');
     expect(Stringifier.numberToWordsString(42, 2)).toEqual('zweiundvierzig');
     expect(Stringifier.numberToWordsString(-42, 2)).toEqual('minus zweiundvierzig');
-    expect(Stringifier.numberToWordsString(42.129, 2)).toEqual('zweiundvierzig dreizehn');
-    expect(Stringifier.numberToWordsString(-42.129, 2)).toEqual('minus zweiundvierzig dreizehn');
-    expect(Stringifier.numberToWordsString(42.129, 3)).toEqual('zweiundvierzig einhundertneunundzwanzig');
-    expect(Stringifier.numberToWordsString(-42.129, 3)).toEqual('minus zweiundvierzig einhundertneunundzwanzig');
+    expect(Stringifier.numberToWordsString(42.121, 2)).toEqual('zweiundvierzig komma eins-zwei');
+    expect(Stringifier.numberToWordsString(-42.121, 2)).toEqual('minus zweiundvierzig komma eins-zwei');
+    expect(Stringifier.numberToWordsString(42.129, 2)).toEqual('zweiundvierzig komma eins-drei');
+    expect(Stringifier.numberToWordsString(-42.129, 2)).toEqual('minus zweiundvierzig komma eins-drei');
+    expect(Stringifier.numberToWordsString(42.012, 10)).toEqual('zweiundvierzig komma null-eins-zwei');
+    expect(Stringifier.numberToWordsString(-42.012, 10)).toEqual('minus zweiundvierzig komma null-eins-zwei');
+  });
 
-    expect(Stringifier.numberToWordsString(42.123, 2, 'Einheit')).toEqual('zweiundvierzig Einheit zwölf');
-    expect(Stringifier.numberToWordsString(-42.123, 2, 'Einheit')).toEqual('minus zweiundvierzig Einheit zwölf');
-    expect(Stringifier.numberToWordsString(42.123, 2, 'Einheit', 'Dezimaleinheit')).toEqual('zweiundvierzig Einheit zwölf Dezimaleinheit');
-    expect(Stringifier.numberToWordsString(-42.123, 2, 'Einheit', 'Dezimaleinheit')).toEqual('minus zweiundvierzig Einheit zwölf Dezimaleinheit');
-    expect(Stringifier.numberToWordsString(42, 2, 'Einheit', 'Dezimaleinheit')).toEqual('zweiundvierzig Einheit');
-    expect(Stringifier.numberToWordsString(-42, 2, 'Einheit', 'Dezimaleinheit')).toEqual('minus zweiundvierzig Einheit');
+  it('numberToWordsWithUnitString', () => {
+    expect(Stringifier.numberToWordsWithUnitString(0, 2)).toEqual('null');
+    expect(Stringifier.numberToWordsWithUnitString(-0, 2)).toEqual('null');
+    expect(Stringifier.numberToWordsWithUnitString(1, 2)).toEqual('eins');
+    expect(Stringifier.numberToWordsWithUnitString(42, 2)).toEqual('zweiundvierzig');
+    expect(Stringifier.numberToWordsWithUnitString(-42, 2)).toEqual('minus zweiundvierzig');
+    expect(Stringifier.numberToWordsWithUnitString(42.129, 2)).toEqual('zweiundvierzig dreizehn');
+    expect(Stringifier.numberToWordsWithUnitString(-42.129, 2)).toEqual('minus zweiundvierzig dreizehn');
+    expect(Stringifier.numberToWordsWithUnitString(42.129, 3)).toEqual('zweiundvierzig einhundertneunundzwanzig');
+    expect(Stringifier.numberToWordsWithUnitString(-42.129, 3)).toEqual('minus zweiundvierzig einhundertneunundzwanzig');
+
+    expect(Stringifier.numberToWordsWithUnitString(42.123, 2, 'Einheit')).toEqual('zweiundvierzig Einheit zwölf');
+    expect(Stringifier.numberToWordsWithUnitString(-42.123, 2, 'Einheit')).toEqual('minus zweiundvierzig Einheit zwölf');
+    expect(Stringifier.numberToWordsWithUnitString(42.123, 2, 'Einheit', 'Dezimaleinheit')).toEqual('zweiundvierzig Einheit zwölf Dezimaleinheit');
+    expect(Stringifier.numberToWordsWithUnitString(-42.123, 2, 'Einheit', 'Dezimaleinheit')).toEqual('minus zweiundvierzig Einheit zwölf Dezimaleinheit');
+    expect(Stringifier.numberToWordsWithUnitString(42, 2, 'Einheit', 'Dezimaleinheit')).toEqual('zweiundvierzig Einheit');
+    expect(Stringifier.numberToWordsWithUnitString(-42, 2, 'Einheit', 'Dezimaleinheit')).toEqual('minus zweiundvierzig Einheit');
   });
 
   it('euroToWordsString', () => {
+    expect(Stringifier.euroToWordsString(0)).toEqual('null Euro');
+    expect(Stringifier.euroToWordsString(-0)).toEqual('null Euro');
     expect(Stringifier.euroToWordsString(42)).toEqual('zweiundvierzig Euro');
     expect(Stringifier.euroToWordsString(-42)).toEqual('minus zweiundvierzig Euro');
     expect(Stringifier.euroToWordsString(42.12)).toEqual('zweiundvierzig Euro zwölf Cent');

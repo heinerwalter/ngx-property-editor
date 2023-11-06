@@ -148,13 +148,14 @@ export module Stringifier {
    * This function only supports the german language yet.
    * @param value An integer (up to 'Billiarden' = 1.000.000.000.000.000).
    * @returns The given number as words like '[minus] zweiundvierzig'.
-   * @see numberToWordsString
+   * @see numberToWordsWithUnitString
    */
   export function integerToWordsString(value: number): string {
     // In Anlehnung an eine Klassenprogrammierung von Hans W. Hofmann
     const oneToNineteen: string[] = ['', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun', 'zehn', 'elf', 'zwölf', 'dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn'];
     const tens: string[] = ['', 'zehn', 'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig'];
     const thousandsAndMore: string[] = ['', 'tausend', 'millionen', 'milliarden', 'billionen', 'billiarden'];
+    const thousandsAndMoreOne: string[] = ['eins', 'eintausend', 'einemillion', 'einemilliarde', 'einebillion', 'einebilliarde'];
 
     /** Converts the last three digits of a number to a word. */
     function lastThreeDigitsToWordsString(value: number): string {
@@ -185,11 +186,13 @@ export module Stringifier {
     value = Math.abs(value);
 
     let result: string = '';
-    // Iterate over sections of three digits starting at the back (least significant digit)
+    // Iterate over sections of three digits starting at the back (the least significant digit)
     let i: number = 0;
     while (value > 0) {
       const section: number = value % 1000;
-      if (section > 0) {
+      if (section == 1) {
+        result = thousandsAndMoreOne[i] + result;
+      } else if (section > 1) {
         result = lastThreeDigitsToWordsString(section) + thousandsAndMore[i] + result;
       }
       value = Math.trunc(value / 1000);
@@ -210,6 +213,64 @@ export module Stringifier {
   }
 
   /**
+   * Converts the remainder of a number to words as it is spoken.
+   * This function only supports the german language yet.
+   * @param value A decimal number.
+   * @param includeDecimalPlaces Include this amount of decimal places in the result (if 0, no decimal places are included).
+   * @returns The remainder of the given number as words like 'null-eins-zwei'.
+   * @see integerToWordsString
+   * @see numberToWordsWithUnitString
+   */
+  export function decimalPlacesToWordsString(value: number, includeDecimalPlaces: number = 2): string {
+    if (!value || includeDecimalPlaces <= 0) return '';
+
+    // Round to includeDecimalPlaces
+    const pow: number = Math.pow(10, includeDecimalPlaces);
+    value = Math.round((value + Number.EPSILON) * pow) / pow;
+
+    // Get string of decimal places
+    let stringValue: string = value.toString();
+    const commaIndex: number = stringValue.indexOf('.');
+    if (commaIndex < 0) return '';
+    stringValue = stringValue.substring(commaIndex + 1, commaIndex + 1 + includeDecimalPlaces);
+
+    // Get separate digits of decimal places
+    const digits: number[] = Array.from(stringValue).map(digit => parseInt(digit));
+    // Remove trailing zeros
+    while (digits.length && digits[digits.length - 1] == 0) {
+      digits.pop();
+    }
+    if (!digits.length) return '';
+
+    return digits
+      // Convert separate digits to words
+      .map(digit => integerToWordsString(digit))
+      // Join digits by '-'
+      .join('-');
+  }
+
+  /**
+   * Converts a number to words as it is spoken.
+   * In contrast to the function `integerToWordsString` this function converts decimal places, too.
+   * This function only supports the german language yet.
+   * @param value A number.
+   * @param includeDecimalPlaces Include this amount of decimal places in the result (if 0, no decimal places are included).
+   * @returns The given number as words like '[minus] zweiundvierzig komma null-eins-zwei'.
+   * @see integerToWordsString
+   * @see decimalPlacesToWordsString
+   */
+  export function numberToWordsString(value: number, includeDecimalPlaces: number = 2): string {
+    const integerString: string = integerToWordsString(value);
+    const decimalPlacesString: string = decimalPlacesToWordsString(value, includeDecimalPlaces);
+
+    if (decimalPlacesString) {
+      return `${integerString} komma ${decimalPlacesString}`;
+    } else {
+      return integerString;
+    }
+  }
+
+  /**
    * Converts a number to words as it is spoken.
    * In contrast to the function `integerToWordsString` this function converts decimal places, too.
    * This function only supports the german language yet.
@@ -220,7 +281,7 @@ export module Stringifier {
    * @returns The given number as words like '[minus] zweiundvierzig [{unit}] [einundzwanzig [{decimalUnit}]]'.
    * @see integerToWordsString
    */
-  export function numberToWordsString(value: number, includeDecimalPlaces: number = 2, unit?: string, decimalUnit?: string): string {
+  export function numberToWordsWithUnitString(value: number, includeDecimalPlaces: number = 2, unit?: string, decimalUnit?: string): string {
     const integer: number = Math.trunc(value);
     const decimalPlaces: number = Math.round((Math.abs(value) - Math.abs(integer)) * Math.pow(10, Math.max(includeDecimalPlaces, 0)));
 
@@ -242,10 +303,10 @@ export module Stringifier {
    * This function only supports the german language yet.
    * @param value A currency number.
    * @returns The given number as words like '[minus] zweiundvierzig Euro [einundzwanzig Cent]'.
-   * @see numberToWordsString
+   * @see numberToWordsWithUnitString
    */
   export function euroToWordsString(value: number): string {
-    return numberToWordsString(value, 2, 'Euro', 'Cent');
+    return numberToWordsWithUnitString(value, 2, 'Euro', 'Cent');
   }
 
   // endregion
