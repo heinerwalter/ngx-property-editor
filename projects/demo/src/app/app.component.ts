@@ -20,4 +20,18 @@ export class AppComponent {
    */
   public containerType: 'tabs' | 'accordion' = 'tabs';
 
+  /**
+   * Display the properties of this object by the property table and editor.
+   */
+  public data: any = {
+    gender: 'male',
+    firstname: 'Charlie',
+    lastname: 'Brown',
+    birthday: new Date(1950, 9, 2),
+    tel: '+1 23456789',
+    email: 'charlie.brown@peanuts.com',
+    favorite: true,
+    rating: 4,
+  };
+
 }

@@ -56,16 +56,15 @@
   <pe-tabs *ngIf="containerType == 'tabs'" id="demo-tabs">
  
     <pe-tabs-item label="Input Components">
-      <demo-input-components>
-      </demo-input-components>
+      <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
     </pe-tabs-item>
 
     <pe-tabs-item label="Property Table">
-      TODO
+      <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
     </pe-tabs-item>
 
     <pe-tabs-item label="Property Editor">
-      TODO
+      <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
     </pe-tabs-item>
 
   </pe-tabs>
@@ -73,16 +72,15 @@
   <pe-accordion *ngIf="containerType == 'accordion'" id="demo-accordion">
  
     <pe-accordion-item label="Input Components">
-      <demo-input-components>
-      </demo-input-components>
+      <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
     </pe-accordion-item>
 
     <pe-accordion-item label="Property Table">
-      TODO
+      <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
     </pe-accordion-item>
 
     <pe-accordion-item label="Property Editor">
-      TODO
+      <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
     </pe-accordion-item>
 
   </pe-accordion> 
@@ -96,3 +94,19 @@
   </footer>
 
 </div>
+
+
+<ng-template #inputComponentsTemplate>
+  <demo-input-components>
+  </demo-input-components>
+</ng-template>
+
+<ng-template #propertyTableTemplate>
+  <pe-property-table [data]="data">
+  </pe-property-table>
+</ng-template>
+
+<ng-template #propertyEditorTemplate>
+  <pe-property-editor [data]="data">
+  </pe-property-editor>
+</ng-template>
