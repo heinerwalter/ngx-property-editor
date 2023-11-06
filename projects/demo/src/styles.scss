@@ -3,11 +3,5 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-
-
-/* Custom styles */
-
-// Show all labels with a slightly bolder font (medium)
-label:not(.not-bold):not(.form-check-label) {
-  font-weight: 500;
-}
+/* Importing Property Editor SCSS file. */
+@import 'ngx-property-editor/styles/styles';

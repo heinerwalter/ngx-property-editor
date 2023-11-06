@@ -1,3 +1,23 @@
+/* input */
+
+// Show all labels with a slightly bolder font (medium)
+@mixin label {
+  label:not(.not-bold):not(.form-check-label) {
+    font-weight: 500;
+  }
+}
+
+// Don't change opacity of labels of disabled checkboxes
+@mixin form-check-input {
+  .form-check-input[disabled] ~ .form-check-label,
+  .form-check-input:disabled ~ .form-check-label {
+    opacity: unset;
+  }
+}
+
+
+/* icon */
+
 @mixin icon-button {
   border: none;
   padding: 0;

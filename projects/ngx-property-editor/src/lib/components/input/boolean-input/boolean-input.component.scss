@@ -1,5 +1,3 @@
-// Don't change opacity of labels of disabled checkboxes
-.form-check-input[disabled] ~ .form-check-label,
-.form-check-input:disabled ~ .form-check-label {
-  opacity: unset;
-}
+@import "../../../styles/mixins";
+
+@include form-check-input;

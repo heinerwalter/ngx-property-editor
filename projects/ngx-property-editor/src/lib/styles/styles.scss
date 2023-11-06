@@ -3,6 +3,10 @@
 
 
 /* Custom styles */
+@import "./mixins";
+
+@include label;
+@include form-check-input;
 
 .circle-icon + .circle-icon {
   padding-left: 0.5em;
