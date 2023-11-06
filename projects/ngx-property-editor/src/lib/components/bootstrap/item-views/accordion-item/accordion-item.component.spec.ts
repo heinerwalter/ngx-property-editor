@@ -8,16 +8,16 @@ describe('AccordionItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AccordionItemComponent]
+      declarations: [AccordionItemComponent],
     });
   });
 
   it('should not create', () => {
-    // Item cannot be created outside of the items view container
+    // Item cannot be created outside the items view container
     expect(() => {
       fixture = TestBed.createComponent(AccordionItemComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
-    }).toThrowAnyError();
+    }).toThrowError();
   });
 });

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccordionComponent } from './accordion.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ValidityIconComponent } from 'ngx-property-editor';
+import { ValidityIconComponent } from '../../../icon/validity-icon/validity-icon.component';
 
 describe('AccordionComponent', () => {
   let component: AccordionComponent;

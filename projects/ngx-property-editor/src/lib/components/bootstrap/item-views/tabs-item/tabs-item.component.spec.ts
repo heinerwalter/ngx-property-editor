@@ -9,15 +9,15 @@ describe('TabsItemComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TabsItemComponent]
-    }); 
+    });
   });
 
   it('should not create', () => {
-    // Item cannot be created outside of the items view container
+    // Item cannot be created outside the items view container
     expect(() => {
       fixture = TestBed.createComponent(TabsItemComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
-    }).toThrowAnyError();
+    }).toThrowError();
   });
 });
