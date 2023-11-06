@@ -40,9 +40,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
   private generateTableData() {
     const config: PropertiesConfiguration = this.configuration?.length ? this.configuration
-      : this.data ? Object.getOwnPropertyNames(this.data).map(propertyName => {
-        return new PropertyConfiguration({ propertyName });
-      }) : [];
+      : this.data ? PropertyConfiguration.generateFromData(this.data) : [];
 
     if (!this.data || !config?.length) {
       this.tableData = [[{ content: 'Keine Daten', style: 'data' }]];

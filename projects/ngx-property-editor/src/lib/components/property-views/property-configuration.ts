@@ -34,6 +34,39 @@ export type PropertyType =
   /** Select an item from a `dataSource`. */
   'select';
 
+export function generatePropertyTypeFromValue(value: any): PropertyType | undefined {
+  switch (typeof value) {
+    case 'boolean':
+      return 'boolean';
+    case 'number':
+    case 'bigint':
+      return 'number';
+    case 'string':
+      if (value.includes('\n'))
+        return 'string-multiline';
+      else if (value.includes('@'))
+        return 'email';
+      return 'string';
+
+    case 'object':
+      if (value instandeof Date)
+        return 'date';
+      return undefined;
+ 
+    case 'function':
+      try {
+        return generatePropertyTypeFromValue(value());
+      } catch {
+        return undefined;
+      }
+  
+    case 'undefined':
+    case 'symbol':
+    default:
+      return undefined;
+   }
+}
+
 type ValueOrFunctionType<T> = T | ((data: any) => T);
 
 type PropertyConfigurationType = {
@@ -302,6 +335,24 @@ export class PropertyConfiguration implements PropertyConfigurationType {
     if (md == undefined)
       return 'col';
     return `col-md-${md}`;
+  }
+
+  /**
+   * Generates a `PropertiesConfiguration` from the properties of the given data object.
+   * @param data A data object to be displayed by a property table or property editor.
+   */
+  public static generateFromData(data: any | undefined = undefined): PropertiesConfiguration {
+    if (!data) return [];
+ 
+    return Object.getOwnPropertyNames(data)
+      .map(propertyName => {
+        const propertyType: PropertyType | undefined = generatePropertyTypeFromValue(data[propertyName]);
+        return new PropertyConfiguration({
+          propertyName: propertyName,
+          propertyType: propertyType || 'string',
+          hidden: propertyType == undefined,
+        });
+      });
   }
 
 }
