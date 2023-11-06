@@ -1,4 +1,4 @@
-import { Component, Input, OnChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from '../property-configuration';
 
 @Component({
@@ -6,7 +6,7 @@ import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from
   templateUrl: './property-editor.component.html',
   styleUrls: ['./property-editor.component.scss'],
 })
-export class PropertyEditorComponent implements OnChange {
+export class PropertyEditorComponent implements OnChanges {
 
   /** ID attribute of the container element. */
   @Input() public id: string | undefined = undefined;
