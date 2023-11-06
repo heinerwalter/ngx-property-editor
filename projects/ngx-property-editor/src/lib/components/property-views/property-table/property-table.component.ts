@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PropertiesConfiguration, PropertyConfiguration } from '../property-configuration';
+import { PropertiesConfiguration, PropertyConfiguration,generatePropertiesConfigurationFromData } from '../property-configuration';
 import { TableData } from '../table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -40,7 +40,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
   private generateTableData() {
     const config: PropertiesConfiguration = this.configuration?.length ? this.configuration
-      : this.data ? PropertyConfiguration.generateFromData(this.data) : [];
+      : this.data ? generatePropertiesConfigurationFromData(this.data) : [];
 
     if (!this.data || !config?.length) {
       this.tableData = [[{ content: 'Keine Daten', style: 'data' }]];
