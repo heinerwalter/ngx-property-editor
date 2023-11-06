@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ItemDefinition, ItemViewItemBaseComponent } from './item-view-item-base.component';
-import { PEGlobalFunctions } from '../../../global-functions';
+import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
 @Component({
   template: '',
@@ -71,7 +71,7 @@ export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
    * If this property is set to true, the last active item is not saved
    */
   @Input() public disableSaveLastActiveItem: boolean = false;
- 
+
   public ngOnInit(): void {
     this.updateDefaultItemIndex();
   }

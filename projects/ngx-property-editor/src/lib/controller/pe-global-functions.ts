@@ -1,7 +1,7 @@
 export class PEGlobalFunctions {
 
   /**
-   * Generates a new randim ID for components which don't have an assigned ID.
+   * Generates a new random ID for components which don't have an assigned ID.
    */
   public static generateRandomId(): string {
     const length: number = 20;
@@ -45,6 +45,7 @@ export class PEGlobalFunctions {
    * @param valuePropertyName Evaluate this property name on the data source items to get their values.
    *                          If undefined, the whole data source item is used as value.
    * @param value Search for a data source item with this value
+   * @returns The first data source item matching the given value or undefined, if no such item exists.
    */
   public static getDataSourceItem(dataSource: { [key: string]: any }[],
                                   valuePropertyName: string | undefined,

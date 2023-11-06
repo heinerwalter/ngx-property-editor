@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PEGlobalFunctions } from '../../global-functions';
+import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 
 @Component({
   template: '',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PEGlobalFunctions } from '../../../global-functions';
+import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
 @Component({
   selector: 'pe-form-text',

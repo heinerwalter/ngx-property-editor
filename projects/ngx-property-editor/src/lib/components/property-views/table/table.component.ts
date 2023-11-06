@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Stringifier } from '../../../stringifier';
+import { Stringifier } from '../../../controller/stringifier';
 import { TableData, TableCell } from '../table-configuration';
 
 /**

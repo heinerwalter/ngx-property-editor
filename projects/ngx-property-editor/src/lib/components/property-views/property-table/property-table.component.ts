@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PropertiesConfiguration, PropertyConfiguration } from '../property-configuration';
 import { TableData } from '../table-configuration';
-import { PEGlobalFunctions } from '../../../global-functions';
+import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
 /**
  * This component displays all property values of any object in a table

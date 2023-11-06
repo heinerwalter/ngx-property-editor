@@ -49,8 +49,8 @@ export * from './lib/components/property-views/view-and-edit-container/view-and-
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
 
 // Others:
-export * from './lib/global-functions';
-export * from './lib/stringifier';
+export * from './lib/controller/pe-global-functions';
+export * from './lib/controller/stringifier';
 
 // Module:
 export * from './lib/property-editor.module';
