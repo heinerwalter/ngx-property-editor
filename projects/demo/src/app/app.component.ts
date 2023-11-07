@@ -47,6 +47,8 @@ export class AppComponent {
    */
   public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
 
+  public mode: 'view' | 'edit' = 'view';
+
   public viewModeTypeDataSource: { name: string, value: ViewModeType }[] = [
     { name: 'Table', value: 'table' },
     { name: 'Readonly Editor', value: 'editor' },

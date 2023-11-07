@@ -57,14 +57,16 @@
 </ng-template>
 
 <ng-template #propertyEditorTemplate>
-  <pe-select-input label="Choose view mode"
+  <pe-select-input *ngIf="mode == 'view'"
+                   label="Choose view mode"
                    [inlineLabel]="true"
                    [dataSource]="viewModeTypeDataSource"
                    displayPropertyName="name"
                    valuePropertyName="value"
                    [(value)]="viewModeType">
   </pe-select-input>
-  <pe-select-input label="Choose edit mode"
+  <pe-select-input *ngIf="mode == 'edit'"
+                   label="Choose edit mode"
                    [inlineLabel]="true"
                    [dataSource]="editModeTypeDataSource"
                    displayPropertyName="name"
@@ -73,6 +75,7 @@
   </pe-select-input>
 
   <pe-property-view-and-edit [data]="data"
+                             [(mode)]="mode"
                              [configuration]="propertiesConfiguration"
                              [viewModeType]="viewModeType"
                              [editModeType]="editModeType">
