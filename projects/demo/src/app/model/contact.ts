@@ -11,6 +11,14 @@ export class Contact {
   public favorite: boolean = false;
   public rating: number | undefined;
 
+  public get name(): string {
+    return [
+      this.gender == 'male' ? 'Mr.' : this.gender == 'female' ? 'Ms.' : undefined,
+      this.firstname,
+      this.lastname,
+    ].filter(str => !!str).join(' ');
+  }
+
   constructor(data?: {
     gender?: 'male' | 'female' | undefined,
     firstname?: string | undefined,
@@ -29,6 +37,13 @@ export class Contact {
     this.email = data?.email;
     this.favorite = data?.favorite || false;
     this.rating = data?.rating;
+  }
+
+  public toString(): string {
+    return [
+      this.name,
+      this.birthday ? `* ${this.birthday.toLocaleDateString()}`: undefined,
+    ].filter(str => !!str).join(', ');
   }
 
   public static get propertiesConfiguration(): PropertiesConfiguration {

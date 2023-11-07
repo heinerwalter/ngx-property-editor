@@ -89,5 +89,17 @@
                              [configuration]="propertiesConfiguration"
                              [viewModeType]="viewModeType"
                              [editModeType]="editModeType">
+ 
+    <div content-view-custom>
+      <pe-form-group label="Contact">
+        {{data.toString()}}
+      </pe-form-group>
+    </div>
+ 
+    <div content-edit-custom>
+      Here you could create your own edit form. But it has not been done yet.
+      Please choose another edit mode.
+    </div>
+   
   </pe-property-view-and-edit>
 </ng-template>
