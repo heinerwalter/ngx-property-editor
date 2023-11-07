@@ -4,7 +4,9 @@
                [infoIconTooltip]="infoIconTooltip"
                [helpText]="helpText"
                [noFormGroup]="noFormGroup">
-  <span class="stars-container">
+  <span class="stars-container"
+        [class.disabled]="disabled"
+        [class.readonly]="readonly">
     <ng-container *ngFor="let i of ratingOptions">
       <span class="star"
             [class.active]="value && i <= value"

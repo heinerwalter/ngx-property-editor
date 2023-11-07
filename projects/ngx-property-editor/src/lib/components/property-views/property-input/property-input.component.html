@@ -93,7 +93,7 @@
     </pe-rating-input>
   </ng-container>
 
-  <ng-container *ngIf="configuration.propertyType == 'select'">
+  <ng-container *ngIf="configuration.propertyType == 'select' || configuration.propertyType == 'select-multiple'">
     <pe-select-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
                      [label]="configuration.getLabel(data)"
@@ -103,8 +103,8 @@
                      [dataSource]="configuration.getDataSource(data)"
                      [valuePropertyName]="configuration.valuePropertyName"
                      [displayPropertyName]="configuration.displayPropertyName"
-                     [multiple]="false"
-                     [allowEmpty]="true"
+                     [multiple]="configuration.propertyType == 'select-multiple'"
+                     [allowEmpty]="!configuration.isRequired(data)"
                      [value]="configuration.getValue(data)"
                      (valueChange)="configuration.setValue(data, $event)">
     </pe-select-input>

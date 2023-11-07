@@ -32,7 +32,9 @@ export type PropertyType =
   /** Star rating. */
   'rating' |
   /** Select an item from a `dataSource`. */
-  'select';
+  'select' |
+  /** Select multiple items from a `dataSource`. */
+  'select-multiple';
 
 type ValueOrFunctionType<T> = T | ((data: any) => T);
 

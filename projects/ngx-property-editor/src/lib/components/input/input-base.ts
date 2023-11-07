@@ -64,6 +64,8 @@ export class InputBaseWithValue<T> extends InputBase {
    * @param newValue The new entered value.
    */
   public emitValueChange(newValue: T | undefined): void {
+    // Change is not possible, if disabled or readonly
+    if (this.disabled || this.readonly) return;
     this.valueChange.emit(newValue);
   }
 

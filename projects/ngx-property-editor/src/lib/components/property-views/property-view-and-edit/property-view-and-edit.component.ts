@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertiesConfiguration } from '../property-configuration';
 import { ViewAndEditContainerBaseComponent } from '../view-and-edit-container/view-and-edit-container-base.component';

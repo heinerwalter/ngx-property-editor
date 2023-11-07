@@ -37,7 +37,7 @@
     }
   }
 
-  &:hover {
+  &:not(.disabled):not(.readonly):hover {
     .star, .star.active, .star:not(.active) {
       opacity: 70%;
 
@@ -53,6 +53,10 @@
         }
       }
     }
+  }
+
+  &.disabled {
+    // TODO: Add gray-ish appearance to disabled rating icons
   }
 
 }

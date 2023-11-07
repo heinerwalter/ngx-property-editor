@@ -49,6 +49,8 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
    * @param i Rating value related to the clicked rating icon.
    */
   public onStarClick(i: number): void {
+    // Change is not possible, if disabled or readonly
+    if (this.disabled || this.readonly) return;
     this.value = i;
     this.emitValueChange(i);
   }
