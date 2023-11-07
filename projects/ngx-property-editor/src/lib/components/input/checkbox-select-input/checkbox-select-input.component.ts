@@ -8,14 +8,14 @@ import { InputBaseWithValueAndDataSource } from '../input-base';
 })
 export class CheckboxSelectInputComponent extends InputBaseWithValueAndDataSource<any[]> {
 
-  @Input() showSelectAll: boolean = false;
+  @Input() public showSelectAll: boolean = false;
 
-  constructor() {
+  public constructor() {
     super();
     this.value = [];
   }
 
-  onItemValueChanged(item: any, newSelectionValue: boolean) {
+  public onItemValueChanged(item: any, newSelectionValue: boolean): void {
     const itemValue: any = this.evaluateValuePropertyName(item);
 
     if (!Array.isArray(this.value))
@@ -33,7 +33,7 @@ export class CheckboxSelectInputComponent extends InputBaseWithValueAndDataSourc
     this.emitValueChange(this.value);
   }
 
-  onSelectAllClicked(newSelectionValue: boolean) {
+  public onSelectAllClicked(newSelectionValue: boolean | undefined): void {
     if (newSelectionValue == true) {
       this.value = this.dataSource?.map(item => this.evaluateValuePropertyName(item));
       this.emitValueChange(this.value);

@@ -1,5 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PropertiesConfiguration, PropertyConfiguration,generatePropertiesConfigurationFromData } from '../property-configuration';
+import {
+  PropertiesConfiguration,
+  PropertyConfiguration,
+  generatePropertiesConfigurationFromData,
+} from '../property-configuration';
 import { TableData } from '../table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -15,30 +19,32 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 export class PropertyTableComponent implements OnInit, OnChanges {
 
   /** ID attribute of the table element. */
-  @Input() id: string | undefined = undefined;
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * Configuration of displayed properties including name, data type, displayed value etc.
+   * If undefined, the configuration will be automatically generated from the properties
+   * of the `data` object.
    */
-  @Input() configuration: PropertiesConfiguration = [];
+  @Input() public configuration: PropertiesConfiguration | undefined = undefined;
 
   /**
    * Display the properties of this object.
    */
-  @Input() data: any | undefined = undefined;
+  @Input() public data: any | undefined = undefined;
 
-  tableData: TableData = [];
+  public tableData: TableData = [];
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.generateTableData();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('data') || changes.hasOwnProperty('configuration'))
       this.generateTableData();
   }
 
-  private generateTableData() {
+  private generateTableData(): void {
     const config: PropertiesConfiguration = this.configuration?.length ? this.configuration
       : generatePropertiesConfigurationFromData(this.data);
 

@@ -9,7 +9,7 @@ import { InputBaseWithValue } from '../input-base';
 export class TextInputComponent extends InputBaseWithValue<string> {
 
   /** Defines the type of the HTML input element. Default: 'text'. */
-  @Input() type:
+  @Input() public type:
     /** Defines a color picker. */
     'color' |
     /** Defines a field for an e-mail address. */
@@ -28,9 +28,9 @@ export class TextInputComponent extends InputBaseWithValue<string> {
   /**
    * If true, the entered text is automatically trimmed after each change event (enter or focus left).
    */
-  @Input() trimValue: boolean = false;
+  @Input() public trimValue: boolean = false;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

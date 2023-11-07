@@ -13,6 +13,7 @@
 
 <ng-template #contentTemplate>
   <select class="form-select"
+          [class.readonly]="readonly"
           [id]="id"
           [name]="name || id"
           [disabled]="disabled || readonly"

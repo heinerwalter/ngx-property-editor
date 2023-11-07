@@ -9,9 +9,9 @@ import { InputBaseWithValueAndDataSource } from '../input-base';
 export class RadioInputComponent extends InputBaseWithValueAndDataSource<any> {
 
   /** If true, the radio inputs are displayed inline. */
-  @Input() inline: boolean = false;
+  @Input() public inline: boolean = false;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

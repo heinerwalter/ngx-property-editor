@@ -128,7 +128,7 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   public separator?: boolean;
 
-  constructor(configuration?: PropertyConfigurationType) {
+  public constructor(configuration?: PropertyConfigurationType) {
     Object.assign(this, configuration);
   }
 
@@ -310,7 +310,7 @@ export class PropertyConfigurationSeparator extends PropertyConfiguration {
 
   public override readonly separator: boolean = true;
 
-  constructor(configuration?: {
+  public constructor(configuration?: {
     /** If true, this property is hidden. */
     hidden?: boolean,
   }) {
@@ -340,26 +340,28 @@ export function generatePropertyTypeFromData(propertyValue: any): PropertyType |
       if (propertyValue instanceof Date)
         return 'date';
       return undefined;
- 
+
     case 'function':
       try {
         return generatePropertyTypeFromData(propertyValue());
       } catch {
         return undefined;
       }
-  
+
     case 'undefined':
     case 'symbol':
     default:
       return undefined;
-   }
+  }
 }
 
 /**
  * Generates a `PropertiesConfiguration` from the properties of the given data object.
  * @param data A data object to be displayed by a property table or property editor.
+ * @param editable If true, all properties are editable.
  */
-export function generatePropertiesConfigurationFromData(data: any | undefined = undefined): PropertiesConfiguration {
+export function generatePropertiesConfigurationFromData(data: any | undefined = undefined,
+                                                        editable: boolean = false): PropertiesConfiguration {
   if (!data) return [];
 
   return Object.getOwnPropertyNames(data)
@@ -369,6 +371,7 @@ export function generatePropertiesConfigurationFromData(data: any | undefined = 
         propertyName: propertyName,
         propertyType: propertyType || 'string',
         hidden: propertyType == undefined,
+        editable: editable,
       });
     });
 }

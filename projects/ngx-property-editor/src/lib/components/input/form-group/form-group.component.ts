@@ -8,15 +8,15 @@ import { Component, Input } from '@angular/core';
 export class FormGroupComponent {
 
   /**
-   * Id of the input element which the label of this form group is describing.
+   * ID of the input element which the label of this form group is describing.
    * Only required, if a label is defined.
    */
-  @Input() for: string | undefined = undefined;
+  @Input() public for: string | undefined = undefined;
 
   /** If not empty a label is displayed at the top of this form group. */
-  @Input() label: string | undefined = undefined;
+  @Input() public label: string | undefined = undefined;
 
-  get labelWithColon(): string | undefined {
+  public get labelWithColon(): string | undefined {
     if (!this.label) return undefined;
     // Add colon only if label does not already end with a punctuation mark
     if (':,;?!'.includes(this.label[this.label.length - 1]))
@@ -25,18 +25,18 @@ export class FormGroupComponent {
   }
 
   /** If true, label and content are displayed in a grid in one line. */
-  @Input() inlineLabel: boolean = false;
+  @Input() public inlineLabel: boolean = false;
 
   /** If not empty, an `InfoIconComponent` is added to the end of the label with this text as tooltip. */
-  @Input() infoIconTooltip: string | undefined = undefined;
+  @Input() public infoIconTooltip: string | undefined = undefined;
 
   /**
    * If not empty, a `FormTextComponent` is added below the form group content (last child element
    * of the form group) with this text as content.
    */
-  @Input() helpText: string | undefined = undefined;
+  @Input() public helpText: string | undefined = undefined;
 
   /** If true, the input element is not wrapped inside a FormGroup component. */
-  @Input() noFormGroup: boolean = false;
+  @Input() public noFormGroup: boolean = false;
 
 }

@@ -9,9 +9,9 @@ import { InputBaseWithValue } from '../input-base';
 export class TextAreaInputComponent extends InputBaseWithValue<string> {
 
   /** Height of the textarea element (number of rows; HTML textarea attribute "rows"). */
-  @Input() height: number | undefined = undefined;
+  @Input() public height: number | undefined = undefined;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

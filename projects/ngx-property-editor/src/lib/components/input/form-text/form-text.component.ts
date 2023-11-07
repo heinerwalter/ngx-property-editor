@@ -9,6 +9,6 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 export class FormTextComponent {
 
   /** ID attribute of the form text element. */
-  @Input() id: string = PEGlobalFunctions.generateRandomId();
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
 }

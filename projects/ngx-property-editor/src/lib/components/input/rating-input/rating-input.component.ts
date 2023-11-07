@@ -13,31 +13,31 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
   /**
    * Maximum rating value (default: 5). Ratings from 1 to `max` can be entered.
    */
-  @Input() max: number = 5;
+  @Input() public max: number = 5;
 
   /**
    * Helper array for the Angular template to be able to iterate over the numbers from 1 to `max`.
    */
-  ratingOptions: number [] = [1, 2, 3, 4, 5];
+  public ratingOptions: number [] = [1, 2, 3, 4, 5];
 
   /** Assign an FontAwesome icon here to replace inactive rating icons (default: empty star). */
-  @Input() iconInactive: IconDefinition | undefined = undefined;
+  @Input() public iconInactive: IconDefinition | undefined = undefined;
   /** Assign an FontAwesome icon here to replace active rating icons (default: filled star). */
-  @Input() iconActive: IconDefinition | undefined = undefined;
+  @Input() public iconActive: IconDefinition | undefined = undefined;
 
   /** Style attribute applied to inactive rating icons. */
-  @Input() iconStyleInactive: string | undefined = undefined;
+  @Input() public iconStyleInactive: string | undefined = undefined;
   /** Style attribute applied to active rating icons. */
-  @Input() iconStyleActive: string | undefined = undefined;
+  @Input() public iconStyleActive: string | undefined = undefined;
 
   public readonly iconStarActive: IconDefinition = faStarSolid;
   public readonly iconStarInactive: IconDefinition = faStarRegular;
 
-  constructor() {
+  public constructor() {
     super();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('max')) {
       if (isNaN(this.max) || this.max < 1) this.max = 1;
       this.ratingOptions = Array.from({ length: this.max }, (_, i) => i + 1);
@@ -48,7 +48,7 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
    * This method is called, when the user clicked on one of the rating icons.
    * @param i Rating value related to the clicked rating icon.
    */
-  onStarClick(i: number): void {
+  public onStarClick(i: number): void {
     this.value = i;
     this.emitValueChange(i);
   }

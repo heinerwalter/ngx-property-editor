@@ -1,5 +1,5 @@
 <ngb-row *ngIf="data && _configuration"
-     [id]=id>
+         [id]="id">
   <ng-container *ngFor="let row of _configuration; let i = index">
 
     <ng-container *ngIf="row?.separator">
@@ -11,7 +11,8 @@
     <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, !readonly)">
 
       <ngb-col [md]="row.getBootstrapColumnMD(data)">
-        <pe-property-input [configuration]="row"
+        <pe-property-input [id]="id + '-input-' + i"
+                           [configuration]="row"
                            [data]="data"
                            [readonly]="readonly">
         </pe-property-input>

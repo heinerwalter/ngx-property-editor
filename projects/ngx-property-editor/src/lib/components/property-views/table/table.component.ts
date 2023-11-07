@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
 import { TableData, TableCell } from '../table-configuration';
 
 /**
- * This component builds a HTML table element with bootstrap style
+ * This component builds an HTML table element with bootstrap style
  * from an array of table `data`.
  */
 @Component({
@@ -14,14 +15,14 @@ import { TableData, TableCell } from '../table-configuration';
 export class TableComponent {
 
   /** ID attribute of the table element. */
-  @Input() id: string | undefined = undefined;
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * This array contains the table header.
    * Each element is a cell of the header row.
    * If empty, no header is displayed.
    */
-  @Input() header: string[] = [];
+  @Input() public header: string[] = [];
 
   /**
    * This two-dimensional array contains the table data.
@@ -34,9 +35,9 @@ export class TableComponent {
    *           If a cell is given as simple string, this style is used.
    * - 'header': The cell is displayed as header (<th>).
    */
-  @Input() data: TableData = [];
+  @Input() public data: TableData = [];
 
-  getContent(cell: TableCell): any {
+  public getContent(cell: TableCell): any {
     if (cell.content == undefined) {
       return '';
     } else if (typeof cell.content === 'boolean') {

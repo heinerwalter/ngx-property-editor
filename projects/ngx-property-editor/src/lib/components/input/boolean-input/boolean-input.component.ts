@@ -14,15 +14,15 @@ export class BooleanInputComponent extends InputBaseWithValue<boolean> {
    * - 'switch': As checkbox with bootstrap switch style.
    * - 'radio': As radio group with yes and no options.
    */
-  @Input() type: 'checkbox' | 'switch' | 'radio' = 'radio';
+  @Input() public type: 'checkbox' | 'switch' | 'radio' = 'radio';
 
   /**
    * If true and the `value` is undefined, the checkbox will display an indeterminate state.
    * If false and the `value` is undefined, the checkbox will display a false state (same as `value = false`).
    */
-  @Input() allowIndeterminate: boolean = false;
+  @Input() public allowIndeterminate: boolean = false;
 
-  constructor() {
+  public constructor() {
     super();
   }
 

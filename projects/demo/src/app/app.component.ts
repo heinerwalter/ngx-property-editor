@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PropertiesConfiguration } from 'ngx-property-editor';
+import { Contact } from './model/contact';
 
 @Component({
   selector: 'demo-root',
@@ -23,7 +25,7 @@ export class AppComponent {
   /**
    * Display the properties of this object by the property table and editor.
    */
-  public data: any = {
+  public data: Contact = new Contact({
     gender: 'male',
     firstname: 'Charlie',
     lastname: 'Brown',
@@ -32,6 +34,13 @@ export class AppComponent {
     email: 'charlie.brown@peanuts.com',
     favorite: true,
     rating: 4,
-  };
+  });
+
+  /**
+   * Configuration of displayed properties including name, data type, displayed value etc.
+   * If undefined, the configuration will be automatically generated from the properties
+   * of the `data` object.
+   */
+  public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
 
 }

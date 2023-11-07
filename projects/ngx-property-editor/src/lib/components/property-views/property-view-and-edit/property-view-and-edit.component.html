@@ -15,7 +15,7 @@
   <div content-both>
 
     <ng-container *ngIf="mode == 'view' && viewModeType == 'table'">
-      <pe-property-table [id]="id ? id + '-property-table' : undefined"
+      <pe-property-table [id]="id + '-property-table'"
                          [configuration]="configuration"
                          [data]="data">
       </pe-property-table>
@@ -26,7 +26,7 @@
     </ng-container>
 
     <ng-container *ngIf="(mode == 'view' && viewModeType == 'editor') || (mode == 'edit' && editModeType == 'editor')">
-      <pe-property-editor [id]="id ? id + '-property-editor' : undefined"
+      <pe-property-editor [id]="id + '-property-editor'"
                           [configuration]="configuration"
                           [data]="data"
                           [readonly]="mode == 'view'">

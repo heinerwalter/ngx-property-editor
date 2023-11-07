@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from '../property-configuration';
 
 @Component({
@@ -9,10 +10,12 @@ import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from
 export class PropertyEditorComponent implements OnChanges {
 
   /** ID attribute of the container element. */
-  @Input() public id: string | undefined = undefined;
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * Configuration of displayed properties including name, data type, displayed value etc.
+   * If undefined, the configuration will be automatically generated from the properties
+   * of the `data` object.
    */
   @Input() public configuration: PropertiesConfiguration | undefined = undefined;
 
@@ -29,11 +32,15 @@ export class PropertyEditorComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('data') || changes.hasOwnProperty('configuration')) {
       this.generateConfiguration();
-    } 
+    }
   }
 
+  /**
+   * Automatically generates a `PropertiesConfiguration` from the properties of the data object,
+   * if no `configuration` is given as input property.
+   */
   private generateConfiguration(): void {
-    this._configuration = this.configuration || generatePropertiesConfigurationFromData(this.data);
+    this._configuration = this.configuration || generatePropertiesConfigurationFromData(this.data, true);
   }
 
 }

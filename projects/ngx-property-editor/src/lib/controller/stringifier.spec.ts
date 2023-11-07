@@ -4,7 +4,7 @@ describe('Stringifier', () => {
 
   // Use german locale for testing
   Object.defineProperty(navigator, 'language', {
-    get: function () {
+    get: function (): string {
       return 'de';
     },
   });

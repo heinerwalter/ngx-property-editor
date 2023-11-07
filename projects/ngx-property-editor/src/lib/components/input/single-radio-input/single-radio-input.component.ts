@@ -12,12 +12,12 @@ export class SingleRadioInputComponent extends InputBaseWithValueAndDataSource<a
    * The value of this one radio input which will be assigned to `value`,
    * if this one radio input is selected.
    */
-  @Input() option: any = undefined;
+  @Input() public option: any = undefined;
 
   /** If true, the radio input is displayed inline. */
-  @Input() inline: boolean = false;
+  @Input() public inline: boolean = false;
 
-  constructor() {
+  public constructor() {
     super();
   }
 
