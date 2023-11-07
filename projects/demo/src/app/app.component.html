@@ -22,10 +22,6 @@
       <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
     </pe-tabs-item>
 
-    <pe-tabs-item label="Property Table">
-      <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
-    </pe-tabs-item>
-
     <pe-tabs-item label="Property Editor">
       <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
     </pe-tabs-item>
@@ -36,10 +32,6 @@
 
     <pe-accordion-item label="Input Components">
       <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-    </pe-accordion-item>
-
-    <pe-accordion-item label="Property Table">
-      <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
     </pe-accordion-item>
 
     <pe-accordion-item label="Property Editor">
@@ -62,11 +54,6 @@
 <ng-template #inputComponentsTemplate>
   <demo-input-components>
   </demo-input-components>
-</ng-template>
-
-<ng-template #propertyTableTemplate>
-  <pe-property-table [data]="data">
-  </pe-property-table>
 </ng-template>
 
 <ng-template #propertyEditorTemplate>
