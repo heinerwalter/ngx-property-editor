@@ -51,6 +51,7 @@ export class Contact {
     return [
       new PropertyConfiguration({
         propertyName: 'gender',
+        label: 'Gender',
         propertyType: 'select',
         dataSource: [
           { name: 'male', value: 'male' },
@@ -62,36 +63,49 @@ export class Contact {
       }),
       new PropertyConfiguration({
         propertyName: 'firstname',
+        label: 'First Name',
         propertyType: 'string',
         editable: true,
       }),
       new PropertyConfiguration({
         propertyName: 'lastname',
+        label: 'Last Name',
         propertyType: 'string',
         editable: true,
       }),
       new PropertyConfiguration({
+        propertyName: 'name',
+        label: 'Full Name',
+        propertyType: 'string',
+        editable: false,
+      }),
+      new PropertyConfiguration({
         propertyName: 'birthday',
+        label: 'Birthday',
         propertyType: 'date',
         editable: true,
       }),
       new PropertyConfiguration({
         propertyName: 'tel',
+        label: 'Phone',
         propertyType: 'tel',
         editable: true,
       }),
       new PropertyConfiguration({
         propertyName: 'email',
+        label: 'E-Mail Address',
         propertyType: 'email',
         editable: true,
       }),
       new PropertyConfiguration({
         propertyName: 'favorite',
+        label: 'Favorite?',
         propertyType: 'boolean',
         editable: true,
       }),
       new PropertyConfiguration({
         propertyName: 'rating',
+        label: 'Rating',
         propertyType: 'rating',
         editable: true,
       }),

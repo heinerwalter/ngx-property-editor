@@ -1,3 +1,7 @@
+@import "../../../styles/mixins";
+
+@include label;
+
 .form-group.label-inline {
   display: grid;
   grid-template-rows: auto;
