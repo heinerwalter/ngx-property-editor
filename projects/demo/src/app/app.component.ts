@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import {
   EditModeType,
-  EditModeTypeDefault,
   PropertiesConfiguration,
   ViewModeType,
-  ViewModeTypeDefault,
 } from 'ngx-property-editor';
 import { Contact } from './model/contact';
 
@@ -61,18 +59,13 @@ export class AppComponent {
   ];
 
   /**
-   * Choose how the properties are displayed in view mode:
-   * - 'table':  Display properties in a `PropertyTableComponent` (one row per property).
-   * - 'editor': Display same `PropertyEditorComponent` as in edit view but turn input fields to readonly.
-   * - 'custom': Display a custom content passed as `<div content-view-custom>...</div>`.
+   * Choose how the properties are displayed in view mode.
    */
-  public viewModeType: ViewModeType = ViewModeTypeDefault;
+  public viewModeType: ViewModeType = 'editor';
 
   /**
-   * Choose how the properties are displayed in edit mode:
-   * - 'editor': Display and edit properties in `PropertyEditorComponent`.
-   * - 'custom': Display a custom content passed as `<div content-edit-custom>...</div>`.
+   * Choose how the properties are displayed in edit mode.
    */
-  public editModeType: EditModeType = EditModeTypeDefault;
+  public editModeType: EditModeType = 'editor';
 
 }
