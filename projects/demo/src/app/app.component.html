@@ -82,9 +82,9 @@
  
     <div content-view-custom>
       <pe-form-group label="Contact">
-        <p>{{data.toString()}}</p>
-        <p *ngIf="data.tel"><a href="tel:{{data.tel}}">{{data.tel}}</a></p> 
-        <p *ngIf="data.email"><a href="mailto:{{data.email}}">{{data.email}}</a></p>  
+        <span>{{data.toString()}}</span>
+        <span *ngIf="data.tel"><br/><a href="tel:{{data.tel}}">{{data.tel}}</a></span> 
+        <span *ngIf="data.email"><br/><a href="mailto:{{data.email}}">{{data.email}}</a></span>  
       </pe-form-group>
     </div>
  
