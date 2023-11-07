@@ -8,13 +8,15 @@ pe-tabs {
       padding-left: $default-margin;
       padding-right: $default-margin;
 
-      .nav-link {
-        border-radius: 0;
-      }
-
       .nav-link.active, .nav-item.show .nav-link {
         background-color: transparent;
         border-bottom-width: 2px;
+      }
+    }
+
+    &.no-round-corners {
+      .nav-tabs .nav-link {
+        border-radius: 0;
       }
     }
 
@@ -31,6 +33,12 @@ pe-tabs {
   // Vertical tabs:
   .tabs-vertical {
     .nav-pills {
+    }
+
+    &.no-round-corners {
+      .nav-pills {
+        border-radius: 0;
+      }
     }
 
     .tab-content {

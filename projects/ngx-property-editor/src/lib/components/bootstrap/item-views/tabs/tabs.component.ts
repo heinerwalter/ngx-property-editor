@@ -15,6 +15,11 @@ export class TabsComponent extends ItemViewBaseComponent {
    */
   @Input() public orientation: 'horizontal' | 'vertical' = 'horizontal';
 
+  /**
+   * If true, the rounded corners of the bootstrap tab items are removed.
+   */
+  @Input() public noRoundCorners: boolean = false;
+
   public constructor() {
     super();
   }
