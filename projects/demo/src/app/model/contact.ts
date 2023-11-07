@@ -11,6 +11,7 @@ export class Contact {
   public favorite: boolean = false;
   public rating: number | undefined;
 
+  /** Returns the full name. */
   public get name(): string {
     return [
       this.gender == 'male' ? 'Mr.' : this.gender == 'female' ? 'Ms.' : undefined,
@@ -42,7 +43,7 @@ export class Contact {
   public toString(): string {
     return [
       this.name,
-      this.birthday ? `* ${this.birthday.toLocaleDateString()}`: undefined,
+      this.birthday ? `*${this.birthday.toLocaleDateString()}`: undefined,
     ].filter(str => !!str).join(', ');
   }
 
