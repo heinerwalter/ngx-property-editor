@@ -17,7 +17,7 @@ export class Contact {
       this.gender == 'male' ? 'Mr.' : this.gender == 'female' ? 'Ms.' : undefined,
       this.firstname,
       this.lastname,
-    ].filter(str => !!str).map(str => str.trim()).join(' ');
+    ].map(str => str?.trim()).filter(str => !!str).join(' ');
   }
 
   constructor(data?: {
@@ -44,7 +44,7 @@ export class Contact {
     return [
       this.name,
       this.birthday ? `*${this.birthday.toLocaleDateString()}`: undefined,
-    ].filter(str => !!str).map(str => str.trim()).join(', ');
+    ].map(str => str?.trim()).filter(str => !!str).join(', ');
   }
 
   public static get propertiesConfiguration(): PropertiesConfiguration {
