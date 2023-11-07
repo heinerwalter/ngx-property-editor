@@ -1,6 +1,6 @@
 @import "../../../../styles/variables";
 
-app-tabs {
+pe-tabs {
 
   // Horizontal tabs:
   .tabs-horizontal {
@@ -42,7 +42,7 @@ app-tabs {
 
 // Remove background color in DevExtreme DataGrid detail view
 .dx-datagrid-rowsview .dx-master-detail-row > .dx-master-detail-cell {
-  app-tabs .tabs-horizontal .nav-tabs {
+  pe-tabs .tabs-horizontal .nav-tabs {
     .nav-link.active, .nav-item.show .nav-link {
       border-bottom-color: #fafafa;
     }

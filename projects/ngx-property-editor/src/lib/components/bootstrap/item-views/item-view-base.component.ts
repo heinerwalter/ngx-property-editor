@@ -18,12 +18,12 @@ export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
    *
    * @deprecated Please use the item child components instead of this array.
    * @example
-   * <app-tabs [id]="id + '-item-view'"
-   *           [items]="[
-   *             { buttonLabel: 'Item 1', contentTemplate: item1Template },
-   *             { buttonLabel: 'Item 2', contentTemplate: item2Template },
-   *           ]">
-   * </app-tabs>
+   * <pe-tabs [id]="id + '-item-view'"
+   *          [items]="[
+   *            { buttonLabel: 'Item 1', contentTemplate: item1Template },
+   *            { buttonLabel: 'Item 2', contentTemplate: item2Template },
+   *          ]">
+   * </pe-tabs>
    *
    * <ng-template #item1Template>
    *   ...
