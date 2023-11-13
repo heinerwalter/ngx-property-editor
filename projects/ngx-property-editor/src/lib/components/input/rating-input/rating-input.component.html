@@ -4,25 +4,26 @@
                [infoIconTooltip]="infoIconTooltip"
                [helpText]="helpText"
                [noFormGroup]="noFormGroup">
-  <span class="stars-container"
-        [class.disabled]="disabled"
-        [class.readonly]="readonly">
-    <ng-container *ngFor="let i of ratingOptions">
-      <span class="star"
-            [class.active]="value && i <= value"
-            tabindex="0"
-            (click)="onStarClick(i)"
-            (keydown.enter)="onStarClick(i)"
-            (keydown.space)="onStarClick(i)">
-        <fa-icon class="star-inactive-icon"
+  <ngb-rating [id]="id"
+              [readonly]="readonly"
+              [disabled]="disabled"
+              [resettable]="true"
+              [max]="max"
+              [rate]="value || 0"
+              (rateChange)="value = $event; emitValueChange($event)">
+    <ng-template let-fill="fill" let-index="index">
+      <div class="star">
+        <fa-icon *ngIf="fill < 100"
+                 class="star-inactive-icon"
                  [style]="iconStyleInactive || ''"
                  [icon]="iconInactive || iconStarInactive">
         </fa-icon>
-        <fa-icon class="star-active-icon"
+        <fa-icon *ngIf="fill === 100"
+                 class="star-active-icon"
                  [style]="iconStyleActive || ''"
                  [icon]="iconActive || iconStarActive">
         </fa-icon>
-      </span>
-    </ng-container>
-  </span>
+      </div>
+    </ng-template>
+  </ngb-rating>
 </pe-form-group>

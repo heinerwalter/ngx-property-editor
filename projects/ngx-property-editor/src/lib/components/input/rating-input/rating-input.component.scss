@@ -1,57 +1,22 @@
 @import "../../../styles/styles";
 
-@mixin star-inactive() {
-  color: $gray-800;
-  .star-inactive-icon {
-    display: inline;
-  }
-
-  .star-active-icon {
-    display: none;
-  }
-}
-
-@mixin star-active() {
-  color: $yellow;
-  .star-inactive-icon {
-    display: none;
-  }
-
-  .star-active-icon {
-    display: inline;
-  }
-}
-
-
-.stars-container {
+ngb-rating {
 
   .star {
-    font-size: 1.5em;
+    //font-size: 1.5em;
 
-    &:not(.active) {
-      @include star-inactive;
+    .star-inactive-icon {
+      color: $gray-800;
     }
 
-    &.active {
-      @include star-active;
+    .star-active-icon {
+      color: $yellow;
     }
   }
 
   &:not(.disabled):not(.readonly):hover {
-    .star, .star.active, .star:not(.active) {
+    .star {
       opacity: 70%;
-
-      // Stars before the hovered one:
-      @include star-active;
-
-      // The hovered star:
-      &:hover {
-
-        // Stars after the hovered one:
-        & ~ .star {
-          @include star-inactive;
-        }
-      }
     }
   }
 
