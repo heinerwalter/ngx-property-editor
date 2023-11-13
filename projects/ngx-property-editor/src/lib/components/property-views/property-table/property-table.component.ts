@@ -33,7 +33,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   @Input() public data: any | undefined = undefined;
 
-  public tableData: TableData = [];
+  protected tableData: TableData = [];
 
   public ngOnInit(): void {
     this.generateTableData();

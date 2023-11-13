@@ -37,7 +37,7 @@ export class TextInputComponent extends InputBaseWithValue<string> {
   /**
    * Triggered by the input element change event (enter or focus left).
    */
-  public onChange(): void {
+  protected onChange(): void {
     // Trim value after change
     if (this.trimValue) {
       const value: string | undefined = this.value?.trim();

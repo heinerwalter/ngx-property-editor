@@ -10,6 +10,6 @@ import { faCircleQuestion, IconDefinition } from '@fortawesome/free-solid-svg-ic
 export class QuestionIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  public override readonly icon: IconDefinition = faCircleQuestion;
+  protected override readonly icon: IconDefinition = faCircleQuestion;
 
 }

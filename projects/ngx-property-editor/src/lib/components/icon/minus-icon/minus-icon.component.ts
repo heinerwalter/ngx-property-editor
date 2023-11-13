@@ -10,6 +10,6 @@ import { faCircleMinus, IconDefinition } from '@fortawesome/free-solid-svg-icons
 export class MinusIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  public override readonly icon: IconDefinition = faCircleMinus;
+  protected override readonly icon: IconDefinition = faCircleMinus;
 
 }

@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { InputBase } from '../input-base';
+import { TextFileReader } from "../../../controller/text-file-reader";
 
 @Component({
   selector: 'pe-file-input',
@@ -14,19 +15,55 @@ export class FileInputComponent extends InputBase {
   @Input() public multiple: boolean = false;
 
   /**
-   * This event is triggered when the user selected on or multiple files.
+   * The selected files.
+   */
+  public files: File[] = [];
+
+  /**
+   * This event is triggered when the user selected one or multiple files.
    * The selected files are passed as event argument.
    */
   @Output() public readonly valueChange: EventEmitter<File[]> = new EventEmitter<File[]>();
 
   /**
+   * If true, the content of selected file(s) is read as string and returned by the `fileContent` event.
+   */
+  @Input() public readFileContent: boolean = false;
+
+  /**
+   * If `readFileContent` is true, the content of selected file(s) is read as string and returned by this event.
+   * If a file failed to be read, the error message is printed to the console and instead of the file content
+   * undefined is returned by this event. This event is emitted after `valueChange` and the length of the event
+   * argument array is the same as the event argument of `valueChange`.
+   */
+  @Output() public readonly fileContent: EventEmitter<(string | undefined)[]> = new EventEmitter<(string | undefined)[]>();
+
+  /**
    * The user selected one or multiple file.
    */
-  public onChange(event: Event): void {
+  protected async onChange(event: Event): Promise<void> {
     const inputElement = event?.target as HTMLInputElement;
     if (!inputElement) return;
 
-    this.valueChange.emit(inputElement.files?.length ? Array.from(inputElement.files) : []);
+    // Emit selected File objects
+    this.files = inputElement.files?.length ? Array.from(inputElement.files) : []
+    this.valueChange.emit(this.files);
+
+    // If requested, read and emit file contents
+    if (this.readFileContent) {
+      const fileContents: (string | undefined)[] = [];
+      for (const file of this.files) {
+        let fileContent: string | undefined = undefined;
+        try {
+          fileContent = await TextFileReader.readTextFile(file);
+        } catch (error) {
+          console.error(error);
+        }
+        fileContents.push(fileContent);
+      }
+
+      this.fileContent.emit(fileContents);
+    }
   }
 
 }

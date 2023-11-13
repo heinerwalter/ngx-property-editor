@@ -51,7 +51,7 @@ export abstract class IconBaseComponent {
 </ng-template>
 `;
   }
- 
+
 }
 
 @Component({
@@ -63,13 +63,13 @@ export abstract class CircleIconBaseComponent extends IconBaseComponent {
   @HostBinding('class.circle-icon') public readonly circleIconClass: boolean = true;
 
   /** The FontAwesome icon to be displayed by the component. */
-  public abstract readonly icon: IconDefinition;
+  protected abstract readonly icon: IconDefinition;
 
   /**
    * The component template for all circle icon components (inheriting from `CircleIconBaseComponent`)
    * with an `icon` property.
    */
-  public static readonly iconComponentTemplate: string =
+  protected static readonly iconComponentTemplate: string =
     IconBaseComponent.generateIconComponentTemplate('<fa-icon [icon]="icon"></fa-icon>');
 
 }

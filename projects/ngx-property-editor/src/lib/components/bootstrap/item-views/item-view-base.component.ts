@@ -169,7 +169,7 @@ export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
    * when a new item is selected.
    * @param item The newly viewed item.
    */
-  public onItemClick(item: ItemDefinition): void {
+  protected onItemClick(item: ItemDefinition): void {
     if (this.disableSaveLastActiveItem || !this.id || !item?.label || item.routerLink) return;
 
     localStorage.setItem(this.localStorageDefaultItemLabelKeyPrefix + this.id, item.label);

@@ -15,11 +15,6 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
    */
   @Input() public max: number = 5;
 
-  /**
-   * Helper array for the Angular template to be able to iterate over the numbers from 1 to `max`.
-   */
-  public ratingOptions: number [] = [1, 2, 3, 4, 5];
-
   /** Assign an FontAwesome icon here to replace inactive rating icons (default: empty star). */
   @Input() public iconInactive: IconDefinition | undefined = undefined;
   /** Assign an FontAwesome icon here to replace active rating icons (default: filled star). */
@@ -30,8 +25,8 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
   /** Style attribute applied to active rating icons. */
   @Input() public iconStyleActive: string | undefined = undefined;
 
-  public readonly iconStarActive: IconDefinition = faStarSolid;
-  public readonly iconStarInactive: IconDefinition = faStarRegular;
+  protected readonly iconStarActive: IconDefinition = faStarSolid;
+  protected readonly iconStarInactive: IconDefinition = faStarRegular;
 
   public constructor() {
     super();
@@ -40,19 +35,7 @@ export class RatingInputComponent extends InputBaseWithValue<number> implements 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('max')) {
       if (isNaN(this.max) || this.max < 1) this.max = 1;
-      this.ratingOptions = Array.from({ length: this.max }, (_, i) => i + 1);
     }
-  }
-
-  /**
-   * This method is called, when the user clicked on one of the rating icons.
-   * @param i Rating value related to the clicked rating icon.
-   */
-  public onStarClick(i: number): void {
-    // Change is not possible, if disabled or readonly
-    if (this.disabled || this.readonly) return;
-    this.value = i;
-    this.emitValueChange(i);
   }
 
 }

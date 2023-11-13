@@ -20,10 +20,10 @@ export class ValidityIconComponent extends IconBaseComponent {
   @Input() public isValid: boolean | 'indeterminate' | undefined = undefined;
 
   /** The FontAwesome icon to be displayed, if `isValid == true`. */
-  public readonly validIcon: IconDefinition = faCircleCheck;
-  /** The FontAwesome icon to be displayed, if `isValid == false`. */ 
-  public readonly invalidIcon: IconDefinition = faTriangleExclamation;
-  /** The FontAwesome icon to be displayed, if `isValid == 'indeterminate'`. */ 
-  public readonly indeterminateIcon: IconDefinition = faCircleMinus;
+  protected readonly validIcon: IconDefinition = faCircleCheck;
+  /** The FontAwesome icon to be displayed, if `isValid == false`. */
+  protected readonly invalidIcon: IconDefinition = faTriangleExclamation;
+  /** The FontAwesome icon to be displayed, if `isValid == 'indeterminate'`. */
+  protected readonly indeterminateIcon: IconDefinition = faCircleMinus;
 
 }

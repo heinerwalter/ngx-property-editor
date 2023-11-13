@@ -25,7 +25,7 @@ export class DateInputComponent extends InputBaseWithValue<Date> {
     super();
   }
 
-  public onInputChange(event: Event): void {
+  protected onInputChange(event: Event): void {
     this.value = (event?.target as HTMLInputElement)?.valueAsDate || undefined;
     this.emitValueChange(this.value);
   }

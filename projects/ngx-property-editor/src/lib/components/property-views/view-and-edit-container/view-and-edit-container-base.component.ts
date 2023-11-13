@@ -64,7 +64,7 @@ export abstract class ViewAndEditContainerBaseComponent {
    * - `mode == 'view'` and `hideContentInViewMode == false`.
    * - `mode == 'edit'`.
    */
-  public get showContent(): boolean {
+  protected get showContent(): boolean {
     return this.mode != 'view' || !this.hideContentInViewMode;
   }
 

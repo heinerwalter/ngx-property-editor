@@ -10,6 +10,6 @@ import { faCircleExclamation, IconDefinition } from '@fortawesome/free-solid-svg
 export class ExclamationIconComponent extends CircleIconBaseComponent {
 
   /** The FontAwesome icon to be displayed by the component. */
-  public override readonly icon: IconDefinition = faCircleExclamation;
+  protected override readonly icon: IconDefinition = faCircleExclamation;
 
 }

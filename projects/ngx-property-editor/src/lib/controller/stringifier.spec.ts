@@ -205,6 +205,8 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(new Date(2023, 11, 31, 10, 11, 12))).toEqual('31.12.2023, 10:11');
     expect(Stringifier.anyTypeToString(new Date(100, 10, 10))).toEqual('10.11.100');
 
+    expect(Stringifier.anyTypeToString(new File([], 'filename.txt'))).toEqual('filename.txt');
+
     expect(Stringifier.anyTypeToString([])).toEqual('[]');
     expect(Stringifier.anyTypeToString([100])).toEqual('[100]');
     expect(Stringifier.anyTypeToString(['a', 'b', 'C'])).toEqual('[a, b, C]');

@@ -37,7 +37,7 @@ export class TableComponent {
    */
   @Input() public data: TableData = [];
 
-  public getContent(cell: TableCell): any {
+  protected getContent(cell: TableCell): any {
     return Stringifier.anyTypeToString(cell.content);
   }
 

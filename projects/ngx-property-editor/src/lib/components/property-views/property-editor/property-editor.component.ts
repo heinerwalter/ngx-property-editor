@@ -19,7 +19,7 @@ export class PropertyEditorComponent implements OnChanges {
    */
   @Input() public configuration: PropertiesConfiguration | undefined = undefined;
 
-  public _configuration: PropertiesConfiguration = [];
+  protected _configuration: PropertiesConfiguration = [];
 
   /**
    * Display the properties of this object.

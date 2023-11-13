@@ -33,10 +33,10 @@ export type ViewAndEditContainerMode = 'view' | 'edit';
 })
 export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseComponent {
 
-  public readonly iconEdit: IconDefinition = faPen;
-  public readonly iconSave: IconDefinition = faFloppyDisk;
-  public readonly iconDelete: IconDefinition = faTrash;
-  public readonly iconCancel: IconDefinition = faBan;
+  protected readonly iconEdit: IconDefinition = faPen;
+  protected readonly iconSave: IconDefinition = faFloppyDisk;
+  protected readonly iconDelete: IconDefinition = faTrash;
+  protected readonly iconCancel: IconDefinition = faBan;
 
   private setMode(mode: ViewAndEditContainerMode): void {
     this.mode = mode;

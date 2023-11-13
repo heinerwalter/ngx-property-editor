@@ -17,7 +17,7 @@ export class TerminalComponent {
   /** If true, the line order is reversed. */
   @Input() public reverseOrder: boolean = false;
 
-  public get displayLines(): string[] {
+  protected get displayLines(): string[] {
     if (!this.lines) return [];
     let lines = this.lines;
     if (this.maxLines > 0 && lines.length > this.maxLines)

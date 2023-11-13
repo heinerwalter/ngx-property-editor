@@ -54,10 +54,25 @@
 </demo-input-demo-wrapper>
 
 <h4>File Input</h4>
-<demo-input-demo-wrapper [value]="values.file">
+<demo-input-demo-wrapper [value]="values.fileSingle">
   <pe-file-input label="File input"
-                 infoIconTooltip="Component: <pe-file-input>"
-                 (valueChange)="values.file = $event; onInputValueChange('file', $event)">
+                 infoIconTooltip='Component: <pe-file-input [readFileContent]="true">'
+                 [multiple]="false"
+                 [readFileContent]="true"
+                 (valueChange)="values.fileSingle = $event; onInputValueChange('file', $event)"
+                 (fileContent)="values.fileSingleContent = $event.length ? $event[0] : undefined">
+  </pe-file-input>
+</demo-input-demo-wrapper>
+<demo-input-demo-wrapper valueLabel="File Content"
+                         valueModifier="quotes"
+                         [value]="values.fileSingleContent">
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.fileMultiple">
+  <pe-file-input label="Multiple files input"
+                 infoIconTooltip='Component: <pe-file-input [multiple]="true">'
+                 [multiple]="true"
+                 (valueChange)="values.fileMultiple = $event; onInputValueChange('multiple files', $event)">
   </pe-file-input>
 </demo-input-demo-wrapper>
 

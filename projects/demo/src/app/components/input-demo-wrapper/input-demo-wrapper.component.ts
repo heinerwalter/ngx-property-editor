@@ -13,6 +13,11 @@ export class InputDemoWrapperComponent {
    */
   @Input() public value: any | undefined = undefined;
 
+  /**
+   * Label displayed above the `value`.
+   */
+  @Input() public valueLabel: string = 'Value';
+
   @Input() public valueModifier: 'quotes' | undefined = undefined;
 
   public get valueAsString(): string {

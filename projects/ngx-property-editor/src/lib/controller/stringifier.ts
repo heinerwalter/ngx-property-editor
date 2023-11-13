@@ -377,6 +377,8 @@ export module Stringifier {
           return arrayToString(value);
         } else if (value instanceof Date) {
           return dateToString(value);
+        } else if (value instanceof File) {
+          return value.name;
         }
         break;
     }

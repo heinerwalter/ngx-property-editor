@@ -16,7 +16,7 @@ export class FormGroupComponent {
   /** If not empty a label is displayed at the top of this form group. */
   @Input() public label: string | undefined = undefined;
 
-  public get labelWithColon(): string | undefined {
+  protected get labelWithColon(): string | undefined {
     if (!this.label) return undefined;
     // Add colon only if label does not already end with a punctuation mark
     if (':,;?!'.includes(this.label[this.label.length - 1]))

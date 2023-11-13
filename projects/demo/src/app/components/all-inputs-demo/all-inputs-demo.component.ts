@@ -11,7 +11,7 @@ export class AllInputsDemoComponent {
   /**
    * Data source for all input components which need a data source.
    */
-  public readonly inputDataSource: { name: string, value: string }[] = [
+  protected readonly inputDataSource: { name: string, value: string }[] = [
     { name: 'Item 1', value: 'item 1' },
     { name: 'Item 2', value: 'item 2' },
     { name: 'Item 3', value: 'item 3' },
@@ -19,8 +19,8 @@ export class AllInputsDemoComponent {
     { name: 'Item 5', value: 'item 5' },
   ];
 
-  public iconCat: IconDefinition = faCat;
-  public iconDog: IconDefinition = faDog;
+  protected iconCat: IconDefinition = faCat;
+  protected iconDog: IconDefinition = faDog;
 
   /**
    * This object contains the values of all input components.
@@ -31,7 +31,9 @@ export class AllInputsDemoComponent {
     number: undefined as number | undefined,
     text: '' as string | undefined,
     textMultiLine: '' as string | undefined,
-    file: undefined as File[] | undefined,
+    fileSingle: undefined as File[] | undefined,
+    fileSingleContent: undefined as string | undefined,
+    fileMultiple: undefined as File[] | undefined,
     selectSingle: undefined as any | undefined,
     selectMultiple: [] as any[] | undefined,
     selectRadio: undefined as any | undefined,
@@ -46,7 +48,7 @@ export class AllInputsDemoComponent {
    * @param inputName Name of the input component.
    * @param value changed value.
    */
-  public onInputValueChange(inputName: string, value: any): void {
+  protected onInputValueChange(inputName: string, value: any): void {
     let valueString: string;
     if (value == undefined)
       valueString = 'undefined';
@@ -58,7 +60,7 @@ export class AllInputsDemoComponent {
     console.log(`value of ${inputName} input changed: ${valueString}`);
   }
 
-  public onTextInputGotoIconClicked(): void {
+  protected onTextInputGotoIconClicked(): void {
     if (!this.values.text) return;
     window.location.assign('https://www.google.com/search?q=' + this.values.text);
   }

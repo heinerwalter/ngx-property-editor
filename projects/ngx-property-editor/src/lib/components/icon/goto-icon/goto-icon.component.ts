@@ -13,6 +13,6 @@ export class GotoIconComponent extends CircleIconBaseComponent {
   @Input() public override button: boolean = true;
 
   /** The FontAwesome icon to be displayed by the component. */
-  public override readonly icon: IconDefinition = faCircleArrowRight;
+  protected override readonly icon: IconDefinition = faCircleArrowRight;
 
 }

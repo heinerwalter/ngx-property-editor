@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </ngb-col>
   <ngb-col [md]="4">
-    <pe-form-group label="Value">
+    <pe-form-group [label]="valueLabel || 'Value'">
       <samp style="display: block; max-width: 100%; white-space: pre; overflow-x: auto;">{{valueAsString}}</samp>
     </pe-form-group>
   </ngb-col>
