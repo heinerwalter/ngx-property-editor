@@ -53,6 +53,7 @@ export * from './lib/components/property-views/view-and-edit-container/view-and-
 // Others:
 export * from './lib/controller/pe-global-functions';
 export * from './lib/controller/stringifier';
+export * from './lib/controller/text-file-reader';
 
 // Module:
 export * from './lib/property-editor.module';
