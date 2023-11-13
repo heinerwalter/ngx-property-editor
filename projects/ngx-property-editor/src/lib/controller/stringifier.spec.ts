@@ -187,7 +187,7 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(false)).toEqual('Nein');
 
     expect(Stringifier.anyTypeToString(42000)).toEqual((42000).toLocaleString());
-    expect(Stringifier.anyTypeToString(0.1)).toEqual('0,1');
+    expect(Stringifier.anyTypeToString(0.1)).toEqual((0.1).toLocaleString());
     expect(Stringifier.anyTypeToString(NaN)).toEqual('');
 
     expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual(BigInt(9007199254740991).toLocaleString());
