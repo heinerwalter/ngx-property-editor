@@ -18,7 +18,7 @@
             <ng-template ngbNavContent>
               <ng-template *ngIf="item.contentTemplate"
                            [ngTemplateOutlet]="item.contentTemplate"
-                           [ngTemplateOutletContext]="{ tab: item.label, index: i }">
+                           [ngTemplateOutletContext]="{ label: item.label, index: i }">
               </ng-template>
             </ng-template>
           </ng-container>

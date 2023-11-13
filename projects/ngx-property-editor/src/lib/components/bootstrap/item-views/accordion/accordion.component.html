@@ -33,7 +33,7 @@
           <div ngbAccordionBody *ngIf="!item.routerLink && item.contentTemplate">
             <ng-template>
               <ng-template [ngTemplateOutlet]="item.contentTemplate"
-                           [ngTemplateOutletContext]="{ tab: item.label, index: i }">
+                           [ngTemplateOutletContext]="{ label: item.label, index: i }">
               </ng-template>
             </ng-template>
           </div>

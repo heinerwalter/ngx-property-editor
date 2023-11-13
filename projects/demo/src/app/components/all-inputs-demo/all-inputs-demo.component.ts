@@ -11,7 +11,7 @@ export class AllInputsDemoComponent {
   /**
    * Data source for all input components which need a data source.
    */
-  public readonly inputDataSource = [
+  public readonly inputDataSource: { name: string, value: string }[] = [
     { name: 'Item 1', value: 'item 1' },
     { name: 'Item 2', value: 'item 2' },
     { name: 'Item 3', value: 'item 3' },

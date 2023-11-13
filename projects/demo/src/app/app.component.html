@@ -16,29 +16,55 @@
                    [(value)]="containerType">
   </pe-select-input>
 
-  <pe-tabs *ngIf="containerType == 'tabs'" id="demo-tabs">
+  <ng-container *ngIf="containerType == 'tabs'" id="demo-tabs">
+    <pe-tabs>
 
-    <pe-tabs-item label="Input Components">
-      <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-    </pe-tabs-item>
+      <pe-tabs-item label="Input Components">
+        <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
+      </pe-tabs-item>
 
-    <pe-tabs-item label="Property Editor">
-      <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
-    </pe-tabs-item>
+      <pe-tabs-item label="Property Editor">
+        <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </pe-tabs-item>
 
-  </pe-tabs>
+    </pe-tabs>
+  </ng-container>
 
-  <pe-accordion *ngIf="containerType == 'accordion'" id="demo-accordion">
+  <ng-container *ngIf="containerType == 'accordion'" id="demo-accordion">
+    <pe-accordion>
 
-    <pe-accordion-item label="Input Components">
-      <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-    </pe-accordion-item>
+      <pe-accordion-item label="Input Components">
+        <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
+      </pe-accordion-item>
 
-    <pe-accordion-item label="Property Editor">
-      <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
-    </pe-accordion-item>
+      <pe-accordion-item label="Property Editor">
+        <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </pe-accordion-item>
 
-  </pe-accordion>
+    </pe-accordion>
+  </ng-container>
+
+  <ng-container *ngIf="containerType == 'pages'" id="demo-pages">
+    <pe-select-input label="Choose controls position"
+                     [inlineLabel]="true"
+                     [dataSource]="pagesControlsPositionDataSource"
+                     displayPropertyName="name"
+                     valuePropertyName="value"
+                     [(value)]="pagesControlsPosition">
+    </pe-select-input>
+
+    <pe-pages [controlsPosition]="pagesControlsPosition">
+
+      <pe-pages-item label="Input Components">
+        <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
+      </pe-pages-item>
+
+      <pe-pages-item label="Property Editor">
+        <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </pe-pages-item>
+
+    </pe-pages>
+  </ng-container>
 
   <!-- Footer -->
   <footer>

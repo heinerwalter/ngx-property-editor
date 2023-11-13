@@ -1,0 +1,67 @@
+<div *ngIf="_items?.length"
+     [id]="id"
+     class="pe-pages">
+
+  <ng-container *ngIf="controlsPosition == 'top'"
+                [ngTemplateOutlet]="controlsTemplate">
+  </ng-container>
+  <div *ngIf="controlsPosition == 'label-top-controls-bottom'"
+       class="pe-pages-controls">
+    <ng-container [ngTemplateOutlet]="labelTemplate">
+    </ng-container>
+  </div>
+
+  <div [id]="id + '-item-' + currentItemIndex + '-content'"
+       class="pe-pages-content">
+    <ng-container *ngIf="currentItem?.contentTemplate"
+                  [ngTemplateOutlet]="currentItem?.contentTemplate!"
+                  [ngTemplateOutletContext]="{ label: currentItem!.label, index: currentItemIndex }">
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf="controlsPosition == 'bottom' || controlsPosition == 'label-top-controls-bottom'"
+                [ngTemplateOutlet]="controlsTemplate">
+  </ng-container>
+
+</div>
+
+
+<ng-template #controlsTemplate>
+  <div class="pe-pages-controls">
+
+    <button *ngIf="showPreviousButton"
+            type="button"
+            [id]="id + '-item-' + (currentItemIndex - 1) + '-button'"
+            class="btn btn-light pe-pages-control pe-pages-control-previous"
+            (click)="onPreviousButtonClicked()">
+      <fa-icon [icon]="iconPrevious"></fa-icon>
+      {{_items[currentItemIndex - 1]?.label}}
+    </button>
+
+    <ng-container *ngIf="controlsPosition != 'label-top-controls-bottom'"
+                  [ngTemplateOutlet]="labelTemplate">
+    </ng-container>
+
+    <button *ngIf="showNextButton"
+            type="button"
+            [id]="id + '-item-' + (currentItemIndex + 1) + '-button'"
+            class="btn btn-light pe-pages-control pe-pages-control-next"
+            (click)="onNextButtonClicked()">
+      {{_items[currentItemIndex + 1]?.label}}
+      <fa-icon [icon]="iconNext"></fa-icon>
+    </button>
+
+  </div>
+</ng-template>
+
+
+<ng-template #labelTemplate>
+  <div *ngIf="showCurrentItemLabel != 'hide'"
+       class="pe-pages-control-center-label"
+       [style.justify-self]="alignCurrentItemLabel">
+    <span *ngIf="showCurrentItemLabel == 'show'">{{currentItem?.label}}</span>
+    <ng-container *ngIf="showCurrentItemLabel == 'show-custom-label'">
+      <ng-content select="[custom-label]"></ng-content>
+    </ng-container>
+  </div>
+</ng-template>

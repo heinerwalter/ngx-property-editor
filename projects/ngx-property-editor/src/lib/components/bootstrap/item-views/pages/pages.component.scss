@@ -1,0 +1,51 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "../../../../../../styles/variables";
+@import "../../../../../../styles/mixins";
+
+.pe-pages {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-content: stretch;
+  align-items: stretch;
+  gap: $default-margin;
+
+  .pe-pages-content {
+    padding: $default-margin;
+    border: solid 1px $nav-tabs-border-color;
+  }
+
+  .pe-pages-controls {
+    display: grid;
+    grid-template-columns: [previous] auto [center] 1fr [next] auto;
+    grid-template-rows: auto;
+    justify-content: stretch;
+    align-content: stretch;
+    justify-items: stretch;
+    align-items: baseline;
+    gap: 0;
+
+    .pe-pages-control-previous {
+      grid-column: previous / span 1;
+      margin-inline-end: $default-margin;
+    }
+
+    .pe-pages-control-center-label {
+      grid-column: center / span 1;
+    }
+
+    .pe-pages-control-next {
+      grid-column: next / span 1;
+      margin-inline-start: $default-margin;
+    }
+  }
+
+  &.no-round-corners {
+    .nav-tabs .nav-link {
+      border-radius: 0;
+    }
+  }
+
+}
