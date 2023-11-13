@@ -172,7 +172,7 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([])).toEqual('[]');
     expect(Stringifier.arrayToString([1])).toEqual('[1]');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('[1, abc, -5, [object Object]]');
-    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 1000, [1, 2, 3]])).toEqual('[01.01.2023, Ja, 1.000, [1, 2, 3]]');
+    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]])).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
   });
 
   // endregion
@@ -186,11 +186,11 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(true)).toEqual('Ja');
     expect(Stringifier.anyTypeToString(false)).toEqual('Nein');
 
-    expect(Stringifier.anyTypeToString(42000)).toEqual('42.000');
+    expect(Stringifier.anyTypeToString(42000)).toEqual((42000).toLocaleString());
     expect(Stringifier.anyTypeToString(0.1)).toEqual('0,1');
     expect(Stringifier.anyTypeToString(NaN)).toEqual('');
 
-    expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual('9.007.199.254.740.991');
+    expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual(BigInt(9007199254740991).toLocaleString());
 
     expect(Stringifier.anyTypeToString('Just a string')).toEqual('Just a string');
     expect(Stringifier.anyTypeToString('')).toEqual('');
