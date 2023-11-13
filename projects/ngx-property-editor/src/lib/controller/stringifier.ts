@@ -12,7 +12,7 @@ export module Stringifier {
    *             'yes-no':     true -> 'yes';  false -> 'no'
    */
   export function booleanToString(value: boolean | undefined,
-                                  type: 'true-false' | 'yes-no' = 'true-false'): string {
+                                  type: 'true-false' | 'yes-no' = 'yes-no'): string {
     if (typeof value !== 'boolean') return '';
 
     switch (type) {
@@ -339,7 +339,49 @@ export module Stringifier {
   export function arrayToString(array: any[]): string {
     if (!Array.isArray(array)) return '';
 
-    return `[${array.join(', ')}]`;
+    return `[${array.map(item => anyTypeToString(item)).join(', ')}]`;
+  }
+
+  // endregion
+
+  // region Any Type
+
+  /**
+   * Converts any value to a string. If `Stringifier` contains a conversion function
+   * for the given value type, it is used to convert the value to a string.
+   * Otherwise, the default `toString()` function is used.
+   * @param value Any value.
+   * @returns A string representation of the given value.
+   */
+  export function anyTypeToString(value: any): string {
+    if (value == undefined) {
+      return '';
+    }
+
+    switch (typeof value) {
+      case "boolean":
+        return booleanToString(value);
+      case "number":
+        if (isNaN(value))
+          return '';
+        return value.toLocaleString();
+      case "bigint":
+        return value.toLocaleString();
+      case "string":
+        return value;
+      case "function":
+        return anyTypeToString(value());
+
+      case "object":
+        if (Array.isArray(value)) {
+          return arrayToString(value);
+        } else if (value instanceof Date) {
+          return dateToString(value);
+        }
+        break;
+    }
+
+    return value.toString();
   }
 
   // endregion

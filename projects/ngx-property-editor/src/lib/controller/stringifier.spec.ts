@@ -12,6 +12,9 @@ describe('Stringifier', () => {
   // region Booleans
 
   it('booleanToString', () => {
+    expect(Stringifier.booleanToString(true)).toEqual('Ja');
+    expect(Stringifier.booleanToString(false)).toEqual('Nein');
+    expect(Stringifier.booleanToString(undefined)).toEqual('');
     expect(Stringifier.booleanToString(true, 'true-false')).toEqual('true');
     expect(Stringifier.booleanToString(false, 'true-false')).toEqual('false');
     expect(Stringifier.booleanToString(undefined, 'true-false')).toEqual('');
@@ -169,6 +172,44 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([])).toEqual('[]');
     expect(Stringifier.arrayToString([1])).toEqual('[1]');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('[1, abc, -5, [object Object]]');
+    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 1000, [1, 2, 3]])).toEqual('[01.01.2023, Ja, 1.000, [1, 2, 3]]');
+  });
+
+  // endregion
+
+  // region Any Type
+
+  it('anyTypeToString', () => {
+    expect(Stringifier.anyTypeToString(undefined)).toEqual('');
+    expect(Stringifier.anyTypeToString(null)).toEqual('');
+
+    expect(Stringifier.anyTypeToString(true)).toEqual('Ja');
+    expect(Stringifier.anyTypeToString(false)).toEqual('Nein');
+
+    expect(Stringifier.anyTypeToString(42000)).toEqual('42.000');
+    expect(Stringifier.anyTypeToString(0.1)).toEqual('0,1');
+    expect(Stringifier.anyTypeToString(NaN)).toEqual('');
+
+    expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual('9.007.199.254.740.991');
+
+    expect(Stringifier.anyTypeToString('Just a string')).toEqual('Just a string');
+    expect(Stringifier.anyTypeToString('')).toEqual('');
+
+    expect(Stringifier.anyTypeToString(() => true)).toEqual('Ja');
+    expect(Stringifier.anyTypeToString(() => 42)).toEqual('42');
+    expect(Stringifier.anyTypeToString(() => 'My string')).toEqual('My string');
+    expect(Stringifier.anyTypeToString(() => new Date(2023, 10, 10))).toEqual('10.11.2023');
+    expect(Stringifier.anyTypeToString((param: number) => param)).toEqual('');
+
+    expect(Stringifier.anyTypeToString(new Date(2023, 0, 1))).toEqual('01.01.2023');
+    expect(Stringifier.anyTypeToString(new Date(2023, 11, 31, 10, 11, 12))).toEqual('31.12.2023, 10:11');
+    expect(Stringifier.anyTypeToString(new Date(100, 10, 10))).toEqual('10.11.100');
+
+    expect(Stringifier.anyTypeToString([])).toEqual('[]');
+    expect(Stringifier.anyTypeToString([100])).toEqual('[100]');
+    expect(Stringifier.anyTypeToString(['a', 'b', 'C'])).toEqual('[a, b, C]');
+
+    expect(Stringifier.anyTypeToString({ anyObject: 'foo' })).toEqual('[object Object]');
   });
 
   // endregion
