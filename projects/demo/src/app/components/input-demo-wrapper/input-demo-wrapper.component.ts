@@ -13,9 +13,18 @@ export class InputDemoWrapperComponent {
    */
   @Input() public value: any | undefined = undefined;
 
+  @Input() public valueModifier: 'quotes' | undefined = undefined;
+
   public get valueAsString(): string {
     if (this.value == undefined) return 'undefined';
-    return Stringifier.anyTypeToString(this.value);
+
+    const stringValue: string = Stringifier.anyTypeToString(this.value);
+
+    switch (this.valueModifier) {
+      case 'quotes':
+        return `"${stringValue}"`;
+    }
+    return stringValue;
   }
 
 }

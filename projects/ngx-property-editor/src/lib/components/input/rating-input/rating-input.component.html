@@ -7,6 +7,8 @@
   <ngb-rating [id]="id"
               [readonly]="readonly"
               [disabled]="disabled"
+              [class.readonly]="readonly"
+              [class.disabled]="disabled"
               [resettable]="true"
               [max]="max"
               [rate]="value || 0"

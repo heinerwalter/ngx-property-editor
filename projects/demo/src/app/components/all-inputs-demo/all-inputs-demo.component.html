@@ -28,7 +28,8 @@
 </demo-input-demo-wrapper>
 
 <h4>Text Input</h4>
-<demo-input-demo-wrapper [value]="values.text">
+<demo-input-demo-wrapper [value]="values.text"
+                         valueModifier="quotes">
   <pe-text-input label="Single line text input"
                  infoIconTooltip="Component: <pe-text-input>"
                  helpText="Search Google after you entered some text."
@@ -43,7 +44,8 @@
   </pe-goto-icon>
 </p>
 
-<demo-input-demo-wrapper [value]="values.textMultiLine">
+<demo-input-demo-wrapper [value]="values.textMultiLine"
+                         valueModifier="quotes">
   <pe-text-area-input label="Multi line text input (textarea)"
                       infoIconTooltip="Component: <pe-text-area-input>"
                       [(value)]="values.textMultiLine"

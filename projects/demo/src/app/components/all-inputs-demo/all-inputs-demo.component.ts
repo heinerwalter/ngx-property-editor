@@ -29,16 +29,16 @@ export class AllInputsDemoComponent {
     boolean: undefined as boolean | undefined,
     date: undefined as Date | undefined,
     number: undefined as number | undefined,
-    text: undefined as string | undefined,
-    textMultiLine: undefined as string | undefined,
+    text: '' as string | undefined,
+    textMultiLine: '' as string | undefined,
     file: undefined as File[] | undefined,
     selectSingle: undefined as any | undefined,
-    selectMultiple: undefined as any[] | undefined,
+    selectMultiple: [] as any[] | undefined,
     selectRadio: undefined as any | undefined,
     selectSeparateRadio: undefined as any | undefined,
-    selectCheckbox: undefined as any[] | undefined,
-    rating: undefined as number | undefined,
-    ratingCustom: undefined as number | undefined,
+    selectCheckbox: [] as any[] | undefined,
+    rating: 0 as number | undefined,
+    ratingCustom: 0 as number | undefined,
   }
 
   /**
