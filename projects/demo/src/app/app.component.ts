@@ -1,10 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  EditModeType,
-  PropertiesConfiguration,
-  ViewModeType,
-} from 'ngx-property-editor';
-import { Contact } from './model/contact';
 
 @Component({
   selector: 'demo-root',
