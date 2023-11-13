@@ -38,17 +38,7 @@ export class TableComponent {
   @Input() public data: TableData = [];
 
   public getContent(cell: TableCell): any {
-    if (cell.content == undefined) {
-      return '';
-    } else if (typeof cell.content === 'boolean') {
-      return cell.content ? 'Ja' : 'Nein';
-    } else if (typeof cell.content === 'number') {
-      if (isNaN(cell.content)) return '';
-      return cell.content.toLocaleString();
-    } else if (cell.content instanceof Date) {
-      return Stringifier.dateToString(cell.content, true, 'auto');
-    }
-    return cell.content.toString();
+    return Stringifier.anyTypeToString(cell.content);
   }
 
 }

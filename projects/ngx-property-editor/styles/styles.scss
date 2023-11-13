@@ -1,9 +1,9 @@
 /* Import Bootstrap */
-@import "bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 
 /* Custom styles */
-@import "./mixins";
+@import "mixins";
 
 @include label;
 @include form-check-input;

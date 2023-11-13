@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PropertyEditorModule } from 'ngx-property-editor';
 
 import { AppComponent } from './app.component';
-import { TerminalComponent } from './components/terminal/terminal.component';
-import { InputComponentsComponent } from './components/input-components/input-components.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { components } from "./components/components";
 
 /**
  * Demo application module.
@@ -15,8 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,
-    TerminalComponent,
-    InputComponentsComponent,
+    ...components,
   ],
   imports: [
     BrowserModule,

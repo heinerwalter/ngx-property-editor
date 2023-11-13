@@ -1,0 +1,147 @@
+<h2>Input Components</h2>
+
+<h4>Boolean Input</h4>
+<demo-input-demo-wrapper [value]="values.boolean">
+  <pe-boolean-input label="Boolean input"
+                    infoIconTooltip="Component: <pe-boolean-input>"
+                    [(value)]="values.boolean"
+                    (valueChange)="onInputValueChange('boolean', $event)">
+  </pe-boolean-input>
+</demo-input-demo-wrapper>
+
+<h4>Date Input</h4>
+<demo-input-demo-wrapper [value]="values.date">
+  <pe-date-input label="Date input"
+                 infoIconTooltip="Component: <pe-date-input>"
+                 [(value)]="values.date"
+                 (valueChange)="onInputValueChange('date', $event)">
+  </pe-date-input>
+</demo-input-demo-wrapper>
+
+<h4>Number Input</h4>
+<demo-input-demo-wrapper [value]="values.number">
+  <pe-number-input label="Number input"
+                   infoIconTooltip="Component: <pe-number-input>"
+                   [(value)]="values.number"
+                   (valueChange)="onInputValueChange('number', $event)">
+  </pe-number-input>
+</demo-input-demo-wrapper>
+
+<h4>Text Input</h4>
+<demo-input-demo-wrapper [value]="values.text">
+  <pe-text-input label="Single line text input"
+                 infoIconTooltip="Component: <pe-text-input>"
+                 helpText="Search Google after you entered some text."
+                 [(value)]="values.text"
+                 (valueChange)="onInputValueChange('text', $event)">
+  </pe-text-input>
+</demo-input-demo-wrapper>
+<p *ngIf="values.text">
+  Search Goggle with entered text:
+  <pe-goto-icon [tooltip]="'Search Google with entered text: ' + values.text"
+                (click)="onTextInputGotoIconClicked()">
+  </pe-goto-icon>
+</p>
+
+<demo-input-demo-wrapper [value]="values.textMultiLine">
+  <pe-text-area-input label="Multi line text input (textarea)"
+                      infoIconTooltip="Component: <pe-text-area-input>"
+                      [(value)]="values.textMultiLine"
+                      (valueChange)="onInputValueChange('multiline text', $event)">
+  </pe-text-area-input>
+</demo-input-demo-wrapper>
+
+<h4>File Input</h4>
+<demo-input-demo-wrapper [value]="values.file">
+  <pe-file-input label="File input"
+                 infoIconTooltip="Component: <pe-file-input>"
+                 (valueChange)="values.file = $event; onInputValueChange('file', $event)">
+  </pe-file-input>
+</demo-input-demo-wrapper>
+
+<h4>Selection</h4>
+<demo-input-demo-wrapper [value]="values.selectSingle">
+  <pe-select-input label="Single selection"
+                   infoIconTooltip="Component: <pe-select-input>"
+                   [dataSource]="inputDataSource"
+                   displayPropertyName="name"
+                   valuePropertyName="value"
+                   [(value)]="values.selectSingle"
+                   (valueChange)="onInputValueChange('single select', $event)">
+  </pe-select-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.selectMultiple">
+  <pe-select-input label="Multiple selection"
+                   infoIconTooltip="Component: <pe-select-input>"
+                   [dataSource]="inputDataSource"
+                   displayPropertyName="name"
+                   valuePropertyName="value"
+                   [multiple]="true"
+                   [(value)]="values.selectMultiple"
+                   (valueChange)="onInputValueChange('multi select', $event)">
+  </pe-select-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.selectRadio">
+  <pe-radio-input label="Single selection with radio inputs"
+                  infoIconTooltip="Component: <pe-radio-input>"
+                  [dataSource]="inputDataSource"
+                  displayPropertyName="name"
+                  valuePropertyName="value"
+                  [(value)]="values.selectRadio"
+                  (valueChange)="onInputValueChange('single select (radio)', $event)">
+  </pe-radio-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.selectSeparateRadio">
+  <pe-form-group label="Single selection with separate radio inputs..."
+                 infoIconTooltip="Component: <pe-single-radio-input>">
+    <pe-single-radio-input label="First radio input with value 'option 1'"
+                           name="single-radio-input"
+                           option="option 1"
+                           [(value)]="values.selectSeparateRadio"
+                           (valueChange)="onInputValueChange('single select (separate radio)', $event)">
+    </pe-single-radio-input>
+    <label>... and arbitrary content between them.</label>
+    <pe-single-radio-input label="Second one with value 'option 2'"
+                           name="single-radio-input"
+                           option="option 2"
+                           [(value)]="values.selectSeparateRadio"
+                           (valueChange)="onInputValueChange('single select (separate radio)', $event)">
+    </pe-single-radio-input>
+  </pe-form-group>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.selectCheckbox">
+  <pe-checkbox-select-input label="Multiple selection with checkboxes"
+                            infoIconTooltip="Component: <pe-checkbox-select-input>"
+                            [dataSource]="inputDataSource"
+                            displayPropertyName="name"
+                            valuePropertyName="value"
+                            [showSelectAll]="true"
+                            [(value)]="values.selectCheckbox"
+                            (valueChange)="onInputValueChange('multi select (checkbox)', $event)">
+  </pe-checkbox-select-input>
+</demo-input-demo-wrapper>
+
+<h4>Special Types</h4>
+<demo-input-demo-wrapper [value]="values.rating">
+  <pe-rating-input label="Rating input"
+                   infoIconTooltip="Component: <pe-rating-input>"
+                   [(value)]="values.rating"
+                   (valueChange)="onInputValueChange('rating', $event)">
+  </pe-rating-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.ratingCustom">
+  <pe-rating-input label="Rating input with custom icons"
+                   infoIconTooltip='Component: <pe-rating-input [iconInactive]="..." [iconActive]="...">'
+                   [iconInactive]="iconDog"
+                   [iconActive]="iconCat"
+                   iconStyleInactive="padding-right: 0.2em;"
+                   iconStyleActive="padding-right: 0.2em; color: saddlebrown;"
+                   [(value)]="values.ratingCustom"
+                   (valueChange)="onInputValueChange('rating (with custom icons)', $event)">
+  </pe-rating-input>
+</demo-input-demo-wrapper>

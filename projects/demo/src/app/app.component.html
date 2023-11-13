@@ -52,8 +52,8 @@
 
 
 <ng-template #inputComponentsTemplate>
-  <demo-input-components>
-  </demo-input-components>
+  <demo-all-inputs-demo>
+  </demo-all-inputs-demo>
 </ng-template>
 
 <ng-template #propertyEditorTemplate>
@@ -79,19 +79,19 @@
                              [configuration]="propertiesConfiguration"
                              [viewModeType]="viewModeType"
                              [editModeType]="editModeType">
- 
+
     <div content-view-custom>
       <pe-form-group label="Contact">
         <span>{{data.toString()}}</span>
-        <span *ngIf="data.tel"><br/><a href="tel:{{data.tel}}">{{data.tel}}</a></span> 
-        <span *ngIf="data.email"><br/><a href="mailto:{{data.email}}">{{data.email}}</a></span>  
+        <span *ngIf="data.tel"><br/><a href="tel:{{data.tel}}">{{data.tel}}</a></span>
+        <span *ngIf="data.email"><br/><a href="mailto:{{data.email}}">{{data.email}}</a></span>
       </pe-form-group>
     </div>
- 
+
     <div content-edit-custom>
       Here you could create your own edit form. But it has not been done yet.
       Please choose another edit mode.
     </div>
-   
+
   </pe-property-view-and-edit>
 </ng-template>
