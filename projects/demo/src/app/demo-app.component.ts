@@ -53,13 +53,14 @@ export class DemoAppComponent {
   protected readonly pagesControlsPositionDataSource: { name: string, value: string }[] = [
     { name: 'Controls & Label: Top', value: 'top' },
     { name: 'Controls & Label: Bottom', value: 'bottom' },
+    { name: 'Controls & Label: Window Bottom (fixed)', value: 'bottom-fixed' },
     { name: 'Label: Top | Controls: Bottom', value: 'label-top-controls-bottom' },
   ];
 
   /**
    * Choose a `controlsPosition` for the pages' container.
    */
-  protected pagesControlsPosition: 'top' | 'bottom' | 'label-top-controls-bottom' = 'top';
+  protected pagesControlsPosition: 'top' | 'bottom' | 'bottom-fixed' | 'label-top-controls-bottom' = 'top';
 
   /**
    * Data source for the pages `controlsStyle` select input component.
