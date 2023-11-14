@@ -38,6 +38,7 @@
             [id]="id + '-item-' + (currentItemIndex - 1) + '-button'"
             class="btn pe-pages-control pe-pages-control-previous"
             [disabled]="disablePreviousButton"
+            [routerLink]="_items[currentItemIndex - 1]?.routerLink"
             (click)="onPreviousButtonClicked()">
       <fa-icon [icon]="iconPrevious"></fa-icon>
       {{_items[currentItemIndex - 1]?.label}}
@@ -52,6 +53,7 @@
             [id]="id + '-item-' + (currentItemIndex + 1) + '-button'"
             class="btn pe-pages-control pe-pages-control-next"
             [disabled]="disableNextButton"
+            [routerLink]="_items[currentItemIndex + 1]?.routerLink"
             (click)="onNextButtonClicked()">
       {{_items[currentItemIndex + 1]?.label}}
       <fa-icon [icon]="iconNext"></fa-icon>

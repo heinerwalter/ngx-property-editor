@@ -52,7 +52,7 @@ export abstract class ItemViewItemBaseComponent implements OnInit, OnChanges, Af
   @Input() public hidden: boolean = false;
 
   /** Order of the items. */
-  @Input() public order: number = 0;
+  @Input() public order: number | undefined = undefined;
   /** Label of the button selecting this item. */
   @Input() public label: string = '';
   /** Reference to the item content template. */
