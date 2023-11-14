@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
+import { Stringifier } from '../../../controller/stringifier';
 
 @Component({
   selector: 'pe-date-input',
@@ -21,13 +22,22 @@ export class DateInputComponent extends InputBaseWithValue<Date> {
     /** Defines a week and year control (no timezone). */
     'week' = 'date';
 
+  /**
+   * Choose whether to return the selected date within UTC (default) or local timezone.
+   */
+  @Input() timezone: 'utc' | 'local' = 'utc';
+
   public constructor() {
     super();
   }
 
   protected onInputChange(event: Event): void {
-    this.value = (event?.target as HTMLInputElement)?.valueAsDate || undefined;
-    this.emitValueChange(this.value);
+    let date: Date | undefined = (event?.target as HTMLInputElement)?.valueAsDate || undefined;
+    if (this.timezone == 'local' && date) {
+      date = Stringifier.dateUTCToTimezone(date);
+    }
+    this.value = date;
+    this.emitValueChange(date);
   }
 
 }

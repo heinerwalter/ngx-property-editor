@@ -12,11 +12,34 @@
 <h4>Date Input</h4>
 <demo-input-demo-wrapper [value]="values.date">
   <pe-date-input label="Date input"
-                 infoIconTooltip="Component: <pe-date-input>"
+                 infoIconTooltip='Component: <pe-date-input type="date">'
+                 type="date"
+                 timezone="local"
                  [(value)]="values.date"
                  (valueChange)="onInputValueChange('date', $event)">
   </pe-date-input>
 </demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.time">
+  <pe-date-input label="Time input"
+                 infoIconTooltip='Component: <pe-date-input type="time">'
+                 type="time"
+                 timezone="local"
+                 [(value)]="values.time"
+                 (valueChange)="onInputValueChange('time', $event)">
+  </pe-date-input>
+</demo-input-demo-wrapper>
+
+<!-- TODO: datetime-local does not return a date instance but a string. Results in value = undefined.
+<demo-input-demo-wrapper [value]="values.datetime">
+  <pe-date-input label="Date and time input"
+                 infoIconTooltip='Component: <pe-date-input type="datetime-local">'
+                 type="datetime-local"
+                 [(value)]="values.datetime"
+                 (valueChange)="onInputValueChange('datetime', $event)">
+  </pe-date-input>
+</demo-input-demo-wrapper>
+-->
 
 <h4>Number Input</h4>
 <demo-input-demo-wrapper [value]="values.number">

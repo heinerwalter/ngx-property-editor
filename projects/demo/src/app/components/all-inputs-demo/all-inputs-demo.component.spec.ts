@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllInputsDemoComponent } from './all-inputs-demo.component';
+import { InputDemoWrapperComponent } from '../input-demo-wrapper/input-demo-wrapper.component';
+import { PropertyEditorModule } from 'ngx-property-editor';
 
 describe('AllInputsDemoComponent', () => {
   let component: AllInputsDemoComponent;
@@ -8,7 +10,11 @@ describe('AllInputsDemoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AllInputsDemoComponent]
+      declarations: [
+        AllInputsDemoComponent,
+        InputDemoWrapperComponent,
+      ],
+      imports: [PropertyEditorModule],
     });
     fixture = TestBed.createComponent(AllInputsDemoComponent);
     component = fixture.componentInstance;

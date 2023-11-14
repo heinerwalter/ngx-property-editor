@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faCat, faDog, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FileInputFileContentType } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-all-inputs-demo',
@@ -28,11 +29,13 @@ export class AllInputsDemoComponent {
   public values = {
     boolean: undefined as boolean | undefined,
     date: undefined as Date | undefined,
+    time: undefined as Date | undefined,
+    datetime: undefined as Date | undefined,
     number: undefined as number | undefined,
     text: '' as string | undefined,
     textMultiLine: '' as string | undefined,
     fileSingle: undefined as File[] | undefined,
-    fileSingleContent: undefined as string | undefined,
+    fileSingleContent: undefined as FileInputFileContentType | undefined,
     fileMultiple: undefined as File[] | undefined,
     selectSingle: undefined as any | undefined,
     selectMultiple: [] as any[] | undefined,
@@ -57,7 +60,7 @@ export class AllInputsDemoComponent {
     else
       valueString = value.toString();
 
-    console.log(`value of ${inputName} input changed: ${valueString}`);
+    console.log(`value of ${inputName} input changed: ${valueString}`, value);
   }
 
   protected onTextInputGotoIconClicked(): void {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PropertyEditorModule } from 'ngx-property-editor';
 
-import { AppComponent } from './app.component';
+import { DemoAppComponent } from './demo-app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,7 +13,7 @@ import { components } from "./components/components";
  */
 @NgModule({
   declarations: [
-    AppComponent,
+    DemoAppComponent,
     ...components,
   ],
   imports: [
@@ -24,7 +24,7 @@ import { components } from "./components/components";
     FontAwesomeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [DemoAppComponent],
 })
-export class AppModule {
+export class DemoAppModule {
 }

@@ -17,7 +17,24 @@
   </pe-select-input>
 
   <ng-container *ngIf="containerType == 'tabs'" id="demo-tabs">
-    <pe-tabs>
+    <pe-select-input label="Choose orientation"
+                     [inlineLabel]="true"
+                     [dataSource]="tabsOrientationDataSource"
+                     displayPropertyName="name"
+                     valuePropertyName="value"
+                     [(value)]="tabsOrientation">
+    </pe-select-input>
+    <pe-select-input *ngIf="tabsOrientation == 'vertical'"
+                     label="Choose tab style"
+                     [inlineLabel]="true"
+                     [dataSource]="verticalTabStyleDataSource"
+                     displayPropertyName="name"
+                     valuePropertyName="value"
+                     [(value)]="verticalTabStyle">
+    </pe-select-input>
+
+    <pe-tabs [orientation]="tabsOrientation"
+             [verticalTabStyle]="verticalTabStyle">
 
       <pe-tabs-item label="Input Components">
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>

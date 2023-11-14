@@ -1,5 +1,7 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/list-group";
 @import "../../../../../../styles/variables";
 
 pe-tabs {
@@ -16,6 +18,7 @@ pe-tabs {
       }
     }
 
+    // Add class .no-round-corners to the .tabs-horizontal element to remove rounded corners from tab buttons:
     &.no-round-corners {
       .nav-tabs .nav-link {
         border-radius: 0;
@@ -34,17 +37,70 @@ pe-tabs {
 
   // Vertical tabs:
   .tabs-vertical {
-    .nav-pills {
-    }
 
-    &.no-round-corners {
-      .nav-pills {
-        border-radius: 0;
-      }
+    .nav-pills {
+      flex-shrink: 0;
+      flex-grow: 0;
     }
 
     .tab-content {
+      flex-grow: 1;
       margin-inline-start: $default-margin;
+      padding: $default-margin;
+      border: solid 1px $nav-tabs-border-color;
+    }
+
+    // Add class .no-round-corners to the .tabs-vertical element to remove rounded corners from tab buttons:
+    &.no-round-corners {
+      .nav-pills {
+        border-radius: 0 !important;
+      }
+    }
+
+    // Add class .nav-list-group to the .tabs-vertical element to show the tab buttons as bootstrap .list-group
+    // instead of separate buttons (.nav-pills):
+    &.nav-list-group,
+    &.nav-list-group-no-gap {
+      .nav-pills {
+        @extend .list-group;
+
+        .nav-link {
+          @extend .list-group-item;
+          border-radius: 0;
+        }
+      }
+    }
+
+    // Add class .nav-list-group-no-gap to the .tabs-vertical element for the same style as .nav-list-group
+    // plus no gap between the tab buttons and the tab content:
+    &.nav-list-group-no-gap {
+      .nav-pills {
+        /*.nav-link:first-child {
+          border-top-right-radius: 0;
+        }
+
+        .nav-link:last-child {
+          border-bottom-right-radius: 0;
+        }*/
+        .nav-link {
+          border-radius: 0 !important;
+        }
+
+        .nav-link:last-child {
+          margin-bottom: -1px;
+        }
+
+        &::after {
+          content: "";
+          @extend .list-group-item;
+          flex-grow: 1;
+          border-radius: 0 !important;
+        }
+      }
+
+      .tab-content {
+        margin-inline-start: -1px;
+      }
     }
   }
 

@@ -30,6 +30,30 @@ export module Stringifier {
   // region Dates
 
   /**
+   * Converts the given date so that the UTC timestamp of the given date
+   * becomes the local timezone timestamp of the returned date.
+   *
+   * Example:
+   * When a date is selected with the HTML date input in the middle european timezone (MET),
+   * it is created without time (00:00) in the UTC timezone like:
+   * ```
+   * 2023-01-01, 00:00 (UTC)
+   * ```
+   * When this date instance is converted to string however, it is converted to the local timezone like:
+   * ```
+   * 2023-01-01, 01:00 (MET)
+   * ```
+   * This function converts the UTC date to the local timezone like:
+   * ```
+   * 2023-01-01, 00:00 (UTC) -> 2023-01-01, 00:00 (MET) == 2022-12-31, 23:00 (UTC)
+   * ```
+   */
+  export function dateUTCToTimezone(date: Date): Date {
+    const timeDiff: number = date.getTimezoneOffset() * 60000;
+    return new Date(date.valueOf() + timeDiff);
+  }
+
+  /**
    * Gets the month and year of the given date as string using the current locale.
    * @param date A Date.
    * @returns Month and year of the given date as string (e.g. 'January 2023')
@@ -359,20 +383,20 @@ export module Stringifier {
     }
 
     switch (typeof value) {
-      case "boolean":
+      case 'boolean':
         return booleanToString(value);
-      case "number":
+      case 'number':
         if (isNaN(value))
           return '';
         return value.toLocaleString();
-      case "bigint":
+      case 'bigint':
         return value.toLocaleString();
-      case "string":
+      case 'string':
         return value;
-      case "function":
+      case 'function':
         return anyTypeToString(value());
 
-      case "object":
+      case 'object':
         if (Array.isArray(value)) {
           return arrayToString(value);
         } else if (value instanceof Date) {

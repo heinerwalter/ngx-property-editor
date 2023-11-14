@@ -1,7 +1,9 @@
 <ng-container *ngIf="_items?.length">
 
   <div [class]="orientation == 'horizontal' ? 'tabs-horizontal' : 'tabs-vertical d-flex'"
-       [class.no-round-corners]="noRoundCorners">
+       [class.no-round-corners]="noRoundCorners"
+       [class.nav-list-group]="orientation == 'vertical' && verticalTabStyle == 'list'"
+       [class.nav-list-group-no-gap]="orientation == 'vertical' && verticalTabStyle == 'list-no-gap'">
 
     <div ngbNav #nav="ngbNav"
          [id]="id"

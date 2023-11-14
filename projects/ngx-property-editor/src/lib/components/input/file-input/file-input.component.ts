@@ -2,6 +2,18 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { InputBase } from '../input-base';
 import { TextFileReader } from "../../../controller/text-file-reader";
 
+
+/**
+ * Event argument type of the `FileInputComponent.fileContent` event.
+ */
+export type FileInputFileContentType = {
+  /** The file object selected by the user. */
+  file: File,
+  /** The content of the file or undefined, if reading failed. */
+  fileContent: string | undefined,
+}
+
+
 @Component({
   selector: 'pe-file-input',
   templateUrl: './file-input.component.html',
@@ -33,10 +45,12 @@ export class FileInputComponent extends InputBase {
   /**
    * If `readFileContent` is true, the content of selected file(s) is read as string and returned by this event.
    * If a file failed to be read, the error message is printed to the console and instead of the file content
-   * undefined is returned by this event. This event is emitted after `valueChange` and the length of the event
-   * argument array is the same as the event argument of `valueChange`.
+   * undefined is returned by this event. Additionally, to the file content, the file object itself is returned
+   * by this event, too. This event is emitted after `valueChange` and the length of the event argument array
+   * is the same as the event argument of `valueChange`.
+   * @see FileInputFileContentType
    */
-  @Output() public readonly fileContent: EventEmitter<(string | undefined)[]> = new EventEmitter<(string | undefined)[]>();
+  @Output() public readonly fileContent: EventEmitter<FileInputFileContentType[]> = new EventEmitter<FileInputFileContentType[]>();
 
   /**
    * The user selected one or multiple file.
@@ -51,7 +65,7 @@ export class FileInputComponent extends InputBase {
 
     // If requested, read and emit file contents
     if (this.readFileContent) {
-      const fileContents: (string | undefined)[] = [];
+      const fileContents: FileInputFileContentType[] = [];
       for (const file of this.files) {
         let fileContent: string | undefined = undefined;
         try {
@@ -59,7 +73,7 @@ export class FileInputComponent extends InputBase {
         } catch (error) {
           console.error(error);
         }
-        fileContents.push(fileContent);
+        fileContents.push({ file, fileContent });
       }
 
       this.fileContent.emit(fileContents);
