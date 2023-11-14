@@ -45,7 +45,7 @@ export class DemoAppComponent {
   /**
    * Choose a `verticalTabStyle` for the tabs' container.
    */
-  protected tabsVerticalStyle: 'pills' | 'list' | 'list-no-gap' = 'list-no-gap';
+  protected tabsVerticalStyle: 'pills' | 'list' | 'list-no-gap' = 'list';
 
   /**
    * Data source for the pages `controlsPosition` select input component.
@@ -73,6 +73,6 @@ export class DemoAppComponent {
   /**
    * Choose a `controlsStyle` for the pages' container.
    */
-  protected pagesControlsStyle: 'buttons' | 'box' = 'box';
+  protected pagesControlsStyle: 'buttons' | 'box' = 'buttons';
 
 }
