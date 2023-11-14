@@ -43,6 +43,17 @@
       margin-inline-start: $default-margin;
     }
 
+    // Add class .pe-pages-controls-bottom-fixed to the .pe-pages-controls element
+    // to fix the control buttons to the window bottom:
+    &.pe-pages-controls-bottom-fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background-color: #fff;
+    }
+
   }
 
   // Default style: show controls as bootstrap buttons with round corners:

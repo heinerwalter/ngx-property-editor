@@ -23,16 +23,18 @@
     </ng-container>
   </div>
 
-  <ng-container *ngIf="controlsPosition == 'bottom' || controlsPosition == 'label-top-controls-bottom'"
-                [ngTemplateOutlet]="controlsTemplate"
-                [ngTemplateOutletContext]="{position: 'bottom'}">
+  <ng-container
+    *ngIf="controlsPosition == 'bottom' || controlsPosition == 'bottom-fixed' || controlsPosition == 'label-top-controls-bottom'"
+    [ngTemplateOutlet]="controlsTemplate"
+    [ngTemplateOutletContext]="{position: 'bottom'}">
   </ng-container>
 
 </div>
 
 
 <ng-template #controlsTemplate let-position="position">
-  <div [class]="'pe-pages-controls pe-pages-controls-' + position">
+  <div [class]="'pe-pages-controls pe-pages-controls-' + position"
+       [class.pe-pages-controls-bottom-fixed]="controlsPosition == 'bottom-fixed'">
 
     <button *ngIf="showPreviousButton"
             type="button"

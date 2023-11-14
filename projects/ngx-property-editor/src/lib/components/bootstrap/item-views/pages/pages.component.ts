@@ -13,10 +13,11 @@ export class PagesComponent extends ItemViewBaseComponent {
    * Choose where to display the control buttons for moving to the previous or next page:
    * - 'top' (default):             Show controls above content.
    * - 'bottom':                    Show controls below content.
+   * - 'bottom-fixed':              Show controls fixed at the window bottom.
    * - 'label-top-controls-bottom': Show the label of the current item (see `showCurrentItemLabel`) above the content
    *                                and show the controls below the content.
    */
-  @Input() public controlsPosition: 'top' | 'bottom' | 'label-top-controls-bottom' = 'top';
+  @Input() public controlsPosition: 'top' | 'bottom' | 'bottom-fixed' | 'label-top-controls-bottom' = 'top';
 
   /**
    * Choose how the control buttons should look like:
@@ -86,7 +87,7 @@ export class PagesComponent extends ItemViewBaseComponent {
    * If true, the previous page button is disabled and thus the user cannot navigate to the previous page.
    */
   protected get disablePreviousButton(): boolean {
-    if (!this.showPreviousButton) return false;
+    if (!this.showPreviousButton) return true;
     return this._items[this.currentItemIndex - 1]?.hidden || false;
   }
 
@@ -94,7 +95,7 @@ export class PagesComponent extends ItemViewBaseComponent {
    * If true, the next page button is disabled and thus the user cannot navigate to the next page.
    */
   protected get disableNextButton(): boolean {
-    if (!this.showNextButton) return false;
+    if (!this.showNextButton) return true;
     return this._items[this.currentItemIndex + 1]?.hidden || false;
   }
 
