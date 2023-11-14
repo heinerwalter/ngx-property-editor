@@ -1,14 +1,13 @@
-# This workflow will build the Angular library package and the demo application and run all tests
-
+# This workflow will build the Angular library package and run all tests.
 name: build library
 
 on:
+  # Runs on pushes targeting the default branch
   push:
     branches: [ "master" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
