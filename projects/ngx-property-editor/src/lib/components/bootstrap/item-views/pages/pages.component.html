@@ -2,7 +2,8 @@
      [id]="id"
      class="pe-pages"
      [class.pe-pages-controls-style-buttons]="controlsStyle == 'buttons'"
-     [class.pe-pages-controls-style-box]="controlsStyle == 'box'">
+     [class.pe-pages-controls-style-box]="controlsStyle == 'box'"
+     [class.pe-pages-no-border]="noBorder">
 
   <ng-container *ngIf="controlsPosition == 'top'"
                 [ngTemplateOutlet]="controlsTemplate"

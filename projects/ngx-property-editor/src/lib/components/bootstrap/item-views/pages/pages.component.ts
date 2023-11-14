@@ -39,6 +39,11 @@ export class PagesComponent extends ItemViewBaseComponent {
    */
   @Input() public alignCurrentItemLabel: 'start' | 'center' | 'end' = 'start';
 
+  /**
+   * If true, no borders are displayed around controls or content.
+   */
+  @Input() public noBorder: boolean = false;
+
   protected readonly iconPrevious: IconDefinition = faAngleLeft;
   protected readonly iconNext: IconDefinition = faAngleRight;
 
