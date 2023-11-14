@@ -136,11 +136,13 @@
     padding: 1rem;
     background-color: #fff;
 
-    border: none;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
   }
 
   &:not(.pe-pages-no-border) .pe-pages-controls.pe-pages-controls-bottom-fixed {
-    border-top: solid 1px $nav-tabs-border-color;
+    border-top: solid 1px $nav-tabs-border-color !important;
   }
 
 }
