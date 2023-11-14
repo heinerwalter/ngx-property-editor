@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ItemViewBaseComponent } from '../item-view-base.component';
 import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { ItemDefinition } from '../item-view-item-base.component';
 
 @Component({
   selector: 'pe-pages',
@@ -49,20 +48,8 @@ export class PagesComponent extends ItemViewBaseComponent {
    */
   @Input() public disableNextButton: boolean = false;
 
-  @Input() public override disableSaveLastActiveItem: boolean = true;
-
   protected readonly iconPrevious: IconDefinition = faAngleLeft;
   protected readonly iconNext: IconDefinition = faAngleRight;
-
-  /**
-   * Index of the currently displayed item.
-   */
-  protected currentItemIndex: number = 0;
-
-  /**
-   * Currently displayed item.
-   */
-  protected currentItem: ItemDefinition | undefined = undefined;
 
   public constructor() {
     super();
@@ -72,13 +59,6 @@ export class PagesComponent extends ItemViewBaseComponent {
     super.updateItems();
     // Update the currently displayed item when the items array has changed
     this.setCurrentItem(this.currentItemIndex);
-
-  }
-
-  protected override updateDefaultItemIndex() {
-    super.updateDefaultItemIndex();
-    // Assign default item index as current index when the default item index has changed
-    this.setCurrentItem(this._defaultItemIndex);
   }
 
   /**
@@ -89,8 +69,7 @@ export class PagesComponent extends ItemViewBaseComponent {
     if (index < 0) index = 0;
     if (index > this._items.length - 1) index = this._items.length - 1;
 
-    this.currentItemIndex = index;
-    this.currentItem = this._items[index];
+    this.onItemChanged(this._items[index], index);
   }
 
   /**
@@ -112,7 +91,7 @@ export class PagesComponent extends ItemViewBaseComponent {
    * It changes the currently displayed item to the previous one.
    */
   protected onPreviousButtonClicked(): void {
-    if (this.currentItemIndex <= 0) return;
+    if (!this.showPreviousButton || this.disablePreviousButton) return;
     this.setCurrentItem(this.currentItemIndex - 1);
   }
 
@@ -121,7 +100,7 @@ export class PagesComponent extends ItemViewBaseComponent {
    * It changes the currently displayed item to the next one.
    */
   protected onNextButtonClicked(): void {
-    if (this.currentItemIndex >= this._items.length - 1) return;
+    if (!this.showNextButton || this.disableNextButton) return;
     this.setCurrentItem(this.currentItemIndex + 1);
   }
 

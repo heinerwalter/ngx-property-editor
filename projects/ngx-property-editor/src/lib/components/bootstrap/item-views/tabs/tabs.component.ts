@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { ItemViewBaseComponent } from '../item-view-base.component';
+import { ItemViewWithStateSaveBaseComponent } from '../item-view-with-state-save-base.component';
 
 @Component({
   selector: 'pe-tabs',
@@ -7,7 +7,7 @@ import { ItemViewBaseComponent } from '../item-view-base.component';
   styleUrls: ['./tabs.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class TabsComponent extends ItemViewBaseComponent {
+export class TabsComponent extends ItemViewWithStateSaveBaseComponent {
 
   /**
    * Show the tab buttons horizontally above the tab content

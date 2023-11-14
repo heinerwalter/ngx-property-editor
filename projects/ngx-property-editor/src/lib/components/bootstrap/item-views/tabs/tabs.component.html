@@ -16,7 +16,7 @@
                       [ngbNavItem]="id + '-tab' + i">
 
           <ng-container *ngIf="!item.routerLink">
-            <button ngbNavLink (click)="onItemClick(item)">{{item.label}}</button>
+            <button ngbNavLink (click)="onItemChanged(item, i)">{{item.label}}</button>
             <ng-template ngbNavContent>
               <ng-template *ngIf="item.contentTemplate"
                            [ngTemplateOutlet]="item.contentTemplate"

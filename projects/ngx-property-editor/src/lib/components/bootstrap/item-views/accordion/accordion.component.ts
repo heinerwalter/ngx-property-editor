@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { ItemViewBaseComponent } from '../item-view-base.component';
+import { ItemViewWithStateSaveBaseComponent } from '../item-view-with-state-save-base.component';
 
 @Component({
   selector: 'pe-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
 })
-export class AccordionComponent extends ItemViewBaseComponent {
+export class AccordionComponent extends ItemViewWithStateSaveBaseComponent {
 
   /**
    * If true, only one panel can be opened at a time.
@@ -20,7 +20,7 @@ export class AccordionComponent extends ItemViewBaseComponent {
   @Input() public destroyOnHide: boolean = false;
 
   /**
-   * By default the first item is initially opened.
+   * By default, the first item is initially opened.
    * If this property is true, initially all items are collapsed.
    */
   @Input() public allCollapsedInitially: boolean = false;
