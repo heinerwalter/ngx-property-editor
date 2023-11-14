@@ -27,14 +27,14 @@
     <pe-select-input *ngIf="tabsOrientation == 'vertical'"
                      label="Choose tab style"
                      [inlineLabel]="true"
-                     [dataSource]="verticalTabStyleDataSource"
+                     [dataSource]="tabsVerticalStyleDataSource"
                      displayPropertyName="name"
                      valuePropertyName="value"
-                     [(value)]="verticalTabStyle">
+                     [(value)]="tabsVerticalStyle">
     </pe-select-input>
 
     <pe-tabs [orientation]="tabsOrientation"
-             [verticalTabStyle]="verticalTabStyle">
+             [verticalTabStyle]="tabsVerticalStyle">
 
       <pe-tabs-item label="Input Components">
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
@@ -69,8 +69,16 @@
                      valuePropertyName="value"
                      [(value)]="pagesControlsPosition">
     </pe-select-input>
+    <pe-select-input label="Choose controls style"
+                     [inlineLabel]="true"
+                     [dataSource]="pagesControlsStyleDataSource"
+                     displayPropertyName="name"
+                     valuePropertyName="value"
+                     [(value)]="pagesControlsStyle">
+    </pe-select-input>
 
-    <pe-pages [controlsPosition]="pagesControlsPosition">
+    <pe-pages [controlsPosition]="pagesControlsPosition"
+    [controlsStyle]="pagesControlsStyle">
 
       <pe-pages-item label="Input Components">
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>

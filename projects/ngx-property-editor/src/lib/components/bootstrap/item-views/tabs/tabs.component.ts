@@ -27,7 +27,7 @@ export class TabsComponent extends ItemViewBaseComponent {
    * - 'list':  A list (table like) of connected buttons with border (copied from Bootstrap style .nav-list-group).
    * - 'list-no-gap' (default): Like 'list' but without space between the tab buttons and the tab content.
    */
-  @Input() public verticalTabStyle: 'pills' | 'list' | 'list-no-gap' = 'list-no-gap';
+  @Input() public verticalTabStyle: 'pills' | 'list' | 'list-no-gap' = 'list';
 
   public constructor() {
     super();

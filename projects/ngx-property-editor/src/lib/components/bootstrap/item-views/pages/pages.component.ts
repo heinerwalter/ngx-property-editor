@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ItemViewBaseComponent } from "../item-view-base.component";
-import { faAngleLeft, faAngleRight, IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { ItemDefinition } from "../item-view-item-base.component";
+import { ItemViewBaseComponent } from '../item-view-base.component';
+import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { ItemDefinition } from '../item-view-item-base.component';
 
 @Component({
   selector: 'pe-pages',
@@ -20,6 +20,14 @@ export class PagesComponent extends ItemViewBaseComponent {
   @Input() public controlsPosition: 'top' | 'bottom' | 'label-top-controls-bottom' = 'top';
 
   /**
+   * Choose how the control buttons should look like:
+   * - 'buttons': Normal Bootstrap button style (rounded) and a gap between controls and content.
+   * - 'box':     Buttons without round corners and without gap between controls and content.
+   *              A border is added around the whole controls area, too.
+   */
+  @Input() public controlsStyle: 'buttons' | 'box' = 'buttons';
+
+  /**
    * Choose whether to show the label of the currently displayed item between the control buttons:
    * - 'hide':              Don't show the label.
    * - 'show' (default):    Show the label of the current item.
@@ -31,6 +39,15 @@ export class PagesComponent extends ItemViewBaseComponent {
    * @see showCurrentItemLabel
    */
   @Input() public alignCurrentItemLabel: 'start' | 'center' | 'end' = 'start';
+
+  /**
+   * If true, the previous page button is disabled and thus the user cannot navigate to the previous page.
+   */
+  @Input() public disablePreviousButton: boolean = false;
+  /**
+   * If true, the next page button is disabled and thus the user cannot navigate to the next page.
+   */
+  @Input() public disableNextButton: boolean = false;
 
   @Input() public override disableSaveLastActiveItem: boolean = true;
 
@@ -54,14 +71,14 @@ export class PagesComponent extends ItemViewBaseComponent {
   public override updateItems() {
     super.updateItems();
     // Update the currently displayed item when the items array has changed
-    this.setCurrentItem(this.currentItemIndex)
+    this.setCurrentItem(this.currentItemIndex);
 
   }
 
   protected override updateDefaultItemIndex() {
     super.updateDefaultItemIndex();
     // Assign default item index as current index when the default item index has changed
-    this.setCurrentItem(this._defaultItemIndex)
+    this.setCurrentItem(this._defaultItemIndex);
   }
 
   /**

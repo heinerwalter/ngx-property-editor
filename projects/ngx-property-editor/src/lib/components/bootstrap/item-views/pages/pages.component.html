@@ -1,12 +1,15 @@
 <div *ngIf="_items?.length"
      [id]="id"
-     class="pe-pages">
+     class="pe-pages"
+     [class.pe-pages-controls-style-buttons]="controlsStyle == 'buttons'"
+     [class.pe-pages-controls-style-box]="controlsStyle == 'box'">
 
   <ng-container *ngIf="controlsPosition == 'top'"
-                [ngTemplateOutlet]="controlsTemplate">
+                [ngTemplateOutlet]="controlsTemplate"
+                [ngTemplateOutletContext]="{position: 'top'}">
   </ng-container>
-  <div *ngIf="controlsPosition == 'label-top-controls-bottom'"
-       class="pe-pages-controls">
+  <div *ngIf="controlsPosition == 'label-top-controls-bottom' && showCurrentItemLabel != 'hide'"
+       class="pe-pages-controls pe-pages-controls-top">
     <ng-container [ngTemplateOutlet]="labelTemplate">
     </ng-container>
   </div>
@@ -20,19 +23,21 @@
   </div>
 
   <ng-container *ngIf="controlsPosition == 'bottom' || controlsPosition == 'label-top-controls-bottom'"
-                [ngTemplateOutlet]="controlsTemplate">
+                [ngTemplateOutlet]="controlsTemplate"
+                [ngTemplateOutletContext]="{position: 'bottom'}">
   </ng-container>
 
 </div>
 
 
-<ng-template #controlsTemplate>
-  <div class="pe-pages-controls">
+<ng-template #controlsTemplate let-position="position">
+  <div [class]="'pe-pages-controls pe-pages-controls-' + position">
 
     <button *ngIf="showPreviousButton"
             type="button"
             [id]="id + '-item-' + (currentItemIndex - 1) + '-button'"
-            class="btn btn-light pe-pages-control pe-pages-control-previous"
+            class="btn pe-pages-control pe-pages-control-previous"
+            [disabled]="disablePreviousButton"
             (click)="onPreviousButtonClicked()">
       <fa-icon [icon]="iconPrevious"></fa-icon>
       {{_items[currentItemIndex - 1]?.label}}
@@ -45,7 +50,8 @@
     <button *ngIf="showNextButton"
             type="button"
             [id]="id + '-item-' + (currentItemIndex + 1) + '-button'"
-            class="btn btn-light pe-pages-control pe-pages-control-next"
+            class="btn pe-pages-control pe-pages-control-next"
+            [disabled]="disableNextButton"
             (click)="onNextButtonClicked()">
       {{_items[currentItemIndex + 1]?.label}}
       <fa-icon [icon]="iconNext"></fa-icon>
@@ -56,12 +62,13 @@
 
 
 <ng-template #labelTemplate>
-  <div *ngIf="showCurrentItemLabel != 'hide'"
-       class="pe-pages-control-center-label"
-       [style.justify-self]="alignCurrentItemLabel">
-    <span *ngIf="showCurrentItemLabel == 'show'">{{currentItem?.label}}</span>
-    <ng-container *ngIf="showCurrentItemLabel == 'show-custom-label'">
-      <ng-content select="[custom-label]"></ng-content>
+  <div class="pe-pages-control-label"
+       [style.text-align]="alignCurrentItemLabel">
+    <ng-container *ngIf="showCurrentItemLabel != 'hide'">
+      <span *ngIf="showCurrentItemLabel == 'show'">{{currentItem?.label}}</span>
+      <ng-container *ngIf="showCurrentItemLabel == 'show-custom-label'">
+        <ng-content select="[custom-label]"></ng-content>
+      </ng-container>
     </ng-container>
   </div>
 </ng-template>

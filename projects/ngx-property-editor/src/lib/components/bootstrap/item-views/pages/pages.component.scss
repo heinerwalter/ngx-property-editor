@@ -1,5 +1,6 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 @import "../../../../../../styles/variables";
 @import "../../../../../../styles/mixins";
 
@@ -24,7 +25,7 @@
     justify-content: stretch;
     align-content: stretch;
     justify-items: stretch;
-    align-items: baseline;
+    align-items: baseline; // baseline or stretch
     gap: 0;
 
     .pe-pages-control-previous {
@@ -32,20 +33,85 @@
       margin-inline-end: $default-margin;
     }
 
-    .pe-pages-control-center-label {
+    .pe-pages-control-label {
       grid-column: center / span 1;
+      padding-block: $btn-padding-y;
     }
 
     .pe-pages-control-next {
       grid-column: next / span 1;
       margin-inline-start: $default-margin;
     }
+
   }
 
-  &.no-round-corners {
-    .nav-tabs .nav-link {
-      border-radius: 0;
+  // Default style: show controls as bootstrap buttons with round corners:
+  &.pe-pages-controls-style-buttons {
+    .pe-pages-controls {
+      .pe-pages-control {
+        @include button-variant(
+            $light,
+            $light,
+          $hover-background: shade-color($light, $btn-hover-bg-shade-amount),
+          $hover-border: shade-color($light, $btn-hover-border-shade-amount),
+          $active-background: shade-color($light, $btn-active-bg-shade-amount),
+          $active-border: shade-color($light, $btn-active-border-shade-amount)
+        );
+      }
+    }
+  }
+
+  // Add the class .pe-pages-controls-style-box to the .pe-pages element
+  // to remove the round corners from control buttons, remove the gap between controls
+  // and content, and add a border around the whole controls area:
+  &.pe-pages-controls-style-box {
+    gap: 0;
+
+    .pe-pages-controls {
+      z-index: 1;
+      border: solid 1px $nav-tabs-border-color;
+
+      &.pe-pages-controls-top {
+        margin-bottom: -1px;
+        border-bottom: none;
+
+        & > * {
+          margin-top: -1px;
+        }
+      }
+
+      &.pe-pages-controls-bottom {
+        margin-top: -1px;
+        border-top: none;
+
+        & > * {
+          margin-bottom: -1px;
+        }
+      }
+
+      & > *:first-child {
+        margin-inline-start: -1px;
+      }
+
+      & > *:last-child {
+        margin-inline-end: -1px;
+      }
+
+      .pe-pages-control {
+        @include button-outline-variant($primary);
+        border-radius: 0;
+        //min-height: 3rem;
+      }
+
+      .pe-pages-control-label:first-child {
+        padding-inline-start: $default-margin;
+      }
+
+      .pe-pages-control-label:last-child {
+        padding-inline-end: $default-margin;
+      }
     }
   }
 
 }
+

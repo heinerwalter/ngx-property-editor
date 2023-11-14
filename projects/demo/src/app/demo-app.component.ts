@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'demo-root',
@@ -36,7 +36,7 @@ export class DemoAppComponent {
   /**
    * Data source for the tabs `verticalTabStyle` select input component.
    */
-  protected readonly verticalTabStyleDataSource: { name: string, value: string }[] = [
+  protected readonly tabsVerticalStyleDataSource: { name: string, value: string }[] = [
     { name: 'Pills', value: 'pills' },
     { name: 'List', value: 'list' },
     { name: 'List (without gap)', value: 'list-no-gap' },
@@ -45,7 +45,7 @@ export class DemoAppComponent {
   /**
    * Choose a `verticalTabStyle` for the tabs' container.
    */
-  protected verticalTabStyle: 'pills' | 'list' | 'list-no-gap' = 'list-no-gap';
+  protected tabsVerticalStyle: 'pills' | 'list' | 'list-no-gap' = 'list-no-gap';
 
   /**
    * Data source for the pages `controlsPosition` select input component.
@@ -60,5 +60,18 @@ export class DemoAppComponent {
    * Choose a `controlsPosition` for the pages' container.
    */
   protected pagesControlsPosition: 'top' | 'bottom' | 'label-top-controls-bottom' = 'top';
+
+  /**
+   * Data source for the pages `controlsStyle` select input component.
+   */
+  protected readonly pagesControlsStyleDataSource: { name: string, value: string }[] = [
+    { name: 'Buttons', value: 'buttons' },
+    { name: 'Box', value: 'box' },
+  ];
+
+  /**
+   * Choose a `controlsStyle` for the pages' container.
+   */
+  protected pagesControlsStyle: 'buttons' | 'box' = 'box';
 
 }
