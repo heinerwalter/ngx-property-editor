@@ -39,15 +39,6 @@ export class PagesComponent extends ItemViewBaseComponent {
    */
   @Input() public alignCurrentItemLabel: 'start' | 'center' | 'end' = 'start';
 
-  /**
-   * If true, the previous page button is disabled and thus the user cannot navigate to the previous page.
-   */
-  @Input() public disablePreviousButton: boolean = false;
-  /**
-   * If true, the next page button is disabled and thus the user cannot navigate to the next page.
-   */
-  @Input() public disableNextButton: boolean = false;
-
   protected readonly iconPrevious: IconDefinition = faAngleLeft;
   protected readonly iconNext: IconDefinition = faAngleRight;
 
@@ -73,33 +64,47 @@ export class PagesComponent extends ItemViewBaseComponent {
   }
 
   /**
-   * Returns true, if the previous page button should be displayed (if a previous item exists).
+   * If true, the previous page button is displayed (if a previous item exists).
    */
   protected get showPreviousButton(): boolean {
     return this.currentItemIndex > 0;
   }
 
   /**
-   * Returns true, if the next page button should be displayed (if a next item exists).
+   * If true, the next page button is displayed (if a next item exists).
    */
   protected get showNextButton(): boolean {
     return this.currentItemIndex < this._items.length - 1;
   }
 
   /**
-   * This function is called when the previous page button was clicked.
-   * It changes the currently displayed item to the previous one.
+   * If true, the previous page button is disabled and thus the user cannot navigate to the previous page.
    */
-  protected onPreviousButtonClicked(): void {
+  protected get disablePreviousButton(): boolean {
+    if (!this.showPreviousButton) return false;
+    return this._items[this.currentItemIndex - 1]?.hidden || false;
+  }
+
+  /**
+   * If true, the next page button is disabled and thus the user cannot navigate to the next page.
+   */
+  protected get disableNextButton(): boolean {
+    if (!this.showNextButton) return false;
+    return this._items[this.currentItemIndex + 1]?.hidden || false;
+  }
+
+  /**
+   * Go to the previous page if possible.
+   */
+  public gotoPreviousPage(): void {
     if (!this.showPreviousButton || this.disablePreviousButton) return;
     this.setCurrentItem(this.currentItemIndex - 1);
   }
 
   /**
-   * This function is called when the next page button was clicked.
-   * It changes the currently displayed item to the next one.
+   * Go to the next page if possible.
    */
-  protected onNextButtonClicked(): void {
+  public gotoNextPage(): void {
     if (!this.showNextButton || this.disableNextButton) return;
     this.setCurrentItem(this.currentItemIndex + 1);
   }
