@@ -28,6 +28,31 @@ export class PagesComponent extends ItemViewBaseComponent {
   @Input() public controlsStyle: 'buttons' | 'box' = 'buttons';
 
   /**
+   * Choose a bootstrap button color for the control buttons.
+   */
+  @Input() public controlColor: 'primary' |
+    'secondary' |
+    'success' |
+    'info' |
+    'warning' |
+    'danger' |
+    'light' |
+    'dark' = 'light';
+
+  /**
+   * Choose a bootstrap button variant ('solid' (normal color class; e.g. `.btn-primary`)
+   * or 'outline' (e.g. `.btn-outline-primary`)) for the control buttons.
+   */
+  @Input() public controlColorVariant: 'solid' | 'outline' = 'solid';
+
+  /**
+   * Returns the bootstrap button color class created from `controlColor` and `controlColorVariant`
+   */
+  public get controlColorClass(): string {
+    return 'btn-' + (this.controlColorVariant == 'outline' ? 'outline-' : '') + this.controlColor;
+  }
+
+  /**
    * Choose whether to show the label of the currently displayed item between the control buttons:
    * - 'hide':              Don't show the label.
    * - 'show' (default):    Show the label of the current item.
