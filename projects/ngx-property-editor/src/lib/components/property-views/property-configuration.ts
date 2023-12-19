@@ -36,9 +36,19 @@ export type PropertyType =
   /** Select multiple items from a `dataSource`. */
   'select-multiple';
 
-type ValueOrFunctionType<T> = T | ((data: any) => T);
+/**
+ * Some properties of `PropertyConfiguration` can be defined as constant type or
+ * as function depending on the displayed data object. If defined as function,
+ * undefined is passed as data object for empty or multiple data objects.
+ */
+type ValueOrFunctionType<T> = T | ((data: any | undefined) => T);
 
-type PropertyConfigurationType = {
+/**
+ * Type of the parameter which can be passed to the `PropertyConfiguration` constructor.
+ * This type contains all properties of the `PropertyConfiguration` class.
+ * Thus, a `PropertyConfiguration` instance can be passed to the `PropertyConfiguration` constructor, too.
+ */
+export type PropertyConfigurationConstructorParameter = {
   /** Display the property value with this property name. */
   propertyName?: string,
   /** If defined this text is used instead of the `propertyName` as label. */
@@ -104,7 +114,7 @@ type PropertyConfigurationType = {
   separator?: boolean,
 };
 
-export class PropertyConfiguration implements PropertyConfigurationType {
+export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
 
   public propertyName?: string;
   public label?: ValueOrFunctionType<string>;
@@ -130,16 +140,16 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   public separator?: boolean;
 
-  public constructor(configuration?: PropertyConfigurationType) {
+  public constructor(configuration?: PropertyConfigurationConstructorParameter) {
     Object.assign(this, configuration);
   }
 
   /**
    * Gets the text which should be used as label (either `label` or `propertyName`).
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns The property label.
    */
-  public getLabel(data: any): string {
+  public getLabel(data: any | undefined): string {
     if (typeof this.label === 'function') {
       return this.label(data);
     } else {
@@ -149,10 +159,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Gets the property value from the given data object.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns The property value.
    */
-  public getValue(data: any): any {
+  public getValue(data: any | undefined): any {
     if (this.valueFunction) {
       return this.valueFunction(data);
     } else if (this.propertyName) {
@@ -205,10 +215,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
   /**
    * For use with `propertyType == 'select'`:
    * Evaluates the `dataSource` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns An array from which the user can select one or multiple items.
    */
-  public getDataSource(data: any): { [key: string]: any }[] {
+  public getDataSource(data: any | undefined): { [key: string]: any }[] {
     if (typeof this.dataSource === 'function') {
       return this.dataSource(data);
     } else {
@@ -218,10 +228,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Gets whether this property should be hidden based on `hidden`, `hideIfEmpty` and the value.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @param ignoreHideIfEmpty if true, the `hideIfEmpty` configuration is ignored.
    */
-  public isHidden(data: any, ignoreHideIfEmpty: boolean = false): boolean {
+  public isHidden(data: any | undefined, ignoreHideIfEmpty: boolean = false): boolean {
     if (typeof this.hidden === 'function') {
       return this.hidden(data);
     } else if (this.hidden) {
@@ -234,10 +244,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Evaluates the `editable` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns true, if this property is editable.
    */
-  public isEditable(data: any): boolean {
+  public isEditable(data: any | undefined): boolean {
     if (typeof this.editable === 'function') {
       return this.editable(data);
     } else {
@@ -247,10 +257,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Evaluates the `required` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns true, if this property is required.
    */
-  public isRequired(data: any): boolean {
+  public isRequired(data: any | undefined): boolean {
     if (typeof this.required === 'function') {
       return this.required(data);
     } else {
@@ -260,9 +270,9 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Evaluates the `routerLink` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    */
-  public getRouterLink(data: any): any[] | string | undefined {
+  public getRouterLink(data: any | undefined): any[] | string | undefined {
     if (typeof this.routerLink === 'function') {
       return this.routerLink(data);
     } else {
@@ -272,9 +282,9 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Evaluates the `routerLinkTooltip` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    */
-  public getRouterLinkTooltip(data: any): string | undefined {
+  public getRouterLinkTooltip(data: any | undefined): string | undefined {
     if (typeof this.routerLinkTooltip === 'function') {
       return this.routerLinkTooltip(data);
     } else {
@@ -284,9 +294,9 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Evaluates the `md` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    */
-  public getBootstrapColumnMD(data: any): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
+  public getBootstrapColumnMD(data: any | undefined): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
     if (typeof this.md === 'function') {
       return this.md(data) || 12;
     } else {
@@ -296,10 +306,10 @@ export class PropertyConfiguration implements PropertyConfigurationType {
 
   /**
    * Returns a bootstrap column css class based on the `md` configuration.
-   * @param data The data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns 'col' or 'col-md-...'.
    */
-  public getBootstrapColumnClass(data: any): string {
+  public getBootstrapColumnClass(data: any | undefined): string {
     let md = this.getBootstrapColumnMD(data);
     if (md == undefined)
       return 'col';
