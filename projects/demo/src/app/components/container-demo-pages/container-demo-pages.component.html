@@ -27,17 +27,22 @@
                  [(value)]="pagesControlColorVariant">
 </pe-select-input>
 
-<pe-pages [controlsPosition]="pagesControlsPosition"
+<pe-pages id="pe-pages"
+          [controlsPosition]="pagesControlsPosition"
           [controlsStyle]="pagesControlsStyle"
           [controlColor]="pagesControlColor"
           [controlColorVariant]="pagesControlColorVariant">
 
   <pe-pages-item label="Input Components">
-    <ng-content select="[input-components]"></ng-content>
+    <ng-content select="[item-input-components]"></ng-content>
   </pe-pages-item>
 
   <pe-pages-item label="Property Editor">
-    <ng-content select="[property-editor]"></ng-content>
+    <ng-content select="[item-property-editor]"></ng-content>
+  </pe-pages-item>
+
+  <pe-pages-item label="Page Navigation">
+    <ng-content select="[item-page-navigation]"></ng-content>
   </pe-pages-item>
 
 </pe-pages>

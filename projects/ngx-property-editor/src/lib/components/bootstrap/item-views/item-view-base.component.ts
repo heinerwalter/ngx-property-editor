@@ -128,8 +128,10 @@ export abstract class ItemViewBaseComponent implements OnInit, OnChanges {
         index = this._items.length - 1;
     }
 
+    // Set default item index and update current item, if undefined
     this._defaultItemIndex = index;
-    this.onItemChanged(this._items[index], index);
+    if (this.currentItem == undefined || this.currentItemIndex == undefined)
+      this.onItemChanged(this._items[index], index);
   }
 
   /**

@@ -14,15 +14,20 @@
                  [(value)]="tabsVerticalStyle">
 </pe-select-input>
 
-<pe-tabs [orientation]="tabsOrientation"
+<pe-tabs id="pe-tabs"
+         [orientation]="tabsOrientation"
          [verticalTabStyle]="tabsVerticalStyle">
 
   <pe-tabs-item label="Input Components">
-    <ng-content select="[input-components]"></ng-content>
+    <ng-content select="[item-input-components]"></ng-content>
   </pe-tabs-item>
 
   <pe-tabs-item label="Property Editor">
-    <ng-content select="[property-editor]"></ng-content>
+    <ng-content select="[item-property-editor]"></ng-content>
+  </pe-tabs-item>
+
+  <pe-tabs-item label="Page Navigation">
+    <ng-content select="[item-page-navigation]"></ng-content>
   </pe-tabs-item>
 
 </pe-tabs>

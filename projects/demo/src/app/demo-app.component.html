@@ -19,12 +19,16 @@
   <ng-container *ngIf="containerType == 'tabs'" id="demo-tabs">
     <demo-container-demo-tabs>
 
-      <ng-container input-components>
+      <ng-container item-input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
-      <ng-container property-editor>
+      <ng-container item-property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </ng-container>
+
+      <ng-container item-page-navigation>
+        <ng-container *ngTemplateOutlet="pageNavigationTemplate"></ng-container>
       </ng-container>
 
     </demo-container-demo-tabs>
@@ -33,12 +37,16 @@
   <ng-container *ngIf="containerType == 'accordion'" id="demo-accordion">
     <demo-container-demo-accordion>
 
-      <ng-container input-components>
+      <ng-container item-input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
-      <ng-container property-editor>
+      <ng-container item-property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </ng-container>
+
+      <ng-container item-page-navigation>
+        <ng-container *ngTemplateOutlet="pageNavigationTemplate"></ng-container>
       </ng-container>
 
     </demo-container-demo-accordion>
@@ -47,12 +55,16 @@
   <ng-container *ngIf="containerType == 'pages'" id="demo-pages">
     <demo-container-demo-pages>
 
-      <ng-container input-components>
+      <ng-container item-input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
-      <ng-container property-editor>
+      <ng-container item-property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
+      </ng-container>
+
+      <ng-container item-page-navigation>
+        <ng-container *ngTemplateOutlet="pageNavigationTemplate"></ng-container>
       </ng-container>
 
     </demo-container-demo-pages>
@@ -77,4 +89,9 @@
 <ng-template #propertyEditorTemplate>
   <demo-property-editor-demo>
   </demo-property-editor-demo>
+</ng-template>
+
+<ng-template #pageNavigationTemplate>
+  <demo-page-navigation-demo>
+  </demo-page-navigation-demo>
 </ng-template>

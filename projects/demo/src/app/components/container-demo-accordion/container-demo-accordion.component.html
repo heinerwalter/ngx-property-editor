@@ -1,11 +1,15 @@
-<pe-accordion>
+<pe-accordion id="pe-accordion">
 
   <pe-accordion-item label="Input Components">
-    <ng-content select="[input-components]"></ng-content>
+    <ng-content select="[item-input-components]"></ng-content>
   </pe-accordion-item>
 
   <pe-accordion-item label="Property Editor">
-    <ng-content select="[property-editor]"></ng-content>
+    <ng-content select="[item-property-editor]"></ng-content>
+  </pe-accordion-item>
+
+  <pe-accordion-item label="Page Navigation">
+    <ng-content select="[item-page-navigation]"></ng-content>
   </pe-accordion-item>
 
 </pe-accordion>

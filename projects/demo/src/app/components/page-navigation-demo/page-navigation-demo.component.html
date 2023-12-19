@@ -1,0 +1,40 @@
+<pe-pages id="pe-pages-navigation-demo"
+          controlColor="primary"
+          controlColorVariant="solid">
+
+  <pe-pages-item label="Step 1"
+                [hidden]="!isReadyForStep1">
+
+    <pe-boolean-input label="Enable Step 2"
+                      type="checkbox"
+                      [(value)]="isReadyForStep2">
+    </pe-boolean-input>
+
+  </pe-pages-item>
+
+  <pe-pages-item label="Step 2"
+                [hidden]="!isReadyForStep2">
+
+    <pe-boolean-input label="Enable Step 1"
+                      type="checkbox"
+                      [(value)]="isReadyForStep1">
+    </pe-boolean-input>
+
+    <pe-boolean-input label="Enable Step 3"
+                      type="checkbox"
+                      [(value)]="isReadyForStep3">
+    </pe-boolean-input>
+
+  </pe-pages-item>
+
+  <pe-pages-item label="Step 3"
+                [hidden]="!isReadyForStep3">
+
+    <pe-boolean-input label="Enable Step 2"
+                      type="checkbox"
+                      [(value)]="isReadyForStep2">
+    </pe-boolean-input>
+
+  </pe-pages-item>
+
+</pe-pages>

@@ -81,18 +81,37 @@ export class PagesComponent extends ItemViewBaseComponent {
   public override updateItems() {
     super.updateItems();
     // Update the currently displayed item when the items array has changed
-    this.setCurrentItem(this.currentItemIndex);
+    this.gotoPage(this.currentItemIndex);
   }
 
   /**
-   * Changes the currently displayed item.
-   * @param index Index of an item. If the index is outside the valid range, it is mapped to [0, _items.length - 1].
+   * Changes the currently displayed page.
+   * This function does not pay attention to hidden page items!
+   * @param index Index of a page item. If the index is outside the valid range, it is mapped to [0, _items.length - 1].
+   * @see gotoPreviousPage
+   * @see gotoNextPage
    */
-  protected setCurrentItem(index: number): void {
+  public gotoPage(index: number): void {
     if (index < 0) index = 0;
     if (index > this._items.length - 1) index = this._items.length - 1;
 
     this.onItemChanged(this._items[index], index);
+  }
+
+  /**
+   * Go to the previous page, if possible.
+   */
+  public gotoPreviousPage(): void {
+    if (!this.showPreviousButton || this.disablePreviousButton) return;
+    this.gotoPage(this.currentItemIndex - 1);
+  }
+
+  /**
+   * Go to the next page, if possible.
+   */
+  public gotoNextPage(): void {
+    if (!this.showNextButton || this.disableNextButton) return;
+    this.gotoPage(this.currentItemIndex + 1);
   }
 
   /**
@@ -123,22 +142,6 @@ export class PagesComponent extends ItemViewBaseComponent {
   protected get disableNextButton(): boolean {
     if (!this.showNextButton) return true;
     return this._items[this.currentItemIndex + 1]?.hidden || false;
-  }
-
-  /**
-   * Go to the previous page if possible.
-   */
-  public gotoPreviousPage(): void {
-    if (!this.showPreviousButton || this.disablePreviousButton) return;
-    this.setCurrentItem(this.currentItemIndex - 1);
-  }
-
-  /**
-   * Go to the next page if possible.
-   */
-  public gotoNextPage(): void {
-    if (!this.showNextButton || this.disableNextButton) return;
-    this.setCurrentItem(this.currentItemIndex + 1);
   }
 
 }
