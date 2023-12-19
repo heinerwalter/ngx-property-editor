@@ -47,9 +47,10 @@ export class PagesComponent extends ItemViewBaseComponent {
 
   /**
    * Returns the bootstrap button color class created from `controlColor` and `controlColorVariant`
+   * @returns A control button color class (e.g. `.pe-pages-control-primary`).
    */
   public get controlColorClass(): string {
-    return 'btn-' + (this.controlColorVariant == 'outline' ? 'outline-' : '') + this.controlColor;
+    return 'pe-pages-control-' + (this.controlColorVariant == 'outline' ? 'outline-' : '') + this.controlColor;
   }
 
   /**

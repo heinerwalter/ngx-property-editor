@@ -17,78 +17,45 @@
   </pe-select-input>
 
   <ng-container *ngIf="containerType == 'tabs'" id="demo-tabs">
-    <pe-select-input label="Choose orientation"
-                     [inlineLabel]="true"
-                     [dataSource]="tabsOrientationDataSource"
-                     displayPropertyName="name"
-                     valuePropertyName="value"
-                     [(value)]="tabsOrientation">
-    </pe-select-input>
-    <pe-select-input *ngIf="tabsOrientation == 'vertical'"
-                     label="Choose tab style"
-                     [inlineLabel]="true"
-                     [dataSource]="tabsVerticalStyleDataSource"
-                     displayPropertyName="name"
-                     valuePropertyName="value"
-                     [(value)]="tabsVerticalStyle">
-    </pe-select-input>
+    <demo-container-demo-tabs>
 
-    <pe-tabs [orientation]="tabsOrientation"
-             [verticalTabStyle]="tabsVerticalStyle">
-
-      <pe-tabs-item label="Input Components">
+      <ng-container input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-      </pe-tabs-item>
+      </ng-container>
 
-      <pe-tabs-item label="Property Editor">
+      <ng-container property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
-      </pe-tabs-item>
+      </ng-container>
 
-    </pe-tabs>
+    </demo-container-demo-tabs>
   </ng-container>
 
   <ng-container *ngIf="containerType == 'accordion'" id="demo-accordion">
-    <pe-accordion>
+    <demo-container-demo-accordion>
 
-      <pe-accordion-item label="Input Components">
+      <ng-container input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-      </pe-accordion-item>
+      </ng-container>
 
-      <pe-accordion-item label="Property Editor">
+      <ng-container property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
-      </pe-accordion-item>
+      </ng-container>
 
-    </pe-accordion>
+    </demo-container-demo-accordion>
   </ng-container>
 
   <ng-container *ngIf="containerType == 'pages'" id="demo-pages">
-    <pe-select-input label="Choose controls position"
-                     [inlineLabel]="true"
-                     [dataSource]="pagesControlsPositionDataSource"
-                     displayPropertyName="name"
-                     valuePropertyName="value"
-                     [(value)]="pagesControlsPosition">
-    </pe-select-input>
-    <pe-select-input label="Choose controls style"
-                     [inlineLabel]="true"
-                     [dataSource]="pagesControlsStyleDataSource"
-                     displayPropertyName="name"
-                     valuePropertyName="value"
-                     [(value)]="pagesControlsStyle">
-    </pe-select-input>
+    <demo-container-demo-pages>
 
-    <pe-pages [controlsPosition]="pagesControlsPosition"
-    [controlsStyle]="pagesControlsStyle">
-
-      <pe-pages-item label="Input Components">
+      <ng-container input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
-      </pe-pages-item>
+      </ng-container>
 
-      <pe-pages-item label="Property Editor">
+      <ng-container property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
-      </pe-pages-item>
+      </ng-container>
 
-    </pe-pages>
+    </demo-container-demo-pages>
   </ng-container>
 
   <!-- Footer -->

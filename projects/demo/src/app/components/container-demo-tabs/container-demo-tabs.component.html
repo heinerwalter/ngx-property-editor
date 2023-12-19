@@ -1,0 +1,28 @@
+<pe-select-input label="Choose orientation"
+                 [inlineLabel]="true"
+                 [dataSource]="tabsOrientationDataSource"
+                 displayPropertyName="name"
+                 valuePropertyName="value"
+                 [(value)]="tabsOrientation">
+</pe-select-input>
+<pe-select-input *ngIf="tabsOrientation == 'vertical'"
+                 label="Choose tab style"
+                 [inlineLabel]="true"
+                 [dataSource]="tabsVerticalStyleDataSource"
+                 displayPropertyName="name"
+                 valuePropertyName="value"
+                 [(value)]="tabsVerticalStyle">
+</pe-select-input>
+
+<pe-tabs [orientation]="tabsOrientation"
+         [verticalTabStyle]="tabsVerticalStyle">
+
+  <pe-tabs-item label="Input Components">
+    <ng-content select="[input-components]"></ng-content>
+  </pe-tabs-item>
+
+  <pe-tabs-item label="Property Editor">
+    <ng-content select="[property-editor]"></ng-content>
+  </pe-tabs-item>
+
+</pe-tabs>

@@ -45,38 +45,36 @@
   }
 
   // Add bootstrap button color styles (classes .pe-pages-control-<color-name> added to .pe-pages-control)
-  &.pe-pages-controls-style-buttons {
-    .pe-pages-controls {
-      @each $color, $value in $theme-colors {
-        .pe-pages-control-#{$color} {
-          @if $color == "light" {
-            @include button-variant(
-                $value,
-                $value,
-              $hover-background: shade-color($value, $btn-hover-bg-shade-amount),
-              $hover-border: shade-color($value, $btn-hover-border-shade-amount),
-              $active-background: shade-color($value, $btn-active-bg-shade-amount),
-              $active-border: shade-color($value, $btn-active-border-shade-amount)
-            );
-          } @else if $color == "dark" {
-            @include button-variant(
-                $value,
-                $value,
-              $hover-background: tint-color($value, $btn-hover-bg-tint-amount),
-              $hover-border: tint-color($value, $btn-hover-border-tint-amount),
-              $active-background: tint-color($value, $btn-active-bg-tint-amount),
-              $active-border: tint-color($value, $btn-active-border-tint-amount)
-            );
-          } @else {
-            @include button-variant($value, $value);
-          }
+  .pe-pages-controls {
+    @each $color, $value in $theme-colors {
+      .pe-pages-control-#{$color} {
+        @if $color == "light" {
+          @include button-variant(
+              $value,
+              $value,
+            $hover-background: shade-color($value, $btn-hover-bg-shade-amount),
+            $hover-border: shade-color($value, $btn-hover-border-shade-amount),
+            $active-background: shade-color($value, $btn-active-bg-shade-amount),
+            $active-border: shade-color($value, $btn-active-border-shade-amount)
+          );
+        } @else if $color == "dark" {
+          @include button-variant(
+              $value,
+              $value,
+            $hover-background: tint-color($value, $btn-hover-bg-tint-amount),
+            $hover-border: tint-color($value, $btn-hover-border-tint-amount),
+            $active-background: tint-color($value, $btn-active-bg-tint-amount),
+            $active-border: tint-color($value, $btn-active-border-tint-amount)
+          );
+        } @else {
+          @include button-variant($value, $value);
         }
       }
+    }
 
-      @each $color, $value in $theme-colors {
-        .pe-pages-control-outline-#{$color} {
-          @include button-outline-variant($value);
-        }
+    @each $color, $value in $theme-colors {
+      .pe-pages-control-outline-#{$color} {
+        @include button-outline-variant($value);
       }
     }
   }
@@ -86,6 +84,13 @@
   // and content, and add a border around the whole controls area:
   &.pe-pages-controls-style-box {
     gap: 0;
+
+    .pe-pages-controls {
+      .pe-pages-control {
+        border-radius: 0;
+        //min-height: 3rem;
+      }
+    }
 
     &:not(.pe-pages-no-border) .pe-pages-controls {
       z-index: 1;

@@ -54,7 +54,7 @@
     <button *ngIf="showNextButton"
             type="button"
             [id]="id + '-item-' + (currentItemIndex + 1) + '-button'"
-            [class]="'btn pe-pages-control pe-pages-control-next' + controlColorClass"
+            [class]="'btn pe-pages-control pe-pages-control-next ' + controlColorClass"
             [disabled]="disableNextButton"
             [routerLink]="_items[currentItemIndex + 1]?.routerLink"
             (click)="gotoNextPage()">
