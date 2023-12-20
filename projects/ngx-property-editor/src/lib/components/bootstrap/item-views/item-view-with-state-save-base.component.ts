@@ -29,7 +29,7 @@ export abstract class ItemViewWithStateSaveBaseComponent extends ItemViewBaseCom
     super.updateDefaultItemIndex(defaultLabel);
   }
 
-  protected override onItemChanged(item: ItemDefinition, itemIndex: number) {
+  protected override onItemChanged(item: ItemDefinition, itemIndex: number): void {
     super.onItemChanged(item, itemIndex);
 
     if (!this.disableSaveLastActiveItem && this.id && item?.label && !item.routerLink) {

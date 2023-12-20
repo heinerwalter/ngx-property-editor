@@ -20,7 +20,7 @@ export class Contact {
     ].map(str => str?.trim()).filter(str => !!str).join(' ');
   }
 
-  constructor(data?: {
+  public constructor(data?: {
     gender?: 'male' | 'female' | undefined,
     firstname?: string | undefined,
     lastname?: string | undefined,

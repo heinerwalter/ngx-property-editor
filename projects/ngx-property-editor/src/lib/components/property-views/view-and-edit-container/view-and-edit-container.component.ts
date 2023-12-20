@@ -43,22 +43,22 @@ export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseCompo
     this.modeChange.emit(mode);
   }
 
-  async onEditClicked(): Promise<void> {
+  protected async onEditClicked(): Promise<void> {
     this.editClick.emit();
     this.setMode('edit');
   }
 
-  async onSaveClicked(): Promise<void> {
+  protected async onSaveClicked(): Promise<void> {
     this.saveClick.emit();
     this.setMode('view');
   }
 
-  async onDeleteClicked(): Promise<void> {
+  protected async onDeleteClicked(): Promise<void> {
     this.deleteClick.emit();
     this.setMode('view');
   }
 
-  async onCancelClicked(): Promise<void> {
+  protected async onCancelClicked(): Promise<void> {
     this.cancelClick.emit();
     this.setMode('view');
   }

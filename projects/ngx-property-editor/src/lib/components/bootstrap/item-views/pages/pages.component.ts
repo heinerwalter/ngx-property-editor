@@ -78,7 +78,7 @@ export class PagesComponent extends ItemViewBaseComponent {
     super();
   }
 
-  public override updateItems() {
+  public override updateItems(): void {
     super.updateItems();
     // Update the currently displayed item when the items array has changed
     this.gotoPage(this.currentItemIndex);
