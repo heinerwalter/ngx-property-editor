@@ -68,26 +68,42 @@ export abstract class ItemViewItemBaseComponent implements OnInit, OnChanges, Af
    */
   @Input() public isValid: boolean | 'indeterminate' | undefined = undefined;
 
+  /**
+   * This property is set to true after this item has been registered at the surrounding item view component.
+   * It is reset to false after this item has been unregistered from the surrounding item view component again.
+   * @see ngOnInit
+   * @see ngOnDestroy
+   */
+  private isRegistered: boolean = false;
+
   protected constructor(protected itemViewComponentRef: ItemViewBaseComponent) {
   }
 
   public ngOnInit(): void {
     // Register at surrounding item view component
     this.itemViewComponentRef.registerItemComponent(this);
+    this.isRegistered = true;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    // An item property changed => notify surrounding item view that it must update its items
-    this.itemViewComponentRef.updateItems();
+    // An item property changed => notify surrounding item view that it must update its items.
+    // Update is only necessary, if this item is registered at the surrounding item view.
+    if (this.isRegistered) {
+      this.itemViewComponentRef.updateItems();
+    }
   }
 
   public ngAfterViewInit(): void {
-    // Now the contentTemplate should be available => notify surrounding item view that it must update its items
-    this.itemViewComponentRef.updateItems();
+    // Now the contentTemplate should be available => notify surrounding item view that it must update its items.
+    // Update is only necessary, if this item is registered at the surrounding item view.
+    if (this.isRegistered) {
+      this.itemViewComponentRef.updateItems();
+    }
   }
 
   public ngOnDestroy(): void {
     // Unregister at surrounding item view component
+    this.isRegistered = false;
     this.itemViewComponentRef.unregisterItemComponent(this);
   }
 
