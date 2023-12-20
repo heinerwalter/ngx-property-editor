@@ -44,7 +44,8 @@ export class AllInputsDemoComponent {
     selectCheckbox: [] as any[] | undefined,
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
-  }
+    multiRowFormGroup: ['Line 1', 'Line 2', 'Not line 3'] as any[],
+  };
 
   /**
    * This method is called when the user changed the value of any input component.

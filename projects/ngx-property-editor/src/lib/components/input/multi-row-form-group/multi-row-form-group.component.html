@@ -1,0 +1,38 @@
+<pe-form-group [for]="for"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [noFormGroup]="noFormGroup">
+  <div class="multi-row-form-group-container">
+
+    <ng-container *ngFor="let item of value; let i = index">
+      <div class="multi-row-form-group-content">
+        <ng-container *ngIf="itemTemplate">
+          <ng-template [ngTemplateOutlet]="itemTemplate"
+                       [ngTemplateOutletContext]="{ value: item, onValueChange: getItemValueChangeFunction(i), index: i }">
+          </ng-template>
+        </ng-container>
+        <ng-container *ngIf="!itemTemplate">
+          {{item}}
+        </ng-container>
+      </div>
+      <div class="multi-row-form-group-buttons">
+        <pe-minus-icon *ngIf="!disableDelete"
+                       [button]="true"
+                       tooltip="Löschen"
+                       (click)="deleteItem(i)">
+        </pe-minus-icon>
+      </div>
+    </ng-container>
+
+    <div class="multi-row-form-group-content">
+      <pe-plus-icon *ngIf="!disableAdd"
+                    [button]="true"
+                    tooltip="Hinzufügen"
+                    (click)="addItem()">
+      </pe-plus-icon>
+    </div>
+
+  </div>
+</pe-form-group>

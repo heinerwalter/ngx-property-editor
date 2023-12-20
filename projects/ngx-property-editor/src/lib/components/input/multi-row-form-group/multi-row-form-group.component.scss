@@ -1,0 +1,24 @@
+pe-multi-row-form-group {
+  .multi-row-form-group-container {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: [content] 1fr [buttons] auto;
+    gap: 1rem;
+    justify-content: stretch;
+    align-content: start;
+    justify-items: stretch;
+    align-items: center;
+
+    .multi-row-form-group-content {
+      grid-column: content / span 1;
+    }
+
+    .multi-row-form-group-buttons {
+      grid-column: buttons / span 1;
+    }
+
+    .form-group.mb-3 {
+      margin-bottom: 0 !important;
+    }
+  }
+}
