@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageNavigationDemoComponent } from './page-navigation-demo.component';
+import { PropertyEditorModule } from 'ngx-property-editor';
 
 describe('PageNavigationDemoComponent', () => {
   let component: PageNavigationDemoComponent;
@@ -8,7 +9,12 @@ describe('PageNavigationDemoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PageNavigationDemoComponent]
+      declarations: [
+        PageNavigationDemoComponent,
+      ],
+      imports: [
+        PropertyEditorModule,
+      ],
     });
     fixture = TestBed.createComponent(PageNavigationDemoComponent);
     component = fixture.componentInstance;

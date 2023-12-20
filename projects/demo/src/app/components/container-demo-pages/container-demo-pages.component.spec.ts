@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerDemoPagesComponent } from './container-demo-pages.component';
+import { PropertyEditorModule } from 'ngx-property-editor';
 
 describe('ContainerDemoPagesComponent', () => {
   let component: ContainerDemoPagesComponent;
@@ -8,7 +9,12 @@ describe('ContainerDemoPagesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerDemoPagesComponent]
+      declarations: [
+        ContainerDemoPagesComponent,
+      ],
+      imports: [
+        PropertyEditorModule,
+      ],
     });
     fixture = TestBed.createComponent(ContainerDemoPagesComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContainerDemoAccordionComponent } from './container-demo-accordion.component';
+import { PropertyEditorModule } from 'ngx-property-editor';
 
 describe('ContainerDemoAccordionComponent', () => {
   let component: ContainerDemoAccordionComponent;
@@ -8,7 +9,12 @@ describe('ContainerDemoAccordionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerDemoAccordionComponent]
+      declarations: [
+        ContainerDemoAccordionComponent,
+      ],
+      imports: [
+        PropertyEditorModule,
+      ],
     });
     fixture = TestBed.createComponent(ContainerDemoAccordionComponent);
     component = fixture.componentInstance;
