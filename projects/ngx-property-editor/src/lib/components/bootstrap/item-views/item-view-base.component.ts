@@ -123,7 +123,6 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
    * `defaultItemLabel` and the `_items` configuration.
    */
   protected updateDefaultItemIndex(defaultLabel: string | undefined = undefined): void {
-    console.log('defaultLabel: ' + defaultLabel);
     if (!defaultLabel)
       defaultLabel = this.defaultItemLabel;
 
