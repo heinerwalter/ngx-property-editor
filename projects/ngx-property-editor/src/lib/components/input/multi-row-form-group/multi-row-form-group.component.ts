@@ -55,15 +55,21 @@ export class MultiRowFormGroupComponent extends FormGroupComponent {
   }
 
   public deleteItem(index: number): void {
-    if (index < 0 || index >= this.value.length) return;
+    if (!this.value || index < 0 || index >= this.value.length) return;
     this.value.splice(index, 1);
     this.valueChange.emit(this.value);
   }
 
   public addItem(): void {
+    if (!this.value) this.value = [];
+
     const newItem: any = this.newItemFunction ? this.newItemFunction() : undefined;
     this.value.push(newItem);
     this.valueChange.emit(this.value);
+  }
+
+  protected ngForTrackBy(index: number, item: any): boolean {
+    return this.value && index < this.value.length && this.value[index] == item;
   }
 
 }

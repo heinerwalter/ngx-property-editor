@@ -6,7 +6,7 @@
                [noFormGroup]="noFormGroup">
   <div class="multi-row-form-group-container">
 
-    <ng-container *ngFor="let item of value; let i = index">
+    <ng-container *ngFor="let item of value; let i = index; trackBy:ngForTrackBy">
       <div class="multi-row-form-group-content">
         <ng-container *ngIf="itemTemplate">
           <ng-template [ngTemplateOutlet]="itemTemplate"
