@@ -79,7 +79,7 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
   /**
    * An array from which the user can select one or multiple items.
    */
-  @Input() public dataSource: { [key: string]: any }[] = [];
+  @Input() public dataSource: any[] = [];
 
   /**
    * Evaluate this property name on the data source items
@@ -99,7 +99,7 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
    * Evaluates the `valuePropertyName` on the given data source item.
    * @param item An item of the `dataSource`.
    */
-  public evaluateValuePropertyName(item: { [key: string]: any }): any {
+  public evaluateValuePropertyName(item: any): any {
     return PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
   }
 
@@ -107,7 +107,7 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
    * Evaluates the `displayPropertyName` on the given data source item.
    * @param item An item of the `dataSource`.
    */
-  public evaluateDisplayPropertyName(item: { [key: string]: any }): string {
+  public evaluateDisplayPropertyName(item: any): string {
     return PEGlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item);
   }
 

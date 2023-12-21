@@ -74,7 +74,7 @@ export type PropertyConfigurationConstructorParameter = {
    * For use with `propertyType == 'select'`:
    * An array from which the user can select one or multiple items.
    */
-  dataSource?: ValueOrFunctionType<{ [key: string]: any }[]>;
+  dataSource?: ValueOrFunctionType<any[]>;
   /**
    * For use with `propertyType == 'select'`:
    * Evaluate this property name on the data source items
@@ -124,7 +124,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public valueFunction?: (data: any) => any | undefined;
   public setValueFunction?: (data: any, value: any) => void;
 
-  public dataSource?: ValueOrFunctionType<{ [key: string]: any }[]>;
+  public dataSource?: ValueOrFunctionType<any[]>;
   public valuePropertyName?: string | undefined;
   public displayPropertyName?: string | undefined;
 
@@ -218,7 +218,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns An array from which the user can select one or multiple items.
    */
-  public getDataSource(data: any | undefined): { [key: string]: any }[] {
+  public getDataSource(data: any | undefined): any[] {
     if (typeof this.dataSource === 'function') {
       return this.dataSource(data);
     } else {
