@@ -100,17 +100,21 @@ export class PagesComponent extends ItemViewBaseComponent {
 
   /**
    * Go to the previous page, if possible.
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items (like `gotoPage`).
    */
-  public gotoPreviousPage(): void {
-    if (!this.showPreviousButton || this.disablePreviousButton) return;
+  public gotoPreviousPage(ignoreHidden: boolean = false): void {
+    if (!this.showPreviousButton) return;
+    if (!ignoreHidden && this.disablePreviousButton) return;
     this.gotoPage(this.currentItemIndex - 1);
   }
 
   /**
    * Go to the next page, if possible.
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items (like `gotoPage`).
    */
-  public gotoNextPage(): void {
-    if (!this.showNextButton || this.disableNextButton) return;
+  public gotoNextPage(ignoreHidden: boolean = false): void {
+    if (!this.showNextButton) return;
+    if (!ignoreHidden && this.disableNextButton) return;
     this.gotoPage(this.currentItemIndex + 1);
   }
 
