@@ -10,6 +10,7 @@ export class Contact {
   public email: string | undefined;
   public favorite: boolean = false;
   public rating: number | undefined;
+  public friends: string[] = [];
 
   /** Returns the full name. */
   public get name(): string {
@@ -29,6 +30,7 @@ export class Contact {
     email?: string | undefined,
     favorite?: boolean | undefined,
     rating?: number | undefined,
+    friends?: string[] | undefined,
   }) {
     this.gender = data?.gender;
     this.firstname = data?.firstname;
@@ -38,12 +40,13 @@ export class Contact {
     this.email = data?.email;
     this.favorite = data?.favorite || false;
     this.rating = data?.rating;
+    this.friends = data?.friends || [];
   }
 
   public toString(): string {
     return [
       this.name,
-      this.birthday ? `*${this.birthday.toLocaleDateString()}`: undefined,
+      this.birthday ? `*${this.birthday.toLocaleDateString()}` : undefined,
     ].map(str => str?.trim()).filter(str => !!str).join(', ');
   }
 
@@ -107,6 +110,13 @@ export class Contact {
         propertyName: 'rating',
         label: 'Rating',
         propertyType: 'rating',
+        editable: true,
+      }),
+      new PropertyConfiguration({
+        propertyName: 'friends',
+        label: 'Friends',
+        propertyType: 'string',
+        isArray: true,
         editable: true,
       }),
     ];

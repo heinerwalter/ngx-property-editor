@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Contact } from "../../model/contact";
-import { EditModeType, PropertiesConfiguration, ViewModeType, ViewAndEditContainerMode } from "ngx-property-editor";
+import { Contact } from '../../model/contact';
+import { EditModeType, PropertiesConfiguration, ViewModeType, ViewAndEditContainerMode } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-property-editor-demo',
   templateUrl: './property-editor-demo.component.html',
-  styleUrls: ['./property-editor-demo.component.scss']
+  styleUrls: ['./property-editor-demo.component.scss'],
 })
 export class PropertyEditorDemoComponent {
 
@@ -21,8 +21,15 @@ export class PropertyEditorDemoComponent {
     email: 'charlie.brown@peanuts.com',
     favorite: true,
     rating: 4,
+    friends: ['Snoopy', 'Sally'],
   });
 
+  /**
+   * Returns the `data` object as JSON string.
+   */
+  public get dataAsJson(): string {
+    return JSON.stringify(this.data, null, 2);
+  }
 
   /**
    * Configuration of displayed properties including name, data type, displayed value etc.
@@ -40,7 +47,7 @@ export class PropertyEditorDemoComponent {
   public viewModeTypeDataSource: { name: string, value: ViewModeType }[] = [
     { name: 'Table', value: 'table' },
     { name: 'Readonly Editor', value: 'editor' },
-    { name: 'Custom (nothing visible)', value: 'custom' },
+    { name: 'Custom', value: 'custom' },
   ];
 
   /**

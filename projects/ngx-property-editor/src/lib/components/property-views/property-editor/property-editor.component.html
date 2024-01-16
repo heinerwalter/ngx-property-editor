@@ -11,11 +11,11 @@
     <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, !readonly)">
 
       <ngb-col [md]="row.getBootstrapColumnMD(data)">
-        <pe-property-input [id]="id + '-input-' + i"
-                           [configuration]="row"
-                           [data]="data"
-                           [readonly]="readonly">
-        </pe-property-input>
+        <pe-property-input-with-array [id]="id + '-input-' + i"
+                                      [configuration]="row"
+                                      [data]="data"
+                                      [readonly]="readonly">
+        </pe-property-input-with-array>
       </ngb-col>
 
     </ng-container>

@@ -1,0 +1,37 @@
+<ng-container *ngIf="configuration">
+
+  <ng-container *ngIf="configuration.isArray && configuration.propertyType != 'select'">
+
+    <pe-multi-row-form-group [id]="configuration.propertyName || id"
+                             [label]="configuration.getLabel(data)"
+                             [noFormGroup]="noFormGroup"
+                             [disableAdd]="readonly || !configuration.isEditable(data)"
+                             [disableDelete]="readonly || !configuration.isEditable(data)"
+                             [itemTemplate]="multiRowFormGroupTemplate"
+                             [value]="configuration.getValue(data)"
+                             (valueChange)="configuration.setValue(data, $event)">
+    </pe-multi-row-form-group>
+
+    <ng-template #multiRowFormGroupTemplate let-index="index" let-value="value" let-onValueChange="onValueChange">
+      <pe-property-input [id]="id + '-' + index"
+                         [configuration]="configuration.getArrayItemConfiguration(index, value, onValueChange)"
+                         [data]="data"
+                         [readonly]="readonly"
+                         [noFormGroup]="true">
+      </pe-property-input>
+    </ng-template>
+
+  </ng-container>
+
+  <ng-container *ngIf="!(configuration.isArray && configuration.propertyType != 'select')">
+
+    <pe-property-input [id]="id"
+                       [configuration]="configuration"
+                       [data]="data"
+                       [readonly]="readonly"
+                       [noFormGroup]="noFormGroup">
+    </pe-property-input>
+
+  </ng-container>
+
+</ng-container>

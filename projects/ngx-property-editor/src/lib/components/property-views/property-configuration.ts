@@ -32,9 +32,7 @@ export type PropertyType =
   /** Star rating. */
   'rating' |
   /** Select an item from a `dataSource`. */
-  'select' |
-  /** Select multiple items from a `dataSource`. */
-  'select-multiple';
+  'select';
 
 /**
  * Some properties of `PropertyConfiguration` can be defined as constant type or
@@ -56,6 +54,8 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** Type of the property. Used for choosing an input component. */
   propertyType?: PropertyType,
+  /** If true, instead of a single item of the given `propertyType` multiple such items can be entered. */
+  isArray?: boolean,
 
   /**
    * Instead of evaluating a `propertyName`,
@@ -120,6 +120,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public label?: ValueOrFunctionType<string>;
 
   public propertyType?: PropertyType;
+  public isArray: boolean = false;
 
   public valueFunction?: (data: any) => any | undefined;
   public setValueFunction?: (data: any, value: any) => void;
@@ -316,6 +317,25 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     return `col-md-${md}`;
   }
 
+  /**
+   * Creates a new `PropertyConfiguration` instance for the item of an array property (`isArray == true`).
+   * @param index Index of the array item.
+   * @param value Current value of the array item.
+   * @param onValueChange A function which is called, when the array item was changed.
+   */
+  public getArrayItemConfiguration(index: number, value: any, onValueChange: ((itemValue: any) => void)): PropertyConfiguration {
+    if (!this.isArray) return this;
+
+    const itemConfig: PropertyConfiguration = new PropertyConfiguration(this);
+
+    itemConfig.isArray = false;
+    itemConfig.propertyName = undefined;
+    itemConfig.valueFunction = (data: any) => value;
+    itemConfig.setValueFunction = (data: any, newValue: any) => onValueChange(newValue);
+
+    return itemConfig;
+  }
+
 }
 
 export class PropertyConfigurationSeparator extends PropertyConfiguration {
@@ -335,6 +355,12 @@ export type PropertiesConfiguration = PropertyConfiguration[];
 
 
 export function generatePropertyTypeFromData(propertyValue: any): PropertyType | undefined {
+  // If the given value is an array with at least one element,
+  // generate the property type from the first element (and set `isArray` to true).
+  if (Array.isArray(propertyValue) && propertyValue?.length) {
+    propertyValue = propertyValue[0];
+  }
+
   switch (typeof propertyValue) {
     case 'boolean':
       return 'boolean';
@@ -382,6 +408,7 @@ export function generatePropertiesConfigurationFromData(data: any | undefined = 
       return new PropertyConfiguration({
         propertyName: propertyName,
         propertyType: propertyType || 'string',
+        isArray: Array.isArray(data[propertyName]),
         hidden: propertyType == undefined,
         editable: editable,
       });

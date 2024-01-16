@@ -25,4 +25,7 @@ export class PropertyInputComponent {
   /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it. */
   @Input() public readonly: boolean = false;
 
+  /** If true, the input element is not wrapped inside a form group component (no label). */
+  @Input() public noFormGroup: boolean = false;
+
 }
