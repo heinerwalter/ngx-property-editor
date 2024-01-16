@@ -16,10 +16,12 @@ import { SelectInputComponent } from './select-input/select-input.component';
 import { SingleRadioInputComponent } from './single-radio-input/single-radio-input.component';
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
 import { TextInputComponent } from './text-input/text-input.component';
+import { InputGroupComponent } from './input-group/input-group.component';
 
 export const inputComponents: Array<Type<any> | any[]> = [
   FormGroupComponent,
   FormTextComponent,
+  InputGroupComponent,
   MultiRowFormGroupComponent,
 
   InputBase,

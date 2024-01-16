@@ -45,6 +45,13 @@ export class AllInputsDemoComponent {
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
     multiRowFormGroup: ['Line 1', 'Line 2', 'Not line 3'] as any[],
+    inputGroup: {
+      street: '' as string | undefined,
+      number: undefined as number | undefined,
+      zipCode: undefined as number | undefined,
+      city: '' as string | undefined,
+      country: '' as string | undefined,
+    },
   };
 
   /**

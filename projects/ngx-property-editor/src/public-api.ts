@@ -28,6 +28,7 @@ export * from './lib/components/icon/xmark-icon/xmark-icon.component';
 export * from './lib/components/input/input-base';
 export * from './lib/components/input/form-group/form-group.component';
 export * from './lib/components/input/form-text/form-text.component';
+export * from './lib/components/input/input-group/input-group.component';
 export * from './lib/components/input/multi-row-form-group/multi-row-form-group.component';
 export * from './lib/components/input/boolean-input/boolean-input.component';
 export * from './lib/components/input/checkbox-select-input/checkbox-select-input.component';

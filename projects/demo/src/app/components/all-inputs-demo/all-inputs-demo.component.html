@@ -189,10 +189,10 @@
 <h4>Groups</h4>
 <demo-input-demo-wrapper [value]="values.multiRowFormGroup">
   <pe-multi-row-form-group label="Multi row form group with custom input elements (text input)"
-                             infoIconTooltip='Component: <pe-multi-row-form-group>'
-                             [(value)]="values.multiRowFormGroup"
-                             [itemTemplate]="multiRowFormGroupTemplate"
-                             (valueChange)="onInputValueChange('Multi row form group', $event)">
+                           infoIconTooltip='Component: <pe-multi-row-form-group>'
+                           [(value)]="values.multiRowFormGroup"
+                           [itemTemplate]="multiRowFormGroupTemplate"
+                           (valueChange)="onInputValueChange('Multi row form group', $event)">
   </pe-multi-row-form-group>
 </demo-input-demo-wrapper>
 
@@ -201,3 +201,40 @@
                  (valueChange)="onValueChange($event)">
   </pe-text-input>
 </ng-template>
+
+<demo-input-demo-wrapper [value]="values.inputGroup">
+  <pe-form-group label="Input Group"
+                 infoIconTooltip='Component: <pe-input-group>...</pe-input-group>'>
+    <pe-input-group orientation="vertical">
+      <pe-input-group orientation="horizontal">
+        <pe-text-input [noFormGroup]="true"
+                       placeholder="Street"
+                       [(value)]="values.inputGroup.street"
+                       (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+        </pe-text-input>
+        <pe-number-input [noFormGroup]="true"
+                         placeholder="Number"
+                         [(value)]="values.inputGroup.number"
+                         (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+        </pe-number-input>
+      </pe-input-group>
+      <pe-input-group orientation="horizontal">
+        <pe-number-input [noFormGroup]="true"
+                         placeholder="ZIP Code"
+                         [(value)]="values.inputGroup.zipCode"
+                         (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+        </pe-number-input>
+        <pe-text-input [noFormGroup]="true"
+                       placeholder="City"
+                       [(value)]="values.inputGroup.city"
+                       (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+        </pe-text-input>
+      </pe-input-group>
+      <pe-text-input [noFormGroup]="true"
+                     placeholder="Country"
+                     [(value)]="values.inputGroup.country"
+                     (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+      </pe-text-input>
+    </pe-input-group>
+  </pe-form-group>
+</demo-input-demo-wrapper>

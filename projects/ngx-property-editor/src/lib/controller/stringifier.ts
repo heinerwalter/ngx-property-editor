@@ -404,7 +404,7 @@ export module Stringifier {
         } else if (value instanceof File) {
           return value.name;
         }
-        break;
+        return JSON.stringify(value);
     }
 
     return value.toString();

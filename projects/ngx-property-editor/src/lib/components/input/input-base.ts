@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 
 @Component({
@@ -42,6 +42,10 @@ export class InputBase {
 
   /** If true, the input element is not wrapped inside a form group component. */
   @Input() public noFormGroup: boolean = false;
+
+  /** CSS attribute flex-grow of this input element (default value: 1). */
+  @HostBinding('style.flex-grow')
+  @Input() public flexGrow: number | undefined = 1;
 
 }
 

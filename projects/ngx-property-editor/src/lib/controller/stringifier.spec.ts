@@ -211,7 +211,7 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString([100])).toEqual('[100]');
     expect(Stringifier.anyTypeToString(['a', 'b', 'C'])).toEqual('[a, b, C]');
 
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo' })).toEqual('[object Object]');
+    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');
   });
 
   // endregion

@@ -1,0 +1,76 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+
+pe-input-group {
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+
+  & > * {
+    &:not(pe-input-group) {
+      display: inline-block !important;
+    }
+
+    flex-shrink: 1;
+    flex-grow: 1;
+
+    .form-control {
+      position: relative;
+
+      &:focus {
+        z-index: 1;
+      }
+    }
+  }
+
+  &.pe-input-group-horizontal {
+    flex-direction: row;
+
+    & > * {
+      &:not(:last-child) {
+        margin-right: -$border-width;
+
+        .form-control {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &:not(:first-child) {
+        .form-control {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+  }
+
+  &.pe-input-group-vertical {
+    flex-direction: column;
+
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: -$border-width;
+
+        .form-control {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+
+      &:not(:first-child) {
+        .form-control {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
+    }
+  }
+
+}
