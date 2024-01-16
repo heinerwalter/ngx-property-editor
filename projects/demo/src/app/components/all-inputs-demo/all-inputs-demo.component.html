@@ -207,31 +207,26 @@
                  infoIconTooltip='Component: <pe-input-group>...</pe-input-group>'>
     <pe-input-group orientation="vertical">
       <pe-input-group orientation="horizontal">
-        <pe-text-input [noFormGroup]="true"
-                       placeholder="Street"
+        <pe-text-input placeholder="Street"
                        [(value)]="values.inputGroup.street"
                        (valueChange)="onInputValueChange('Input group', values.inputGroup)">
         </pe-text-input>
-        <pe-number-input [noFormGroup]="true"
-                         placeholder="Number"
+        <pe-number-input placeholder="Number"
                          [(value)]="values.inputGroup.number"
                          (valueChange)="onInputValueChange('Input group', values.inputGroup)">
         </pe-number-input>
       </pe-input-group>
       <pe-input-group orientation="horizontal">
-        <pe-number-input [noFormGroup]="true"
-                         placeholder="ZIP Code"
+        <pe-number-input placeholder="ZIP Code"
                          [(value)]="values.inputGroup.zipCode"
                          (valueChange)="onInputValueChange('Input group', values.inputGroup)">
         </pe-number-input>
-        <pe-text-input [noFormGroup]="true"
-                       placeholder="City"
+        <pe-text-input placeholder="City"
                        [(value)]="values.inputGroup.city"
                        (valueChange)="onInputValueChange('Input group', values.inputGroup)">
         </pe-text-input>
       </pe-input-group>
-      <pe-text-input [noFormGroup]="true"
-                     placeholder="Country"
+      <pe-text-input placeholder="Country"
                      [(value)]="values.inputGroup.country"
                      (valueChange)="onInputValueChange('Input group', values.inputGroup)">
       </pe-text-input>

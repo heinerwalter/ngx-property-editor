@@ -20,6 +20,14 @@ pe-input-group {
     flex-shrink: 1;
     flex-grow: 1;
 
+    .form-group {
+      margin-bottom: 0 !important;
+
+      .form-label {
+        display: none;
+      }
+    }
+
     .form-control {
       position: relative;
 
