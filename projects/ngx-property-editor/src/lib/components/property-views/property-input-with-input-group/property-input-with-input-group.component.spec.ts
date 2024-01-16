@@ -1,28 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyInputWithArrayComponent } from './property-input-with-array.component';
+import { PropertyInputWithInputGroupComponent } from './property-input-with-input-group.component';
 import { PropertyInputComponent } from '../property-input/property-input.component';
 import { inputComponents } from '../../input/input.components';
 import { FormsModule } from '@angular/forms';
-import {
-  PropertyInputWithInputGroupComponent
-} from '../property-input-with-input-group/property-input-with-input-group.component';
 
-describe('PropertyInputWithArrayComponent', () => {
-  let component: PropertyInputWithArrayComponent;
-  let fixture: ComponentFixture<PropertyInputWithArrayComponent>;
+describe('PropertyInputWithInputGroupComponent', () => {
+  let component: PropertyInputWithInputGroupComponent;
+  let fixture: ComponentFixture<PropertyInputWithInputGroupComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        PropertyInputWithArrayComponent,
         PropertyInputWithInputGroupComponent,
         PropertyInputComponent,
         ...inputComponents,
       ],
       imports: [FormsModule],
     });
-    fixture = TestBed.createComponent(PropertyInputWithArrayComponent);
+    fixture = TestBed.createComponent(PropertyInputWithInputGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

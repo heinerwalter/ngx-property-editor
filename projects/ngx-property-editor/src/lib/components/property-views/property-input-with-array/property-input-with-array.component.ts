@@ -8,4 +8,12 @@ import { PropertyInputComponent } from '../property-input/property-input.compone
 })
 export class PropertyInputWithArrayComponent extends PropertyInputComponent {
 
+  /**
+   * True, if an array of property inputs is displayed.
+   */
+  public get hasArray(): boolean {
+    return !!this.configuration && this.configuration.isArray &&
+      (!this.configuration.inputGroup?.length || this.configuration.propertyType != 'select');
+  }
+
 }

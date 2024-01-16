@@ -112,6 +112,17 @@ export type PropertyConfigurationConstructorParameter = {
    * If `separator` is true, all other configuration values are ignored.
    */
   separator?: boolean,
+
+  /**
+   * Display multiple properties within an input group
+   * (input elements side by side with one label for the whole group).
+   * The outer array defines a vertical input group.
+   * The inner array(s) define horizontal input groups.
+   * If you want to define only one horizontal input group,
+   * the outer array should contain exactly one element (`[ [ input1, input2, ... ] ]`).
+   */
+  inputGroup?: PropertyConfiguration[][];
+
 };
 
 export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
@@ -140,6 +151,8 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>;
 
   public separator?: boolean;
+
+  public inputGroup?: PropertyConfiguration[][];
 
   public constructor(configuration?: PropertyConfigurationConstructorParameter) {
     Object.assign(this, configuration);

@@ -1,6 +1,6 @@
 <ng-container *ngIf="configuration">
 
-  <ng-container *ngIf="configuration.isArray && configuration.propertyType != 'select'">
+  <ng-container *ngIf="hasArray">
 
     <pe-multi-row-form-group [id]="configuration.propertyName || id"
                              [label]="configuration.getLabel(data)"
@@ -13,24 +13,24 @@
     </pe-multi-row-form-group>
 
     <ng-template #multiRowFormGroupTemplate let-index="index" let-value="value" let-onValueChange="onValueChange">
-      <pe-property-input [id]="id + '-' + index"
-                         [configuration]="configuration.getArrayItemConfiguration(index, value, onValueChange)"
-                         [data]="data"
-                         [readonly]="readonly"
-                         [noFormGroup]="true">
-      </pe-property-input>
+      <pe-property-input-with-input-group [id]="id + '-' + index"
+                                          [configuration]="configuration.getArrayItemConfiguration(index, value, onValueChange)"
+                                          [data]="value"
+                                          [readonly]="readonly"
+                                          [noFormGroup]="true">
+      </pe-property-input-with-input-group>
     </ng-template>
 
   </ng-container>
 
-  <ng-container *ngIf="!(configuration.isArray && configuration.propertyType != 'select')">
+  <ng-container *ngIf="!hasArray">
 
-    <pe-property-input [id]="id"
-                       [configuration]="configuration"
-                       [data]="data"
-                       [readonly]="readonly"
-                       [noFormGroup]="noFormGroup">
-    </pe-property-input>
+    <pe-property-input-with-input-group [id]="id"
+                                        [configuration]="configuration"
+                                        [data]="data"
+                                        [readonly]="readonly"
+                                        [noFormGroup]="noFormGroup">
+    </pe-property-input-with-input-group>
 
   </ng-container>
 

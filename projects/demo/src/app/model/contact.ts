@@ -6,6 +6,13 @@ export class Contact {
   public firstname: string | undefined;
   public lastname: string | undefined;
   public birthday: Date | undefined;
+  public address: {
+    street?: string | undefined,
+    number?: number | undefined,
+    zipCode?: number | undefined,
+    city?: string | undefined,
+    country?: string | undefined,
+  } = {};
   public tel: string | undefined;
   public email: string | undefined;
   public favorite: boolean = false;
@@ -26,6 +33,13 @@ export class Contact {
     firstname?: string | undefined,
     lastname?: string | undefined,
     birthday?: Date | undefined,
+    address?: {
+      street?: string | undefined,
+      number?: number | undefined,
+      zipCode?: number | undefined,
+      city?: string | undefined,
+      country?: string | undefined,
+    } | undefined,
     tel?: string | undefined,
     email?: string | undefined,
     favorite?: boolean | undefined,
@@ -36,6 +50,7 @@ export class Contact {
     this.firstname = data?.firstname;
     this.lastname = data?.lastname;
     this.birthday = data?.birthday;
+    this.address = data?.address || {};
     this.tel = data?.tel;
     this.email = data?.email;
     this.favorite = data?.favorite || false;
@@ -89,6 +104,49 @@ export class Contact {
         editable: true,
       }),
       new PropertyConfiguration({
+        propertyName: 'address',
+        label: 'Address',
+        editable: true,
+        inputGroup: [
+          [
+            new PropertyConfiguration({
+              propertyName: 'address.street',
+              label: 'Street',
+              propertyType: 'string',
+              editable: true,
+            }),
+            new PropertyConfiguration({
+              propertyName: 'address.number',
+              label: 'Number',
+              propertyType: 'number',
+              editable: true,
+            }),
+          ],
+          [
+            new PropertyConfiguration({
+              propertyName: 'address.zipCode',
+              label: 'ZIP Code',
+              propertyType: 'number',
+              editable: true,
+            }),
+            new PropertyConfiguration({
+              propertyName: 'address.city',
+              label: 'City',
+              propertyType: 'string',
+              editable: true,
+            }),
+          ],
+          [
+            new PropertyConfiguration({
+              propertyName: 'address.country',
+              label: 'Country',
+              propertyType: 'string',
+              editable: true,
+            }),
+          ],
+        ],
+      }),
+      new PropertyConfiguration({
         propertyName: 'tel',
         label: 'Phone',
         propertyType: 'tel',
@@ -115,9 +173,24 @@ export class Contact {
       new PropertyConfiguration({
         propertyName: 'friends',
         label: 'Friends',
-        propertyType: 'string',
+        // TODO: newArrayItemFunction: () => ({ name: undefined, type: undefined }),
         isArray: true,
         editable: true,
+        inputGroup: [[
+          new PropertyConfiguration({
+            propertyName: 'name',
+            label: 'Friend',
+            propertyType: 'string',
+            editable: true,
+          }),
+          new PropertyConfiguration({
+            propertyName: 'type',
+            label: 'Type',
+            propertyType: 'select',
+            dataSource: ['Brother', 'Sister', 'Dog'],
+            editable: true,
+          }),
+        ]],
       }),
     ];
   }

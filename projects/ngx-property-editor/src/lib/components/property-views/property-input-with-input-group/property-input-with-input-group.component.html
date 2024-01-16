@@ -1,0 +1,61 @@
+<ng-container *ngIf="configuration">
+
+  <ng-container *ngIf="hasInputGroup">
+
+    <pe-form-group [id]="configuration.propertyName || id"
+                   [label]="configuration.getLabel(data)"
+                   [noFormGroup]="noFormGroup">
+
+      <ng-container *ngIf="!hasTwoDimensionalInputGroup">
+        <pe-input-group orientation="horizontal">
+          <pe-property-input *ngFor="let itemConfiguration of configuration.inputGroup![0]; let index = index"
+                             [id]="id + '-' + index"
+                             [configuration]="itemConfiguration"
+                             [data]="data"
+                             [readonly]="readonly"
+                             [noFormGroup]="true">
+          </pe-property-input>
+        </pe-input-group>
+      </ng-container>
+
+      <ng-container *ngIf="hasTwoDimensionalInputGroup">
+        <pe-input-group orientation="vertical">
+          <ng-container *ngFor="let outerItemConfiguration of configuration.inputGroup; let outerIndex = index">
+            <ng-container *ngIf="outerItemConfiguration.length == 1">
+              <pe-property-input [id]="id + '-' + outerIndex + '-' + 0"
+                                 [configuration]="outerItemConfiguration[0]"
+                                 [data]="data"
+                                 [readonly]="readonly"
+                                 [noFormGroup]="true">
+              </pe-property-input>
+            </ng-container>
+            <pe-input-group *ngIf="outerItemConfiguration.length > 1"
+                            orientation="horizontal">
+              <pe-property-input *ngFor="let innerItemConfiguration of outerItemConfiguration; let innerIndex = index"
+                                 [id]="id + '-' + outerIndex + '-' + innerIndex"
+                                 [configuration]="innerItemConfiguration"
+                                 [data]="data"
+                                 [readonly]="readonly"
+                                 [noFormGroup]="true">
+              </pe-property-input>
+            </pe-input-group>
+          </ng-container>
+        </pe-input-group>
+      </ng-container>
+
+    </pe-form-group>
+
+  </ng-container>
+
+  <ng-container *ngIf="!hasInputGroup">
+
+    <pe-property-input [id]="id"
+                       [configuration]="configuration"
+                       [data]="data"
+                       [readonly]="readonly"
+                       [noFormGroup]="noFormGroup">
+    </pe-property-input>
+
+  </ng-container>
+
+</ng-container>

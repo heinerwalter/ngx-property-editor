@@ -28,7 +28,7 @@ pe-input-group {
       }
     }
 
-    .form-control {
+    .form-control, .form-select {
       position: relative;
 
       &:focus {
@@ -44,14 +44,14 @@ pe-input-group {
       &:not(:last-child) {
         margin-right: -$border-width;
 
-        .form-control {
+        .form-control, .form-select {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
       }
 
       &:not(:first-child) {
-        .form-control {
+        .form-control, .form-select {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
@@ -66,14 +66,14 @@ pe-input-group {
       &:not(:last-child) {
         margin-bottom: -$border-width;
 
-        .form-control {
+        .form-control, .form-select {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
         }
       }
 
       &:not(:first-child) {
-        .form-control {
+        .form-control, .form-select {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
         }
