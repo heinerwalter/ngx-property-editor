@@ -342,7 +342,7 @@ export module Stringifier {
    * everything else as lower case).
    * @param str Input string.
    * @param removeSpaces If true, all spaces are removed (e.g. 'camel case' -> 'CamelCase').
-   * @returns The input string without spaces but in camel case (e.g. 'camel case' -> 'Camel Case').
+   * @returns The input string without spaces but in camel case (e.g. 'camel case' -> 'CamelCase').
    */
   export function stringToCamelCase(str: string, removeSpaces: boolean = false): string {
     if (!str) return str;
