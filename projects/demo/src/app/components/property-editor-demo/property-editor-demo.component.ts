@@ -12,17 +12,7 @@ export class PropertyEditorDemoComponent {
   /**
    * Display the properties of this object by the property table and editor.
    */
-  public data: Contact = new Contact({
-    gender: 'male',
-    firstname: 'Charlie',
-    lastname: 'Brown',
-    birthday: new Date(1950, 9, 2),
-    tel: '+1 23456789',
-    email: 'charlie.brown@peanuts.com',
-    favorite: true,
-    rating: 4,
-    friends: ['Snoopy', 'Sally'],
-  });
+  public data: Contact = Contact.CharlieBrown;
 
   /**
    * Returns the `data` object as JSON string.
@@ -67,5 +57,15 @@ export class PropertyEditorDemoComponent {
    * Choose how the properties are displayed in edit mode.
    */
   public editModeType: EditModeType = 'editor';
+
+
+  /**
+   * Possible options of `data` (contacts).
+   */
+  public contactDataSource: Contact[] = [
+    Contact.CharlieBrown,
+    Contact.SallyBrown,
+    Contact.Snoopy,
+  ];
 
 }

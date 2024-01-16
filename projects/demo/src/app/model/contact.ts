@@ -122,4 +122,44 @@ export class Contact {
     ];
   }
 
+  public static get Snoopy(): Contact {
+    return new Contact({
+      firstname: 'Snoopy',
+      birthday: new Date(1950, 9, 4),
+      tel: '+1 23456789',
+      email: 'snoopy@peanuts.com',
+      favorite: true,
+      rating: 5,
+      friends: ['Woodstock'],
+    });
+  }
+
+  public static get CharlieBrown(): Contact {
+    return new Contact({
+      gender: 'male',
+      firstname: 'Charlie',
+      lastname: 'Brown',
+      birthday: new Date(1950, 9, 2),
+      tel: '+1 23456789',
+      email: 'charlie.brown@peanuts.com',
+      favorite: true,
+      rating: 4,
+      friends: ['Snoopy', 'Sally'],
+    });
+  }
+
+  public static get SallyBrown(): Contact {
+    return new Contact({
+      gender: 'female',
+      firstname: 'Sally',
+      lastname: 'Brown',
+      birthday: new Date(1959, 4, 26),
+      tel: '+1 23456789',
+      email: 'sally.brown@peanuts.com',
+      favorite: false,
+      rating: 3,
+      friends: ['Charlie', 'Snoopy'],
+    });
+  }
+
 }
