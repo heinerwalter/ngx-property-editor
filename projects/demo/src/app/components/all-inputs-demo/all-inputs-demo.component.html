@@ -188,15 +188,15 @@
 
 <h4>Groups</h4>
 <demo-input-demo-wrapper [value]="values.array">
-  <pe-multi-row-form-group label="Array with custom input elements (text input)"
-                           infoIconTooltip='Component: <pe-multi-row-form-group>'
-                           [(value)]="values.array"
-                           [itemTemplate]="multiRowFormGroupTemplate"
-                           (valueChange)="onInputValueChange('array', $event)">
-  </pe-multi-row-form-group>
+  <pe-array-form-group label="Array with custom input elements (text input)"
+                       infoIconTooltip='Component: <pe-array-form-group> + <pe-text-input>'
+                       [(value)]="values.array"
+                       [itemTemplate]="arrayFormGroupTemplate"
+                       (valueChange)="onInputValueChange('array', $event)">
+  </pe-array-form-group>
 </demo-input-demo-wrapper>
 
-<ng-template #multiRowFormGroupTemplate let-value="value" let-onValueChange="onValueChange" let-index="index">
+<ng-template #arrayFormGroupTemplate let-value="value" let-onValueChange="onValueChange" let-index="index">
   <pe-text-input [value]="value"
                  (valueChange)="onValueChange($event)">
   </pe-text-input>
@@ -235,16 +235,16 @@
 </demo-input-demo-wrapper>
 
 <demo-input-demo-wrapper [value]="values.arrayWithInputGroup">
-  <pe-multi-row-form-group label="Array with input group"
-                           infoIconTooltip='Components: <pe-multi-row-form-group> + <pe-input-group>'
-                           [(value)]="values.arrayWithInputGroup"
-                           [itemTemplate]="multiRowFormGroupWithInputGroupTemplate"
-                           [newItemFunction]="arrayWithInputGroupNewItemFunction"
-                           (valueChange)="onInputValueChange('array with input group', $event)">
-  </pe-multi-row-form-group>
+  <pe-array-form-group label="Array with input group"
+                       infoIconTooltip='Components: <pe-array-form-group> + <pe-input-group>'
+                       [(value)]="values.arrayWithInputGroup"
+                       [itemTemplate]="arrayFormGroupWithInputGroupTemplate"
+                       [newItemFunction]="arrayWithInputGroupNewItemFunction"
+                       (valueChange)="onInputValueChange('array with input group', $event)">
+  </pe-array-form-group>
 </demo-input-demo-wrapper>
 
-<ng-template #multiRowFormGroupWithInputGroupTemplate let-value="value" let-onValueChange="onValueChange"
+<ng-template #arrayFormGroupWithInputGroupTemplate let-value="value" let-onValueChange="onValueChange"
              let-index="index">
   <pe-input-group orientation="horizontal">
     <pe-text-input placeholder="Name"

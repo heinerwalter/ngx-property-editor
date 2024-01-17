@@ -1,7 +1,8 @@
 import { Type } from '@angular/core';
+import { ArrayFormGroupComponent } from './array-form-group/array-form-group.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormTextComponent } from './form-text/form-text.component';
-import { MultiRowFormGroupComponent } from './multi-row-form-group/multi-row-form-group.component';
+import { InputGroupComponent } from './input-group/input-group.component';
 
 import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from './input-base';
 
@@ -16,13 +17,12 @@ import { SelectInputComponent } from './select-input/select-input.component';
 import { SingleRadioInputComponent } from './single-radio-input/single-radio-input.component';
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
 import { TextInputComponent } from './text-input/text-input.component';
-import { InputGroupComponent } from './input-group/input-group.component';
 
 export const inputComponents: Array<Type<any> | any[]> = [
+  ArrayFormGroupComponent,
   FormGroupComponent,
   FormTextComponent,
   InputGroupComponent,
-  MultiRowFormGroupComponent,
 
   InputBase,
   InputBaseWithValue,

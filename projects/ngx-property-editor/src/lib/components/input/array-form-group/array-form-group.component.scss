@@ -1,5 +1,5 @@
-pe-multi-row-form-group {
-  .multi-row-form-group-container {
+pe-array-form-group {
+  .array-form-group-container {
     display: grid;
     grid-auto-rows: auto;
     grid-template-columns: [content] 1fr [buttons] auto;
@@ -9,11 +9,11 @@ pe-multi-row-form-group {
     justify-items: stretch;
     align-items: center;
 
-    .multi-row-form-group-content {
+    .array-form-group-content {
       grid-column: content / span 1;
     }
 
-    .multi-row-form-group-buttons {
+    .array-form-group-buttons {
       grid-column: buttons / span 1;
     }
 

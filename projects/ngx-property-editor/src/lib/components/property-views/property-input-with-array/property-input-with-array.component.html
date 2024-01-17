@@ -2,18 +2,18 @@
 
   <ng-container *ngIf="hasArray">
 
-    <pe-multi-row-form-group [id]="configuration.propertyName || id"
+    <pe-array-form-group [id]="configuration.propertyName || id"
                              [label]="configuration.getLabel(data)"
                              [noFormGroup]="noFormGroup"
                              [disableAdd]="readonly || !configuration.isEditable(data)"
                              [disableDelete]="readonly || !configuration.isEditable(data)"
                              [newItemFunction]="configuration.newArrayItemFunction"
-                             [itemTemplate]="multiRowFormGroupTemplate"
+                             [itemTemplate]="arrayFormGroupTemplate"
                              [value]="configuration.getValue(data)"
                              (valueChange)="configuration.setValue(data, $event)">
-    </pe-multi-row-form-group>
+    </pe-array-form-group>
 
-    <ng-template #multiRowFormGroupTemplate let-index="index" let-value="value" let-onValueChange="onValueChange">
+    <ng-template #arrayFormGroupTemplate let-index="index" let-value="value" let-onValueChange="onValueChange">
       <pe-property-input-with-input-group [id]="id + '-' + index"
                                           [configuration]="configuration.getArrayItemConfiguration(index, value, onValueChange)"
                                           [data]="value"

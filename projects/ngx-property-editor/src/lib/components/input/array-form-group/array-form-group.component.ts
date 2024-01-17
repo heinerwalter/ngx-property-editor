@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation 
 import { FormGroupComponent } from '../form-group/form-group.component';
 
 @Component({
-  selector: 'pe-multi-row-form-group',
-  templateUrl: './multi-row-form-group.component.html',
-  styleUrls: ['./multi-row-form-group.component.scss'],
+  selector: 'pe-array-form-group',
+  templateUrl: './array-form-group.component.html',
+  styleUrls: ['./array-form-group.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class MultiRowFormGroupComponent extends FormGroupComponent {
+export class ArrayFormGroupComponent extends FormGroupComponent {
 
   /**
    * Each row of this multi form group is represented by one item in this value array.
