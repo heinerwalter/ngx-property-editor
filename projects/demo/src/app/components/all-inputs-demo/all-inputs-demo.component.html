@@ -187,12 +187,12 @@
 </demo-input-demo-wrapper>
 
 <h4>Groups</h4>
-<demo-input-demo-wrapper [value]="values.multiRowFormGroup">
-  <pe-multi-row-form-group label="Multi row form group with custom input elements (text input)"
+<demo-input-demo-wrapper [value]="values.array">
+  <pe-multi-row-form-group label="Array with custom input elements (text input)"
                            infoIconTooltip='Component: <pe-multi-row-form-group>'
-                           [(value)]="values.multiRowFormGroup"
+                           [(value)]="values.array"
                            [itemTemplate]="multiRowFormGroupTemplate"
-                           (valueChange)="onInputValueChange('Multi row form group', $event)">
+                           (valueChange)="onInputValueChange('array', $event)">
   </pe-multi-row-form-group>
 </demo-input-demo-wrapper>
 
@@ -204,7 +204,7 @@
 
 <demo-input-demo-wrapper [value]="values.inputGroup">
   <pe-form-group label="Input Group"
-                 infoIconTooltip='Component: <pe-input-group>...</pe-input-group>'>
+                 infoIconTooltip='Component: <pe-input-group>'>
     <pe-input-group orientation="vertical">
       <pe-input-group orientation="horizontal">
         <pe-text-input placeholder="Street"
@@ -233,3 +233,27 @@
     </pe-input-group>
   </pe-form-group>
 </demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.arrayWithInputGroup">
+  <pe-multi-row-form-group label="Array with input group"
+                           infoIconTooltip='Components: <pe-multi-row-form-group> + <pe-input-group>'
+                           [(value)]="values.arrayWithInputGroup"
+                           [itemTemplate]="multiRowFormGroupWithInputGroupTemplate"
+                           [newItemFunction]="arrayWithInputGroupNewItemFunction"
+                           (valueChange)="onInputValueChange('array with input group', $event)">
+  </pe-multi-row-form-group>
+</demo-input-demo-wrapper>
+
+<ng-template #multiRowFormGroupWithInputGroupTemplate let-value="value" let-onValueChange="onValueChange"
+             let-index="index">
+  <pe-input-group orientation="horizontal">
+    <pe-text-input placeholder="Name"
+                   [(value)]="value['name']"
+                   (valueChange)="onValueChange(value)">
+    </pe-text-input>
+    <pe-number-input placeholder="Number"
+                     [(value)]="value['number']"
+                     (valueChange)="onValueChange(value)">
+    </pe-number-input>
+  </pe-input-group>
+</ng-template>

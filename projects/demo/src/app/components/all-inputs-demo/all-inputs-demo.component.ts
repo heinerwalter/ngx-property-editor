@@ -44,7 +44,11 @@ export class AllInputsDemoComponent {
     selectCheckbox: [] as any[] | undefined,
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
-    multiRowFormGroup: ['Line 1', 'Line 2', 'Not line 3'] as any[],
+    array: ['Line 1', 'Line 2', 'Not line 3'] as any[],
+    arrayWithInputGroup: [{ name: 'Max', number: 5 }, { name: 'Moritz', number: 3 }] as {
+      name: string | undefined,
+      number: number | undefined,
+    }[],
     inputGroup: {
       street: '' as string | undefined,
       number: undefined as number | undefined,
@@ -53,6 +57,13 @@ export class AllInputsDemoComponent {
       country: '' as string | undefined,
     },
   };
+
+  protected arrayWithInputGroupNewItemFunction(): {
+    name: string | undefined,
+    number: number | undefined,
+  } {
+    return { name: '', number: undefined };
+  }
 
   /**
    * This method is called when the user changed the value of any input component.

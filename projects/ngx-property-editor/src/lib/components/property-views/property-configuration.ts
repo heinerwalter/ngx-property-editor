@@ -54,8 +54,6 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** Type of the property. Used for choosing an input component. */
   propertyType?: PropertyType,
-  /** If true, instead of a single item of the given `propertyType` multiple such items can be entered. */
-  isArray?: boolean,
 
   /**
    * Instead of evaluating a `propertyName`,
@@ -68,27 +66,27 @@ export type PropertyConfigurationConstructorParameter = {
    * a new value can be assigned using this function.
    * If defined, the `setValueFunction` overrides the `propertyName` for assigning a new value.
    */
-  setValueFunction?: (data: any, value: any) => void;
+  setValueFunction?: (data: any, value: any) => void,
 
   /**
    * For use with `propertyType == 'select'`:
    * An array from which the user can select one or multiple items.
    */
-  dataSource?: ValueOrFunctionType<any[]>;
+  dataSource?: ValueOrFunctionType<any[]>,
   /**
    * For use with `propertyType == 'select'`:
    * Evaluate this property name on the data source items
    * to get the values of the select input element items.
    * If undefined, the whole data source item is used as value.
    */
-  valuePropertyName?: string | undefined;
+  valuePropertyName?: string | undefined,
   /**
    * For use with `propertyType == 'select'`:
    * Evaluate this property name on the data source items
    * to get a string which is displayed on the select input element items.
    * If undefined, the whole data source item is used as display value.
    */
-  displayPropertyName?: string | undefined;
+  displayPropertyName?: string | undefined,
 
   /** If true, this property is hidden. */
   hidden?: ValueOrFunctionType<boolean>,
@@ -105,13 +103,24 @@ export type PropertyConfigurationConstructorParameter = {
   routerLinkTooltip?: ValueOrFunctionType<string | undefined>,
 
   /** Bootstrap column width on md wide screens (class "col-md-..."). */
-  md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>;
+  md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>,
 
   /**
    * Set `separator` to true, to add a separator between properties.
    * If `separator` is true, all other configuration values are ignored.
    */
   separator?: boolean,
+
+  /**
+   * If true, instead of a single item of the given `propertyType` multiple such items can be entered.
+   */
+  isArray?: boolean,
+  /**
+   * If `isArray` is true:
+   * This function gets called, when a new item is added to the array.
+   * If not defined, undefined is added as new item.
+   */
+  newArrayItemFunction?: (() => any) | undefined,
 
   /**
    * Display multiple properties within an input group
@@ -121,7 +130,7 @@ export type PropertyConfigurationConstructorParameter = {
    * If you want to define only one horizontal input group,
    * the outer array should contain exactly one element (`[ [ input1, input2, ... ] ]`).
    */
-  inputGroup?: PropertyConfiguration[][];
+  inputGroup?: PropertyConfiguration[][],
 
 };
 
@@ -131,7 +140,6 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public label?: ValueOrFunctionType<string>;
 
   public propertyType?: PropertyType;
-  public isArray: boolean = false;
 
   public valueFunction?: (data: any) => any | undefined;
   public setValueFunction?: (data: any, value: any) => void;
@@ -151,6 +159,9 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>;
 
   public separator?: boolean;
+
+  public isArray: boolean = false;
+  public newArrayItemFunction?: (() => any) | undefined = undefined;
 
   public inputGroup?: PropertyConfiguration[][];
 

@@ -15,9 +15,4 @@ export class PropertyInputWithInputGroupComponent extends PropertyInputComponent
     return !!this.configuration && !!this.configuration.inputGroup?.length;
   }
 
-  public get hasTwoDimensionalInputGroup(): boolean {
-    return !!this.configuration && !!this.configuration.inputGroup?.length &&
-      this.configuration.inputGroup?.length > 1;
-  }
-
 }

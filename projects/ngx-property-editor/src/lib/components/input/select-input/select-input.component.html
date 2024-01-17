@@ -21,7 +21,7 @@
           [multiple]="multiple"
           [ngModel]="multiple ? value : [value]"
           (ngModelChange)="value = multiple ? $event : $event?.length ? $event[0] : undefined; emitValueChange(value)">
-    <option *ngIf="placeholder" disabled>{{placeholder}}</option>
+    <option *ngIf="placeholder && !disabled && !readonly" disabled>{{placeholder}}</option>
     <option *ngIf="!multiple && (allowEmpty || value == undefined)"
             [ngValue]="undefined"></option>
     <option *ngFor="let item of dataSource"

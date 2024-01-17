@@ -6,7 +6,7 @@
                    [label]="configuration.getLabel(data)"
                    [noFormGroup]="noFormGroup">
 
-      <ng-container *ngIf="!hasTwoDimensionalInputGroup">
+      <ng-container *ngIf="configuration.inputGroup!.length == 1">
         <pe-input-group orientation="horizontal">
           <pe-property-input *ngFor="let itemConfiguration of configuration.inputGroup![0]; let index = index"
                              [id]="id + '-' + index"
@@ -18,7 +18,7 @@
         </pe-input-group>
       </ng-container>
 
-      <ng-container *ngIf="hasTwoDimensionalInputGroup">
+      <ng-container *ngIf="configuration.inputGroup!.length > 1">
         <pe-input-group orientation="vertical">
           <ng-container *ngFor="let outerItemConfiguration of configuration.inputGroup; let outerIndex = index">
             <ng-container *ngIf="outerItemConfiguration.length == 1">

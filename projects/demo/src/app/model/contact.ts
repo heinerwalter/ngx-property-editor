@@ -1,23 +1,30 @@
 import { PropertiesConfiguration, PropertyConfiguration } from 'ngx-property-editor';
 
+type AddressType = {
+  street?: string | undefined,
+  number?: number | undefined,
+  zipCode?: number | undefined,
+  city?: string | undefined,
+  country?: string | undefined,
+};
+
+type FriendType = {
+  name?: string | undefined,
+  type?: 'Brother' | 'Sister' | 'Friend' | 'Dog' | undefined,
+}
+
 export class Contact {
 
   public gender: 'male' | 'female' | undefined;
   public firstname: string | undefined;
   public lastname: string | undefined;
   public birthday: Date | undefined;
-  public address: {
-    street?: string | undefined,
-    number?: number | undefined,
-    zipCode?: number | undefined,
-    city?: string | undefined,
-    country?: string | undefined,
-  } = {};
+  public address: AddressType = {};
   public tel: string | undefined;
   public email: string | undefined;
   public favorite: boolean = false;
   public rating: number | undefined;
-  public friends: string[] = [];
+  public friends: FriendType[] = [];
 
   /** Returns the full name. */
   public get name(): string {
@@ -33,18 +40,12 @@ export class Contact {
     firstname?: string | undefined,
     lastname?: string | undefined,
     birthday?: Date | undefined,
-    address?: {
-      street?: string | undefined,
-      number?: number | undefined,
-      zipCode?: number | undefined,
-      city?: string | undefined,
-      country?: string | undefined,
-    } | undefined,
+    address?: AddressType | undefined,
     tel?: string | undefined,
     email?: string | undefined,
     favorite?: boolean | undefined,
     rating?: number | undefined,
-    friends?: string[] | undefined,
+    friends?: FriendType[] | undefined,
   }) {
     this.gender = data?.gender;
     this.firstname = data?.firstname;
@@ -173,8 +174,8 @@ export class Contact {
       new PropertyConfiguration({
         propertyName: 'friends',
         label: 'Friends',
-        // TODO: newArrayItemFunction: () => ({ name: undefined, type: undefined }),
         isArray: true,
+        newArrayItemFunction: () => ({ name: undefined, type: undefined }),
         editable: true,
         inputGroup: [[
           new PropertyConfiguration({
@@ -187,7 +188,7 @@ export class Contact {
             propertyName: 'type',
             label: 'Type',
             propertyType: 'select',
-            dataSource: ['Brother', 'Sister', 'Dog'],
+            dataSource: ['Brother', 'Sister', 'Friend', 'Dog'],
             editable: true,
           }),
         ]],
@@ -203,7 +204,10 @@ export class Contact {
       email: 'snoopy@peanuts.com',
       favorite: true,
       rating: 5,
-      friends: ['Woodstock'],
+      friends: [
+        { name: 'Woodstock', type: 'Friend' },
+        { name: 'Charlie Brown' },
+      ],
     });
   }
 
@@ -217,7 +221,10 @@ export class Contact {
       email: 'charlie.brown@peanuts.com',
       favorite: true,
       rating: 4,
-      friends: ['Snoopy', 'Sally'],
+      friends: [
+        { name: 'Snoopy', type: 'Dog' },
+        { name: 'Sally', type: 'Sister' },
+      ],
     });
   }
 
@@ -231,7 +238,10 @@ export class Contact {
       email: 'sally.brown@peanuts.com',
       favorite: false,
       rating: 3,
-      friends: ['Charlie', 'Snoopy'],
+      friends: [
+        { name: 'Charlie', type: 'Brother' },
+        { name: 'Snoopy', type: 'Dog' },
+      ],
     });
   }
 
