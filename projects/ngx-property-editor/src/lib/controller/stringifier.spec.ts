@@ -169,10 +169,20 @@ describe('Stringifier', () => {
   it('arrayToString', () => {
     expect(Stringifier.arrayToString(undefined as any)).toEqual('');
     expect(Stringifier.arrayToString({} as any)).toEqual('');
-    expect(Stringifier.arrayToString([])).toEqual('[]');
-    expect(Stringifier.arrayToString([1])).toEqual('[1]');
-    expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('[1, abc, -5, {}]');
-    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]])).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
+    expect(Stringifier.arrayToString({ test: 'object' } as any)).toEqual('');
+
+    expect(Stringifier.arrayToString([])).toEqual('');
+    expect(Stringifier.arrayToString([1])).toEqual('1');
+    expect(Stringifier.arrayToString([1, 2, 3])).toEqual('1, 2, 3');
+    expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('1, abc, -5, {}');
+    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]])).toEqual('01.01.2023, Ja, 100, [1, 2, 3]');
+
+    expect(Stringifier.arrayToString([], false)).toEqual('');
+    expect(Stringifier.arrayToString([], true)).toEqual('[]');
+    expect(Stringifier.arrayToString([1], true)).toEqual('[1]');
+    expect(Stringifier.arrayToString([1, 2, 3], true)).toEqual('[1, 2, 3]');
+    expect(Stringifier.arrayToString([1, 'abc', -5, {}], true)).toEqual('[1, abc, -5, {}]');
+    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]], true)).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
   });
 
   // region Arrays
@@ -183,6 +193,12 @@ describe('Stringifier', () => {
     expect(Stringifier.objectToString({})).toEqual('{}');
     expect(Stringifier.objectToString(new Object())).toEqual('{}');
     expect(Stringifier.objectToString({ test: 123, string: 'foo' })).toEqual('{"test":123,"string":"foo"}');
+
+    expect(Stringifier.objectToString({ test: 123, string: 'foo' }, false)).toEqual('{"test":123,"string":"foo"}');
+    expect(Stringifier.objectToString({
+      test: 123,
+      string: 'foo',
+    }, true)).toEqual('{\n  "test": 123,\n  "string": "foo"\n}');
 
     class TestObject {
       property: string;
@@ -231,11 +247,18 @@ describe('Stringifier', () => {
 
     expect(Stringifier.anyTypeToString(new File([], 'filename.txt'))).toEqual('filename.txt');
 
-    expect(Stringifier.anyTypeToString([])).toEqual('[]');
-    expect(Stringifier.anyTypeToString([100])).toEqual('[100]');
-    expect(Stringifier.anyTypeToString(['a', 'b', 'C'])).toEqual('[a, b, C]');
+    expect(Stringifier.anyTypeToString([])).toEqual('');
+    expect(Stringifier.anyTypeToString([], true)).toEqual('[]');
+    expect(Stringifier.anyTypeToString([100])).toEqual('100');
+    expect(Stringifier.anyTypeToString(['a', 'b', 'C'])).toEqual('a, b, C');
+    expect(Stringifier.anyTypeToString(['a', 'b', 'C'], false)).toEqual('a, b, C');
+    expect(Stringifier.anyTypeToString(['a', 'b', 'C'], true)).toEqual('[a, b, C]');
+    expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], false)).toEqual('a, b, [c, d, e]');
+    expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], true)).toEqual('[a, b, [c, d, e]]');
 
     expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');
+    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, false)).toEqual('{"anyObject":"foo","number":5}');
+    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, true)).toEqual('{\n  "anyObject": "foo",\n  "number": 5\n}');
   });
 
   // endregion

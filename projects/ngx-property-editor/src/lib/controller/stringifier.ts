@@ -360,12 +360,17 @@ export module Stringifier {
   /**
    * Converts an array to a string.
    * @param array An array. If the given value is not an array, an empty string is returned.
-   * @returns A string representation of the given array like '[item 1, item 2, item 3]'.
+   * @param addBrackets If true, brackets are added around the array content like '[item 1, item 2, item 3]'.
+   * @returns A string representation of the given array like 'item 1, item 2, item 3'.
    */
-  export function arrayToString(array: any[]): string {
+  export function arrayToString(array: any[], addBrackets: boolean = false): string {
     if (!Array.isArray(array)) return '';
 
-    return `[${array.map(item => anyTypeToString(item)).join(', ')}]`;
+    const stringValue: string = array.map(item => anyTypeToString(item, true)).join(', ');
+    if (addBrackets)
+      return `[${stringValue}]`;
+    else
+      return stringValue;
   }
 
   // endregion
@@ -378,9 +383,10 @@ export module Stringifier {
    * the result of that function is returned. Otherwise, the object is stringified using JSON.
    * If that fails the default `toString` function is used as fallback (something like '[object Object]').
    * @param object An object.
+   * @param addSpaces If true, the JSON format is returned with spaces and line breaks.
    * @returns A string representation of the given object, possibly using JSON format.
    */
-  export function objectToString(object: any): string {
+  export function objectToString(object: any, addSpaces: boolean = false): string {
     const defaultString: string = toString.call(object);
 
     // Return result of a custom `toString` function, if it differs from the default `toString` function
@@ -393,7 +399,7 @@ export module Stringifier {
 
     // Return JSON string if possible
     try {
-      const jsonString: string | undefined = JSON.stringify(object);
+      const jsonString: string | undefined = JSON.stringify(object, undefined, addSpaces ? 2 : undefined);
       if (jsonString !== undefined)
         return jsonString;
     } catch {
@@ -411,9 +417,13 @@ export module Stringifier {
    * for the given value type, it is used to convert the value to a string.
    * Otherwise, the default `toString()` function is used.
    * @param value Any value.
+   * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
+   * @param addSpaces If true, the JSON format of object values is returned with spaces and line breaks.
    * @returns A string representation of the given value.
    */
-  export function anyTypeToString(value: any): string {
+  export function anyTypeToString(value: any,
+                                  addBrackets: boolean = false,
+                                  addSpaces: boolean = false): string {
     if (value == undefined) {
       return '';
     }
@@ -430,17 +440,17 @@ export module Stringifier {
       case 'string':
         return value;
       case 'function':
-        return anyTypeToString(value());
+        return anyTypeToString(value(), addBrackets, addSpaces);
 
       case 'object':
         if (Array.isArray(value)) {
-          return arrayToString(value);
+          return arrayToString(value, addBrackets);
         } else if (value instanceof Date) {
           return dateToString(value);
         } else if (value instanceof File) {
           return value.name;
         }
-        return objectToString(value);
+        return objectToString(value, addSpaces);
     }
 
     return value.toString();
