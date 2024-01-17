@@ -1,3 +1,5 @@
+'use strict';
+
 import { $localize } from '@angular/localize/init';
 
 export module Stringifier {
@@ -368,6 +370,40 @@ export module Stringifier {
 
   // endregion
 
+  // region Objects
+
+  /**
+   * Converts any object to a string.
+   * If the object has a custom `toString` function which returns something different to '[object ...]',
+   * the result of that function is returned. Otherwise, the object is stringified using JSON.
+   * If that fails the default `toString` function is used as fallback (something like '[object Object]').
+   * @param object An object.
+   * @returns A string representation of the given object, possibly using JSON format.
+   */
+  export function objectToString(object: any): string {
+    const defaultString: string = toString.call(object);
+
+    // Return result of a custom `toString` function, if it differs from the default `toString` function
+    try {
+      const customString: string | undefined = object?.toString();
+      if (customString !== undefined && defaultString !== customString)
+        return customString;
+    } catch {
+    }
+
+    // Return JSON string if possible
+    try {
+      const jsonString: string | undefined = JSON.stringify(object);
+      if (jsonString !== undefined)
+        return jsonString;
+    } catch {
+    }
+
+    return defaultString;
+  }
+
+  // endregion
+
   // region Any Type
 
   /**
@@ -404,7 +440,7 @@ export module Stringifier {
         } else if (value instanceof File) {
           return value.name;
         }
-        return JSON.stringify(value);
+        return objectToString(value);
     }
 
     return value.toString();

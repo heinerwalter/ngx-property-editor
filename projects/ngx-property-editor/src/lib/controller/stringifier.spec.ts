@@ -171,8 +171,32 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString({} as any)).toEqual('');
     expect(Stringifier.arrayToString([])).toEqual('[]');
     expect(Stringifier.arrayToString([1])).toEqual('[1]');
-    expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('[1, abc, -5, [object Object]]');
+    expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('[1, abc, -5, {}]');
     expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]])).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
+  });
+
+  // region Arrays
+
+  it('objectToString', () => {
+    expect(Stringifier.objectToString(undefined)).toEqual('[object Undefined]');
+    expect(Stringifier.objectToString(null)).toEqual('null');
+    expect(Stringifier.objectToString({})).toEqual('{}');
+    expect(Stringifier.objectToString(new Object())).toEqual('{}');
+    expect(Stringifier.objectToString({ test: 123, string: 'foo' })).toEqual('{"test":123,"string":"foo"}');
+
+    class TestObject {
+      property: string;
+
+      constructor(property: string) {
+        this.property = property;
+      }
+
+      toString(): string {
+        return `Custom toString function: ${this.property}`;
+      }
+    }
+
+    expect(Stringifier.objectToString(new TestObject('foo'))).toEqual('Custom toString function: foo');
   });
 
   // endregion
