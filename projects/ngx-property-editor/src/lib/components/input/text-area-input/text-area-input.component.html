@@ -19,7 +19,7 @@
             [disabled]="disabled"
             [readonly]="readonly"
             [required]="required"
-            [rows]="height || 5"
+            [rows]="height || defaultHeight"
             [(ngModel)]="value"
             (ngModelChange)="emitValueChange($event)">
   </textarea>

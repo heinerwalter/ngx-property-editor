@@ -8,6 +8,7 @@ import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from '
 
 import { BooleanInputComponent } from './boolean-input/boolean-input.component';
 import { CheckboxSelectInputComponent } from './checkbox-select-input/checkbox-select-input.component';
+import { CodeInputComponent } from './code-input/code-input.component';
 import { DateInputComponent } from './date-input/date-input.component';
 import { FileInputComponent } from './file-input/file-input.component';
 import { NumberInputComponent } from './number-input/number-input.component';
@@ -30,6 +31,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
 
   BooleanInputComponent,
   CheckboxSelectInputComponent,
+  CodeInputComponent,
   DateInputComponent,
   FileInputComponent,
   NumberInputComponent,

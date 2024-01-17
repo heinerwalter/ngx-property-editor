@@ -44,6 +44,8 @@
 
 </pe-property-view-and-edit>
 
-<pe-form-group label="JSON">
-  <samp style="display: block; max-width: 100%; white-space: pre; overflow-x: auto;">{{dataAsJson}}</samp>
-</pe-form-group>
+<pe-code-input label="JSON"
+               [value]="dataAsJson"
+               [readonly]="true"
+               [disabled]="true">
+</pe-code-input>
