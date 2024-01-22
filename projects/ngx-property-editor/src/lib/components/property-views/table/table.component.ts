@@ -42,7 +42,7 @@ export class TableComponent {
    * @see TableCell.content
    */
   protected getContent(cell: TableCell): string {
-    return Stringifier.anyTypeToString(cell.content);
+    return Stringifier.anyTypeToString(cell?.content);
   }
 
 }

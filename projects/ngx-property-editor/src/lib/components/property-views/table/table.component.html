@@ -19,13 +19,15 @@
 
         <ng-container *ngIf="cell.style == 'header'">
           <th>
-            <ng-container *ngTemplateOutlet="cellTemplate; context: {cell: cell}"></ng-container>
+            <ng-container [ngTemplateOutlet]="cellTemplate"
+                          [ngTemplateOutletContext]="{cell: cell}"></ng-container>
           </th>
         </ng-container>
 
         <ng-container *ngIf="cell.style == 'data'">
           <td>
-            <ng-container *ngTemplateOutlet="cellTemplate; context: {cell: cell}"></ng-container>
+            <ng-container [ngTemplateOutlet]="cellTemplate"
+                          [ngTemplateOutletContext]="{cell: cell}"></ng-container>
           </td>
         </ng-container>
 
@@ -39,7 +41,7 @@
 </table>
 
 
-<ng-template #cellTemplate let-cell>
+<ng-template #cellTemplate let-cell="cell">
 
   <span class="preserve-new-line">{{getContent(cell)}}</span>
 
