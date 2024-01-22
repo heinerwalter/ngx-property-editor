@@ -99,6 +99,11 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** If defined, a goto-icon with this link is appended to the displayed value. */
   routerLink?: ValueOrFunctionType<any[] | string | undefined>,
+  /**
+   * If true, the `routerLink` is considered as pointing to an external web page.
+   * In that case `routerLink` must be (evaluating to) a string.
+   */
+  routerLinkIsExternal?: ValueOrFunctionType<boolean | undefined>,
   /** Optional tooltip of the goto-icon (see `routerLink`). */
   routerLinkTooltip?: ValueOrFunctionType<string | undefined>,
 
@@ -154,6 +159,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public required?: ValueOrFunctionType<boolean>;
 
   public routerLink?: ValueOrFunctionType<any[] | string | undefined>;
+  public routerLinkIsExternal?: ValueOrFunctionType<boolean | undefined>;
   public routerLinkTooltip?: ValueOrFunctionType<string | undefined>;
 
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>;
@@ -302,6 +308,18 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
       return this.routerLink(data);
     } else {
       return this.routerLink;
+    }
+  }
+
+  /**
+   * Evaluates the `routerLinkIsExternal` configuration.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   */
+  public getRouterLinkIsExternal(data: any | undefined): boolean | undefined {
+    if (typeof this.routerLinkIsExternal === 'function') {
+      return this.routerLinkIsExternal(data);
+    } else {
+      return this.routerLinkIsExternal;
     }
   }
 

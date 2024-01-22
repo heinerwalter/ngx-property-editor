@@ -19,23 +19,13 @@
 
         <ng-container *ngIf="cell.style == 'header'">
           <th>
-            <span class="preserve-new-line">{{getContent(cell)}}</span>
-            <pe-goto-icon *ngIf="cell.routerLink"
-                          [paddingLeft]="true"
-                          [routerLink]="cell.routerLink"
-                          [tooltip]="cell.routerLinkTooltip || ''">
-            </pe-goto-icon>
+            <ng-container *ngTemplateOutlet="cellTemplate; context: {cell: cell}"></ng-container>
           </th>
         </ng-container>
 
         <ng-container *ngIf="cell.style == 'data'">
           <td>
-            <span class="preserve-new-line">{{getContent(cell)}}</span>
-            <pe-goto-icon *ngIf="cell.routerLink"
-                          [paddingLeft]="true"
-                          [routerLink]="cell.routerLink"
-                          [tooltip]="cell.routerLinkTooltip || ''">
-            </pe-goto-icon>
+            <ng-container *ngTemplateOutlet="cellTemplate; context: {cell: cell}"></ng-container>
           </td>
         </ng-container>
 
@@ -47,3 +37,27 @@
   </tbody>
 
 </table>
+
+
+<ng-template #cellTemplate let-cell>
+
+  <span class="preserve-new-line">{{getContent(cell)}}</span>
+
+  <ng-container *ngIf="cell.routerLink">
+    <ng-container *ngIf="!cell.routerLinkIsExternal">
+      <pe-goto-icon [paddingLeft]="true"
+                    [routerLink]="cell.routerLink"
+                    [tooltip]="cell.routerLinkTooltip || ''">
+      </pe-goto-icon>
+    </ng-container>
+    <ng-container *ngIf="cell.routerLinkIsExternal">
+      <a [href]="cell.routerLink"
+         target="_blank"
+         [ngbTooltip]="cell.routerLinkTooltip || ''">
+        <pe-goto-icon [paddingLeft]="true">
+        </pe-goto-icon>
+      </a>
+    </ng-container>
+  </ng-container>
+
+</ng-template>

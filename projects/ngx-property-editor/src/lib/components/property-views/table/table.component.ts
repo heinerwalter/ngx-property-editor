@@ -37,7 +37,11 @@ export class TableComponent {
    */
   @Input() public data: TableData = [];
 
-  protected getContent(cell: TableCell): any {
+  /**
+   * Converts the `content` of a table cell to string.
+   * @see TableCell.content
+   */
+  protected getContent(cell: TableCell): string {
     return Stringifier.anyTypeToString(cell.content);
   }
 

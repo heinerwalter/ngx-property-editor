@@ -7,6 +7,11 @@ export type TableCell = {
   style: TableCellStyle,
   /** If defined, a goto-icon with this link is appended to the cell content. */
   routerLink?: any[] | string | undefined,
+  /**
+   * If true, the `routerLink` is considered as pointing to an external web page.
+   * In that case `routerLink` must be a string.
+   */
+  routerLinkIsExternal?: boolean | undefined,
   /** Optional tooltip of the goto-icon (see `routerLink`). */
   routerLinkTooltip?: string | undefined,
 };

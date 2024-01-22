@@ -92,6 +92,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
         // Get optional link
         const routerLink: any[] | string | undefined = property.getRouterLink(this.data);
+        const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data);
         const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data);
 
         // If propertyValue is a non-empty array, create one table data entry per item
@@ -117,6 +118,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
             content: propertyValue,
             style: 'data',
             routerLink: routerLink,
+            routerLinkIsExternal: routerLinkIsExternal,
             routerLinkTooltip: routerLinkTooltip,
           },
         ]);
