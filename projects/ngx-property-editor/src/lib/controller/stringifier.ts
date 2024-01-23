@@ -6,6 +6,12 @@ export module Stringifier {
 
   // region Booleans
 
+  // Localized human-readable string representations of boolean values used by the function booleanToString:
+  const localizedBooleanTrue: string = $localize`:@@true:true`;
+  const localizedBooleanFalse: string = $localize`:@@false:false`;
+  const localizedBooleanYes: string = $localize`:@@yes:Ja`;
+  const localizedBooleanNo: string = $localize`:@@no:Nein`;
+
   /**
    * Converts a boolean value to a human-readable string.
    * @param value A boolean value. If undefined (or any other type but boolean), an empty string is returned.
@@ -19,12 +25,33 @@ export module Stringifier {
 
     switch (type) {
       case 'true-false':
-        return value ? $localize`:@@true:true` : $localize`:@@false:false`;
+        return value ? localizedBooleanTrue : localizedBooleanFalse;
       case 'yes-no':
-        return value ? $localize`:@@yes:Ja` : $localize`:@@no:Nein`;
+        return value ? localizedBooleanYes : localizedBooleanNo;
     }
 
     return '';
+  }
+
+  /**
+   * Converts a string value to a boolean.
+   * @param value A string value which hopefully represents a boolean.
+   *              Some examples of strings which are evaluated to true:
+   *              'true', 'yes', '1' or localized versions of it.
+   *              Everything else is evaluated to false.
+   */
+  export function stringToBoolean(value: string | undefined): boolean {
+    if (!value) return false;
+
+    switch (value.toString().trim().toLowerCase()) {
+      case 'true':
+      case 'yes':
+      case '1':
+      case localizedBooleanTrue.toLowerCase():
+      case localizedBooleanYes.toLowerCase():
+        return true;
+    }
+    return false;
   }
 
   // endregion

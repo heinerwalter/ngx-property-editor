@@ -44,8 +44,11 @@
 
 </pe-property-view-and-edit>
 
-<pe-code-input label="JSON"
-               [value]="dataAsJson"
-               [readonly]="true"
-               [disabled]="true">
-</pe-code-input>
+<pe-collapse label="JSON Data"
+             id="json-data-collapse">
+  <pe-code-input [noFormGroup]="true"
+                 [value]="dataAsJson"
+                 [readonly]="true"
+                 [disabled]="true">
+  </pe-code-input>
+</pe-collapse>

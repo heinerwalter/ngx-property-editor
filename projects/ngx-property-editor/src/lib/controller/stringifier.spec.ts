@@ -23,6 +23,23 @@ describe('Stringifier', () => {
     expect(Stringifier.booleanToString(undefined, 'yes-no')).toEqual('');
   });
 
+  it('stringToBoolean', () => {
+    expect(Stringifier.stringToBoolean('true')).toEqual(true);
+    expect(Stringifier.stringToBoolean('yes')).toEqual(true);
+    expect(Stringifier.stringToBoolean('1')).toEqual(true);
+    expect(Stringifier.stringToBoolean('ja')).toEqual(true);
+    expect(Stringifier.stringToBoolean('Ja')).toEqual(true);
+    expect(Stringifier.stringToBoolean('trUe')).toEqual(true);
+    expect(Stringifier.stringToBoolean(' true   ')).toEqual(true);
+
+    expect(Stringifier.stringToBoolean('false')).toEqual(false);
+    expect(Stringifier.stringToBoolean('no')).toEqual(false);
+    expect(Stringifier.stringToBoolean('nein')).toEqual(false);
+    expect(Stringifier.stringToBoolean('')).toEqual(false);
+    expect(Stringifier.stringToBoolean(undefined)).toEqual(false);
+    expect(Stringifier.stringToBoolean('foo')).toEqual(false);
+  });
+
   // endregion
 
   // region Dates

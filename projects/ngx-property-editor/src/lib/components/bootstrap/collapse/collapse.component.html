@@ -1,0 +1,8 @@
+<pe-accordion [id]="_id"
+              [disableSaveLastActiveItem]="true"
+              [allCollapsedInitially]="isCollapsed"
+              (currentItemChange)="onAccordionCurrentItemChange($event)">
+  <pe-accordion-item [label]="label">
+    <ng-content></ng-content>
+  </pe-accordion-item>
+</pe-accordion>

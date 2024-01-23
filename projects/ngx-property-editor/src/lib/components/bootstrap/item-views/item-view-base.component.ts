@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ItemDefinition, ItemViewItemBaseComponent } from './item-view-item-base.component';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -48,6 +48,12 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
   protected currentItemIndex: number = 0;
   /** Currently viewed item. */
   protected currentItem: ItemDefinition | undefined = undefined;
+
+  /**
+   * This event is emitted, when the currently viewed item has changed.
+   * The item definition of the new currently viewed item is passed as event argument.
+   */
+  @Output() public readonly currentItemChange: EventEmitter<ItemDefinition> = new EventEmitter<ItemDefinition>();
 
   /**
    * This property is set to true, when `ngAfterViewInit` was called.
@@ -156,6 +162,8 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
 
     this.currentItem = item;
     this.currentItemIndex = itemIndex;
+
+    this.currentItemChange.emit(item);
   }
 
 }
