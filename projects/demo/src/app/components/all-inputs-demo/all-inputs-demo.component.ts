@@ -43,6 +43,7 @@ export class AllInputsDemoComponent {
     selectSeparateRadio: undefined as any | undefined,
     selectCheckbox: [] as any[] | undefined,
     selectColor: undefined as string | undefined,
+    selectIcon: undefined as string | undefined,
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
     array: ['Line 1', 'Line 2', 'Not line 3'] as any[],

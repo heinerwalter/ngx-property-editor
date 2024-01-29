@@ -5,7 +5,7 @@ import { InputBaseWithValue } from '../../input-base';
  * This component provides a simplified select field for selecting color classes.
  * By default, the Bootstrap background colors (primary, secondary, success, danger, etc.)
  * are provided as data source. The default colors can be changed using the input property
- * `colorsDataSource`.
+ * `colorDataSource`.
  */
 @Component({
   selector: 'pe-color-select-input',
@@ -20,7 +20,7 @@ export class ColorSelectInputComponent extends InputBaseWithValue<string> implem
   /**
    * An array of selectable color classes.
    */
-  @Input() public colorsDataSource: string[] = [
+  @Input() public colorDataSource: string[] = [
     'primary',
     'secondary',
     'success',
@@ -32,7 +32,7 @@ export class ColorSelectInputComponent extends InputBaseWithValue<string> implem
   ];
 
   /**
-   * An optional prefix added to the colors from the `colorsDataSource` property
+   * An optional prefix added to the colors from the `colorDataSource` property
    * to create a CSS class which will be added to the select items.
    */
   @Input() colorClassPrefix: string | undefined = 'text-bg-';
@@ -48,16 +48,16 @@ export class ColorSelectInputComponent extends InputBaseWithValue<string> implem
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('colorsDataSource')) {
+    if (changes.hasOwnProperty('colorDataSource')) {
       this.updateDataSource();
     }
   }
 
   /**
-   * This function updates the `dataSource` property from the `colorsDataSource`.
+   * This function updates the `dataSource` property from the `colorDataSource`.
    */
   private updateDataSource(): void {
-    this.dataSource = this.colorsDataSource
+    this.dataSource = this.colorDataSource
       .map(color => ({
         color: color,
         class: (this.colorClassPrefix || '') + color,

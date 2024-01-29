@@ -195,6 +195,14 @@
   </pe-color-select-input>
 </demo-input-demo-wrapper>
 
+<demo-input-demo-wrapper [value]="values.selectIcon">
+  <pe-icon-select-input label="Icon selection"
+                         infoIconTooltip="Component: <pe-icon-select-input>"
+                         [(value)]="values.selectIcon"
+                         (valueChange)="onInputValueChange('icon select', $event)">
+  </pe-icon-select-input>
+</demo-input-demo-wrapper>
+
 <h4>Groups</h4>
 <demo-input-demo-wrapper [value]="values.array">
   <pe-array-form-group label="Array with custom input elements (text input)"

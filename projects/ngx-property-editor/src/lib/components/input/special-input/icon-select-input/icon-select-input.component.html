@@ -1,0 +1,23 @@
+<pe-select-input [id]="id"
+                 [name]="name"
+                 [label]="label"
+                 [placeholder]="placeholder"
+                 [inlineLabel]="inlineLabel"
+                 [infoIconTooltip]="infoIconTooltip"
+                 [helpText]="helpText"
+                 [disabled]="disabled"
+                 [readonly]="readonly"
+                 [required]="required"
+                 [noFormGroup]="noFormGroup"
+                 [flexGrow]="flexGrow"
+
+                 [(value)]="value"
+                 (valueChange)="emitValueChange($event)"
+
+                 [dataSource]="dataSource"
+                 valuePropertyName="icon"
+                 displayPropertyName="icon"
+
+                 [multiple]="false"
+                 [allowEmpty]="allowEmpty">
+</pe-select-input>

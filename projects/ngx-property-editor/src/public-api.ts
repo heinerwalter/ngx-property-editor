@@ -45,6 +45,7 @@ export * from './lib/components/input/text-area-input/text-area-input.component'
 export * from './lib/components/input/text-input/text-input.component';
 // - special input
 export * from './lib/components/input/special-input/color-select-input/color-select-input.component';
+export * from './lib/components/input/special-input/icon-select-input/icon-select-input.component';
 // - property views
 export * from './lib/components/property-views/property-configuration';
 export * from './lib/components/property-views/table-configuration';
