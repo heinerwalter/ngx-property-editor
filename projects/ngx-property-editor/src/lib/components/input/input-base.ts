@@ -102,17 +102,21 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
   /**
    * Evaluates the `valuePropertyName` on the given data source item.
    * @param item An item of the `dataSource`.
+   * @param valuePropertyName Optional: If not empty, use this value property name
+   *                          instead of the class property `valuePropertyName`.
    */
-  public evaluateValuePropertyName(item: any): any {
-    return PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
+  public evaluateValuePropertyName(item: any, valuePropertyName: string | undefined = undefined): any {
+    return PEGlobalFunctions.evaluateValuePropertyName(valuePropertyName || this.valuePropertyName, item);
   }
 
   /**
    * Evaluates the `displayPropertyName` on the given data source item.
    * @param item An item of the `dataSource`.
+   * @param displayPropertyName Optional: If not empty, use this display property name
+   *                            instead of the class property `displayPropertyName`.
    */
-  public evaluateDisplayPropertyName(item: any): string {
-    return PEGlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item);
+  public evaluateDisplayPropertyName(item: any, displayPropertyName: string | undefined = undefined): string {
+    return PEGlobalFunctions.evaluateDisplayPropertyName(displayPropertyName || this.displayPropertyName, item);
   }
 
 }

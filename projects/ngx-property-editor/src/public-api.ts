@@ -43,13 +43,16 @@ export * from './lib/components/input/select-input/select-input.component';
 export * from './lib/components/input/single-radio-input/single-radio-input.component';
 export * from './lib/components/input/text-area-input/text-area-input.component';
 export * from './lib/components/input/text-input/text-input.component';
+// - special input
+export * from './lib/components/input/special-input/color-select-input/color-select-input.component';
 // - property views
 export * from './lib/components/property-views/property-configuration';
 export * from './lib/components/property-views/table-configuration';
 export * from './lib/components/property-views/property-editor/property-editor.component';
 export * from './lib/components/property-views/property-input/property-input.component';
 export * from './lib/components/property-views/property-input-with-array/property-input-with-array.component';
-export * from './lib/components/property-views/property-input-with-input-group/property-input-with-input-group.component';
+export *
+  from './lib/components/property-views/property-input-with-input-group/property-input-with-input-group.component';
 export * from './lib/components/property-views/property-table/property-table.component';
 export * from './lib/components/property-views/property-view-and-edit/property-view-and-edit.component';
 export * from './lib/components/property-views/table/table.component';

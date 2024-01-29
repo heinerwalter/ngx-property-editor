@@ -1,0 +1,25 @@
+<pe-select-input [id]="id"
+                 [name]="name"
+                 [label]="label"
+                 [placeholder]="placeholder"
+                 [inlineLabel]="inlineLabel"
+                 [infoIconTooltip]="infoIconTooltip"
+                 [helpText]="helpText"
+                 [disabled]="disabled"
+                 [readonly]="readonly"
+                 [required]="required"
+                 [noFormGroup]="noFormGroup"
+                 [flexGrow]="flexGrow"
+
+                 [(value)]="value"
+                 (valueChange)="emitValueChange($event)"
+
+                 [dataSource]="dataSource"
+                 valuePropertyName="color"
+                 displayPropertyName="color"
+
+                 [multiple]="false"
+                 [allowEmpty]="allowEmpty"
+                 [selectClass]="value == undefined ? undefined : (this.colorClassPrefix || '') + value"
+                 optionClassPropertyName="class">
+</pe-select-input>

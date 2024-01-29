@@ -6,6 +6,8 @@ import { InputGroupComponent } from './input-group/input-group.component';
 
 import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from './input-base';
 
+import { specialInputComponents } from './special-input/special-input.components';
+
 import { BooleanInputComponent } from './boolean-input/boolean-input.component';
 import { CheckboxSelectInputComponent } from './checkbox-select-input/checkbox-select-input.component';
 import { CodeInputComponent } from './code-input/code-input.component';
@@ -28,6 +30,8 @@ export const inputComponents: Array<Type<any> | any[]> = [
   InputBase,
   InputBaseWithValue,
   InputBaseWithValueAndDataSource,
+
+  ...specialInputComponents,
 
   BooleanInputComponent,
   CheckboxSelectInputComponent,

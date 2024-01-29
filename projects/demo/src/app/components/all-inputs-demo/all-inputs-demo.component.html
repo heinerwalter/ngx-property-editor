@@ -165,7 +165,7 @@
   </pe-checkbox-select-input>
 </demo-input-demo-wrapper>
 
-<h4>Special Types</h4>
+<h4>Rating</h4>
 <demo-input-demo-wrapper [value]="values.rating">
   <pe-rating-input label="Rating input"
                    infoIconTooltip="Component: <pe-rating-input>"
@@ -184,6 +184,15 @@
                    [(value)]="values.ratingCustom"
                    (valueChange)="onInputValueChange('rating (with custom icons)', $event)">
   </pe-rating-input>
+</demo-input-demo-wrapper>
+
+<h4>Special Types</h4>
+<demo-input-demo-wrapper [value]="values.selectColor">
+  <pe-color-select-input label="Color selection"
+                         infoIconTooltip="Component: <pe-color-select-input>"
+                         [(value)]="values.selectColor"
+                         (valueChange)="onInputValueChange('color select', $event)">
+  </pe-color-select-input>
 </demo-input-demo-wrapper>
 
 <h4>Groups</h4>
