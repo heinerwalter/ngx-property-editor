@@ -169,6 +169,8 @@ describe('Stringifier', () => {
   // region Strings
 
   it('stringToCamelCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringToCamelCase(undefined)).toBeUndefined();
     expect(Stringifier.stringToCamelCase('')).toEqual('');
     expect(Stringifier.stringToCamelCase(' ')).toEqual('');
     expect(Stringifier.stringToCamelCase('abc')).toEqual('Abc');
@@ -177,6 +179,23 @@ describe('Stringifier', () => {
     expect(Stringifier.stringToCamelCase('My string with spaces')).toEqual('My String With Spaces');
     expect(Stringifier.stringToCamelCase('My string with spaces', false)).toEqual('My String With Spaces');
     expect(Stringifier.stringToCamelCase('My string with spaces', true)).toEqual('MyStringWithSpaces');
+  });
+
+  it('stringFromCamelCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringFromCamelCase(undefined)).toBeUndefined();
+    expect(Stringifier.stringFromCamelCase('')).toEqual('');
+    expect(Stringifier.stringFromCamelCase(' ')).toEqual('');
+    expect(Stringifier.stringFromCamelCase('abc')).toEqual('abc');
+    expect(Stringifier.stringFromCamelCase(' abc   ')).toEqual('abc');
+    expect(Stringifier.stringFromCamelCase(' abC   ')).toEqual('ab c');
+    expect(Stringifier.stringFromCamelCase(' Abc   ')).toEqual('abc');
+    expect(Stringifier.stringFromCamelCase('Abc')).toEqual('abc');
+    expect(Stringifier.stringFromCamelCase('MyStringWithCamelCase')).toEqual('my string with camel case');
+    expect(Stringifier.stringFromCamelCase('myStringWithCamelCase')).toEqual('my string with camel case');
+    expect(Stringifier.stringFromCamelCase('MyString with CamelCase')).toEqual('my string with camel case');
+    expect(Stringifier.stringFromCamelCase('MyStringWithCAMELCase')).toEqual('my string with c a m e l case');
+    expect(Stringifier.stringFromCamelCase('MyStringWith  C     amelCase')).toEqual('my string with c amel case');
   });
 
   // endregion

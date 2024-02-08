@@ -371,13 +371,33 @@ export module Stringifier {
    * everything else as lower case).
    * @param str Input string.
    * @param removeSpaces If true, all spaces are removed (e.g. 'camel case' -> 'CamelCase').
-   * @returns The input string without spaces but in camel case (e.g. 'camel case' -> 'CamelCase').
+   * @returns The input string in camel case (e.g. 'camel case' -> 'CamelCase').
    */
   export function stringToCamelCase(str: string, removeSpaces: boolean = false): string {
     if (!str) return str;
     const words: string[] = str.split(' ').filter(s => !!s);
     return words.map(word => word[0].toUpperCase() + word.substring(1).toLowerCase())
       .join(removeSpaces ? '' : ' ');
+  }
+
+  /**
+   * Converts the given camel case string without whitespaces back to a text with whitespaces.
+   * In front of every upper-case character a whitespace is inserted.
+   * All characters in the returned string are lower-case.
+   * @param str Input string (camel case).
+   * @returns The input string with whitespaces in front of each former upper-case character
+   *          (e.g. 'CamelCase' -> 'camel case').
+   */
+  export function stringFromCamelCase(str: string): string {
+    if (!str) return str;
+
+    const regExp: RegExp = /[A-Z]?[^A-Z ]*/g;
+    const match = str.matchAll(regExp);
+    const words: string[] = [...match]
+      .map(match => match[0].trim().toLowerCase())
+      .filter(s => !!s);
+
+    return words.join(' ');
   }
 
   // endregion
