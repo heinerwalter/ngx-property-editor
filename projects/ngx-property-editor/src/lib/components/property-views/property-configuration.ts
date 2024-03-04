@@ -1,3 +1,5 @@
+import { PEGlobalFunctions } from '../../controller/pe-global-functions';
+
 export type PropertyType =
 /** Boolean (true/false). */
   'boolean' |
@@ -200,6 +202,41 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
       return this.evaluateNestedPropertyName('get', data, this.propertyName);
     } else {
       return undefined;
+    }
+  }
+
+  /**
+   * Gets the display value from the given data object.
+   * This function evaluates the `displayPropertyName` for select property types.
+   * For any other property type the result of this function is the same as `getValue()`.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @returns The display value.
+   */
+  public getDisplayValue(data: any | undefined): any {
+    // Get displayed value
+    let propertyValue: any = this.getValue(data);
+    if (propertyValue == undefined) return undefined;
+
+    // Evaluate data source, if property type is 'select'
+    if (this.propertyType == 'select' &&
+      this.valuePropertyName != this.displayPropertyName) {
+      const dataSource = this.getDataSource(data);
+
+      const evaluateDisplayPropertyName = (value: any): any => {
+        if (dataSource) {
+          const item = PEGlobalFunctions.getDataSourceItem(dataSource, this.valuePropertyName, value);
+          const itemValue = PEGlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item);
+          if (itemValue)
+            return itemValue;
+        }
+        return value;
+      };
+
+      if (this.isArray && Array.isArray(propertyValue)) {
+        return propertyValue.map(value => evaluateDisplayPropertyName(value));
+      }
+
+      return evaluateDisplayPropertyName(propertyValue);
     }
   }
 

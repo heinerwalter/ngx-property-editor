@@ -42,6 +42,10 @@ export class TableComponent {
    * @see TableCell.content
    */
   protected getContent(cell: TableCell): string {
+    if (Array.isArray(cell?.content))
+      return cell?.content
+        .map(item => Stringifier.anyTypeToString(item))
+        .join('\n');
     return Stringifier.anyTypeToString(cell?.content);
   }
 

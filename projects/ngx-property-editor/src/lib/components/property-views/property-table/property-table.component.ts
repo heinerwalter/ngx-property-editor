@@ -71,20 +71,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
-        let propertyValue: any = property.getValue(this.data);
+        let propertyValue: any = property.getDisplayValue(this.data);
         // Ignore empty values, if hideIfEmpty is true
-        if (propertyValue == undefined && property.hideIfEmpty) continue;
-        // Evaluate data source, if property type is 'select'
-        if (propertyValue != undefined &&
-          property.propertyType == 'select' &&
-          property.valuePropertyName != property.displayPropertyName) {
-          const dataSource = property.getDataSource(this.data);
-          if (dataSource) {
-            const item = PEGlobalFunctions.getDataSourceItem(dataSource, property.valuePropertyName, propertyValue);
-            const itemValue = PEGlobalFunctions.evaluateDisplayPropertyName(property.displayPropertyName, item);
-            if (itemValue)
-              propertyValue = itemValue;
-          }
+        if (property.hideIfEmpty) {
+          if (propertyValue == undefined) continue;
+          if (property.isArray && Array.isArray(propertyValue) && !propertyValue.length) continue;
         }
 
         // Get label
@@ -95,17 +86,10 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data);
         const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data);
 
-        // If propertyValue is a non-empty array, create one table data entry per item
-        const propertyValueItems: any[] = [];
+        // If propertyValue is an array, remove undefined items
         if (Array.isArray(propertyValue)) {
-          for (const item of propertyValue) {
-            if (item == undefined) continue;
-            propertyValueItems.push(item);
-          }
-          if (!propertyValueItems.length)
-            propertyValueItems.push(undefined);
-        } else {
-          propertyValueItems.push(propertyValue);
+          propertyValue = propertyValue
+            .filter(item => item != undefined);
         }
 
         // Crate table data entry
