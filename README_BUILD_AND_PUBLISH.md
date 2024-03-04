@@ -20,9 +20,9 @@ The script `npm run test-headless` only writes the test results to the console a
 
 ## Build and run demo application
 
-### Build demo application only
-
 Beside the library project this repository contains a demo application project which demonstrates all library features in a simple Angular web site.
+
+### Build demo application only
 
 Run `npm run build:demo` from the repository root to build the demo application.
 
