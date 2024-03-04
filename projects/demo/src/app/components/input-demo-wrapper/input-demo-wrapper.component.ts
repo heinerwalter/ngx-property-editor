@@ -23,7 +23,7 @@ export class InputDemoWrapperComponent {
   public get valueAsString(): string {
     if (this.value == undefined) return 'undefined';
 
-    const stringValue: string = Stringifier.anyTypeToString(this.value, true, true);
+    const stringValue: string = Stringifier.anyTypeToString(this.value, true, true, true);
 
     switch (this.valueModifier) {
       case 'quotes':

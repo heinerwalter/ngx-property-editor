@@ -431,9 +431,13 @@ export module Stringifier {
    * If that fails the default `toString` function is used as fallback (something like '[object Object]').
    * @param object An object.
    * @param addSpaces If true, the JSON format is returned with spaces and line breaks.
+   * @param undefinedAsFalse If true, any object property with the value `undefined` is stringified as `null`.
+   *                         If false, undefined properties are not stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given object, possibly using JSON format.
    */
-  export function objectToString(object: any, addSpaces: boolean = false): string {
+  export function objectToString(object: any,
+                                 addSpaces: boolean = false,
+                                 undefinedAsFalse: boolean = false): string {
     const defaultString: string = toString.call(object);
 
     // Return result of a custom `toString` function, if it differs from the default `toString` function
@@ -446,7 +450,9 @@ export module Stringifier {
 
     // Return JSON string if possible
     try {
-      const jsonString: string | undefined = JSON.stringify(object, undefined, addSpaces ? 2 : undefined);
+      const jsonString: string | undefined = JSON.stringify(object,
+        undefinedAsFalse ? ((key, value) => value === undefined ? null : value) : undefined,
+        addSpaces ? 2 : undefined);
       if (jsonString !== undefined)
         return jsonString;
     } catch {
@@ -466,11 +472,15 @@ export module Stringifier {
    * @param value Any value.
    * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
    * @param addSpaces If true, the JSON format of object values is returned with spaces and line breaks.
+   * @param undefinedAsFalse If true and an object value is stringified using JSON format, any of its properties with
+   *                         the value `undefined` is stringified as `null`. If false, undefined properties are not
+   *                         stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given value.
    */
   export function anyTypeToString(value: any,
                                   addBrackets: boolean = false,
-                                  addSpaces: boolean = false): string {
+                                  addSpaces: boolean = false,
+                                  undefinedAsFalse: boolean = false): string {
     if (value == undefined) {
       return '';
     }
@@ -487,7 +497,7 @@ export module Stringifier {
       case 'string':
         return value;
       case 'function':
-        return anyTypeToString(value(), addBrackets, addSpaces);
+        return anyTypeToString(value(), addBrackets, addSpaces, undefinedAsFalse);
 
       case 'object':
         if (Array.isArray(value)) {
@@ -497,7 +507,7 @@ export module Stringifier {
         } else if (value instanceof File) {
           return value.name;
         }
-        return objectToString(value, addSpaces);
+        return objectToString(value, addSpaces, undefinedAsFalse);
     }
 
     return value.toString();
