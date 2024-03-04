@@ -14,6 +14,36 @@ component.
 
 See [demo page](https://heinerwalter.github.io/ngx-property-editor/).
 
+## Build from source
+
+### Release: Build and publish library
+
+Build library and publish it to npm:
+```console
+npm run build
+npm run publish
+```
+
+### Development: Build and run demo application
+
+Build library and watch for changes (process does not terminate):
+```console
+npm run watch
+```
+
+When the library has been built successfully
+(output: `Compilation complete. Watching for file changes...`)
+open a new terminal and run commands to build and start the demo application:
+```console
+# Link demo project to the built library:
+npm run link:demo
+# Build and start demo application and watch for changes:
+npm run start:demo
+```
+
+When you change code either in the library project or in the demo application project,
+the demo application is automatically updated.
+
 ## Installation
 
 Add this library to your Angular CLI project by running the following command:
