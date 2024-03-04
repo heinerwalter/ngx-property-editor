@@ -33,7 +33,7 @@ Run `npm run start:demo` to build the demo application and start a web server pr
 You also can link the demo project to the library project artifacts before building, so that the demo application builds against the local library version instead of the latest published version. Run `npm run link:demo` to link the demo application project to the library project.
 
 After linking you can build the library project with `npm run watch` to continually watch for code changes and update the build artifacts.
-After that script successfully built the library for the first time (output: `Compilation complete. Watching for file changes...`),
+After that script successfully built the library for the first time (output: `"Compilation complete. Watching for file changes..."`),
 open a new terminal window and run `npm run start:demo` to build and start the demo application and watch for code changes (this time including the library project artifacts).
 The full demo application start process for development looks like:
 ```console
