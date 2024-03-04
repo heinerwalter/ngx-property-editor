@@ -1,20 +1,20 @@
-# NgxPropertyEditor
+# Build ngx-property-editor
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
 ## Build
 
-Run `ng build ngx-property-editor` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-After building the library you must build the schematics, too. Go to the library project in `projects/ngx-property-editor/` and run `npm run build`. Alternatively you can run from the repository root `npm run build` which first builds the library and then the schematics.
+Run `npm run build` from the repository root to build the library project including the schematics. The build artifacts will be stored in the `dist/ngx-property-editor/` directory.
 
 ## Publishing
 
-After building your library with `ng build ngx-property-editor`, go to the dist folder `cd dist/ngx-property-editor` and run `npm publish`. You need to be logged in to NPM before by running `npm adduser`.
+After building your library run `npm run publish` to publish a new version of the library to NPM. You need to be logged in to NPM before by running `npm adduser`.
 
 ## Running unit tests
 
-Run `ng test ngx-property-editor` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` or `npm run test-headless` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The script `npm run test` opens a browser window to display the test results and continuously re-runs the tests after a code change.
+The script `npm run test-headless` only writes the test results to the console and terminates with success or error after all tests were completed once. The headless version is especially suitable for automated testing.
 
 ## Further help
 
