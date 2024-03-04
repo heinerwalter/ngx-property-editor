@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faCat, faDog, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FileInputFileContentType } from 'ngx-property-editor';
+import { countriesDataSource } from '../../model/demo-data-sources';
 
 @Component({
   selector: 'demo-all-inputs-demo',
@@ -10,7 +11,7 @@ import { FileInputFileContentType } from 'ngx-property-editor';
 export class AllInputsDemoComponent {
 
   /**
-   * Data source for all input components which need a data source.
+   * Data source for input components which need a data source.
    */
   protected readonly inputDataSource: { name: string, value: string }[] = [
     { name: 'Item 1', value: 'item 1' },
@@ -19,6 +20,11 @@ export class AllInputsDemoComponent {
     { name: 'Item 4', value: 'item 4' },
     { name: 'Item 5', value: 'item 5' },
   ];
+
+  /**
+   * Data source for country and city select input components.
+   */
+  protected readonly countriesDataSource = countriesDataSource;
 
   protected iconCat: IconDefinition = faCat;
   protected iconDog: IconDefinition = faDog;
@@ -47,16 +53,17 @@ export class AllInputsDemoComponent {
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
     array: ['Line 1', 'Line 2', 'Not line 3'] as any[],
-    arrayWithInputGroup: [{ name: 'Max', number: 5 }, { name: 'Moritz', number: 3 }] as {
+    arrayWithInputGroup: [{ name: 'Max', number: 5 }, { name: 'Moritz', number: 3, country: 'Germany' }] as {
       name: string | undefined,
       number: number | undefined,
+      country: string | undefined,
     }[],
     inputGroup: {
-      street: '' as string | undefined,
+      street: undefined as string | undefined,
       number: undefined as number | undefined,
       zipCode: undefined as number | undefined,
-      city: '' as string | undefined,
-      country: '' as string | undefined,
+      city: undefined as string | undefined,
+      country: undefined as string | undefined,
     },
   };
 
