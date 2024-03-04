@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ItemViewBaseComponent } from '../item-view-base.component';
 import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
@@ -6,6 +6,7 @@ import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-sol
   selector: 'pe-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PagesComponent extends ItemViewBaseComponent {
 
