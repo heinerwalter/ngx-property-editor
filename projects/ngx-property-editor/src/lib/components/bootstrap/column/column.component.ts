@@ -16,7 +16,7 @@ export class ColumnComponent implements OnChanges {
    * Bootstrap "col-..." classes are assigned to the host element of this component
    * via this property and its host binding.
    */
-  @HostBinding('class') public class: string = '';
+  @HostBinding('class') public class: string = 'col';
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('md')) {
