@@ -6,6 +6,10 @@ import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 })
 export class InputBase {
 
+  /** Add class `.pe-input` to all input components. */
+  @HostBinding('class.pe-input')
+  protected readonly addInputClass: boolean = true;
+
   /** ID attribute of the input element (required if a label is defined). */
   @Input() public id: string = PEGlobalFunctions.generateRandomId();
   /** Name attribute of the input element. */

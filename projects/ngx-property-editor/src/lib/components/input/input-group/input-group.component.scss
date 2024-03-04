@@ -40,7 +40,21 @@ pe-input-group {
   &.pe-input-group-horizontal {
     flex-direction: row;
 
+    // Stretch all input elements in a horizontal input group to the same height (100% of input group element):
     & > * {
+      &.pe-input > pe-form-group {
+        display: block;
+        height: 100%;
+
+        & > .form-group,
+        & > .form-group > .form-group-content,
+        & > .form-group > .form-group-content > .form-control,
+        & > .form-group > .form-group-content > .form-select {
+          height: 100%;
+        }
+      }
+
+      // Remove margin between input elements and inner border radius:
       &:not(:last-child) {
         margin-right: -$border-width;
 
