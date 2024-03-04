@@ -4,6 +4,8 @@
 
 // Components:
 // - bootstrap
+export * from './lib/components/bootstrap/button/button.component';
+export * from './lib/components/bootstrap/button-group/button-group.component';
 export * from './lib/components/bootstrap/collapse/collapse.component';
 export * from './lib/components/bootstrap/column/column.component';
 export * from './lib/components/bootstrap/row/row.component';

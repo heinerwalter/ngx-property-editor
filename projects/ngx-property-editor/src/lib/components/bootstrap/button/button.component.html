@@ -1,0 +1,5 @@
+<fa-icon *ngIf="icon" [icon]="icon"
+         [style.padding-right]="text ? '0.5em' : ''">
+</fa-icon>
+<span *ngIf="text">{{text}}</span>
+<ng-content></ng-content>
