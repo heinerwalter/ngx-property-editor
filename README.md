@@ -37,4 +37,4 @@ on how to install the bootstrap styles on which this library dependes.
 
 ## Build
 
-For instructions on how to build the library and demo application projects see [README_BUILD_AND_PUBLISH.md](README_BUILD_AND_PUBLISH.md).
+For instructions on how to build the library and the demo application see [README_BUILD_AND_PUBLISH.md](README_BUILD_AND_PUBLISH.md).
