@@ -6,13 +6,13 @@
 This is an Angular library containing simple input components for different data types
 (styled with bootstrap). Based on the input components this library provides a property
 editor component which automatically builds a form for editing all properties of any
-object passed to the property editor component. The property editor input fields can
-be configured by passing an additional configuration object to the property editor
-component.
+object passed to the property editor component. The property editor input fields can be
+configured by passing an additional configuration object to the property editor component.
 
 ## Demo
 
-Beside the library project this repository contains a demo application project which demonstrates all library features.
+Beside the library project this repository contains a demo application project
+which demonstrates all library features.
 [Open demo page](https://heinerwalter.github.io/ngx-property-editor/).
 
 ## Installation
@@ -31,10 +31,12 @@ project, you could specify the `--project` option:
 ng add ngx-property-editor --project myProject
 ```
 
-See more details on the installation process in the [README.md](projects/ngx-property-editor/README.md)
+See more details on the installation process in the
+[README.md](projects/ngx-property-editor/README.md)
 file inside the ngx-property-editor library subdirectory. There you will find information
-on how to install the bootstrap styles on which this library dependes.
+on how to install the bootstrap styles on which this library depends.
 
 ## Build
 
-For instructions on how to build the library and the demo application see [README_BUILD_AND_PUBLISH.md](README_BUILD_AND_PUBLISH.md).
+For instructions on how to build the library and the demo application see teh
+[README_BUILD_AND_PUBLISH.md](README_BUILD_AND_PUBLISH.md) file.
