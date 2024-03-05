@@ -72,6 +72,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
         let propertyValue: any = property.getDisplayValue(this.data);
+        // If propertyValue is an array, remove undefined items
+        if (Array.isArray(propertyValue)) {
+          propertyValue = propertyValue
+            .filter(item => item != undefined);
+        }
         // Ignore empty values, if hideIfEmpty is true
         if (property.hideIfEmpty) {
           if (propertyValue == undefined) continue;
@@ -85,12 +90,6 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         const routerLink: any[] | string | undefined = property.getRouterLink(this.data);
         const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data);
         const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data);
-
-        // If propertyValue is an array, remove undefined items
-        if (Array.isArray(propertyValue)) {
-          propertyValue = propertyValue
-            .filter(item => item != undefined);
-        }
 
         // Crate table data entry
         tableData.push([
