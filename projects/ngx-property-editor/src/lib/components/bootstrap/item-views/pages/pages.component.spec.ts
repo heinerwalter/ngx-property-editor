@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PagesComponent } from './pages.component';
-import { FontAwesomeTestingModule } from "@fortawesome/angular-fontawesome/testing";
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('PagesComponent', () => {
   let component: PagesComponent;

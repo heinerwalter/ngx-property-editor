@@ -22,7 +22,7 @@ describe('ArrayFormGroupComponent', () => {
       imports: [
         NgbTooltipModule,
         FontAwesomeTestingModule,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(ArrayFormGroupComponent);
     component = fixture.componentInstance;

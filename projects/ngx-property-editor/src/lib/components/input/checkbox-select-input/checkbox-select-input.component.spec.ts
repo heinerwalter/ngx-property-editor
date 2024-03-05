@@ -14,7 +14,7 @@ describe('CheckboxSelectInputComponent', () => {
         CheckboxSelectInputComponent,
         FormGroupComponent,
         BooleanInputComponent,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(CheckboxSelectInputComponent);
     component = fixture.componentInstance;

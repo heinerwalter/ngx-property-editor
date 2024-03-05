@@ -12,7 +12,7 @@ describe('PropertyTableComponent', () => {
       declarations: [
         PropertyTableComponent,
         TableComponent,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(PropertyTableComponent);
     component = fixture.componentInstance;

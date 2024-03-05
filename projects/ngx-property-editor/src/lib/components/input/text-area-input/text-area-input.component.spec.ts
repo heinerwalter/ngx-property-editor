@@ -14,7 +14,7 @@ describe('TextAreaInputComponent', () => {
         TextAreaInputComponent,
         FormGroupComponent,
       ],
-      imports: [ FormsModule ],
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(TextAreaInputComponent);
     component = fixture.componentInstance;

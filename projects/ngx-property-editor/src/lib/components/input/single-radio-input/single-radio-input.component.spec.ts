@@ -9,8 +9,8 @@ describe('SingleRadioInputComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ SingleRadioInputComponent ],
-      imports: [ FormsModule ],
+      declarations: [SingleRadioInputComponent],
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(SingleRadioInputComponent);
     component = fixture.componentInstance;

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InputDemoWrapperComponent } from './input-demo-wrapper.component';
-import { RowComponent, ColumnComponent, FormGroupComponent } from 'ngx-property-editor';
+import { ColumnComponent, FormGroupComponent, RowComponent } from 'ngx-property-editor';
 
 describe('InputComponentDemoWrapperComponent', () => {
   let component: InputDemoWrapperComponent;

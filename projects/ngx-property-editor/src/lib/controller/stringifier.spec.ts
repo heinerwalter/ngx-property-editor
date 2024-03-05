@@ -298,8 +298,14 @@ describe('Stringifier', () => {
 
     expect(Stringifier.anyTypeToString({})).toEqual('{}');
     expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, false)).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, true)).toEqual('{\n  "anyObject": "foo",\n  "number": 5\n}');
+    expect(Stringifier.anyTypeToString({
+      anyObject: 'foo',
+      number: 5,
+    }, false, false)).toEqual('{"anyObject":"foo","number":5}');
+    expect(Stringifier.anyTypeToString({
+      anyObject: 'foo',
+      number: 5,
+    }, false, true)).toEqual('{\n  "anyObject": "foo",\n  "number": 5\n}');
     expect(Stringifier.anyTypeToString({ undefinedProperty: undefined })).toEqual('{}');
     expect(Stringifier.anyTypeToString({ undefinedProperty: undefined }, false, false, false)).toEqual('{}');
     expect(Stringifier.anyTypeToString({ undefinedProperty: undefined }, false, false, true)).toEqual('{"undefinedProperty":null}');

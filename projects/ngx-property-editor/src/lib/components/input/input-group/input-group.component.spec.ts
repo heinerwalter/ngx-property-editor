@@ -8,7 +8,7 @@ describe('InputGroupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InputGroupComponent]
+      declarations: [InputGroupComponent],
     });
     fixture = TestBed.createComponent(InputGroupComponent);
     component = fixture.componentInstance;

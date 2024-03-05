@@ -12,7 +12,7 @@ describe('DateInputComponent', () => {
       declarations: [
         DateInputComponent,
         FormGroupComponent,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(DateInputComponent);
     component = fixture.componentInstance;
