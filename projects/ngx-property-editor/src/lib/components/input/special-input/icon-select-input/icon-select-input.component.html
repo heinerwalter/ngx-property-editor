@@ -17,7 +17,13 @@
                  [dataSource]="dataSource"
                  valuePropertyName="icon"
                  displayPropertyName="icon"
+                 [optionTemplate]="optionTemplate"
 
                  [multiple]="false"
                  [allowEmpty]="allowEmpty">
 </pe-select-input>
+
+<ng-template #optionTemplate let-label="label" let-item="item">
+  <fa-icon *ngIf="item?.class" [icon]="item.class"></fa-icon>
+  {{label}}
+</ng-template>

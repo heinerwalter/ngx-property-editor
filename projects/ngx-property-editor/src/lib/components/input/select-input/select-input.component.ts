@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 
 @Component({
@@ -25,6 +25,16 @@ export class SelectInputComponent extends InputBaseWithValueAndDataSource<any | 
    * option elements.
    */
   @Input() public optionClassPropertyName: string | undefined = undefined;
+
+  /**
+   * Optional: Reference to an option content template.
+   * If defined this template is used to fill the select option elements with content.
+   * Two parameters are passed as template context:
+   * - `item`: The data source item object.
+   * - `label`: The text which is usually displayed on the option element.
+   *            The label is the result of evaluating the `displayPropertyName` on the data source item.
+   */
+  @Input() public optionTemplate: TemplateRef<any> | undefined = undefined;
 
   public constructor() {
     super();

@@ -28,7 +28,13 @@
     <option *ngFor="let item of dataSource"
             [class]="optionClassPropertyName ? evaluateDisplayPropertyName(item, optionClassPropertyName) : ''"
             [ngValue]="evaluateValuePropertyName(item)">
-      {{evaluateDisplayPropertyName(item)}}
+      <ng-template [ngTemplateOutlet]="optionTemplate || defaultOptionTemplate"
+                   [ngTemplateOutletContext]="{ label: evaluateDisplayPropertyName(item), item: item }">
+      </ng-template>
     </option>
   </select>
+</ng-template>
+
+<ng-template #defaultOptionTemplate let-label="label" let-item="item">
+  {{label}}
 </ng-template>
