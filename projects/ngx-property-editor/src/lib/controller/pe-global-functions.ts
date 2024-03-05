@@ -21,7 +21,7 @@ export module PEGlobalFunctions {
    * @param item An item of a data source.
    */
   export function evaluateValuePropertyName(valuePropertyName: string | undefined,
-                                          item: any | undefined): any {
+                                            item: any | undefined): any {
     if (!item || !valuePropertyName) return item;
     return item[valuePropertyName];
   }
@@ -33,7 +33,7 @@ export module PEGlobalFunctions {
    * @param item An item of a data source.
    */
   export function evaluateDisplayPropertyName(displayPropertyName: string | undefined,
-                                            item: any | undefined): string {
+                                              item: any | undefined): string {
     if (!item) return '';
     if (!displayPropertyName) return item.toString();
     return item[displayPropertyName]?.toString() || '';
@@ -48,8 +48,8 @@ export module PEGlobalFunctions {
    * @returns The first data source item matching the given value or undefined, if no such item exists.
    */
   export function getDataSourceItem(dataSource: any[],
-                                  valuePropertyName: string | undefined,
-                                  value: any): any | undefined {
+                                    valuePropertyName: string | undefined,
+                                    value: any): any | undefined {
     if (!dataSource) return undefined;
     return dataSource.find(item => evaluateValuePropertyName(valuePropertyName, item) == value);
   }

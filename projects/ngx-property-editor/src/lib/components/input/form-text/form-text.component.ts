@@ -4,7 +4,7 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 @Component({
   selector: 'pe-form-text',
   templateUrl: './form-text.component.html',
-  styleUrls: ['./form-text.component.scss']
+  styleUrls: ['./form-text.component.scss'],
 })
 export class FormTextComponent {
 

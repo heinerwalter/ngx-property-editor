@@ -1,6 +1,6 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputBase } from '../input-base';
-import { TextFileReader } from "../../../controller/text-file-reader";
+import { TextFileReader } from '../../../controller/text-file-reader';
 
 
 /**
@@ -60,7 +60,7 @@ export class FileInputComponent extends InputBase {
     if (!inputElement) return;
 
     // Emit selected File objects
-    this.files = inputElement.files?.length ? Array.from(inputElement.files) : []
+    this.files = inputElement.files?.length ? Array.from(inputElement.files) : [];
     this.valueChange.emit(this.files);
 
     // If requested, read and emit file contents

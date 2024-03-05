@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
+  generatePropertiesConfigurationFromData,
   PropertiesConfiguration,
   PropertyConfiguration,
-  generatePropertiesConfigurationFromData,
 } from '../property-configuration';
 import { TableData } from '../table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';

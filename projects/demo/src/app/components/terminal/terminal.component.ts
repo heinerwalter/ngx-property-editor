@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'demo-terminal',
   templateUrl: './terminal.component.html',
-  styleUrls: ['./terminal.component.scss']
+  styleUrls: ['./terminal.component.scss'],
 })
 export class TerminalComponent {
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from '../property-configuration';
+import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
 
 @Component({
   selector: 'pe-property-editor',

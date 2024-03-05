@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from '../../model/contact';
-import { EditModeType, PropertiesConfiguration, ViewModeType, ViewAndEditContainerMode } from 'ngx-property-editor';
+import { EditModeType, PropertiesConfiguration, ViewAndEditContainerMode, ViewModeType } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-property-editor-demo',

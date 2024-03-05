@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
-import { TableData, TableCell } from '../table-configuration';
+import { TableCell, TableData } from '../table-configuration';
 
 /**
  * This component builds an HTML table element with bootstrap style
