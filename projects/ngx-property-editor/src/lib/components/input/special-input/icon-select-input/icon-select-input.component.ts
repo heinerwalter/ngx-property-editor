@@ -26,7 +26,7 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * An optional prefix added to the icons from the `iconDataSource` property
    * to create a CSS class which will be added to the select items.
    */
-  @Input() iconClassPrefix: string | undefined = 'fa-solid fa-';
+  @Input() iconClassPrefix: string | undefined = 'fa-';
 
   /**
    * An array from which the user can select one or multiple items.
