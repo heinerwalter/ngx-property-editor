@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IconName, findIconDefinition, IconDefinition, parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
 import { InputBaseWithValue } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
@@ -18,7 +18,7 @@ library.add(fas);
   templateUrl: './icon-select-input.component.html',
   styleUrls: ['./icon-select-input.component.scss'],
 })
-export class IconSelectInputComponent extends InputBaseWithValue<string> {
+export class IconSelectInputComponent extends InputBaseWithValue<string> implements OnChanges {
 
   /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
   @Input() public allowEmpty: boolean = false;
@@ -43,9 +43,22 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
    */
   protected readonly iconClassPrefix: string | undefined = ''; //'fa-solid fa-';
 
+  /** IconDefinition of the currently selected icon. */
+  protected selectedIcon: IconDefinition | undefined = undefined;
+
   public constructor() {
     super();
     this.assignDefaultDataSource();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('value'))
+      this.updateSelectedIcon();
+  }
+
+  protected override emitValueChange(newValue: string | undefined): void {
+    super.emitValueChange(newValue);
+    this.updateSelectedIcon();
   }
 
   /**
@@ -56,11 +69,18 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
   }
 
   /**
+   * Updates the `selectedIcon` property from the current `value`.
+   */
+  private updateSelectedIcon(): void {
+    this.selectedIcon = this.value ? this.getIconDefinition(this.value) : undefined;
+  }
+
+  /**
    * Converts a FontAwesome icon name to an icon definition object.
-   * @param icon Name or alias of a FontAwesome icon.
+   * @param icon Name or alias of a FontAwesome icon (e.g. 'user', 'fa-user', 'fa-solid fa-user').
    * @returns The FontAwesome icon definition object, or undefined if the given icon name is invalid.
    */
-  protected getIcon(icon: string | undefined): IconDefinition | undefined {
+  protected getIconDefinition(icon: string | undefined): IconDefinition | undefined {
     if (!icon) return undefined;
 
     try {
