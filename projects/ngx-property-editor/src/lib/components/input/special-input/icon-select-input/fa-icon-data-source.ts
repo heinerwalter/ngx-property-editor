@@ -2825,12 +2825,15 @@ export function getIconDataSource(valuePrefix: string | undefined = undefined,
       label: icon,
       value: (valuePrefix || '') + icon,
       //class: (iconClassPrefix || '') + icon,
-    }));*/
+    }))
+    .sort((a, b) => a.value.localeCompare(b.value));*/
+
   // With full icon array: { label: string, name: string, unicode: string }[]
   return fullIconDataSource
     .map(icon => ({
       label: inludeUnicodeIconInLabel ? `&#x${icon.unicode}; ${icon.label}` : icon.label,
       value: (valuePrefix || '') + icon.name,
       //class: (iconClassPrefix || '') + icon,
-    }));
+    }))
+    .sort((a, b) => a.value.localeCompare(b.value));
 }
