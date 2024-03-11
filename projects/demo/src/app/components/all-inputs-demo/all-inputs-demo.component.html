@@ -190,6 +190,7 @@
 <demo-input-demo-wrapper [value]="values.selectColor">
   <pe-color-select-input label="Color selection"
                          infoIconTooltip="Component: <pe-color-select-input>"
+                         [allowEmpty]="true"
                          [(value)]="values.selectColor"
                          (valueChange)="onInputValueChange('color select', $event)">
   </pe-color-select-input>
@@ -198,6 +199,7 @@
 <demo-input-demo-wrapper [value]="values.selectIcon">
   <pe-icon-select-input label="Icon selection"
                         infoIconTooltip="Component: <pe-icon-select-input>"
+                        [allowEmpty]="true"
                         [(value)]="values.selectIcon"
                         (valueChange)="onInputValueChange('icon select', $event)">
   </pe-icon-select-input>
