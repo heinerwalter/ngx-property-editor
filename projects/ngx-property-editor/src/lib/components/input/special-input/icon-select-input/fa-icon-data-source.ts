@@ -3,7 +3,7 @@
  * Array of objects including a human-readable label, the class name and the hexadecimal unicode value.
  * Include the hexadecimal unicode value in HTML using `&#x{{unicode}};`.
  */
-/*export const fullIconDataSource: { label: string, name: string, unicode: string }[] = [
+export const fullIconDataSource: { label: string, name: string, unicode: string }[] = [
   // FontAwesome - free solid icons - page 1
   { label: 'House', name: 'house', unicode: 'f015' },
   { label: 'Magnifying Glass', name: 'magnifying-glass', unicode: 'f002' },
@@ -1409,7 +1409,7 @@
   { label: '2', name: '2', unicode: '32' },
   { label: '1', name: '1', unicode: '31' },
   { label: '0', name: '0', unicode: '30' },
-];*/
+];
 
 /**
  * FontAwesome 6.5.1 - free solid icons
@@ -2807,3 +2807,30 @@ export const iconDataSource: string[] = [
   'yin-yang',
   'z',
 ];
+
+/**
+ * Returns a data source for the icon select input component using FontAwesome free solid icons.
+ * @param valuePrefix An optional prefix to be added to the value of each data source item.
+ *                    For example you can use this parameter to add the FontAwesome class prefix `'fa-'`.
+ * @param inludeUnicodeIconInLabel If true, the icon is added as HTML special character (like `&#x{{unicode}};`) to the label.
+ *                                 of each data source item. In this case make sure to use the label as `[innerHTML]`.
+ * @returns Each data source item contains a human-readable `label` and the FontAwesome icon name as `value`.
+ *          Example: `{ label: 'House', value: 'house' }`
+ */
+export function getIconDataSource(valuePrefix: string | undefined = undefined;
+                                  inludeUnicodeIconInLabel: boolean = false): { label: string, value: string/*, class?: string*/ }[] {
+  /*// With simple icon array: string[]
+  return this.iconDataSource
+    .map(icon => ({
+      label: icon,
+      value: icon,
+      //class: (iconClassPrefix || '') + icon,
+    }));*/
+  // With full icon array: { label: string, name: string, unicode: string }[]
+  return fullIconDataSource
+    .map(icon => ({
+      label: inludeUnicodeIconInLabel ? `&#x${icon.unicode}; ${icon.label}` : icon.label,
+      value: icon.name,
+      //class: (iconClassPrefix || '') + icon,
+    }));
+}
