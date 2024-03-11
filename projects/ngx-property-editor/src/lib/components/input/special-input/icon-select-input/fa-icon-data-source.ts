@@ -2812,13 +2812,10 @@ export const iconDataSource: string[] = [
  * Returns a data source for the icon select input component using FontAwesome free solid icons.
  * @param valuePrefix An optional prefix to be added to the value of each data source item.
  *                    For example you can use this parameter to add the FontAwesome class prefix `'fa-'`.
- * @param inludeUnicodeIconInLabel If true, the icon is added as HTML special character (like `&#x{{unicode}};`) to the label.
- *                                 of each data source item. In this case make sure to use the label as `[innerHTML]`.
  * @returns Each data source item contains a human-readable `label` and the FontAwesome icon name as `value`.
  *          Example: `{ label: 'House', value: 'house' }`
  */
-export function getIconDataSource(valuePrefix: string | undefined = undefined,
-                                  inludeUnicodeIconInLabel: boolean = false): { label: string, value: string/*, class?: string*/ }[] {
+export function getIconDataSource(valuePrefix: string | undefined = undefined): { label: string, value: string/*, class?: string*/ }[] {
   /*// With simple icon array: string[]
   return this.iconDataSource
     .map(icon => ({
@@ -2831,7 +2828,7 @@ export function getIconDataSource(valuePrefix: string | undefined = undefined,
   // With full icon array: { label: string, name: string, unicode: string }[]
   return fullIconDataSource
     .map(icon => ({
-      label: inludeUnicodeIconInLabel ? `&#x${icon.unicode}; ${icon.label}` : icon.label,
+      label: icon.label,
       value: (valuePrefix || '') + icon.name,
       //class: (iconClassPrefix || '') + icon,
     }))
