@@ -36,12 +36,6 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * If true, the icon name (value of the data-source items) is displayed on the select option elements.
    */
   @Input() public displayIconValue: boolean = false;
-  
-  /**
-   * An optional prefix added to the icons from the `iconDataSource` property
-   * to create a CSS class which will be added to the default select items.
-   */
-  protected readonly iconClassPrefix: string | undefined = ''; //'fa-solid fa-';
 
   /** IconDefinition of the currently selected icon. */
   protected selectedIcon: IconDefinition | undefined = undefined;
@@ -65,7 +59,7 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * This function assigns all free solid FontAwesome icons to the `dataSource` property.
    */
   private assignDefaultDataSource(): void {
-    this.dataSource = getIconDataSource(this.iconClassPrefix);
+    this.dataSource = getIconDataSource();
   }
 
   /**
