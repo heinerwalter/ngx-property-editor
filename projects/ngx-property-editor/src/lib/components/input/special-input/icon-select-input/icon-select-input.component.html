@@ -36,7 +36,9 @@
 </pe-form-group>
 
 <ng-template #contentTemplate>
+  <i *ngIf="value" [class]="'icon-select-icon fa-solid fa-' + value"></i>
   <pe-select-input [noFormGroup]="true"
+                   [class]="value ? 'show-icon' : ''"
                    [id]="id"
                    [name]="name"
                    [placeholder]="placeholder"
@@ -56,5 +58,4 @@
                    [multiple]="false"
                    [allowEmpty]="allowEmpty">
   </pe-select-input>
-  <i *ngIf="value" [class]="'fa-solid fa-' + value"></i>
 </ng-template>
