@@ -46,7 +46,7 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
    * This function assigns all free solid FontAwesome icons to the `dataSource` property.
    */
   private assignDefaultDataSource(): void {
-    this.dataSource = getIconDataSource(this.iconClassPrefix, true);
+    this.dataSource = getIconDataSource(this.iconClassPrefix);
   }
 
 }
