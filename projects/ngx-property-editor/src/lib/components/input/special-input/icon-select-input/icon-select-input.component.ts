@@ -57,9 +57,12 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
    */
   protected getIcon(icon: string | undefined): IconLookup | undefined {
     if (!icon) return undefined;
-    // The `parse.icon()` method allows to input an icon’s name (or alias) as a string.
-    const obj = parse.icon(icon) || undefined;
-    console.log(obj);
-    return obj;
+
+    try {
+      // The `parse.icon()` method allows to input an icon’s name (or alias) as a string.
+      return parse.icon(icon) || undefined;
+    } catch {
+      return undefined;
+    }
   }
 }
