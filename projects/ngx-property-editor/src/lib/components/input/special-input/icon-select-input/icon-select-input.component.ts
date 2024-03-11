@@ -33,9 +33,18 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    */
   @Input() public displayIconValue: boolean = false;
 
-  /** IconDefinition of the currently selected icon. */
-  protected selectedIcon: IconDefinition | undefined = undefined;
+  /**
+   * FontAwesome icon definition of the currently selected icon.
+   * The value of this property is emitted via `iconChange`.
+   */
+  protected icon: IconDefinition | undefined = undefined;
 
+  /**
+   * This event is triggered when the user changed the selected icon.
+   * The FontAwesome icon definition of the newly selected icon is passed as event argument.
+   */
+  @Output() public readonly iconChange: EventEmitter<IconDefinition | undefined> = new EventEmitter<IconDefinition | undefined>();
+  
   public constructor() {
     super();
     this.assignDefaultDataSource();
@@ -43,12 +52,12 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('value'))
-      this.updateSelectedIcon();
+      this.updateIconFromValue();
   }
 
   protected override emitValueChange(newValue: string | undefined): void {
     super.emitValueChange(newValue);
-    this.updateSelectedIcon();
+    this.updateIconFromValue();
   }
 
   /**
@@ -59,9 +68,10 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
   }
 
   /**
-   * Updates the `selectedIcon` property from the current `value`.
+   * Updates the `icon` property from the current `value`.
    */
-  private updateSelectedIcon(): void {
-    this.selectedIcon = this.value ? PEGlobalFunctions.getFontAwesomeIconDefinition(this.value) : undefined;
+  private updateIconFromValue(): void {
+    this.icon = this.value ? PEGlobalFunctions.getFontAwesomeIconDefinition(this.value) : undefined;
+    this.iconChange.emit(this.icon);
   }
 }
