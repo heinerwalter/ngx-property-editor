@@ -8,8 +8,8 @@ const path = require('path');
  * the version of the ngx-property-editor library `package.json` file.
  */
 
-const rootPackagePath = path.join(__dirname, '../package.json';
-const libraryPackagePath = path.join(__dirname, '../projects/ngx-property-editor/package.json';
+const rootPackagePath = path.join(__dirname, '../package.json');
+const libraryPackagePath = path.join(__dirname, '../projects/ngx-property-editor/package.json');
 
 /**
  * Reads the JSON file at the given path and returns its content.
@@ -27,7 +27,7 @@ function readJsonFile(path) {
  * @param fileContent File content as object.
  */
 function writeJsonFile(path, fileContent) {
-  await fs.writeFileSync(path, JSON.stringify(fileContent, null, 2), {encoding: 'utf-8'});
+  fs.writeFileSync(path, JSON.stringify(fileContent, null, 2), {encoding: 'utf-8'});
 }
 
 /**
@@ -90,7 +90,7 @@ function assignDependencyVersion(path, dependency, version) {
   const fileContent = readJsonFile(path);
 
   // Assign version of package dependency
-  const fileContent.dependencies[dependency] = '^' + version;
+  fileContent.dependencies[dependency] = '^' + version;
   
   // Write package.json file
   writeJsonFile(path, fileContent);
