@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
+import { findIconDefinition, IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { InputBaseWithValue } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
 
@@ -60,12 +60,11 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
    * @param icon Name or alias of a FontAwesome icon.
    * @returns The FontAwesome icon definition object, or undefined if the given icon name is invalid.
    */
-  protected getIcon(icon: string | undefined): IconLookup | undefined {
+  protected getIcon(icon: string | undefined): IconDefinition | undefined {
     if (!icon) return undefined;
 
     try {
-      // The `parse.icon()` method allows to input an icon’s name (or alias) as a string.
-      return parse.icon(icon) || undefined;
+      return findIconDefinition(icon) || undefined;
     } catch {
       return undefined;
     }
