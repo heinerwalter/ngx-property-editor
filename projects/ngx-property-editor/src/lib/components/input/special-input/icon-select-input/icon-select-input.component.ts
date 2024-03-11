@@ -20,11 +20,17 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
   /**
    * An array of selectable icons.
    * The data source items must contain at least the following properties:
-   * - `label`: A human-readable label which is interpreted as `[innerHTML]` of the select option elements.
-   * - `value`: The value which is emitted via `(valueChange)` when the user selected the item.
+   * - `label`: A human-readable label (HTML) which is added as `[innerHTML]` to the select option elements.
+   * - `value`: The icon name which is emitted via `(valueChange)` when the user selected the item.
    */
   @Input() public dataSource: ({ label: string, value: string } & any)[] = [];
 
+  /**
+   * If false (default), the human-readable label of the data-source items is displayed on the select option elements.
+   * If true, the icon name (value of the data-source items) is displayed on the select option elements.
+   */
+  @Input() public displayIconValue: boolean = false;
+  
   /**
    * An optional prefix added to the icons from the `iconDataSource` property
    * to create a CSS class which will be added to the default select items.
