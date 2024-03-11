@@ -26,6 +26,13 @@ export class SelectInputComponent extends InputBaseWithValueAndDataSource<any | 
    */
   @Input() public optionClassPropertyName: string | undefined = undefined;
 
+  /**
+   * If true, the string displayed on the select input element items
+   * (see `displayPropertyName`) is interpreted as HTML. This way special
+   * characters with `&...;` can be added to the displayed string.
+   */
+  @Input() public displayAsInnerHTML: boolean = false;
+
   public constructor() {
     super();
   }
