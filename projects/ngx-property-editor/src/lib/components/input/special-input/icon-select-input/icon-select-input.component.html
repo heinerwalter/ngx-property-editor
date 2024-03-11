@@ -1,4 +1,4 @@
-<pe-select-input [id]="id"
+<!--<pe-select-input [id]="id"
                  [name]="name"
                  [label]="label"
                  [placeholder]="placeholder"
@@ -17,9 +17,44 @@
                  [dataSource]="dataSource"
                  valuePropertyName="value"
                  [displayPropertyName]="displayIconValue ? 'value' : 'label'"
-                 [displayAsInnerHTML]="true"
 
                  [multiple]="false"
                  [allowEmpty]="allowEmpty">
-</pe-select-input>
-<!--<i *ngIf="item?.class" [class]="selectedItem.class"></i>-->
+</pe-select-input>-->
+
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
+
+<ng-template #contentTemplate>
+  <pe-select-input [noFormGroup]="true"
+                   [id]="id"
+                   [name]="name"
+                   [placeholder]="placeholder"
+                   [disabled]="disabled"
+                   [readonly]="readonly"
+                   [required]="required"
+                   [noFormGroup]="noFormGroup"
+                   [flexGrow]="flexGrow"
+
+                   [(value)]="value"
+                   (valueChange)="emitValueChange($event)"
+
+                   [dataSource]="dataSource"
+                   valuePropertyName="value"
+                   [displayPropertyName]="displayIconValue ? 'value' : 'label'"
+
+                   [multiple]="false"
+                   [allowEmpty]="allowEmpty">
+  </pe-select-input>
+  <i *ngIf="value" [class]="'fa-solid fa-' + value"></i>
+</ng-template>
