@@ -25,10 +25,21 @@
     <option *ngIf="placeholder && !disabled && !readonly" disabled>{{placeholder}}</option>
     <option *ngIf="!multiple && (allowEmpty || value == undefined)"
             [ngValue]="undefined"></option>
-    <option *ngFor="let item of dataSource"
-            [class]="optionClassPropertyName ? evaluateDisplayPropertyName(item, optionClassPropertyName) : ''"
-            [ngValue]="evaluateValuePropertyName(item)">
-      {{evaluateDisplayPropertyName(item)}}
-    </option>
+
+    <ng-container *ngIf="!displayAsInnerHTML">
+      <option *ngFor="let item of dataSource"
+              [class]="optionClassPropertyName ? evaluateDisplayPropertyName(item, optionClassPropertyName) : ''"
+              [ngValue]="evaluateValuePropertyName(item)">
+        {{evaluateDisplayPropertyName(item)}}
+      </option>
+    </ng-container>
+    <ng-container *ngIf="displayAsInnerHTML">
+      <option *ngFor="let item of dataSource"
+              [class]="optionClassPropertyName ? evaluateDisplayPropertyName(item, optionClassPropertyName) : ''"
+              [ngValue]="evaluateValuePropertyName(item)"
+              [innerHTML]="evaluateDisplayPropertyName(item)">
+      </option>
+    </ng-container>
+
   </select>
 </ng-template>
