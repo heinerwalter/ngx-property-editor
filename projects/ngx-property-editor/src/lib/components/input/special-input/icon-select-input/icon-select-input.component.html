@@ -16,7 +16,7 @@
 
                  [dataSource]="dataSource"
                  valuePropertyName="value"
-                 displayPropertyName="label"
+                 [displayPropertyName]="displayIconValue ? 'value' : 'label'"
 
                  [multiple]="false"
                  [allowEmpty]="allowEmpty">
