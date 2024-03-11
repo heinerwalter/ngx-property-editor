@@ -1,4 +1,14 @@
+// Setup FontAwesome library with all solid icons.
+// See documentation at: https://docs.fontawesome.com/apis/javascript/icon-library
+import { IconName, findIconDefinition, IconDefinition, parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas);
+
+
 export module PEGlobalFunctions {
+
+  // region ID
 
   /**
    * Generates a new random ID for components which don't have an assigned ID.
@@ -13,6 +23,10 @@ export module PEGlobalFunctions {
     }
     return result;
   }
+
+  // endregion
+
+  // region Data source
 
   /**
    * Evaluates a `valuePropertyName` on the given data source `item`.
@@ -53,5 +67,28 @@ export module PEGlobalFunctions {
     if (!dataSource) return undefined;
     return dataSource.find(item => evaluateValuePropertyName(valuePropertyName, item) == value);
   }
+
+  // endregion
+
+  // region FontAwesome icons
+
+  /**
+   * Converts a FontAwesome icon name to an icon definition object.
+   * @param iconName Name or alias of a FontAwesome icon (e.g. 'user', 'fa-user', 'fa-solid fa-user').
+   * @returns The FontAwesome icon definition object, or undefined if the given icon name is invalid.
+   */
+  export function getFontAwesomeIconDefinition(iconName: string | undefined): IconDefinition | undefined {
+    if (!iconName) return undefined;
+
+    try {
+      const iconLookup = parse.icon(iconName);
+      if (!iconLookup) return undefined;
+      return findIconDefinition(iconLookup) || undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  // endregion
 
 }
