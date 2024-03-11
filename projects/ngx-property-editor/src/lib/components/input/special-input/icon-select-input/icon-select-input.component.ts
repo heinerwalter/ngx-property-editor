@@ -8,8 +8,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas);
 
-(window as any)['parseIcon'] = (icon: any) => parse.icon(icon);
-
 /**
  * This component provides a simplified select field for selecting icon classes.
  * By default, the FontAwesome icons are provided as data source.
@@ -66,7 +64,9 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> {
     if (!icon) return undefined;
 
     try {
-      return findIconDefinition({ prefix: 'fas', iconName: icon as IconName }) || undefined;
+      const iconLookup = parse.icon(icon);
+      if (!iconLookup) return undefined;
+      return findIconDefinition(iconLookup) || undefined;
     } catch {
       return undefined;
     }
