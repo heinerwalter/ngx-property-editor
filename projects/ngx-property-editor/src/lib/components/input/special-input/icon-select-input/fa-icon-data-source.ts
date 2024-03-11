@@ -1,6 +1,7 @@
 /**
  * FontAwesome 6.5.1 - free solid icons
- * Array of objects including a human-readable label, the class name and the unicode value.
+ * Array of objects including a human-readable label, the class name and the hexadecimal unicode value.
+ * Include the hexadecimal unicode value in HTML using `&#x{{unicode}};`.
  */
 /*export const fullIconDataSource: { label: string, name: string, unicode: string }[] = [
   // FontAwesome - free solid icons - page 1
