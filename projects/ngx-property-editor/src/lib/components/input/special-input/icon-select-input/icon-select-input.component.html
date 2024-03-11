@@ -1,27 +1,3 @@
-<!--<pe-select-input [id]="id"
-                 [name]="name"
-                 [label]="label"
-                 [placeholder]="placeholder"
-                 [inlineLabel]="inlineLabel"
-                 [infoIconTooltip]="infoIconTooltip"
-                 [helpText]="helpText"
-                 [disabled]="disabled"
-                 [readonly]="readonly"
-                 [required]="required"
-                 [noFormGroup]="noFormGroup"
-                 [flexGrow]="flexGrow"
-
-                 [(value)]="value"
-                 (valueChange)="emitValueChange($event)"
-
-                 [dataSource]="dataSource"
-                 valuePropertyName="value"
-                 [displayPropertyName]="displayIconValue ? 'value' : 'label'"
-
-                 [multiple]="false"
-                 [allowEmpty]="allowEmpty">
-</pe-select-input>-->
-
 <ng-container *ngIf="noFormGroup">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </ng-container>
@@ -49,7 +25,7 @@
                    [flexGrow]="flexGrow"
 
                    [(value)]="value"
-                   (valueChange)="emitValueChange($event)"
+                   (valueChange)="emitValueChange($event); getIcon($event);"
 
                    [dataSource]="dataSource"
                    valuePropertyName="value"
