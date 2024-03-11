@@ -13,6 +13,7 @@
 
 <ng-template #contentTemplate>
   <i *ngIf="value" [class]="'icon-select-icon fa-solid fa-' + value"></i>
+  <fa-icon *ngIf="getIcon('foasjdsad')" [icon]="getIcon(value)"></fa-icon>
   <pe-select-input [noFormGroup]="true"
                    [class]="value ? 'show-icon' : ''"
                    [id]="id"
@@ -25,7 +26,7 @@
                    [flexGrow]="flexGrow"
 
                    [(value)]="value"
-                   (valueChange)="emitValueChange($event); getIcon($event);"
+                   (valueChange)="emitValueChange($event)"
 
                    [dataSource]="dataSource"
                    valuePropertyName="value"
