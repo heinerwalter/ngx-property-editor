@@ -12,8 +12,7 @@
 </pe-form-group>
 
 <ng-template #contentTemplate>
-  <!--<i *ngIf="value" [class]="'icon-select-icon fa-solid fa-' + value"></i>-->
-  <fa-icon *ngIf="getIcon(value)" class="icon-select-icon" [icon]="getIcon(value)"></fa-icon>
+  <fa-icon *ngIf="selectedIcon" class="icon-select-icon" [icon]="selectedIcon"></fa-icon>
   <pe-select-input [noFormGroup]="true"
                    [class]="value ? 'show-icon' : ''"
                    [id]="id"
