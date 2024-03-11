@@ -6,7 +6,9 @@ import { getIconDataSource } from './fa-icon-data-source';
 // See FontAwesome library documentation: https://docs.fontawesome.com/apis/javascript/icon-library
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-library.add(fas)
+library.add(fas);
+
+(window as any)['parseIcon'] = (icon: any) => parse.icon(icon);
 
 /**
  * This component provides a simplified select field for selecting icon classes.
