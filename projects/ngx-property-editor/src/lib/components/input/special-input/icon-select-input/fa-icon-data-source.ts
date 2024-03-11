@@ -2817,20 +2817,20 @@ export const iconDataSource: string[] = [
  * @returns Each data source item contains a human-readable `label` and the FontAwesome icon name as `value`.
  *          Example: `{ label: 'House', value: 'house' }`
  */
-export function getIconDataSource(valuePrefix: string | undefined = undefined;
+export function getIconDataSource(valuePrefix: string | undefined = undefined,
                                   inludeUnicodeIconInLabel: boolean = false): { label: string, value: string/*, class?: string*/ }[] {
   /*// With simple icon array: string[]
   return this.iconDataSource
     .map(icon => ({
       label: icon,
-      value: icon,
+      value: (valuePrefix || '') + icon,
       //class: (iconClassPrefix || '') + icon,
     }));*/
   // With full icon array: { label: string, name: string, unicode: string }[]
   return fullIconDataSource
     .map(icon => ({
       label: inludeUnicodeIconInLabel ? `&#x${icon.unicode}; ${icon.label}` : icon.label,
-      value: icon.name,
+      value: (valuePrefix || '') + icon.name,
       //class: (iconClassPrefix || '') + icon,
     }));
 }
