@@ -1,12 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { IconName, findIconDefinition, IconDefinition, parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { InputBaseWithValue } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
-
-// See FontAwesome library documentation: https://docs.fontawesome.com/apis/javascript/icon-library
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-library.add(fas);
+import { PEGlobalFunctions } from '../../../../controller/pe-global-functions';
 
 /**
  * This component provides a simplified select field for selecting icon classes.
@@ -66,23 +62,6 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * Updates the `selectedIcon` property from the current `value`.
    */
   private updateSelectedIcon(): void {
-    this.selectedIcon = this.value ? this.getIconDefinition(this.value) : undefined;
-  }
-
-  /**
-   * Converts a FontAwesome icon name to an icon definition object.
-   * @param icon Name or alias of a FontAwesome icon (e.g. 'user', 'fa-user', 'fa-solid fa-user').
-   * @returns The FontAwesome icon definition object, or undefined if the given icon name is invalid.
-   */
-  protected getIconDefinition(icon: string | undefined): IconDefinition | undefined {
-    if (!icon) return undefined;
-
-    try {
-      const iconLookup = parse.icon(icon);
-      if (!iconLookup) return undefined;
-      return findIconDefinition(iconLookup) || undefined;
-    } catch {
-      return undefined;
-    }
+    this.selectedIcon = this.value ? PEGlobalFunctions.getFontAwesomeIconDefinition(this.value) : undefined;
   }
 }
