@@ -3,6 +3,10 @@ import { parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
 import { InputBaseWithValue } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
+
 /**
  * This component provides a simplified select field for selecting icon classes.
  * By default, the FontAwesome icons are provided as data source.
