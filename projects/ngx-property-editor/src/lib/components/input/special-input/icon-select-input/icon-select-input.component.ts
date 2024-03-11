@@ -3,6 +3,7 @@ import { parse, IconLookup } from '@fortawesome/fontawesome-svg-core'
 import { InputBaseWithValue } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
 
+// See FontAwesome library documentation: https://docs.fontawesome.com/apis/javascript/icon-library
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
