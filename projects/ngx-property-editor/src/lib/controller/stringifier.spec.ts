@@ -219,6 +219,14 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([1, 2, 3], true)).toEqual('[1, 2, 3]');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}], true)).toEqual('[1, abc, -5, {}]');
     expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]], true)).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
+
+    expect(Stringifier.arrayToString([], false, true)).toEqual('');
+    expect(Stringifier.arrayToString([], true, true)).toEqual('[]');
+    expect(Stringifier.arrayToString([1], false, true)).toEqual('1');
+    expect(Stringifier.arrayToString([1], true, true)).toEqual('[\n  1\n]');
+    expect(Stringifier.arrayToString([1, 2, 3], false, true)).toEqual('1,\n2,\n3');
+    expect(Stringifier.arrayToString([1, 2, 3], true, true)).toEqual('[\n  1,\n  2,\n  3\n]');
+    expect(Stringifier.arrayToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
   });
 
   // region Arrays
@@ -295,6 +303,10 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(['a', 'b', 'C'], true)).toEqual('[a, b, C]');
     expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], false)).toEqual('a, b, [c, d, e]');
     expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], true)).toEqual('[a, b, [c, d, e]]');
+    expect(Stringifier.anyTypeToString([1, 2, 3], false, false)).toEqual('1, 2, 3');
+    expect(Stringifier.anyTypeToString([1, 2, 3], false, true)).toEqual('1,\n2,\n3');
+    expect(Stringifier.anyTypeToString([1, 2, 3], true, true)).toEqual('[\n  1,\n  2,\n  3\n]');
+    expect(Stringifier.anyTypeToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
 
     expect(Stringifier.anyTypeToString({})).toEqual('{}');
     expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');

@@ -408,16 +408,27 @@ export module Stringifier {
    * Converts an array to a string.
    * @param array An array. If the given value is not an array, an empty string is returned.
    * @param addBrackets If true, brackets are added around the array content like '[item 1, item 2, item 3]'.
+   * @param addSpaces If true, spaces and line breaks are in between the items of array values.
    * @returns A string representation of the given array like 'item 1, item 2, item 3'.
    */
-  export function arrayToString(array: any[], addBrackets: boolean = false): string {
+  export function arrayToString(array: any[],
+                                addBrackets: boolean = false,
+                                addSpaces: boolean = false): string {
     if (!Array.isArray(array)) return '';
 
-    const stringValue: string = array.map(item => anyTypeToString(item, true)).join(', ');
-    if (addBrackets)
-      return `[${stringValue}]`;
-    else
-      return stringValue;
+    const addIndent: boolean = !!array.length && addBrackets && addSpaces;
+    const separator: string = addSpaces ? ',\n' : ', ';
+
+    let stringValue: string = array
+      .map(item => anyTypeToString(item, true, addSpaces))
+      .join(separator);
+    if (addIndent) {
+      stringValue = '[\n  ' + stringValue.replaceAll('\n', '\n  ') + '\n]';
+    } else if (addBrackets) {
+      stringValue = '[' + stringValue + ']';
+    }
+
+    return stringValue;
   }
 
   // endregion
@@ -430,7 +441,7 @@ export module Stringifier {
    * the result of that function is returned. Otherwise, the object is stringified using JSON.
    * If that fails the default `toString` function is used as fallback (something like '[object Object]').
    * @param object An object.
-   * @param addSpaces If true, the JSON format is returned with spaces and line breaks.
+   * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values.
    * @param undefinedAsFalse If true, any object property with the value `undefined` is stringified as `null`.
    *                         If false, undefined properties are not stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given object, possibly using JSON format.
@@ -471,7 +482,8 @@ export module Stringifier {
    * Otherwise, the default `toString()` function is used.
    * @param value Any value.
    * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
-   * @param addSpaces If true, the JSON format of object values is returned with spaces and line breaks.
+   * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values
+   *                  and in between the items of array values.
    * @param undefinedAsFalse If true and an object value is stringified using JSON format, any of its properties with
    *                         the value `undefined` is stringified as `null`. If false, undefined properties are not
    *                         stringified (JSON format does not support `undefined`).
@@ -501,7 +513,7 @@ export module Stringifier {
 
       case 'object':
         if (Array.isArray(value)) {
-          return arrayToString(value, addBrackets);
+          return arrayToString(value, addBrackets, addSpaces);
         } else if (value instanceof Date) {
           return dateToString(value);
         } else if (value instanceof File) {
