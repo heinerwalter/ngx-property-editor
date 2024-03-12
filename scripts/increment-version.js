@@ -52,7 +52,7 @@ function assignVersion(path, version) {
     newVersion = version || '0.0.0';
   // Assign new version
   fileContent.version = newVersion;
-  
+
   // Write package.json file
   writeJsonFile(path, fileContent);
 
@@ -63,7 +63,7 @@ function assignVersion(path, version) {
 }
 
 /**
- * Reads the given `package.json` file, increments the patch version number
+ * Reads the given `package.json` file, increments the patch version
  * and writes the modified file content back to the given path.
  * @param path Path to a `package.json` file.
  * @returns An object with the `oldVersion` and `newVersion` strings as properties.
@@ -72,7 +72,7 @@ function incrementVersion(path) {
   return assignVersion(path, (oldVersion) => {
     const versionArray = oldVersion.split('.');
     while (versionArray.length < 3) versionArray.push('0');
-    // Increment patch version number
+    // Increment patch version
     versionArray[2] = (parseInt(versionArray[2]) + 1).toString();
     return versionArray.join('.');
   });
@@ -91,7 +91,7 @@ function assignDependencyVersion(path, dependency, version) {
 
   // Assign version of package dependency
   fileContent.dependencies[dependency] = '^' + version;
-  
+
   // Write package.json file
   writeJsonFile(path, fileContent);
 }

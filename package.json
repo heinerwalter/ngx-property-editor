@@ -25,7 +25,9 @@
     "test-headless": "ng test ngx-property-editor --browsers=ChromeHeadless --watch=false",
     "test-headless:demo": "ng test demo --browsers=ChromeHeadless --watch=false --code-coverage",
     "lint": "ng lint ngx-property-editor",
-    "publish": "cd dist/ngx-property-editor/ && npm publish"
+    "publish": "cd dist/ngx-property-editor/ && npm publish",
+    "increment-version": "node scripts/increment-version.js",
+    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"incremented package version\""
   },
   "private": true,
   "dependencies": {
