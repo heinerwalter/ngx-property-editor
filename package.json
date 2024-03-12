@@ -27,7 +27,7 @@
     "lint": "ng lint ngx-property-editor",
     "publish": "cd dist/ngx-property-editor/ && npm publish",
     "increment-version": "node scripts/increment-version.js",
-    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"incremented package version\""
+    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"Incremented package version.\""
   },
   "private": true,
   "dependencies": {
