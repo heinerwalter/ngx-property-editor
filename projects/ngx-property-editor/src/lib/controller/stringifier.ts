@@ -442,13 +442,13 @@ export module Stringifier {
    * If that fails the default `toString` function is used as fallback (something like '[object Object]').
    * @param object An object.
    * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values.
-   * @param undefinedAsFalse If true, any object property with the value `undefined` is stringified as `null`.
-   *                         If false, undefined properties are not stringified (JSON format does not support `undefined`).
+   * @param undefinedAsNull If true, any object property with the value `undefined` is stringified as `null`.
+   *                        If false, undefined properties are not stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given object, possibly using JSON format.
    */
   export function objectToString(object: any,
                                  addSpaces: boolean = false,
-                                 undefinedAsFalse: boolean = false): string {
+                                 undefinedAsNull: boolean = false): string {
     const defaultString: string = toString.call(object);
 
     // Return result of a custom `toString` function, if it differs from the default `toString` function
@@ -462,7 +462,7 @@ export module Stringifier {
     // Return JSON string if possible
     try {
       const jsonString: string | undefined = JSON.stringify(object,
-        undefinedAsFalse ? ((key, value) => value === undefined ? null : value) : undefined,
+        undefinedAsNull ? ((key, value) => value === undefined ? null : value) : undefined,
         addSpaces ? 2 : undefined);
       if (jsonString !== undefined)
         return jsonString;
@@ -484,15 +484,15 @@ export module Stringifier {
    * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
    * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values
    *                  and in between the items of array values.
-   * @param undefinedAsFalse If true and an object value is stringified using JSON format, any of its properties with
-   *                         the value `undefined` is stringified as `null`. If false, undefined properties are not
-   *                         stringified (JSON format does not support `undefined`).
+   * @param undefinedAsNull If true and an object value is stringified using JSON format, any of its properties with
+   *                        the value `undefined` is stringified as `null`. If false, undefined properties are not
+   *                        stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given value.
    */
   export function anyTypeToString(value: any,
                                   addBrackets: boolean = false,
                                   addSpaces: boolean = false,
-                                  undefinedAsFalse: boolean = false): string {
+                                  undefinedAsNull: boolean = false): string {
     if (value == undefined) {
       return '';
     }
@@ -509,7 +509,7 @@ export module Stringifier {
       case 'string':
         return value;
       case 'function':
-        return anyTypeToString(value(), addBrackets, addSpaces, undefinedAsFalse);
+        return anyTypeToString(value(), addBrackets, addSpaces, undefinedAsNull);
 
       case 'object':
         if (Array.isArray(value)) {
@@ -519,7 +519,7 @@ export module Stringifier {
         } else if (value instanceof File) {
           return value.name;
         }
-        return objectToString(value, addSpaces, undefinedAsFalse);
+        return objectToString(value, addSpaces, undefinedAsNull);
     }
 
     return value.toString();
