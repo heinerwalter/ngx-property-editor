@@ -1,12 +1,5 @@
 import { PropertiesConfiguration, PropertyConfiguration } from 'ngx-property-editor';
-
-type AddressType = {
-  street?: string | undefined,
-  number?: number | undefined,
-  zipCode?: number | undefined,
-  city?: string | undefined,
-  country?: string | undefined,
-};
+import { Address } from './address';
 
 type FriendType = {
   name?: string | undefined,
@@ -19,7 +12,7 @@ export class Contact {
   public firstname: string | undefined;
   public lastname: string | undefined;
   public birthday: Date | undefined;
-  public address: AddressType = {};
+  public address: Address = new Address();
   public tel: string | undefined;
   public email: string | undefined;
   public favorite: boolean = false;
@@ -40,7 +33,7 @@ export class Contact {
     firstname?: string | undefined,
     lastname?: string | undefined,
     birthday?: Date | undefined,
-    address?: AddressType | undefined,
+    address?: Address | undefined,
     tel?: string | undefined,
     email?: string | undefined,
     favorite?: boolean | undefined,
@@ -51,7 +44,7 @@ export class Contact {
     this.firstname = data?.firstname;
     this.lastname = data?.lastname;
     this.birthday = data?.birthday;
-    this.address = data?.address || {};
+    this.address = data?.address || new Address();
     this.tel = data?.tel;
     this.email = data?.email;
     this.favorite = data?.favorite || false;
@@ -196,10 +189,21 @@ export class Contact {
     ];
   }
 
+  public static get CharlieBrownAddress(): Address {
+    const address = new Address();
+    address.street = 'Street';
+    address.number = 1;
+    address.zipCode = 12345;
+    address.city = 'City';
+    address.country = 'United States of America';
+    return address;
+  }
+
   public static get Snoopy(): Contact {
     return new Contact({
       firstname: 'Snoopy',
       birthday: new Date(1950, 9, 4),
+      address: this.CharlieBrownAddress,
       tel: '+1 23456789',
       email: 'snoopy@peanuts.com',
       favorite: true,
@@ -217,6 +221,7 @@ export class Contact {
       firstname: 'Charlie',
       lastname: 'Brown',
       birthday: new Date(1950, 9, 2),
+      address: this.CharlieBrownAddress,
       tel: '+1 23456789',
       email: 'charlie.brown@peanuts.com',
       favorite: true,
@@ -234,6 +239,7 @@ export class Contact {
       firstname: 'Sally',
       lastname: 'Brown',
       birthday: new Date(1959, 4, 26),
+      address: this.CharlieBrownAddress,
       tel: '+1 23456789',
       email: 'sally.brown@peanuts.com',
       favorite: false,
