@@ -409,9 +409,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    */
   public getBootstrapColumnClass(data: any | undefined): string {
     let md = this.getBootstrapColumnMD(data);
-    if (md == undefined)
-      return 'col';
-    return `col-md-${md}`;
+    return `col-md-${md || 12}`;
   }
 
   /**
