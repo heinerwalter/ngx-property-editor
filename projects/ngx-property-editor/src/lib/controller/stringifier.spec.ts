@@ -229,7 +229,9 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
   });
 
-  // region Arrays
+  // endregion
+
+  // region Objects
 
   it('objectToString', () => {
     expect(Stringifier.objectToString(undefined)).toEqual('[object Undefined]');
@@ -261,6 +263,36 @@ describe('Stringifier', () => {
     }
 
     expect(Stringifier.objectToString(new TestObject('foo'))).toEqual('Custom toString function: foo');
+  });
+
+  it('objectToPrettyString', () => {
+    expect(Stringifier.objectToPrettyString(undefined)).toEqual('');
+    expect(Stringifier.objectToPrettyString(null)).toEqual('');
+    expect(Stringifier.objectToPrettyString({})).toEqual('');
+    expect(Stringifier.objectToPrettyString(new Object())).toEqual('');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' })).toEqual('test: 123, string: foo');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: ' foo   ' })).toEqual('test: 123, string: foo');
+
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' }, false)).toEqual('test: 123, string: foo');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' }, true)).toEqual('test: 123,\nstring: foo');
+
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined })).toEqual('');
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined }, false, false)).toEqual('');
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined }, false, true)).toEqual('undefinedProperty:');
+
+    class TestObject {
+      property: string;
+
+      constructor(property: string) {
+        this.property = property;
+      }
+
+      toString(): string {
+        return `Custom toString function: ${this.property}`;
+      }
+    }
+
+    expect(Stringifier.objectToPrettyString(new TestObject('foo'))).toEqual('Custom toString function: foo');
   });
 
   // endregion
@@ -308,19 +340,23 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString([1, 2, 3], true, true)).toEqual('[\n  1,\n  2,\n  3\n]');
     expect(Stringifier.anyTypeToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
 
-    expect(Stringifier.anyTypeToString({})).toEqual('{}');
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({
-      anyObject: 'foo',
-      number: 5,
-    }, false, false)).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({
-      anyObject: 'foo',
-      number: 5,
-    }, false, true)).toEqual('{\n  "anyObject": "foo",\n  "number": 5\n}');
-    expect(Stringifier.anyTypeToString({ undefinedProperty: undefined })).toEqual('{}');
-    expect(Stringifier.anyTypeToString({ undefinedProperty: undefined }, false, false, false)).toEqual('{}');
-    expect(Stringifier.anyTypeToString({ undefinedProperty: undefined }, false, false, true)).toEqual('{"undefinedProperty":null}');
+    expect(Stringifier.anyTypeToString({})).toEqual('');
+    expect(Stringifier.anyTypeToString({}, false)).toEqual('');
+    expect(Stringifier.anyTypeToString({}, true)).toEqual('{}');
+    const obj = { str: 'foo', num: 5 };
+    expect(Stringifier.anyTypeToString(obj)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false, false)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false, true)).toEqual('str: foo,\nnum: 5');
+    expect(Stringifier.anyTypeToString(obj, true)).toEqual('{"str":"foo","num":5}');
+    expect(Stringifier.anyTypeToString(obj, true, false)).toEqual('{"str":"foo","num":5}');
+    expect(Stringifier.anyTypeToString(obj, true, true)).toEqual('{\n  "str": "foo",\n  "num": 5\n}');
+    const objUndefined = { undefinedProperty: undefined };
+    expect(Stringifier.anyTypeToString(objUndefined)).toEqual('');
+    expect(Stringifier.anyTypeToString(objUndefined, false, false, false)).toEqual('');
+    expect(Stringifier.anyTypeToString(objUndefined, false, false, true)).toEqual('undefinedProperty:');
+    expect(Stringifier.anyTypeToString(objUndefined, true, false, false)).toEqual('{}');
+    expect(Stringifier.anyTypeToString(objUndefined, true, false, true)).toEqual('{"undefinedProperty":null}');
   });
 
   // endregion

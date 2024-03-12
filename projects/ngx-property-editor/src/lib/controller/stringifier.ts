@@ -472,6 +472,75 @@ export module Stringifier {
     return defaultString;
   }
 
+  /**
+   * Converts any object to a string with a pretty human-readable format.
+   * This format cannot be used to parse the returned string back to an object (like JSON).
+   * If the object is empty or the stringifier failed, an empty string is returned.
+   * @param object An object.
+   * @param addLinebreaks If true, spaces and line breaks are added to the result.
+   * @param includeEmptyProperties If false, properties with empty values (undefined, null, empty string) are ignored.
+   *                               If true, properties with empty values are included with en empty string as property value.
+   * @returns A string representation of the given object.
+   * @see objectToString
+   */
+  export function objectToPrettyString(object: any,
+                                       addLinebreaks: boolean = false,
+                                       includeEmptyProperties: boolean = false): string {
+    if (!object || typeof object !== 'object') return '';
+
+    // Return result of a custom `toString` function, if it differs from the default `toString` function
+    const defaultString: string = toString.call(object);
+    try {
+      const customString: string | undefined = object?.toString();
+      if (customString !== undefined && defaultString !== customString)
+        return customString;
+    } catch {
+    }
+
+    // Use arrayToString function for array types
+    if (Array.isArray(object)) {
+      return arrayToString(object, false, addLinebreaks);
+    }
+
+    const resultArray: string[] = [];
+
+    // Iterate over all properties
+    for (const propertyName in object) {
+      if (!object.hasOwnProperty(propertyName)) continue;
+
+      // Get property value
+      let propertyValue = object[propertyName];
+      // Stringify property value
+      propertyValue = anyTypeToString(propertyValue, false, addLinebreaks, includeEmptyProperties);
+      if (!addLinebreaks)
+        propertyValue = propertyValue.trim();
+      if (!includeEmptyProperties && !propertyValue) continue;
+
+      // Split propertyValue into lines and append lines to resultArray
+      const propertyValueLines: string[] = propertyValue.split('\n');
+      if (propertyValueLines.length > 1) {
+        if (addLinebreaks) {
+          resultArray.push(`${propertyName}:`);
+          resultArray.push(...propertyValueLines.map(line => '  ' + line));
+        } else {
+          resultArray.push(`${propertyName}: ${propertyValueLines.map(item => item.trim()).join(' ')}`);
+        }
+      } else {
+        resultArray.push(`${propertyName}: ${propertyValue}`);
+      }
+    }
+
+    if (addLinebreaks) {
+      return resultArray
+        .map(item => item.trimEnd())
+        .join(',\n');
+    } else {
+      return resultArray
+        .map(item => item.trim())
+        .join(', ');
+    }
+  }
+
   // endregion
 
   // region Any Type
@@ -481,10 +550,12 @@ export module Stringifier {
    * for the given value type, it is used to convert the value to a string.
    * Otherwise, the default `toString()` function is used.
    * @param value Any value.
-   * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
-   * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values
-   *                  and in between the items of array values.
-   * @param undefinedAsNull If true and an object value is stringified using JSON format, any of its properties with
+   * @param addBrackets Array values: If true, brackets are added around array values like '[item 1, item 2, item 3]'.
+   *                    Object values: If true, object values are returned with JSON format;
+   *                                   if false they are returned with a pretty human-readable format.
+   * @param addSpaces Array values: If true, spaces and line breaks are added in between the items of array values.
+   *                  Object values: If true, spaces and line breaks are added to the JSON format of object values.
+   * @param includeUndefined If true and an object value is stringified using JSON format, any of its properties with
    *                        the value `undefined` is stringified as `null`. If false, undefined properties are not
    *                        stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given value.
@@ -492,7 +563,7 @@ export module Stringifier {
   export function anyTypeToString(value: any,
                                   addBrackets: boolean = false,
                                   addSpaces: boolean = false,
-                                  undefinedAsNull: boolean = false): string {
+                                  includeUndefined: boolean = false): string {
     if (value == undefined) {
       return '';
     }
@@ -509,7 +580,7 @@ export module Stringifier {
       case 'string':
         return value;
       case 'function':
-        return anyTypeToString(value(), addBrackets, addSpaces, undefinedAsNull);
+        return anyTypeToString(value(), addBrackets, addSpaces, includeUndefined);
 
       case 'object':
         if (Array.isArray(value)) {
@@ -519,7 +590,11 @@ export module Stringifier {
         } else if (value instanceof File) {
           return value.name;
         }
-        return objectToString(value, addSpaces, undefinedAsNull);
+        if (addBrackets) {
+          return objectToString(value, addSpaces, includeUndefined);
+        } else {
+          return objectToPrettyString(value, addSpaces, includeUndefined);
+        }
     }
 
     return value.toString();
