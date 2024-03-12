@@ -72,16 +72,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
         let propertyValue: any = property.getDisplayValue(this.data);
-        // If propertyValue is an array, remove undefined items
-        if (Array.isArray(propertyValue)) {
-          propertyValue = propertyValue
-            .filter(item => item != undefined);
-        }
         // Ignore empty values, if hideIfEmpty is true
-        if (property.hideIfEmpty) {
-          if (propertyValue == undefined) continue;
-          if (property.isArray && Array.isArray(propertyValue) && !propertyValue.length) continue;
-        }
+        if (property.hideIfEmpty && propertyValue == undefined) continue;
 
         // Get label
         const label: string = property.getLabel(this.data);

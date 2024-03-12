@@ -43,7 +43,7 @@
 
 <ng-template #cellTemplate let-cell="cell">
 
-  <span class="preserve-new-line">{{getContent(cell)}}</span>
+  <span style="white-space: pre-line;">{{getContent(cell)}}</span>
 
   <ng-container *ngIf="cell.routerLink">
     <ng-container *ngIf="!cell.routerLinkIsExternal">

@@ -1,4 +1,5 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
+import { Stringifier } from '../../controller/stringifier';
 
 export type PropertyType =
 /** Boolean (true/false). */
@@ -212,7 +213,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @returns The display value.
    */
-  public getDisplayValue(data: any | undefined): any {
+  public getDisplayValue(data: any | undefined): string | string[] | undefined {
     // Get displayed value
     let propertyValue: any = this.getValue(data);
     if (propertyValue == undefined) return undefined;
@@ -233,10 +234,27 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
       };
 
       if (this.isArray && Array.isArray(propertyValue)) {
-        return propertyValue.map(value => evaluateDisplayPropertyName(value));
+        propertyValue = propertyValue.map(value => evaluateDisplayPropertyName(value));
+      } else {
+        propertyValue = evaluateDisplayPropertyName(propertyValue);
       }
+    }
 
-      return evaluateDisplayPropertyName(propertyValue);
+    // If propertyValue is an array, remove undefined items
+    if (this.isArray && Array.isArray(propertyValue)) {
+      propertyValue = propertyValue
+        .filter(item => item != undefined);
+      // Return undefined instead of an empty array
+      if (!propertyValue.length)
+        return undefined;
+    }
+
+    // Return propertyValue as string (or array of strings)
+    if (this.isArray && Array.isArray(propertyValue)) {
+      return propertyValue
+        .map(item => Stringifier.anyTypeToString(item));
+    } else {
+      return Stringifier.anyTypeToString(propertyValue);
     }
   }
 
