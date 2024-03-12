@@ -434,6 +434,33 @@ export module Stringifier {
   // endregion
 
   // region Objects
+  /**
+   * Converts any object to a string.
+   * If the object has a custom `toString` function which returns something different to '[object ...]',
+   * the result of that function is returned. Otherwise, the default '[object ...]' is returned.
+   * @param object An object.
+   * @param throwIfNoCustomFunction If true and no custom `toString` function exists on the given object,
+   *                                an error is thrown instead of returning the default '[object ...]'.
+   * @returns A string representation of the given object.
+   */
+  export function objectToDefaultString(object: any,
+                                        throwIfNoCustomFunction: boolean = false): string {
+    const defaultString: string = toString.call(object);
+
+    // Return result of a custom `toString` function, if it differs from the default `toString` function
+    try {
+      const customString: string | undefined = object?.toString();
+      if (customString !== undefined && defaultString !== customString)
+        return customString;
+    } catch (e) {
+    }
+
+    if (throwIfNoCustomFunction) {
+      throw new Error('No custom toString function exists.');
+    }
+
+    return defaultString;
+  }
 
   /**
    * Converts any object to a string.
@@ -449,13 +476,9 @@ export module Stringifier {
   export function objectToString(object: any,
                                  addSpaces: boolean = false,
                                  undefinedAsNull: boolean = false): string {
-    const defaultString: string = toString.call(object);
-
     // Return result of a custom `toString` function, if it differs from the default `toString` function
     try {
-      const customString: string | undefined = object?.toString();
-      if (customString !== undefined && defaultString !== customString)
-        return customString;
+      return objectToDefaultString(object, true);
     } catch {
     }
 
@@ -469,7 +492,8 @@ export module Stringifier {
     } catch {
     }
 
-    return defaultString;
+    // Return default toString value as last fallback
+    return toString.call(object);
   }
 
   /**
@@ -481,7 +505,6 @@ export module Stringifier {
    * @param includeEmptyProperties If false, properties with empty values (undefined, null, empty string) are ignored.
    *                               If true, properties with empty values are included with en empty string as property value.
    * @returns A string representation of the given object.
-   * @see objectToString
    */
   export function objectToPrettyString(object: any,
                                        addLinebreaks: boolean = false,
@@ -489,11 +512,8 @@ export module Stringifier {
     if (!object || typeof object !== 'object') return '';
 
     // Return result of a custom `toString` function, if it differs from the default `toString` function
-    const defaultString: string = toString.call(object);
     try {
-      const customString: string | undefined = object?.toString();
-      if (customString !== undefined && defaultString !== customString)
-        return customString;
+      return objectToDefaultString(object, true);
     } catch {
     }
 

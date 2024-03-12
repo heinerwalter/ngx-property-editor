@@ -233,6 +233,34 @@ describe('Stringifier', () => {
 
   // region Objects
 
+  it('objectToDefaultString', () => {
+    expect(Stringifier.objectToDefaultString(undefined)).toEqual('[object Undefined]');
+    expect(Stringifier.objectToDefaultString(null)).toEqual('[object Null]');
+    expect(Stringifier.objectToDefaultString({})).toEqual('[object Object]');
+    expect(Stringifier.objectToDefaultString(new Object())).toEqual('[object Object]');
+    expect(Stringifier.objectToDefaultString({ test: 123, string: 'foo' })).toEqual('[object Object]');
+
+    expect(Stringifier.objectToDefaultString({}, false)).toEqual('[object Object]');
+    expect(() => Stringifier.objectToDefaultString({}, true))
+      .toThrowError('No custom toString function exists.');
+
+    class TestObject {
+      property: string;
+
+      constructor(property: string) {
+        this.property = property;
+      }
+
+      toString(): string {
+        return `Custom toString function: ${this.property}`;
+      }
+    }
+
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'))).toEqual('Custom toString function: foo');
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'), false)).toEqual('Custom toString function: foo');
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'), true)).toEqual('Custom toString function: foo');
+  });
+
   it('objectToString', () => {
     expect(Stringifier.objectToString(undefined)).toEqual('[object Undefined]');
     expect(Stringifier.objectToString(null)).toEqual('null');
