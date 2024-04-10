@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewAndEditContainerBaseComponent } from './view-and-edit-container-base.component';
 import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-
-
-export type ViewAndEditContainerMode = 'view' | 'edit';
+import { PropertyEditorMode } from '../property-editor-mode';
 
 
 /**
@@ -38,7 +36,7 @@ export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseCompo
   protected readonly iconDelete: IconDefinition = faTrash;
   protected readonly iconCancel: IconDefinition = faBan;
 
-  private setMode(mode: ViewAndEditContainerMode): void {
+  private setMode(mode: PropertyEditorMode): void {
     this.mode = mode;
     this.modeChange.emit(mode);
   }

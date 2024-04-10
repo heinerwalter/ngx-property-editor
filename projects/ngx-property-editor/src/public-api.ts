@@ -69,3 +69,6 @@ export * from './lib/controller/text-file-reader';
 
 // Module:
 export * from './lib/property-editor.module';
+export {
+  PropertyEditorMode
+} from './lib/components/property-views/property-editor-mode';

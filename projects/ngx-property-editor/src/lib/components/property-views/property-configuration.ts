@@ -1,5 +1,6 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 import { Stringifier } from '../../controller/stringifier';
+import { PropertyEditorMode } from './property-editor-mode';
 
 export type PropertyType =
 /** Boolean (true/false). */
@@ -42,7 +43,7 @@ export type PropertyType =
  * as function depending on the displayed data object. If defined as function,
  * undefined is passed as data object for empty or multiple data objects.
  */
-type ValueOrFunctionType<T> = T | ((data: any | undefined) => T);
+type ValueOrFunctionType<T> = T | ((data: any | undefined, mode: PropertyEditorMode) => T);
 
 /**
  * Type of the parameter which can be passed to the `PropertyConfiguration` constructor.
@@ -63,7 +64,7 @@ export type PropertyConfigurationConstructorParameter = {
    * the displayed value can be generated using this function.
    * If defined, the `valueFunction` overrides the `propertyName` for retrieving the value.
    */
-  valueFunction?: (data: any) => any | undefined,
+  valueFunction?: (data: any | undefined, mode: PropertyEditorMode) => any | undefined,
   /**
    * If the property is editable, instead of assigning a value to a property with the `propertyName`,
    * a new value can be assigned using this function.
@@ -142,6 +143,10 @@ export type PropertyConfigurationConstructorParameter = {
 
 };
 
+/**
+ * Configuration of how to display a property of a data object
+ * in any property view or property editor.
+ */
 export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
 
   public propertyName?: string;
@@ -149,7 +154,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
 
   public propertyType?: PropertyType;
 
-  public valueFunction?: (data: any) => any | undefined;
+  public valueFunction?: (data: any | undefined, mode: PropertyEditorMode) => any | undefined;
   public setValueFunction?: (data: any, value: any) => void;
 
   public dataSource?: ValueOrFunctionType<any[]>;
@@ -181,11 +186,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets the text which should be used as label (either `label` or `propertyName`).
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns The property label.
    */
-  public getLabel(data: any | undefined): string {
+  public getLabel(data: any | undefined, mode: PropertyEditorMode): string {
     if (typeof this.label === 'function') {
-      return this.label(data);
+      return this.label(data, mode);
     } else {
       return this.label || this.propertyName || '';
     }
@@ -194,11 +200,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets the property value from the given data object.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns The property value.
    */
-  public getValue(data: any | undefined): any {
+  public getValue(data: any | undefined, mode: PropertyEditorMode): any {
     if (this.valueFunction) {
-      return this.valueFunction(data);
+      return this.valueFunction(data, mode);
     } else if (this.propertyName) {
       return this.evaluateNestedPropertyName('get', data, this.propertyName);
     } else {
@@ -211,17 +218,18 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * This function evaluates the `displayPropertyName` for select property types.
    * For any other property type the result of this function is the same as `getValue()`.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns The display value.
    */
-  public getDisplayValue(data: any | undefined): string | string[] | undefined {
+  public getDisplayValue(data: any | undefined, mode: PropertyEditorMode): string | string[] | undefined {
     // Get displayed value
-    let propertyValue: any = this.getValue(data);
+    let propertyValue: any = this.getValue(data, mode);
     if (propertyValue == undefined) return undefined;
 
     // Evaluate data source, if property type is 'select'
     if (this.propertyType == 'select' &&
       this.valuePropertyName != this.displayPropertyName) {
-      const dataSource = this.getDataSource(data);
+      const dataSource = this.getDataSource(data, mode);
 
       const evaluateDisplayPropertyName = (value: any): any => {
         if (dataSource) {
@@ -302,11 +310,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * For use with `propertyType == 'select'`:
    * Evaluates the `dataSource` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns An array from which the user can select one or multiple items.
    */
-  public getDataSource(data: any | undefined): any[] {
+  public getDataSource(data: any | undefined, mode: PropertyEditorMode): any[] {
     if (typeof this.dataSource === 'function') {
-      return this.dataSource(data);
+      return this.dataSource(data, mode);
     } else {
       return this.dataSource || [];
     }
@@ -315,15 +324,19 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets whether this property should be hidden based on `hidden`, `hideIfEmpty` and the value.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param ignoreHideIfEmpty if true, the `hideIfEmpty` configuration is ignored.
+   * @param mode View or edit mode.
+   * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, ignoreHideIfEmpty: boolean = false): boolean {
+  public isHidden(data: any | undefined, mode: PropertyEditorMode): boolean {
     if (typeof this.hidden === 'function') {
-      return this.hidden(data);
+      return this.hidden(data, mode);
     } else if (this.hidden) {
       return true;
-    } else if (!ignoreHideIfEmpty && this.hideIfEmpty && this.getValue(data) == undefined) {
-      return true;
+    } else if (mode != 'edit' && this.hideIfEmpty) {
+      const value = this.getValue(data);
+      if (value == undefined ||
+        (typeof value === 'string' && !value))
+        return true;
     }
     return false;
   }
@@ -331,11 +344,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `editable` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns true, if this property is editable.
    */
-  public isEditable(data: any | undefined): boolean {
+  public isEditable(data: any | undefined, mode: PropertyEditorMode): boolean {
     if (typeof this.editable === 'function') {
-      return this.editable(data);
+      return this.editable(data, mode);
     } else {
       return this.editable || false;
     }
@@ -344,11 +358,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `required` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
    * @returns true, if this property is required.
    */
-  public isRequired(data: any | undefined): boolean {
+  public isRequired(data: any | undefined, mode: PropertyEditorMode): boolean {
     if (typeof this.required === 'function') {
-      return this.required(data);
+      return this.required(data, mode);
     } else {
       return this.required || false;
     }
@@ -357,10 +372,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLink` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
+   * @returns A router link.
    */
-  public getRouterLink(data: any | undefined): any[] | string | undefined {
+  public getRouterLink(data: any | undefined, mode: PropertyEditorMode): any[] | string | undefined {
     if (typeof this.routerLink === 'function') {
-      return this.routerLink(data);
+      return this.routerLink(data, mode);
     } else {
       return this.routerLink;
     }
@@ -369,10 +386,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLinkIsExternal` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
+   * @returns True if the router link points to an external site.
    */
-  public getRouterLinkIsExternal(data: any | undefined): boolean | undefined {
+  public getRouterLinkIsExternal(data: any | undefined, mode: PropertyEditorMode): boolean | undefined {
     if (typeof this.routerLinkIsExternal === 'function') {
-      return this.routerLinkIsExternal(data);
+      return this.routerLinkIsExternal(data, mode);
     } else {
       return this.routerLinkIsExternal;
     }
@@ -381,10 +400,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLinkTooltip` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
+   * @returns Tooltip of the router link.
    */
-  public getRouterLinkTooltip(data: any | undefined): string | undefined {
+  public getRouterLinkTooltip(data: any | undefined, mode: PropertyEditorMode): string | undefined {
     if (typeof this.routerLinkTooltip === 'function') {
-      return this.routerLinkTooltip(data);
+      return this.routerLinkTooltip(data, mode);
     } else {
       return this.routerLinkTooltip;
     }
@@ -393,10 +414,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `md` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode View or edit mode.
+   * @returns Bootstrap column width for 'col-md-...' class.
    */
-  public getBootstrapColumnMD(data: any | undefined): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
+  public getBootstrapColumnMD(data: any | undefined, mode: PropertyEditorMode): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
     if (typeof this.md === 'function') {
-      return this.md(data) || 12;
+      return this.md(data, mode) || 12;
     } else {
       return this.md || 12;
     }
@@ -405,10 +428,11 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Returns a bootstrap column css class based on the `md` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @returns 'col' or 'col-md-...'.
+   * @param mode View or edit mode.
+   * @returns Bootstrap column class 'col-md-...'.
    */
-  public getBootstrapColumnClass(data: any | undefined): string {
-    let md = this.getBootstrapColumnMD(data);
+  public getBootstrapColumnClass(data: any | undefined, mode: PropertyEditorMode): string {
+    let md = this.getBootstrapColumnMD(data, mode);
     return `col-md-${md || 12}`;
   }
 
