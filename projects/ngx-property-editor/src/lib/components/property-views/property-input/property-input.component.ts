@@ -27,7 +27,7 @@ export class PropertyInputComponent {
   @Input() public readonly: boolean = false;
 
   /**
-   * Returns a view or edit mode based on the `readonly` property.
+   * Returns the editor mode based on the `readonly` property.
    */
   protected get mode(): PropertyEditorMode {
     return this.readonly ? 'view' : 'edit';

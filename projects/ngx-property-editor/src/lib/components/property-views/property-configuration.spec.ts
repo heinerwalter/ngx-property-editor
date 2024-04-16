@@ -28,6 +28,7 @@ const configuration1: PropertyConfigurationConstructorParameter = {
   routerLinkIsExternal: false,
   routerLinkTooltip: 'Go to topics',
   md: 6,
+  columnWidth: '42px',
   separator: false,
   isArray: true,
   newArrayItemFunction: () => '',
@@ -233,6 +234,10 @@ describe('PropertyConfiguration', () => {
 
     it(`getBootstrapColumnClass function (${mode})`, () => {
       expect(propertyConfiguration.getBootstrapColumnClass(data, mode)).toEqual('col-md-6');
+    });
+
+    it(`getColumnWidth function (${mode})`, () => {
+      expect(propertyConfiguration.getColumnWidth(data, mode)).toEqual('42px');
     });
 
   });

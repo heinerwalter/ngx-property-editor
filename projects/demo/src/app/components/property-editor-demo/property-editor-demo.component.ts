@@ -28,7 +28,7 @@ export class PropertyEditorDemoComponent {
    */
   public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
 
-  /** View or edit mode. */
+  /** Property editor mode. */
   public mode: PropertyEditorMode = 'view';
 
   /**

@@ -124,6 +124,8 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** Bootstrap column width on md wide screens (class "col-md-..."). */
   md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>,
+  /** Table column width (CSS width, e.g. "100px"). */
+  columnWidth?: ValueOrFunctionType<string | undefined>,
 
   /**
    * Set `separator` to true, to add a separator between properties.
@@ -182,6 +184,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public routerLinkTooltip?: ValueOrFunctionType<string | undefined> = undefined;
 
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined> = undefined;
+  public columnWidth?: ValueOrFunctionType<string | undefined> = undefined;
 
   public separator: boolean = false;
 
@@ -215,7 +218,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets the text which should be used as label (either `label` or `propertyName`).
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns The property label.
    */
   public getLabel(data: any | undefined, mode: PropertyEditorMode): string {
@@ -229,7 +232,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets the property value from the given data object.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns The property value.
    */
   public getValue(data: any | undefined, mode: PropertyEditorMode): any {
@@ -247,7 +250,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * This function evaluates the `displayPropertyName` for select property types.
    * For any other property type the result of this function is the same as `getValue()`.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns The display value.
    */
   public getDisplayValue(data: any | undefined, mode: PropertyEditorMode): string | string[] | undefined {
@@ -339,7 +342,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * For use with `propertyType == 'select'`:
    * Evaluates the `dataSource` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns An array from which the user can select one or multiple items.
    */
   public getDataSource(data: any | undefined, mode: PropertyEditorMode): any[] {
@@ -353,7 +356,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Gets whether this property should be hidden based on `hidden`, `hideIfEmpty` and the value.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @param ignoreHideIfEmpty If true, `hideIfEmpty` is not evaluated.
    * @returns true, if this property is hidden.
    */
@@ -384,7 +387,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `editable` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns true, if this property is editable.
    */
   public isEditable(data: any | undefined, mode: PropertyEditorMode): boolean {
@@ -398,7 +401,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `required` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns true, if this property is required.
    */
   public isRequired(data: any | undefined, mode: PropertyEditorMode): boolean {
@@ -412,7 +415,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLink` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns A router link.
    */
   public getRouterLink(data: any | undefined, mode: PropertyEditorMode): any[] | string | undefined {
@@ -426,7 +429,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLinkIsExternal` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns True if the router link points to an external site.
    */
   public getRouterLinkIsExternal(data: any | undefined, mode: PropertyEditorMode): boolean | undefined {
@@ -440,7 +443,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `routerLinkTooltip` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns Tooltip of the router link.
    */
   public getRouterLinkTooltip(data: any | undefined, mode: PropertyEditorMode): string | undefined {
@@ -454,7 +457,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Evaluates the `md` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns Bootstrap column width for 'col-md-...' class.
    */
   public getBootstrapColumnMD(data: any | undefined, mode: PropertyEditorMode): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
@@ -468,12 +471,26 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   /**
    * Returns a bootstrap column css class based on the `md` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
-   * @param mode View or edit mode.
+   * @param mode Property editor mode.
    * @returns Bootstrap column class 'col-md-...'.
    */
   public getBootstrapColumnClass(data: any | undefined, mode: PropertyEditorMode): string {
     let md = this.getBootstrapColumnMD(data, mode);
     return `col-md-${md || 12}`;
+  }
+
+  /**
+   * Evaluates the `columnWidth` configuration.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode Property editor mode.
+   * @returns Table column width (CSS width, e.g. "100px").
+   */
+  public getColumnWidth(data: any | undefined, mode: PropertyEditorMode): string | undefined {
+    if (typeof this.columnWidth === 'function') {
+      return this.columnWidth(data, mode) || undefined;
+    } else {
+      return this.columnWidth || undefined;
+    }
   }
 
   /**
