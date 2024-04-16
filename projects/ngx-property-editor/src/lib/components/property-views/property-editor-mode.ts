@@ -1,3 +1,7 @@
+export type PropertyEditorModeView = 'view';
+export type PropertyEditorModeTable = 'table';
+export type PropertyEditorModeEdit = 'edit';
+
 /**
  * Mode of any property view or property editor which displays
  * properties of a data object using property configurations.
@@ -10,6 +14,7 @@
  * @see PropertyConfiguration
  */
 export type PropertyEditorMode =
-  'view' |
-  'table' |
-  'edit';
+  PropertyEditorModeView |
+  PropertyEditorModeTable |
+  PropertyEditorModeEdit;
+ 
