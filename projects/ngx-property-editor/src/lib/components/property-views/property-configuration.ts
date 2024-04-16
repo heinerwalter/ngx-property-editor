@@ -375,8 +375,8 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     // Evaluate `hidden`
     if (typeof this.hidden === 'function') {
       return this.hidden(data, mode);
-    } else if (this.hidden) {
-      return true;
+    } else if (this.hidden != undefined) {
+      return this.hidden;
     }
     return false;
   }

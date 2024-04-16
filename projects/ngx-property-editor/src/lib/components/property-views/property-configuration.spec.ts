@@ -201,8 +201,8 @@ describe('PropertyConfiguration', () => {
     it(`isHidden function (${mode})`, () => {
       expect(propertyConfiguration.isHidden(data, mode)).toEqual(false);
       expect(propertyConfiguration.isHidden({ topics: ['banana', 'dog'] }, mode)).toEqual(true);
-      expect(propertyConfiguration.isHidden({}, mode)).toEqual(mode != 'edit');
-      expect(propertyConfiguration.isHidden({ topics: [] }, mode)).toEqual(mode != 'edit');
+      expect(propertyConfiguration.isHidden({}, mode)).toEqual(mode == 'view');
+      expect(propertyConfiguration.isHidden({ topics: [] }, mode)).toEqual(mode == 'view');
 
       expect(new PropertyConfiguration({hidden: 'initially-hidden'}).isHidden({ topics: [] }, mode)).toEqual('initially-hidden');
     });
