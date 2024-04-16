@@ -7,9 +7,9 @@ import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
 export abstract class ViewAndEditContainerBaseComponent {
 
   /** Select initial view or edit mode. */
-  @Input() public mode: ViewAndEditContainerMode = 'view';
+  @Input() public mode: PropertyEditorMode = 'view';
   /** Event is emitted when the view or edit mode changed. */
-  @Output() public readonly modeChange: EventEmitter<ViewAndEditContainerMode> = new EventEmitter<ViewAndEditContainerMode>();
+  @Output() public readonly modeChange: EventEmitter<PropertyEditorMode> = new EventEmitter<PropertyEditorMode>();
 
   /**
    * Only in view mode:

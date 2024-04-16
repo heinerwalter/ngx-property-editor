@@ -3,7 +3,7 @@
   <ng-container *ngIf="hasInputGroup">
 
     <pe-form-group [id]="configuration.propertyName || id"
-                   [label]="configuration.getLabel(data)"
+                   [label]="configuration.getLabel(data, mode)"
                    [noFormGroup]="noFormGroup">
 
       <ng-container *ngIf="configuration.inputGroup!.length == 1">

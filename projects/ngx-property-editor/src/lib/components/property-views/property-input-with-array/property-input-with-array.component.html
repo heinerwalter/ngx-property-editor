@@ -3,13 +3,13 @@
   <ng-container *ngIf="hasArray">
 
     <pe-array-form-group [id]="configuration.propertyName || id"
-                         [label]="configuration.getLabel(data)"
+                         [label]="configuration.getLabel(data, mode)"
                          [noFormGroup]="noFormGroup"
-                         [disableAdd]="readonly || !configuration.isEditable(data)"
-                         [disableDelete]="readonly || !configuration.isEditable(data)"
+                         [disableAdd]="readonly || !configuration.isEditable(data, mode)"
+                         [disableDelete]="readonly || !configuration.isEditable(data, mode)"
                          [newItemFunction]="configuration.newArrayItemFunction"
                          [itemTemplate]="arrayFormGroupTemplate"
-                         [value]="configuration.getValue(data)"
+                         [value]="configuration.getValue(data, mode)"
                          (valueChange)="configuration.setValue(data, $event)">
     </pe-array-form-group>
 

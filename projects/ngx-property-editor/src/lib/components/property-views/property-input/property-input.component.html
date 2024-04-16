@@ -1,17 +1,17 @@
-<ng-container *ngIf="configuration && data && !configuration.separator && !configuration.isHidden(data, !readonly)">
+<ng-container *ngIf="configuration && data && !configuration.separator && !configuration.isHidden(data, mode)">
 
   <ng-container
     *ngIf="configuration.propertyType == 'boolean' || configuration.propertyType == 'boolean-indeterminate'">
     <pe-boolean-input [id]="configuration.propertyName || id"
                       [name]="configuration.propertyName"
                       [noFormGroup]="noFormGroup"
-                      [label]="configuration.getLabel(data)"
-                      [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                      [label]="configuration.getLabel(data, mode)"
+                      [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                       [readonly]="readonly"
-                      [disabled]="!readonly && !configuration.isEditable(data)"
-                      [required]="configuration.isRequired(data)"
+                      [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                      [required]="configuration.isRequired(data, mode)"
                       [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
-                      [value]="configuration.getValue(data)"
+                      [value]="configuration.getValue(data, mode)"
                       (valueChange)="configuration.setValue(data, $event)">
     </pe-boolean-input>
   </ng-container>
@@ -21,13 +21,13 @@
     <pe-date-input [id]="configuration.propertyName || id"
                    [name]="configuration.propertyName"
                    [noFormGroup]="noFormGroup"
-                   [label]="configuration.getLabel(data)"
-                   [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                   [label]="configuration.getLabel(data, mode)"
+                   [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                    [readonly]="readonly"
-                   [disabled]="!readonly && !configuration.isEditable(data)"
-                   [required]="configuration.isRequired(data)"
+                   [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                   [required]="configuration.isRequired(data, mode)"
                    [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
-                   [value]="configuration.getValue(data)"
+                   [value]="configuration.getValue(data, mode)"
                    (valueChange)="configuration.setValue(data, $event)">
     </pe-date-input>
   </ng-container>
@@ -36,12 +36,12 @@
     <pe-number-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
                      [noFormGroup]="noFormGroup"
-                     [label]="configuration.getLabel(data)"
-                     [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                     [label]="configuration.getLabel(data, mode)"
+                     [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                      [readonly]="readonly"
-                     [disabled]="!readonly && !configuration.isEditable(data)"
-                     [required]="configuration.isRequired(data)"
-                     [value]="configuration.getValue(data)"
+                     [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                     [required]="configuration.isRequired(data, mode)"
+                     [value]="configuration.getValue(data, mode)"
                      (valueChange)="configuration.setValue(data, $event)">
     </pe-number-input>
   </ng-container>
@@ -51,13 +51,13 @@
     <pe-text-input [id]="configuration.propertyName || id"
                    [name]="configuration.propertyName"
                    [noFormGroup]="noFormGroup"
-                   [label]="configuration.getLabel(data)"
-                   [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                   [label]="configuration.getLabel(data, mode)"
+                   [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                    [readonly]="readonly"
-                   [disabled]="!readonly && !configuration.isEditable(data)"
-                   [required]="configuration.isRequired(data)"
+                   [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                   [required]="configuration.isRequired(data, mode)"
                    [trimValue]="true"
-                   [value]="configuration.getValue(data)"
+                   [value]="configuration.getValue(data, mode)"
                    (valueChange)="configuration.setValue(data, $event)">
     </pe-text-input>
   </ng-container>
@@ -67,14 +67,14 @@
     <pe-text-input [id]="configuration.propertyName || id"
                    [name]="configuration.propertyName"
                    [noFormGroup]="noFormGroup"
-                   [label]="configuration.getLabel(data)"
-                   [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                   [label]="configuration.getLabel(data, mode)"
+                   [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                    [readonly]="readonly"
-                   [disabled]="!readonly && !configuration.isEditable(data)"
-                   [required]="configuration.isRequired(data)"
+                   [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                   [required]="configuration.isRequired(data, mode)"
                    [type]="configuration.propertyType"
                    [trimValue]="configuration.propertyType !== 'password'"
-                   [value]="configuration.getValue(data)"
+                   [value]="configuration.getValue(data, mode)"
                    (valueChange)="configuration.setValue(data, $event)">
     </pe-text-input>
   </ng-container>
@@ -83,12 +83,12 @@
     <pe-text-area-input [id]="configuration.propertyName || id"
                         [name]="configuration.propertyName"
                         [noFormGroup]="noFormGroup"
-                        [label]="configuration.getLabel(data)"
-                        [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                        [label]="configuration.getLabel(data, mode)"
+                        [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                         [readonly]="readonly"
-                        [disabled]="!readonly && !configuration.isEditable(data)"
-                        [required]="configuration.isRequired(data)"
-                        [value]="configuration.getValue(data)"
+                        [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                        [required]="configuration.isRequired(data, mode)"
+                        [value]="configuration.getValue(data, mode)"
                         (valueChange)="configuration.setValue(data, $event)">
     </pe-text-area-input>
   </ng-container>
@@ -97,12 +97,12 @@
     <pe-rating-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
                      [noFormGroup]="noFormGroup"
-                     [label]="configuration.getLabel(data)"
-                     [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                     [label]="configuration.getLabel(data, mode)"
+                     [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                      [readonly]="readonly"
-                     [disabled]="!readonly && !configuration.isEditable(data)"
-                     [required]="configuration.isRequired(data)"
-                     [value]="configuration.getValue(data)"
+                     [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                     [required]="configuration.isRequired(data, mode)"
+                     [value]="configuration.getValue(data, mode)"
                      (valueChange)="configuration.setValue(data, $event)">
     </pe-rating-input>
   </ng-container>
@@ -111,17 +111,17 @@
     <pe-select-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
                      [noFormGroup]="noFormGroup"
-                     [label]="configuration.getLabel(data)"
-                     [placeholder]="noFormGroup ? configuration.getLabel(data) : undefined"
+                     [label]="configuration.getLabel(data, mode)"
+                     [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
                      [readonly]="readonly"
-                     [disabled]="!readonly && !configuration.isEditable(data)"
-                     [required]="configuration.isRequired(data)"
-                     [dataSource]="configuration.getDataSource(data)"
+                     [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                     [required]="configuration.isRequired(data, mode)"
+                     [dataSource]="configuration.getDataSource(data, mode)"
                      [valuePropertyName]="configuration.valuePropertyName"
                      [displayPropertyName]="configuration.displayPropertyName"
                      [multiple]="configuration.isArray"
-                     [allowEmpty]="!configuration.isRequired(data)"
-                     [value]="configuration.getValue(data)"
+                     [allowEmpty]="!configuration.isRequired(data, mode)"
+                     [value]="configuration.getValue(data, mode)"
                      (valueChange)="configuration.setValue(data, $event)">
     </pe-select-input>
   </ng-container>

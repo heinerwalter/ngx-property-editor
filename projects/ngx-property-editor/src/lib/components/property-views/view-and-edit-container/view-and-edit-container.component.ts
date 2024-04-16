@@ -35,7 +35,7 @@ export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseCompo
   protected readonly iconDelete: IconDefinition = faTrash;
   protected readonly iconCancel: IconDefinition = faBan;
 
-  private setMode(mode: ViewAndEditContainerMode): void {
+  private setMode(mode: PropertyEditorMode): void {
     this.mode = mode;
     this.modeChange.emit(mode);
   }
