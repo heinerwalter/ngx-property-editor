@@ -161,6 +161,9 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
     this._defaultItemIndex = index;
     if (this.currentItem == undefined || this.currentItemIndex == undefined)
       this.onItemChanged(this._items[index], index);
+
+    // Run Angular change detection which cannot automatically handle these changes
+    this.changeDetectorRef.detectChanges();
   }
 
   /**
@@ -177,6 +180,7 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
 
     this.currentItemChange.emit(item);
 
+    // Run Angular change detection which cannot automatically handle these changes
     this.changeDetectorRef.detectChanges();
   }
 
