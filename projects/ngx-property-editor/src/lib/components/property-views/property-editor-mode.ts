@@ -1,6 +1,23 @@
-export type PropertyEditorModeView = 'view';
-export type PropertyEditorModeTable = 'table';
-export type PropertyEditorModeEdit = 'edit';
+/**
+ * View mode:
+ * View properties of a single data object.
+ * @see PropertyEditorMode
+ */
+export type PropertyEditorViewMode = 'view';
+
+/**
+ * Table mode:
+ * View properties of multiple data objects in a table.
+ * @see PropertyEditorMode
+ */
+export type PropertyEditorTableMode = 'table';
+
+/**
+ * Edit mode:
+ * Edit properties of a single data object.
+ * @see PropertyEditorMode
+ */
+export type PropertyEditorEditMode = 'edit';
 
 /**
  * Mode of any property view or property editor which displays
@@ -14,7 +31,6 @@ export type PropertyEditorModeEdit = 'edit';
  * @see PropertyConfiguration
  */
 export type PropertyEditorMode =
-  PropertyEditorModeView |
-  PropertyEditorModeTable |
-  PropertyEditorModeEdit;
- 
+  PropertyEditorViewMode |
+  PropertyEditorTableMode |
+  PropertyEditorEditMode;

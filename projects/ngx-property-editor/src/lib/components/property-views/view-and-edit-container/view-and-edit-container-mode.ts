@@ -1,3 +1,5 @@
+import { PropertyEditorEditMode, PropertyEditorViewMode } from '../property-editor-mode';
+
 /**
  * Mode of the `ViewAndEditContainerComponent`.
  * A subset of the `PropertyEditorMode`.
@@ -9,5 +11,5 @@
  * @see PropertyEditorMode
  */
 export type ViewAndEditContainerMode =
-  'view' |
-  'edit';
+  PropertyEditorViewMode |
+  PropertyEditorEditMode;
