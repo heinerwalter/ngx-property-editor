@@ -94,7 +94,11 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** If true, this property is hidden. */
   hidden?: ValueOrFunctionType<boolean>,
-  /** If true, this property is hidden, if its value is undefined. */
+  /**
+   * Only in `mode != 'edit'`:
+   * If true, this property is hidden, if its value is undefined, null,
+   * an empty string or an empty array.
+   */
   hideIfEmpty?: boolean,
   /** If true, this property is editable. */
   editable?: ValueOrFunctionType<boolean>,
@@ -149,38 +153,56 @@ export type PropertyConfigurationConstructorParameter = {
  */
 export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
 
-  public propertyName?: string;
-  public label?: ValueOrFunctionType<string>;
+  public propertyName?: string = undefined;
+  public label?: ValueOrFunctionType<string> = undefined;
 
-  public propertyType?: PropertyType;
+  public propertyType?: PropertyType = undefined;
 
-  public valueFunction?: (data: any | undefined, mode: PropertyEditorMode) => any | undefined;
-  public setValueFunction?: (data: any, value: any) => void;
+  public valueFunction?: (data: any | undefined, mode: PropertyEditorMode) => any | undefined = undefined;
+  public setValueFunction?: (data: any, value: any) => void = undefined;
 
-  public dataSource?: ValueOrFunctionType<any[]>;
-  public valuePropertyName?: string | undefined;
-  public displayPropertyName?: string | undefined;
+  public dataSource?: ValueOrFunctionType<any[]> = undefined;
+  public valuePropertyName?: string | undefined = undefined;
+  public displayPropertyName?: string | undefined = undefined;
 
-  public hidden?: ValueOrFunctionType<boolean>;
-  public hideIfEmpty?: boolean;
-  public editable?: ValueOrFunctionType<boolean>;
-  public required?: ValueOrFunctionType<boolean>;
+  public hidden?: ValueOrFunctionType<boolean> = undefined;
+  public hideIfEmpty: boolean = false;
+  public editable?: ValueOrFunctionType<boolean> = undefined;
+  public required?: ValueOrFunctionType<boolean> = undefined;
 
-  public routerLink?: ValueOrFunctionType<any[] | string | undefined>;
-  public routerLinkIsExternal?: ValueOrFunctionType<boolean | undefined>;
-  public routerLinkTooltip?: ValueOrFunctionType<string | undefined>;
+  public routerLink?: ValueOrFunctionType<any[] | string | undefined> = undefined;
+  public routerLinkIsExternal?: ValueOrFunctionType<boolean | undefined> = undefined;
+  public routerLinkTooltip?: ValueOrFunctionType<string | undefined> = undefined;
 
-  public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>;
+  public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined> = undefined;
 
-  public separator?: boolean;
+  public separator: boolean = false;
 
   public isArray: boolean = false;
   public newArrayItemFunction?: (() => any) | undefined = undefined;
 
-  public inputGroup?: PropertyConfiguration[][];
+  public inputGroup?: PropertyConfiguration[][] = undefined;
 
   public constructor(configuration?: PropertyConfigurationConstructorParameter) {
-    Object.assign(this, configuration);
+    // Assign properties from configuration object if defined
+    if (configuration) {
+      const booleanPropertyNames: string[] = ['hideIfEmpty', 'separator', 'isArray'];
+
+      for (const propertyName in configuration) {
+        // Skip properties which does not exist on configuration object or on this
+        if (!configuration.hasOwnProperty(propertyName)) continue;
+        if (!this.hasOwnProperty(propertyName)) continue;
+
+        // Get property value from configuration object
+        const configurationValue: any = (configuration as any)[propertyName];
+
+        // Assign property value as boolean or unchanged
+        if (booleanPropertyNames.includes(propertyName))
+          (this as any)[propertyName] = !!configurationValue;
+        else
+          (this as any)[propertyName] = configurationValue;
+      }
+    }
   }
 
   /**
@@ -328,15 +350,25 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @returns true, if this property is hidden.
    */
   public isHidden(data: any | undefined, mode: PropertyEditorMode): boolean {
+    // Evaluate `hideIfEmpty` (not in edit mode)
+    if (mode != 'edit' && this.hideIfEmpty) {
+      const value = this.getValue(data, mode);
+      if (
+        // undefined or null is always considered empty
+        value == undefined ||
+        // Empty strings are considered empty
+        (typeof value === 'string' && !value) ||
+        // Empty arrays are considered empty
+        (Array.isArray(value) && !value.length)
+      )
+        return true;
+    }
+
+    // Evaluate `hidden`
     if (typeof this.hidden === 'function') {
       return this.hidden(data, mode);
     } else if (this.hidden) {
       return true;
-    } else if (mode != 'edit' && this.hideIfEmpty) {
-      const value = this.getValue(data);
-      if (value == undefined ||
-        (typeof value === 'string' && !value))
-        return true;
     }
     return false;
   }

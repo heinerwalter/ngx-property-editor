@@ -64,24 +64,24 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         const property = item as PropertyConfiguration;
 
         if (typeof property.hidden === 'function') {
-          if (property.hidden(this.data)) continue;
+          if (property.hidden(this.data, 'view')) continue;
         } else if (property.hidden) {
           continue;
         }
 
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
-        let propertyValue: any = property.getDisplayValue(this.data);
+        let propertyValue: any = property.getDisplayValue(this.data, 'view');
         // Ignore empty values, if hideIfEmpty is true
         if (property.hideIfEmpty && propertyValue == undefined) continue;
 
         // Get label
-        const label: string = property.getLabel(this.data);
+        const label: string = property.getLabel(this.data, 'view');
 
         // Get optional link
-        const routerLink: any[] | string | undefined = property.getRouterLink(this.data);
-        const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data);
-        const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data);
+        const routerLink: any[] | string | undefined = property.getRouterLink(this.data, 'view');
+        const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data, 'view');
+        const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data, 'view');
 
         // Crate table data entry
         tableData.push([
