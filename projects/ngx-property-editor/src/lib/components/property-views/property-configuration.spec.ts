@@ -203,6 +203,8 @@ describe('PropertyConfiguration', () => {
       expect(propertyConfiguration.isHidden({ topics: ['banana', 'dog'] }, mode)).toEqual(true);
       expect(propertyConfiguration.isHidden({}, mode)).toEqual(mode != 'edit');
       expect(propertyConfiguration.isHidden({ topics: [] }, mode)).toEqual(mode != 'edit');
+
+      expect(new PropertyConfiguration({hidden: 'initially-hidden'}).isHidden({ topics: [] }, mode)).toEqual('initially-hidden');
     });
 
     it(`isEditable function (${mode})`, () => {

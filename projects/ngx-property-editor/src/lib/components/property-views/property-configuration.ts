@@ -45,6 +45,8 @@ export type PropertyType =
  */
 type ValueOrFunctionType<T> = T | ((data: any | undefined, mode: PropertyEditorMode) => T);
 
+type HiddenPropertyConfigurationType = boolean | 'initially-hidden';
+
 /**
  * Type of the parameter which can be passed to the `PropertyConfiguration` constructor.
  * This type contains all properties of the `PropertyConfiguration` class.
@@ -92,8 +94,13 @@ export type PropertyConfigurationConstructorParameter = {
    */
   displayPropertyName?: string | undefined,
 
-  /** If true, this property is hidden. */
-  hidden?: ValueOrFunctionType<boolean>,
+  /**
+   * If `false`, this property is visible (if `hideIfEmpty` does not apply).
+   * If `true`, this property is hidden.
+   * If `'initially-hidden'`, this property is hidden, but it can be made visible
+   * using a property chooser (especially for table mode).
+   */
+  hidden?: ValueOrFunctionType<HiddenPropertyConfigurationType>,
   /**
    * Only in `mode != 'edit'`:
    * If true, this property is hidden, if its value is undefined, null,
@@ -165,7 +172,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public valuePropertyName?: string | undefined = undefined;
   public displayPropertyName?: string | undefined = undefined;
 
-  public hidden?: ValueOrFunctionType<boolean> = undefined;
+  public hidden?: ValueOrFunctionType<HiddenPropertyConfigurationType> = undefined;
   public hideIfEmpty: boolean = false;
   public editable?: ValueOrFunctionType<boolean> = undefined;
   public required?: ValueOrFunctionType<boolean> = undefined;
@@ -349,7 +356,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param mode View or edit mode.
    * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, mode: PropertyEditorMode): boolean {
+  public isHidden(data: any | undefined, mode: PropertyEditorMode): HiddenPropertyConfigurationType {
     // Evaluate `hideIfEmpty` (not in edit mode)
     if (mode != 'edit' && this.hideIfEmpty) {
       const value = this.getValue(data, mode);

@@ -63,11 +63,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       } else {
         const property = item as PropertyConfiguration;
 
-        if (typeof property.hidden === 'function') {
-          if (property.hidden(this.data, 'view')) continue;
-        } else if (property.hidden) {
-          continue;
-        }
+
+        if (property.isHidden(this.data, 'view')) continue;
 
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
