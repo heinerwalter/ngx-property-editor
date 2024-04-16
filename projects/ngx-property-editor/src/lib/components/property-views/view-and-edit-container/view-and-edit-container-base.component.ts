@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ViewAndEditContainerMode } from './view-and-edit-container.component';
+import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
 
 @Component({
   template: '',
