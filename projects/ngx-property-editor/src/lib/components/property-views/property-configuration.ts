@@ -102,7 +102,7 @@ export type PropertyConfigurationConstructorParameter = {
    */
   hidden?: ValueOrFunctionType<HiddenPropertyConfigurationType>,
   /**
-   * Only in `mode != 'edit'`:
+   * Only in `mode == 'view'`:
    * If true, this property is hidden, if its value is undefined, null,
    * an empty string or an empty array.
    */
@@ -354,11 +354,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * Gets whether this property should be hidden based on `hidden`, `hideIfEmpty` and the value.
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @param mode View or edit mode.
+   * @param ignoreHideIfEmpty If true, `hideIfEmpty` is not evaluated.
    * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, mode: PropertyEditorMode): HiddenPropertyConfigurationType {
-    // Evaluate `hideIfEmpty` (not in edit mode)
-    if (mode != 'edit' && this.hideIfEmpty) {
+  public isHidden(data: any | undefined, mode: PropertyEditorMode, ignoreHideIfEmpty: boolean = false): HiddenPropertyConfigurationType {
+    // Evaluate `hideIfEmpty` (only in view mode)
+    if (!ignoreHideIfEmpty && mode == 'view' && this.hideIfEmpty) {
       const value = this.getValue(data, mode);
       if (
         // undefined or null is always considered empty
