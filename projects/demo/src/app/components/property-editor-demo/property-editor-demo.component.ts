@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from '../../model/contact';
-import { EditModeType, PropertiesConfiguration, ViewAndEditContainerMode, ViewModeType } from 'ngx-property-editor';
+import { EditModeType, PropertiesConfiguration, PropertyEditorMode, ViewModeType } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-property-editor-demo',
@@ -29,7 +29,7 @@ export class PropertyEditorDemoComponent {
   public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
 
   /** View or edit mode. */
-  public mode: ViewAndEditContainerMode = 'view';
+  public mode: PropertyEditorMode = 'view';
 
   /**
    * Possible options of `viewModeType` (how are properties displayed in view mode?).
