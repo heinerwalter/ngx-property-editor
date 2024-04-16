@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ItemViewWithStateSaveBaseComponent } from '../item-view-with-state-save-base.component';
 
 @Component({
@@ -27,8 +27,8 @@ export class AccordionComponent extends ItemViewWithStateSaveBaseComponent {
 
   @Input() public override disableSaveLastActiveItem: boolean = true;
 
-  public constructor() {
-    super();
+  public constructor(changeDetectorRef: ChangeDetectorRef) {
+    super(changeDetectorRef);
   }
 
 }

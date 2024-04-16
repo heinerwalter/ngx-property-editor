@@ -1,4 +1,13 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ItemDefinition, ItemViewItemBaseComponent } from './item-view-item-base.component';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -61,6 +70,9 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
    * instead of once in the end (by `ngAfterViewInit`).
    */
   private _afterViewInitDone: boolean = false;
+
+  protected constructor(protected changeDetectorRef: ChangeDetectorRef) {
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('defaultItemLabel') ||
@@ -164,6 +176,8 @@ export abstract class ItemViewBaseComponent implements OnChanges, AfterViewInit 
     this.currentItemIndex = itemIndex;
 
     this.currentItemChange.emit(item);
+
+    this.changeDetectorRef.detectChanges();
   }
 
 }
