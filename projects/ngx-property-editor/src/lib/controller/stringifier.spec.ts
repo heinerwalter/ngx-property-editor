@@ -1,13 +1,23 @@
 import { Stringifier } from './stringifier';
 
+
+/**
+ * Call this function within a unit test describe block to override the global langauge setting.
+ * @param language A language (e.g. 'de').
+ */
+export function useLanguageForTesting(language: string = 'de'): void {
+  Object.defineProperty(navigator, 'language', {
+    get: function (): string {
+      return language;
+    },
+  });
+}
+
+
 describe('Stringifier', () => {
 
   // Use german locale for testing
-  Object.defineProperty(navigator, 'language', {
-    get: function (): string {
-      return 'de';
-    },
-  });
+  useLanguageForTesting('de');
 
   // region Booleans
 

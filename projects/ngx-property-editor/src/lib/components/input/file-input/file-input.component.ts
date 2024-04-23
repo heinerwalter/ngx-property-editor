@@ -23,7 +23,7 @@ export class FileInputComponent extends InputBase {
 
   /**
    * Define the file type (extension or MIME type of files you want to accept in this file input, e.g. ".txt").
-   * You may define one file type or a comma-separated list of multiple file types.g
+   * You may define one file type or a comma-separated list of multiple file types.
    */
   @Input() public accept: string | undefined = undefined;
   /** If true, accept multi file selection (default: false). */
