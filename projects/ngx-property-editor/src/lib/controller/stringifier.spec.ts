@@ -178,6 +178,36 @@ describe('Stringifier', () => {
 
   // region Strings
 
+  it('stringToFirstCharacterLowerCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringToFirstCharacterLowerCase(undefined)).toBeUndefined();
+    expect(Stringifier.stringToFirstCharacterLowerCase('')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterLowerCase(' ')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterLowerCase('abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase(' abc   ')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('Abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('   Abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('myStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('my string with spaces')).toEqual('my String With Spaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('MyStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('My string with spaces')).toEqual('my String With Spaces');
+  });
+
+  it('stringToFirstCharacterUpperCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringToFirstCharacterUpperCase(undefined)).toBeUndefined();
+    expect(Stringifier.stringToFirstCharacterUpperCase('')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterUpperCase(' ')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterUpperCase('abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase(' abc   ')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('Abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('   Abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('myStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('my string with spaces')).toEqual('My String With Spaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('MyStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('My string with spaces')).toEqual('My String With Spaces');
+  });
+
   it('stringToCamelCase', () => {
     // @ts-ignore
     expect(Stringifier.stringToCamelCase(undefined)).toBeUndefined();

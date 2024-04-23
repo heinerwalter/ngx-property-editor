@@ -367,6 +367,30 @@ export module Stringifier {
   // region Strings
 
   /**
+   * Changes the first character of the given string to lower case.
+   * @param str Input string.
+   * @returns The input string with the first character as lower case (e.g. 'PropertyEditor' -> 'propertyEditor').
+   */
+  export function stringToFirstCharacterLowerCase(str: string): string {
+    str = str?.trim();
+    if (!str) return str;
+
+    return str[0].toLowerCase() + str.substring(1);
+  }
+
+  /**
+   * Changes the first character of the given string to upper case.
+   * @param str Input string.
+   * @returns The input string with the first character as upper case (e.g. 'editor' -> 'Editor').
+   */
+  export function stringToFirstCharacterUpperCase(str: string): string {
+    str = str?.trim();
+    if (!str) return str;
+
+    return str[0].toUpperCase() + str.substring(1);
+  }
+
+  /**
    * Converts the given text to camel case (first character of each word as upper case;
    * everything else as lower case).
    * @param str Input string.
