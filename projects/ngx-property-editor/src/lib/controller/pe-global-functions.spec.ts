@@ -12,6 +12,12 @@ describe('PEGlobalFunctions', () => {
       .toBeTruthy();
   });
 
+  it('createDateUTC', () => {
+    const date: Date | undefined = PEGlobalFunctions.createDateUTC(2024, 3, 24, 13, 54, 7, 100);
+    expect(date).toBeDefined();
+    expect(date?.toISOString()).toEqual('2024-04-24T13:54:07.100Z');
+  });
+
   const dataSource = [
     { name: 'Item 1', value: 1 },
     { name: 'Item 2', value: 2 },
