@@ -3,18 +3,29 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "ng serve",
-      "type": "chrome",
+      "name": "Run npm link:demo",
+      "command": "npm run link:demo",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "type": "node-terminal"
     },
     {
-      "name": "ng test",
+      "name": "Run npm watch",
+      "command": "npm run watch",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Run npm start:demo",
+      "command": "npm run start:demo",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Start demo",
       "type": "chrome",
       "request": "launch",
-      "preLaunchTask": "npm: test",
-      "url": "http://localhost:9876/debug.html"
+      "preLaunchTask": "Run npm start:demo",
+      "url": "http://localhost:4200/"
     }
   ]
 }

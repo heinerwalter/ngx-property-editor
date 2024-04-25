@@ -139,6 +139,9 @@ export type PropertyConfigurationConstructorParameter = {
 
 };
 
+/**
+ * Configuration of a single property used by property editors or views.
+ */
 export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
 
   public propertyName?: string;
@@ -354,9 +357,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    */
   public getBootstrapColumnClass(data: any | undefined): string {
     let md = this.getBootstrapColumnMD(data);
-    if (md == undefined)
-      return 'col';
-    return `col-md-${md}`;
+    return `col-md-${md || 12}`;
   }
 
   /**
@@ -380,9 +381,14 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
 
 }
 
+/**
+ * A separator configuration used by property editors or views
+ */
 export class PropertyConfigurationSeparator extends PropertyConfiguration {
 
   public override readonly separator: boolean = true;
+
+  public override readonly md: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined> = 12;
 
   public constructor(configuration?: {
     /** If true, this property is hidden. */
@@ -391,11 +397,25 @@ export class PropertyConfigurationSeparator extends PropertyConfiguration {
     super(configuration);
   }
 
+  public override getBootstrapColumnMD(data: any | undefined): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined {
+    return 12;
+  }
+
 }
 
+
+/**
+ * Configuration of multiple properties used by property editors or views.
+ */
 export type PropertiesConfiguration = PropertyConfiguration[];
 
 
+/**
+ * Automatically determins a property type for use in a `PropertyConfiguration`
+ * from the given value.
+ * @param propertyValue Value of a property.
+ * @returns Automatically detected property type matching the given value.
+ */
 export function generatePropertyTypeFromData(propertyValue: any): PropertyType | undefined {
   // If the given value is an array with at least one element,
   // generate the property type from the first element (and set `isArray` to true).
