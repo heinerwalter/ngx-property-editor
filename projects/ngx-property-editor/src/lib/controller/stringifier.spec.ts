@@ -188,9 +188,9 @@ describe('Stringifier', () => {
     expect(Stringifier.stringToFirstCharacterLowerCase('Abc')).toEqual('abc');
     expect(Stringifier.stringToFirstCharacterLowerCase('   Abc')).toEqual('abc');
     expect(Stringifier.stringToFirstCharacterLowerCase('myStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
-    expect(Stringifier.stringToFirstCharacterLowerCase('my string with spaces')).toEqual('my String With Spaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('my string with spaces')).toEqual('my string with spaces');
     expect(Stringifier.stringToFirstCharacterLowerCase('MyStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
-    expect(Stringifier.stringToFirstCharacterLowerCase('My string with spaces')).toEqual('my String With Spaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('My string with spaces')).toEqual('my string with spaces');
   });
 
   it('stringToFirstCharacterUpperCase', () => {
@@ -203,9 +203,9 @@ describe('Stringifier', () => {
     expect(Stringifier.stringToFirstCharacterUpperCase('Abc')).toEqual('Abc');
     expect(Stringifier.stringToFirstCharacterUpperCase('   Abc')).toEqual('Abc');
     expect(Stringifier.stringToFirstCharacterUpperCase('myStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
-    expect(Stringifier.stringToFirstCharacterUpperCase('my string with spaces')).toEqual('My String With Spaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('my string with spaces')).toEqual('My string with spaces');
     expect(Stringifier.stringToFirstCharacterUpperCase('MyStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
-    expect(Stringifier.stringToFirstCharacterUpperCase('My string with spaces')).toEqual('My String With Spaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('My string with spaces')).toEqual('My string with spaces');
   });
 
   it('stringToCamelCase', () => {
