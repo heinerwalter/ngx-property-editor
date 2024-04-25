@@ -14,7 +14,7 @@ describe('SelectInputComponent', () => {
         SelectInputComponent,
         FormGroupComponent,
       ],
-      imports: [ FormsModule ],
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(SelectInputComponent);
     component = fixture.componentInstance;

@@ -367,6 +367,30 @@ export module Stringifier {
   // region Strings
 
   /**
+   * Changes the first character of the given string to lower case.
+   * @param str Input string.
+   * @returns The input string with the first character as lower case (e.g. 'PropertyEditor' -> 'propertyEditor').
+   */
+  export function stringToFirstCharacterLowerCase(str: string): string {
+    str = str?.trim();
+    if (!str) return str;
+
+    return str[0].toLowerCase() + str.substring(1);
+  }
+
+  /**
+   * Changes the first character of the given string to upper case.
+   * @param str Input string.
+   * @returns The input string with the first character as upper case (e.g. 'editor' -> 'Editor').
+   */
+  export function stringToFirstCharacterUpperCase(str: string): string {
+    str = str?.trim();
+    if (!str) return str;
+
+    return str[0].toUpperCase() + str.substring(1);
+  }
+
+  /**
    * Converts the given text to camel case (first character of each word as upper case;
    * everything else as lower case).
    * @param str Input string.
@@ -408,32 +432,43 @@ export module Stringifier {
    * Converts an array to a string.
    * @param array An array. If the given value is not an array, an empty string is returned.
    * @param addBrackets If true, brackets are added around the array content like '[item 1, item 2, item 3]'.
+   * @param addSpaces If true, spaces and line breaks are in between the items of array values.
    * @returns A string representation of the given array like 'item 1, item 2, item 3'.
    */
-  export function arrayToString(array: any[], addBrackets: boolean = false): string {
+  export function arrayToString(array: any[],
+                                addBrackets: boolean = false,
+                                addSpaces: boolean = false): string {
     if (!Array.isArray(array)) return '';
 
-    const stringValue: string = array.map(item => anyTypeToString(item, true)).join(', ');
-    if (addBrackets)
-      return `[${stringValue}]`;
-    else
-      return stringValue;
+    const addIndent: boolean = !!array.length && addBrackets && addSpaces;
+    const separator: string = addSpaces ? ',\n' : ', ';
+
+    let stringValue: string = array
+      .map(item => anyTypeToString(item, true, addSpaces))
+      .join(separator);
+    if (addIndent) {
+      stringValue = '[\n  ' + stringValue.replaceAll('\n', '\n  ') + '\n]';
+    } else if (addBrackets) {
+      stringValue = '[' + stringValue + ']';
+    }
+
+    return stringValue;
   }
 
   // endregion
 
   // region Objects
-
   /**
    * Converts any object to a string.
    * If the object has a custom `toString` function which returns something different to '[object ...]',
-   * the result of that function is returned. Otherwise, the object is stringified using JSON.
-   * If that fails the default `toString` function is used as fallback (something like '[object Object]').
+   * the result of that function is returned. Otherwise, the default '[object ...]' is returned.
    * @param object An object.
-   * @param addSpaces If true, the JSON format is returned with spaces and line breaks.
-   * @returns A string representation of the given object, possibly using JSON format.
+   * @param throwIfNoCustomFunction If true and no custom `toString` function exists on the given object,
+   *                                an error is thrown instead of returning the default '[object ...]'.
+   * @returns A string representation of the given object.
    */
-  export function objectToString(object: any, addSpaces: boolean = false): string {
+  export function objectToDefaultString(object: any,
+                                        throwIfNoCustomFunction: boolean = false): string {
     const defaultString: string = toString.call(object);
 
     // Return result of a custom `toString` function, if it differs from the default `toString` function
@@ -441,18 +476,113 @@ export module Stringifier {
       const customString: string | undefined = object?.toString();
       if (customString !== undefined && defaultString !== customString)
         return customString;
+    } catch (e) {
+    }
+
+    if (throwIfNoCustomFunction) {
+      throw new Error('No custom toString function exists.');
+    }
+
+    return defaultString;
+  }
+
+  /**
+   * Converts any object to a string.
+   * If the object has a custom `toString` function which returns something different to '[object ...]',
+   * the result of that function is returned. Otherwise, the object is stringified using JSON.
+   * If that fails the default `toString` function is used as fallback (something like '[object Object]').
+   * @param object An object.
+   * @param addSpaces If true, spaces and line breaks are added to the JSON format of object values.
+   * @param undefinedAsNull If true, any object property with the value `undefined` is stringified as `null`.
+   *                        If false, undefined properties are not stringified (JSON format does not support `undefined`).
+   * @returns A string representation of the given object, possibly using JSON format.
+   */
+  export function objectToString(object: any,
+                                 addSpaces: boolean = false,
+                                 undefinedAsNull: boolean = false): string {
+    // Return result of a custom `toString` function, if it differs from the default `toString` function
+    try {
+      return objectToDefaultString(object, true);
     } catch {
     }
 
     // Return JSON string if possible
     try {
-      const jsonString: string | undefined = JSON.stringify(object, undefined, addSpaces ? 2 : undefined);
+      const jsonString: string | undefined = JSON.stringify(object,
+        undefinedAsNull ? ((key, value) => value === undefined ? null : value) : undefined,
+        addSpaces ? 2 : undefined);
       if (jsonString !== undefined)
         return jsonString;
     } catch {
     }
 
-    return defaultString;
+    // Return default toString value as last fallback
+    return toString.call(object);
+  }
+
+  /**
+   * Converts any object to a string with a pretty human-readable format.
+   * This format cannot be used to parse the returned string back to an object (like JSON).
+   * If the object is empty or the stringifier failed, an empty string is returned.
+   * @param object An object.
+   * @param addLinebreaks If true, spaces and line breaks are added to the result.
+   * @param includeEmptyProperties If false, properties with empty values (undefined, null, empty string) are ignored.
+   *                               If true, properties with empty values are included with en empty string as property value.
+   * @returns A string representation of the given object.
+   */
+  export function objectToPrettyString(object: any,
+                                       addLinebreaks: boolean = false,
+                                       includeEmptyProperties: boolean = false): string {
+    if (!object || typeof object !== 'object') return '';
+
+    // Return result of a custom `toString` function, if it differs from the default `toString` function
+    try {
+      return objectToDefaultString(object, true);
+    } catch {
+    }
+
+    // Use arrayToString function for array types
+    if (Array.isArray(object)) {
+      return arrayToString(object, false, addLinebreaks);
+    }
+
+    const resultArray: string[] = [];
+
+    // Iterate over all properties
+    for (const propertyName in object) {
+      if (!object.hasOwnProperty(propertyName)) continue;
+
+      // Get property value
+      let propertyValue = object[propertyName];
+      // Stringify property value
+      propertyValue = anyTypeToString(propertyValue, false, addLinebreaks, includeEmptyProperties);
+      if (!addLinebreaks)
+        propertyValue = propertyValue.trim();
+      if (!includeEmptyProperties && !propertyValue) continue;
+
+      // Split propertyValue into lines and append lines to resultArray
+      const propertyValueLines: string[] = propertyValue.split('\n');
+      if (propertyValueLines.length > 1) {
+        if (addLinebreaks) {
+          resultArray.push(`${propertyName}:`);
+          resultArray.push(...propertyValueLines.map(line => '  ' + line));
+        } else {
+          resultArray.push(`${propertyName}: ${propertyValueLines.map(item => item.trim()).join(' ')}`);
+        }
+      } else {
+        resultArray.push(`${propertyName}: ${propertyValue}`);
+      }
+    }
+
+    if (addLinebreaks) {
+      return resultArray
+        .map(item => item.trimEnd())
+        .join(',\n');
+    } else {
+      return resultArray
+        .map(item => item.trim())
+        .join(', ');
+    }
   }
 
   // endregion
@@ -464,13 +594,20 @@ export module Stringifier {
    * for the given value type, it is used to convert the value to a string.
    * Otherwise, the default `toString()` function is used.
    * @param value Any value.
-   * @param addBrackets If true, brackets are added around array values like '[item 1, item 2, item 3]'.
-   * @param addSpaces If true, the JSON format of object values is returned with spaces and line breaks.
+   * @param addBrackets Array values: If true, brackets are added around array values like '[item 1, item 2, item 3]'.
+   *                    Object values: If true, object values are returned with JSON format;
+   *                                   if false they are returned with a pretty human-readable format.
+   * @param addSpaces Array values: If true, spaces and line breaks are added in between the items of array values.
+   *                  Object values: If true, spaces and line breaks are added to the JSON format of object values.
+   * @param includeUndefined If true and an object value is stringified using JSON format, any of its properties with
+   *                        the value `undefined` is stringified as `null`. If false, undefined properties are not
+   *                        stringified (JSON format does not support `undefined`).
    * @returns A string representation of the given value.
    */
   export function anyTypeToString(value: any,
                                   addBrackets: boolean = false,
-                                  addSpaces: boolean = false): string {
+                                  addSpaces: boolean = false,
+                                  includeUndefined: boolean = false): string {
     if (value == undefined) {
       return '';
     }
@@ -487,17 +624,21 @@ export module Stringifier {
       case 'string':
         return value;
       case 'function':
-        return anyTypeToString(value(), addBrackets, addSpaces);
+        return anyTypeToString(value(), addBrackets, addSpaces, includeUndefined);
 
       case 'object':
         if (Array.isArray(value)) {
-          return arrayToString(value, addBrackets);
+          return arrayToString(value, addBrackets, addSpaces);
         } else if (value instanceof Date) {
           return dateToString(value);
         } else if (value instanceof File) {
           return value.name;
         }
-        return objectToString(value, addSpaces);
+        if (addBrackets) {
+          return objectToString(value, addSpaces, includeUndefined);
+        } else {
+          return objectToPrettyString(value, addSpaces, includeUndefined);
+        }
     }
 
     return value.toString();

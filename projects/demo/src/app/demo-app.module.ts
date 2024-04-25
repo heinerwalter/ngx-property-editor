@@ -6,7 +6,7 @@ import { DemoAppComponent } from './demo-app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { components } from "./components/components";
+import { components } from './components/components';
 
 /**
  * Demo application module.

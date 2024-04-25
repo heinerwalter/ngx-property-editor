@@ -22,7 +22,7 @@ describe('CollapseComponent', () => {
     });
     fixture = TestBed.createComponent(CollapseComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges(); // Here happens an ExpressionChangedAfterItHasBeenCheckedError
+    fixture.detectChanges();
   });
 
   it('should create', () => {

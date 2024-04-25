@@ -8,7 +8,7 @@ describe('TabsItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TabsItemComponent]
+      declarations: [TabsItemComponent],
     });
   });
 

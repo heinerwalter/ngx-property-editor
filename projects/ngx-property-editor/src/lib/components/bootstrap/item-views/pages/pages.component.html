@@ -36,10 +36,10 @@
   <div [class]="'pe-pages-controls pe-pages-controls-' + position"
        [class.pe-pages-controls-bottom-fixed]="controlsPosition == 'bottom-fixed'">
 
-    <button *ngIf="showPreviousButton"
-            type="button"
+    <button ngb-btn *ngIf="showPreviousButton"
             [id]="id + '-item-' + (currentItemIndex - 1) + '-button'"
-            [class]="'btn pe-pages-control pe-pages-control-previous ' + controlColorClass"
+            class="pe-pages-control pe-pages-control-previous"
+            [buttonClass]="controlColorClass"
             [disabled]="disablePreviousButton"
             [routerLink]="_items[currentItemIndex - 1]?.routerLink"
             (click)="gotoPreviousPage()">
@@ -51,10 +51,10 @@
                   [ngTemplateOutlet]="labelTemplate">
     </ng-container>
 
-    <button *ngIf="showNextButton"
-            type="button"
+    <button ngb-btn *ngIf="showNextButton"
             [id]="id + '-item-' + (currentItemIndex + 1) + '-button'"
-            [class]="'btn pe-pages-control pe-pages-control-next ' + controlColorClass"
+            class="pe-pages-control pe-pages-control-next"
+            [buttonClass]="controlColorClass"
             [disabled]="disableNextButton"
             [routerLink]="_items[currentItemIndex + 1]?.routerLink"
             (click)="gotoNextPage()">

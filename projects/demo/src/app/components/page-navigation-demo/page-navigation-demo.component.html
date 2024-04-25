@@ -3,17 +3,19 @@
           controlColorVariant="solid">
 
   <pe-pages-item label="Page 1"
-                [hidden]="!isReadyForStep1">
+                 [hidden]="!isReadyForStep1">
 
     <pe-boolean-input label="Enable Page 2"
                       type="checkbox"
                       [(value)]="isReadyForStep2">
     </pe-boolean-input>
 
+    <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
+
   </pe-pages-item>
 
   <pe-pages-item label="Page 2"
-                [hidden]="!isReadyForStep2">
+                 [hidden]="!isReadyForStep2">
 
     <pe-boolean-input label="Enable Page 1"
                       type="checkbox"
@@ -25,16 +27,44 @@
                       [(value)]="isReadyForStep3">
     </pe-boolean-input>
 
+    <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
+
   </pe-pages-item>
 
   <pe-pages-item label="Page 3"
-                [hidden]="!isReadyForStep3">
+                 [hidden]="!isReadyForStep3">
 
     <pe-boolean-input label="Enable Page 2"
                       type="checkbox"
                       [(value)]="isReadyForStep2">
     </pe-boolean-input>
 
+    <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
+
   </pe-pages-item>
 
 </pe-pages>
+
+
+<ng-template #isReadyForStepButtonGroupTemplate>
+  <ngb-btn-group>
+    <button ngb-btn
+            [buttonClass]="isReadyForStep1 ? 'btn-success' : 'btn-danger'"
+            [active]="isReadyForStep1"
+            text="Page 1"
+            (click)="isReadyForStep1 = !isReadyForStep1">
+    </button>
+    <button ngb-btn
+            [buttonClass]="isReadyForStep2 ? 'btn-success' : 'btn-danger'"
+            [active]="isReadyForStep2"
+            text="Page 2"
+            (click)="isReadyForStep2 = !isReadyForStep2">
+    </button>
+    <button ngb-btn
+            [buttonClass]="isReadyForStep3 ? 'btn-success' : 'btn-danger'"
+            [active]="isReadyForStep3"
+            text="Page 3"
+            (click)="isReadyForStep3 = !isReadyForStep3">
+    </button>
+  </ngb-btn-group>
+</ng-template>

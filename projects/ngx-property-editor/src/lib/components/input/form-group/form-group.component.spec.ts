@@ -8,7 +8,7 @@ describe('FormGroupComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormGroupComponent]
+      declarations: [FormGroupComponent],
     });
     fixture = TestBed.createComponent(FormGroupComponent);
     component = fixture.componentInstance;

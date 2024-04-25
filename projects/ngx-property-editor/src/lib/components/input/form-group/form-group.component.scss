@@ -2,24 +2,27 @@
 
 @include label;
 
-.form-group.label-inline {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: fit-content(50%) 1fr;
-  grid-template-areas: "label content";
-  gap: 0.5em;
-  justify-items: stretch;
-  align-items: center;
-  justify-content: stretch;
-  align-content: stretch;
+.form-group {
+  // Inline label:
+  &.label-inline {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: fit-content(50%) 1fr;
+    grid-template-areas: "label content";
+    gap: 0.5em;
+    justify-items: stretch;
+    align-items: center;
+    justify-content: stretch;
+    align-content: stretch;
 
-  label {
-    grid-area: label;
-    margin: 0;
-  }
+    label {
+      grid-area: label;
+      margin: 0;
+    }
 
-  .form-group-content {
-    grid-area: content;
-    margin: 0;
+    .form-group-content {
+      grid-area: content;
+      margin: 0;
+    }
   }
 }

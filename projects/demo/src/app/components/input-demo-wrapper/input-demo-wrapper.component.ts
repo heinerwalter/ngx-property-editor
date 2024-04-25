@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Stringifier } from "ngx-property-editor";
+import { Stringifier } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-input-demo-wrapper',
   templateUrl: './input-demo-wrapper.component.html',
-  styleUrls: ['./input-demo-wrapper.component.scss']
+  styleUrls: ['./input-demo-wrapper.component.scss'],
 })
 export class InputDemoWrapperComponent {
 
@@ -23,7 +23,7 @@ export class InputDemoWrapperComponent {
   public get valueAsString(): string {
     if (this.value == undefined) return 'undefined';
 
-    const stringValue: string = Stringifier.anyTypeToString(this.value, true, true);
+    const stringValue: string = Stringifier.anyTypeToString(this.value, true, true, true);
 
     switch (this.valueModifier) {
       case 'quotes':

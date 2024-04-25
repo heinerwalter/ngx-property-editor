@@ -1,6 +1,6 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InputBase } from '../input-base';
-import { TextFileReader } from "../../../controller/text-file-reader";
+import { TextFileReader } from '../../../controller/text-file-reader';
 
 
 /**
@@ -21,7 +21,10 @@ export type FileInputFileContentType = {
 })
 export class FileInputComponent extends InputBase {
 
-  /** Define the file type (extension you want to accept in this file input (e.g. ".txt"). */
+  /**
+   * Define the file type (extension or MIME type of files you want to accept in this file input, e.g. ".txt").
+   * You may define one file type or a comma-separated list of multiple file types.
+   */
   @Input() public accept: string | undefined = undefined;
   /** If true, accept multi file selection (default: false). */
   @Input() public multiple: boolean = false;
@@ -60,7 +63,7 @@ export class FileInputComponent extends InputBase {
     if (!inputElement) return;
 
     // Emit selected File objects
-    this.files = inputElement.files?.length ? Array.from(inputElement.files) : []
+    this.files = inputElement.files?.length ? Array.from(inputElement.files) : [];
     this.valueChange.emit(this.files);
 
     // If requested, read and emit file contents

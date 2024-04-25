@@ -7,40 +7,36 @@
           class="view-and-edit-container-header-text">
       {{cardHeader}}
     </span>
-    <div class="btn-group view-and-edit-container-btn-group">
+    <ngb-btn-group class="view-and-edit-container-btn-group">
       <ng-container *ngIf="mode == 'view'">
-        <button *ngIf="showEditButton"
-                type="button"
-                class="btn btn-sm btn-light"
+        <button ngb-btn *ngIf="showEditButton"
+                buttonClass="btn-sm btn-light"
+                [icon]="iconEdit"
+                [text]="editButtonText"
                 (click)="onEditClicked()">
-          <fa-icon [icon]="iconEdit"></fa-icon>
-          {{ editButtonText }}
         </button>
       </ng-container>
       <ng-container *ngIf="mode == 'edit'">
-        <button *ngIf="showSaveButton"
-                type="button"
-                class="btn btn-sm btn-success"
+        <button ngb-btn *ngIf="showSaveButton"
+                buttonClass="btn-sm btn-success"
+                [icon]="iconSave"
+                [text]="saveButtonText"
                 (click)="onSaveClicked()">
-          <fa-icon [icon]="iconSave"></fa-icon>
-          {{ saveButtonText }}
         </button>
-        <button *ngIf="showDeleteButton"
-                type="button"
-                class="btn btn-sm btn-danger"
+        <button ngb-btn *ngIf="showDeleteButton"
+                buttonClass="btn-sm btn-danger"
+                [icon]="iconDelete"
+                [text]="deleteButtonText"
                 (click)="onDeleteClicked()">
-          <fa-icon [icon]="iconDelete"></fa-icon>
-          {{ deleteButtonText }}
         </button>
-        <button *ngIf="showCancelButton"
-                type="button"
-                class="btn btn-sm btn-danger"
+        <button ngb-btn *ngIf="showCancelButton"
+                buttonClass="btn-sm btn-danger"
+                [icon]="iconCancel"
+                [text]="cancelButtonText"
                 (click)="onCancelClicked()">
-          <fa-icon [icon]="iconCancel"></fa-icon>
-          {{ cancelButtonText }}
         </button>
       </ng-container>
-    </div>
+    </ngb-btn-group>
   </h4>
 
   <div *ngIf="showContent"

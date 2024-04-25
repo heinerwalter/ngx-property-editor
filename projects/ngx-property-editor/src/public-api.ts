@@ -4,6 +4,8 @@
 
 // Components:
 // - bootstrap
+export * from './lib/components/bootstrap/button/button.component';
+export * from './lib/components/bootstrap/button-group/button-group.component';
 export * from './lib/components/bootstrap/collapse/collapse.component';
 export * from './lib/components/bootstrap/column/column.component';
 export * from './lib/components/bootstrap/row/row.component';
@@ -48,6 +50,7 @@ export * from './lib/components/input/special-input/color-select-input/color-sel
 export * from './lib/components/input/special-input/icon-select-input/icon-select-input.component';
 // - property views
 export * from './lib/components/property-views/property-configuration';
+export * from './lib/components/property-views/property-editor-mode';
 export * from './lib/components/property-views/table-configuration';
 export * from './lib/components/property-views/property-editor/property-editor.component';
 export * from './lib/components/property-views/property-input/property-input.component';
@@ -59,6 +62,7 @@ export * from './lib/components/property-views/property-view-and-edit/property-v
 export * from './lib/components/property-views/table/table.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
+export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-mode';
 
 // Others:
 export * from './lib/controller/pe-global-functions';
@@ -67,3 +71,6 @@ export * from './lib/controller/text-file-reader';
 
 // Module:
 export * from './lib/property-editor.module';
+export {
+  PropertyEditorMode
+} from './lib/components/property-views/property-editor-mode';

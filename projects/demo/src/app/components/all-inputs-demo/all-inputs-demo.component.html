@@ -190,6 +190,7 @@
 <demo-input-demo-wrapper [value]="values.selectColor">
   <pe-color-select-input label="Color selection"
                          infoIconTooltip="Component: <pe-color-select-input>"
+                         [allowEmpty]="true"
                          [(value)]="values.selectColor"
                          (valueChange)="onInputValueChange('color select', $event)">
   </pe-color-select-input>
@@ -197,9 +198,10 @@
 
 <demo-input-demo-wrapper [value]="values.selectIcon">
   <pe-icon-select-input label="Icon selection"
-                         infoIconTooltip="Component: <pe-icon-select-input>"
-                         [(value)]="values.selectIcon"
-                         (valueChange)="onInputValueChange('icon select', $event)">
+                        infoIconTooltip="Component: <pe-icon-select-input>"
+                        [allowEmpty]="true"
+                        [(value)]="values.selectIcon"
+                        (valueChange)="onInputValueChange('icon select', $event)">
   </pe-icon-select-input>
 </demo-input-demo-wrapper>
 
@@ -238,15 +240,23 @@
                          [(value)]="values.inputGroup.zipCode"
                          (valueChange)="onInputValueChange('Input group', values.inputGroup)">
         </pe-number-input>
-        <pe-text-input placeholder="City"
-                       [(value)]="values.inputGroup.city"
-                       (valueChange)="onInputValueChange('Input group', values.inputGroup)">
-        </pe-text-input>
+        <pe-select-input placeholder="City"
+                         [dataSource]="countriesDataSource"
+                         displayPropertyName="capitalCity"
+                         valuePropertyName="capitalCity"
+                         [allowEmpty]="true"
+                         [(value)]="values.inputGroup.city"
+                         (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+        </pe-select-input>
       </pe-input-group>
-      <pe-text-input placeholder="Country"
-                     [(value)]="values.inputGroup.country"
-                     (valueChange)="onInputValueChange('Input group', values.inputGroup)">
-      </pe-text-input>
+      <pe-select-input placeholder="Country"
+                       [dataSource]="countriesDataSource"
+                       displayPropertyName="country"
+                       valuePropertyName="country"
+                       [allowEmpty]="true"
+                       [(value)]="values.inputGroup.country"
+                       (valueChange)="onInputValueChange('Input group', values.inputGroup)">
+      </pe-select-input>
     </pe-input-group>
   </pe-form-group>
 </demo-input-demo-wrapper>
@@ -272,5 +282,13 @@
                      [(value)]="value['number']"
                      (valueChange)="onValueChange(value)">
     </pe-number-input>
+    <pe-select-input placeholder="Country"
+                     [dataSource]="countriesDataSource"
+                     displayPropertyName="country"
+                     valuePropertyName="country"
+                     [allowEmpty]="true"
+                     [(value)]="value['country']"
+                     (valueChange)="onValueChange(value)">
+    </pe-select-input>
   </pe-input-group>
 </ng-template>

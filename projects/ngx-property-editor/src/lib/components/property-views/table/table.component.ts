@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
-import { TableData, TableCell } from '../table-configuration';
+import { TableCell, TableData } from '../table-configuration';
 
 /**
  * This component builds an HTML table element with bootstrap style
@@ -42,6 +42,10 @@ export class TableComponent {
    * @see TableCell.content
    */
   protected getContent(cell: TableCell): string {
+    if (Array.isArray(cell?.content))
+      return cell?.content
+        .map(item => Stringifier.anyTypeToString(item))
+        .join('\n');
     return Stringifier.anyTypeToString(cell?.content);
   }
 

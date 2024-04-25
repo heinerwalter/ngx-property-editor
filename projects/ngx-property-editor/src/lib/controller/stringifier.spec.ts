@@ -1,13 +1,23 @@
 import { Stringifier } from './stringifier';
 
+
+/**
+ * Call this function within a unit test describe block to override the global langauge setting.
+ * @param language A language (e.g. 'de').
+ */
+export function useLanguageForTesting(language: string = 'de'): void {
+  Object.defineProperty(navigator, 'language', {
+    get: function (): string {
+      return language;
+    },
+  });
+}
+
+
 describe('Stringifier', () => {
 
   // Use german locale for testing
-  Object.defineProperty(navigator, 'language', {
-    get: function (): string {
-      return 'de';
-    },
-  });
+  useLanguageForTesting('de');
 
   // region Booleans
 
@@ -168,6 +178,36 @@ describe('Stringifier', () => {
 
   // region Strings
 
+  it('stringToFirstCharacterLowerCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringToFirstCharacterLowerCase(undefined)).toBeUndefined();
+    expect(Stringifier.stringToFirstCharacterLowerCase('')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterLowerCase(' ')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterLowerCase('abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase(' abc   ')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('Abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('   Abc')).toEqual('abc');
+    expect(Stringifier.stringToFirstCharacterLowerCase('myStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('my string with spaces')).toEqual('my string with spaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('MyStringWithoutSpaces')).toEqual('myStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterLowerCase('My string with spaces')).toEqual('my string with spaces');
+  });
+
+  it('stringToFirstCharacterUpperCase', () => {
+    // @ts-ignore
+    expect(Stringifier.stringToFirstCharacterUpperCase(undefined)).toBeUndefined();
+    expect(Stringifier.stringToFirstCharacterUpperCase('')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterUpperCase(' ')).toEqual('');
+    expect(Stringifier.stringToFirstCharacterUpperCase('abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase(' abc   ')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('Abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('   Abc')).toEqual('Abc');
+    expect(Stringifier.stringToFirstCharacterUpperCase('myStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('my string with spaces')).toEqual('My string with spaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('MyStringWithoutSpaces')).toEqual('MyStringWithoutSpaces');
+    expect(Stringifier.stringToFirstCharacterUpperCase('My string with spaces')).toEqual('My string with spaces');
+  });
+
   it('stringToCamelCase', () => {
     // @ts-ignore
     expect(Stringifier.stringToCamelCase(undefined)).toBeUndefined();
@@ -219,9 +259,47 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([1, 2, 3], true)).toEqual('[1, 2, 3]');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}], true)).toEqual('[1, abc, -5, {}]');
     expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]], true)).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
+
+    expect(Stringifier.arrayToString([], false, true)).toEqual('');
+    expect(Stringifier.arrayToString([], true, true)).toEqual('[]');
+    expect(Stringifier.arrayToString([1], false, true)).toEqual('1');
+    expect(Stringifier.arrayToString([1], true, true)).toEqual('[\n  1\n]');
+    expect(Stringifier.arrayToString([1, 2, 3], false, true)).toEqual('1,\n2,\n3');
+    expect(Stringifier.arrayToString([1, 2, 3], true, true)).toEqual('[\n  1,\n  2,\n  3\n]');
+    expect(Stringifier.arrayToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
   });
 
-  // region Arrays
+  // endregion
+
+  // region Objects
+
+  it('objectToDefaultString', () => {
+    expect(Stringifier.objectToDefaultString(undefined)).toEqual('[object Undefined]');
+    expect(Stringifier.objectToDefaultString(null)).toEqual('[object Null]');
+    expect(Stringifier.objectToDefaultString({})).toEqual('[object Object]');
+    expect(Stringifier.objectToDefaultString(new Object())).toEqual('[object Object]');
+    expect(Stringifier.objectToDefaultString({ test: 123, string: 'foo' })).toEqual('[object Object]');
+
+    expect(Stringifier.objectToDefaultString({}, false)).toEqual('[object Object]');
+    expect(() => Stringifier.objectToDefaultString({}, true))
+      .toThrowError('No custom toString function exists.');
+
+    class TestObject {
+      property: string;
+
+      constructor(property: string) {
+        this.property = property;
+      }
+
+      toString(): string {
+        return `Custom toString function: ${this.property}`;
+      }
+    }
+
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'))).toEqual('Custom toString function: foo');
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'), false)).toEqual('Custom toString function: foo');
+    expect(Stringifier.objectToDefaultString(new TestObject('foo'), true)).toEqual('Custom toString function: foo');
+  });
 
   it('objectToString', () => {
     expect(Stringifier.objectToString(undefined)).toEqual('[object Undefined]');
@@ -236,6 +314,10 @@ describe('Stringifier', () => {
       string: 'foo',
     }, true)).toEqual('{\n  "test": 123,\n  "string": "foo"\n}');
 
+    expect(Stringifier.objectToString({ undefinedProperty: undefined })).toEqual('{}');
+    expect(Stringifier.objectToString({ undefinedProperty: undefined }, false, false)).toEqual('{}');
+    expect(Stringifier.objectToString({ undefinedProperty: undefined }, false, true)).toEqual('{"undefinedProperty":null}');
+
     class TestObject {
       property: string;
 
@@ -249,6 +331,36 @@ describe('Stringifier', () => {
     }
 
     expect(Stringifier.objectToString(new TestObject('foo'))).toEqual('Custom toString function: foo');
+  });
+
+  it('objectToPrettyString', () => {
+    expect(Stringifier.objectToPrettyString(undefined)).toEqual('');
+    expect(Stringifier.objectToPrettyString(null)).toEqual('');
+    expect(Stringifier.objectToPrettyString({})).toEqual('');
+    expect(Stringifier.objectToPrettyString(new Object())).toEqual('');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' })).toEqual('test: 123, string: foo');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: ' foo   ' })).toEqual('test: 123, string: foo');
+
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' }, false)).toEqual('test: 123, string: foo');
+    expect(Stringifier.objectToPrettyString({ test: 123, string: 'foo' }, true)).toEqual('test: 123,\nstring: foo');
+
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined })).toEqual('');
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined }, false, false)).toEqual('');
+    expect(Stringifier.objectToPrettyString({ undefinedProperty: undefined }, false, true)).toEqual('undefinedProperty:');
+
+    class TestObject {
+      property: string;
+
+      constructor(property: string) {
+        this.property = property;
+      }
+
+      toString(): string {
+        return `Custom toString function: ${this.property}`;
+      }
+    }
+
+    expect(Stringifier.objectToPrettyString(new TestObject('foo'))).toEqual('Custom toString function: foo');
   });
 
   // endregion
@@ -291,10 +403,28 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(['a', 'b', 'C'], true)).toEqual('[a, b, C]');
     expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], false)).toEqual('a, b, [c, d, e]');
     expect(Stringifier.anyTypeToString(['a', 'b', ['c', 'd', 'e']], true)).toEqual('[a, b, [c, d, e]]');
+    expect(Stringifier.anyTypeToString([1, 2, 3], false, false)).toEqual('1, 2, 3');
+    expect(Stringifier.anyTypeToString([1, 2, 3], false, true)).toEqual('1,\n2,\n3');
+    expect(Stringifier.anyTypeToString([1, 2, 3], true, true)).toEqual('[\n  1,\n  2,\n  3\n]');
+    expect(Stringifier.anyTypeToString([1, [2, 3], 4], true, true)).toEqual('[\n  1,\n  [\n    2,\n    3\n  ],\n  4\n]');
 
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 })).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, false)).toEqual('{"anyObject":"foo","number":5}');
-    expect(Stringifier.anyTypeToString({ anyObject: 'foo', number: 5 }, false, true)).toEqual('{\n  "anyObject": "foo",\n  "number": 5\n}');
+    expect(Stringifier.anyTypeToString({})).toEqual('');
+    expect(Stringifier.anyTypeToString({}, false)).toEqual('');
+    expect(Stringifier.anyTypeToString({}, true)).toEqual('{}');
+    const obj = { str: 'foo', num: 5 };
+    expect(Stringifier.anyTypeToString(obj)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false, false)).toEqual('str: foo, num: 5');
+    expect(Stringifier.anyTypeToString(obj, false, true)).toEqual('str: foo,\nnum: 5');
+    expect(Stringifier.anyTypeToString(obj, true)).toEqual('{"str":"foo","num":5}');
+    expect(Stringifier.anyTypeToString(obj, true, false)).toEqual('{"str":"foo","num":5}');
+    expect(Stringifier.anyTypeToString(obj, true, true)).toEqual('{\n  "str": "foo",\n  "num": 5\n}');
+    const objUndefined = { undefinedProperty: undefined };
+    expect(Stringifier.anyTypeToString(objUndefined)).toEqual('');
+    expect(Stringifier.anyTypeToString(objUndefined, false, false, false)).toEqual('');
+    expect(Stringifier.anyTypeToString(objUndefined, false, false, true)).toEqual('undefinedProperty:');
+    expect(Stringifier.anyTypeToString(objUndefined, true, false, false)).toEqual('{}');
+    expect(Stringifier.anyTypeToString(objUndefined, true, false, true)).toEqual('{"undefinedProperty":null}');
   });
 
   // endregion

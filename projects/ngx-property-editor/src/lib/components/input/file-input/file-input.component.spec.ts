@@ -12,7 +12,7 @@ describe('FileInputComponent', () => {
       declarations: [
         FileInputComponent,
         FormGroupComponent,
-      ]
+      ],
     });
     fixture = TestBed.createComponent(FileInputComponent);
     component = fixture.componentInstance;

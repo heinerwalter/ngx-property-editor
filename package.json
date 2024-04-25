@@ -25,7 +25,9 @@
     "test-headless": "ng test ngx-property-editor --browsers=ChromeHeadless --watch=false",
     "test-headless:demo": "ng test demo --browsers=ChromeHeadless --watch=false --code-coverage",
     "lint": "ng lint ngx-property-editor",
-    "publish": "cd dist/ngx-property-editor/ && npm publish"
+    "publish": "cd dist/ngx-property-editor/ && npm publish",
+    "increment-version": "node scripts/increment-version.js",
+    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"Incremented package version.\""
   },
   "private": true,
   "dependencies": {
@@ -45,7 +47,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.3.2",
     "chardet": "^2.0.0",
-    "ngx-property-editor": "^0.0.23",
+    "ngx-property-editor": "^0.0.31",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.13.0"

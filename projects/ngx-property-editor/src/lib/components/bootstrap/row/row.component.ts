@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ngb-row',
   templateUrl: './row.component.html',
   styleUrls: ['./row.component.scss'],
-  host: {'class': 'row'}
+  host: { 'class': 'row' },
 })
 export class RowComponent {
 

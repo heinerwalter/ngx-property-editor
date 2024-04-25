@@ -14,7 +14,7 @@ describe('PropertyEditorComponent', () => {
         PropertyEditorComponent,
         ...inputComponents,
       ],
-      imports: [ FormsModule ], 
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(PropertyEditorComponent);
     component = fixture.componentInstance;

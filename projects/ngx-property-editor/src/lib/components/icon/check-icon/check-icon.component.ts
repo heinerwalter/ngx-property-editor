@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CircleIconBaseComponent } from '../icon-base.component';
 import { faCircleCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 

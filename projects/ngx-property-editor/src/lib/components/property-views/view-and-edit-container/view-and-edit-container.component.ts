@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewAndEditContainerBaseComponent } from './view-and-edit-container-base.component';
 import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-
-
-export type ViewAndEditContainerMode = 'view' | 'edit';
-
+import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
 
 /**
  * This component displays an edit/save/cancel button in the top right corner for switching the edit mode and

@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
+  generatePropertiesConfigurationFromData,
   PropertiesConfiguration,
   PropertyConfiguration,
-  generatePropertiesConfigurationFromData,
 } from '../property-configuration';
 import { TableData } from '../table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
@@ -63,50 +63,22 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       } else {
         const property = item as PropertyConfiguration;
 
-        if (typeof property.hidden === 'function') {
-          if (property.hidden(this.data)) continue;
-        } else if (property.hidden) {
-          continue;
-        }
+
+        if (property.isHidden(this.data, 'view')) continue;
 
         // Get displayed value
         if (!property.valueFunction && !property.propertyName) continue;
-        let propertyValue: any = property.getValue(this.data);
+        let propertyValue: any = property.getDisplayValue(this.data, 'view');
         // Ignore empty values, if hideIfEmpty is true
-        if (propertyValue == undefined && property.hideIfEmpty) continue;
-        // Evaluate data source, if property type is 'select'
-        if (propertyValue != undefined &&
-          property.propertyType == 'select' &&
-          property.valuePropertyName != property.displayPropertyName) {
-          const dataSource = property.getDataSource(this.data);
-          if (dataSource) {
-            const item = PEGlobalFunctions.getDataSourceItem(dataSource, property.valuePropertyName, propertyValue);
-            const itemValue = PEGlobalFunctions.evaluateDisplayPropertyName(property.displayPropertyName, item);
-            if (itemValue)
-              propertyValue = itemValue;
-          }
-        }
+        if (property.hideIfEmpty && propertyValue == undefined) continue;
 
         // Get label
-        const label: string = property.getLabel(this.data);
+        const label: string = property.getLabel(this.data, 'view');
 
         // Get optional link
-        const routerLink: any[] | string | undefined = property.getRouterLink(this.data);
-        const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data);
-        const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data);
-
-        // If propertyValue is a non-empty array, create one table data entry per item
-        const propertyValueItems: any[] = [];
-        if (Array.isArray(propertyValue)) {
-          for (const item of propertyValue) {
-            if (item == undefined) continue;
-            propertyValueItems.push(item);
-          }
-          if (!propertyValueItems.length)
-            propertyValueItems.push(undefined);
-        } else {
-          propertyValueItems.push(propertyValue);
-        }
+        const routerLink: any[] | string | undefined = property.getRouterLink(this.data, 'view');
+        const routerLinkIsExternal: boolean | undefined = property.getRouterLinkIsExternal(this.data, 'view');
+        const routerLinkTooltip: string | undefined = property.getRouterLinkTooltip(this.data, 'view');
 
         // Crate table data entry
         tableData.push([

@@ -14,7 +14,7 @@ describe('PropertyInputComponent', () => {
         PropertyInputComponent,
         ...inputComponents,
       ],
-      imports: [ FormsModule ], 
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(PropertyInputComponent);
     component = fixture.componentInstance;

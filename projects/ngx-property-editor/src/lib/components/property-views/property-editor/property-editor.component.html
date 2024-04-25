@@ -3,14 +3,14 @@
   <ng-container *ngFor="let row of _configuration; let i = index">
 
     <ng-container *ngIf="row?.separator">
-      <ngb-col *ngIf="!row.isHidden(data)">
+      <ngb-col *ngIf="!row.isHidden(data, mode)">
         <hr [style]="i == 0 ? '' : 'margin-top: 0'"/>
       </ngb-col>
     </ng-container>
 
-    <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, !readonly)">
+    <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, mode)">
 
-      <ngb-col [md]="row.getBootstrapColumnMD(data)">
+      <ngb-col [md]="row.getBootstrapColumnMD(data, mode)">
         <pe-property-input-with-array [id]="id + '-input-' + i"
                                       [configuration]="row"
                                       [data]="data"

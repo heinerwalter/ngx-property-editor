@@ -1,0 +1,17 @@
+.btn-group, ngb-btn-group {
+  & > ngb-btn:not(:last-child) > .btn:not(.dropdown-toggle),
+  & > ngb-btn:first-child > .btn.dropdown-toggle-split,
+  & > ngb-btn-group:not(:last-child) > ngb-btn > .btn,
+  & > .btn-group:not(:last-child) > ngb-btn > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  & > ngb-btn:nth-child(n+3) > .btn,
+  & > :not(.btn-check) + ngb-btn > .btn,
+  & > .btn-group:not(:first-child) > ngb-btn > .btn,
+  & > ngb-btn-group:not(:first-child) > ngb-btn > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

@@ -4,7 +4,7 @@ import { PropertyEditorComponent } from './property-editor/property-editor.compo
 import { PropertyInputComponent } from './property-input/property-input.component';
 import { PropertyInputWithArrayComponent } from './property-input-with-array/property-input-with-array.component';
 import {
-  PropertyInputWithInputGroupComponent
+  PropertyInputWithInputGroupComponent,
 } from './property-input-with-input-group/property-input-with-input-group.component';
 import { PropertyTableComponent } from './property-table/property-table.component';
 import { PropertyViewAndEditComponent } from './property-view-and-edit/property-view-and-edit.component';

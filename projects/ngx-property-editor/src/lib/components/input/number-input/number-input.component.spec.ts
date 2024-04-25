@@ -14,7 +14,7 @@ describe('NumberInputComponent', () => {
         NumberInputComponent,
         FormGroupComponent,
       ],
-      imports: [ FormsModule ],
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(NumberInputComponent);
     component = fixture.componentInstance;

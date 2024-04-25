@@ -16,9 +16,9 @@ describe('BooleanInputComponent', () => {
         BooleanInputComponent,
         FormGroupComponent,
         RadioInputComponent,
-        SingleRadioInputComponent, 
+        SingleRadioInputComponent,
       ],
-      imports: [ FormsModule ],
+      imports: [FormsModule],
     });
     fixture = TestBed.createComponent(BooleanInputComponent);
     component = fixture.componentInstance;

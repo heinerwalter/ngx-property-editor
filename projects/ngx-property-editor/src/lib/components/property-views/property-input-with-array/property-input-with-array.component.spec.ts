@@ -5,7 +5,7 @@ import { PropertyInputComponent } from '../property-input/property-input.compone
 import { inputComponents } from '../../input/input.components';
 import { FormsModule } from '@angular/forms';
 import {
-  PropertyInputWithInputGroupComponent
+  PropertyInputWithInputGroupComponent,
 } from '../property-input-with-input-group/property-input-with-input-group.component';
 
 describe('PropertyInputWithArrayComponent', () => {

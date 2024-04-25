@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { PropertiesConfiguration, generatePropertiesConfigurationFromData } from '../property-configuration';
+import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
+import { PropertyEditorMode } from '../property-editor-mode';
 
 @Component({
   selector: 'pe-property-editor',
@@ -28,6 +29,13 @@ export class PropertyEditorComponent implements OnChanges {
 
   /** If true, the properties are displayed as usual (not grey/disabled) but the user cannot change them. */
   @Input() public readonly: boolean = false;
+
+  /**
+   * Returns the editor mode based on the `readonly` property.
+   */
+  protected get mode(): PropertyEditorMode {
+    return this.readonly ? 'view' : 'edit';
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('data') || changes.hasOwnProperty('configuration')) {

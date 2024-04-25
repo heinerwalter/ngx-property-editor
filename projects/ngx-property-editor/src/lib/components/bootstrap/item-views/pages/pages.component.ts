@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 import { ItemViewBaseComponent } from '../item-view-base.component';
 import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
@@ -6,6 +6,7 @@ import { faAngleLeft, faAngleRight, IconDefinition } from '@fortawesome/free-sol
   selector: 'pe-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PagesComponent extends ItemViewBaseComponent {
 
@@ -74,8 +75,8 @@ export class PagesComponent extends ItemViewBaseComponent {
   protected readonly iconPrevious: IconDefinition = faAngleLeft;
   protected readonly iconNext: IconDefinition = faAngleRight;
 
-  public constructor() {
-    super();
+  public constructor(changeDetectorRef: ChangeDetectorRef) {
+    super(changeDetectorRef);
   }
 
   public override updateItems(): void {

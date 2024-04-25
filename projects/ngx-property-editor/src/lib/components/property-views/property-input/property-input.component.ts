@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration } from '../property-configuration';
+import { PropertyEditorMode } from '../property-editor-mode';
 
 @Component({
   selector: 'pe-property-input',
@@ -24,6 +25,13 @@ export class PropertyInputComponent {
 
   /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it. */
   @Input() public readonly: boolean = false;
+
+  /**
+   * Returns the editor mode based on the `readonly` property.
+   */
+  protected get mode(): PropertyEditorMode {
+    return this.readonly ? 'view' : 'edit';
+  }
 
   /** If true, the input element is not wrapped inside a form group component (no label). */
   @Input() public noFormGroup: boolean = false;

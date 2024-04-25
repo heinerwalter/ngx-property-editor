@@ -1,23 +1,37 @@
-<pe-select-input [id]="id"
-                 [name]="name"
-                 [label]="label"
-                 [placeholder]="placeholder"
-                 [inlineLabel]="inlineLabel"
-                 [infoIconTooltip]="infoIconTooltip"
-                 [helpText]="helpText"
-                 [disabled]="disabled"
-                 [readonly]="readonly"
-                 [required]="required"
-                 [noFormGroup]="noFormGroup"
-                 [flexGrow]="flexGrow"
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
 
-                 [(value)]="value"
-                 (valueChange)="emitValueChange($event)"
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
 
-                 [dataSource]="dataSource"
-                 valuePropertyName="icon"
-                 displayPropertyName="icon"
+<ng-template #contentTemplate>
+  <fa-icon *ngIf="icon" class="icon-select-icon" [icon]="icon"></fa-icon>
+  <pe-select-input [noFormGroup]="true"
+                   [class]="value ? 'show-icon' : ''"
+                   [id]="id"
+                   [name]="name"
+                   [placeholder]="placeholder"
+                   [disabled]="disabled"
+                   [readonly]="readonly"
+                   [required]="required"
+                   [noFormGroup]="noFormGroup"
+                   [flexGrow]="flexGrow"
 
-                 [multiple]="false"
-                 [allowEmpty]="allowEmpty">
-</pe-select-input>
+                   [(value)]="value"
+                   (valueChange)="emitValueChange($event)"
+
+                   [dataSource]="dataSource"
+                   valuePropertyName="value"
+                   [displayPropertyName]="displayIconValue ? 'value' : 'label'"
+
+                   [multiple]="false"
+                   [allowEmpty]="allowEmpty">
+  </pe-select-input>
+</ng-template>

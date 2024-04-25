@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, HostBinding } from '@angular/core';
+import { Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'pe-input-group',

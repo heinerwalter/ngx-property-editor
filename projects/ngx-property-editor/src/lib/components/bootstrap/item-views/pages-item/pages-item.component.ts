@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ItemViewItemBaseComponent } from "../item-view-item-base.component";
-import { PagesComponent } from "../pages/pages.component";
+import { ItemViewItemBaseComponent } from '../item-view-item-base.component';
+import { PagesComponent } from '../pages/pages.component';
 
 @Component({
   selector: 'pe-pages-item',

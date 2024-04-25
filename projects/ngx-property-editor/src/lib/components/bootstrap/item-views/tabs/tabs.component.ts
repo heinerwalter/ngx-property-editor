@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 import { ItemViewWithStateSaveBaseComponent } from '../item-view-with-state-save-base.component';
 
 @Component({
@@ -29,8 +29,8 @@ export class TabsComponent extends ItemViewWithStateSaveBaseComponent {
    */
   @Input() public verticalTabStyle: 'pills' | 'list' | 'list-no-gap' = 'list';
 
-  public constructor() {
-    super();
+  public constructor(changeDetectorRef: ChangeDetectorRef) {
+    super(changeDetectorRef);
   }
 
 }

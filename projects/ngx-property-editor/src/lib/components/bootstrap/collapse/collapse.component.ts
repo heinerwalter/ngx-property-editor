@@ -80,6 +80,8 @@ export class CollapseComponent implements OnInit {
     if (!this.disableSaveLastIsCollapsed && this.id && this.isCollapsed != undefined) {
       localStorage.setItem(this.localStorageDefaultIsCollapsedKeyPrefix + this.id, this.isCollapsed.toString());
     }
+
+
   }
 
 }
