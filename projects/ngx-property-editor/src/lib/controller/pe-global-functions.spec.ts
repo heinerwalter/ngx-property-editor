@@ -23,7 +23,7 @@ describe('PEGlobalFunctions', () => {
 
     date = PEGlobalFunctions.createDateUTC(2024);
     expect(date).toBeDefined();
-    expect(date?.toISOString()).toEqual('2024-01-01T00:00:02.000Z');
+    expect(date?.toISOString()).toEqual('2024-01-01T00:00:00.000Z');
   });
 
   const dataSource = [
