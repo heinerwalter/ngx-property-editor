@@ -11,29 +11,29 @@
       <ng-container *ngIf="mode == 'view'">
         <button ngb-btn *ngIf="showEditButton"
                 buttonClass="btn-sm btn-light"
-                [icon]="iconEdit"
+                [icon]="editButtonIcon"
                 [text]="editButtonText"
-                (click)="onEditClicked()">
+                (click)="onEditButtonClicked()">
         </button>
       </ng-container>
       <ng-container *ngIf="mode == 'edit'">
         <button ngb-btn *ngIf="showSaveButton"
                 buttonClass="btn-sm btn-success"
-                [icon]="iconSave"
+                [icon]="saveButtonIcon"
                 [text]="saveButtonText"
-                (click)="onSaveClicked()">
+                (click)="onSaveButtonClicked()">
         </button>
         <button ngb-btn *ngIf="showDeleteButton"
                 buttonClass="btn-sm btn-danger"
-                [icon]="iconDelete"
+                [icon]="deleteButtonIcon"
                 [text]="deleteButtonText"
-                (click)="onDeleteClicked()">
+                (click)="onDeleteButtonClicked()">
         </button>
         <button ngb-btn *ngIf="showCancelButton"
                 buttonClass="btn-sm btn-danger"
-                [icon]="iconCancel"
+                [icon]="cancelButtonIcon"
                 [text]="cancelButtonText"
-                (click)="onCancelClicked()">
+                (click)="onCancelButtonClicked()">
         </button>
       </ng-container>
     </ngb-btn-group>

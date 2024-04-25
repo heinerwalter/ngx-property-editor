@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { ViewAndEditContainerBaseComponent } from './view-and-edit-container-base.component';
-import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
 
 /**
  * This component displays an edit/save/cancel button in the top right corner for switching the edit mode and
@@ -29,35 +27,5 @@ import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
   styleUrls: ['./view-and-edit-container.component.scss'],
 })
 export class ViewAndEditContainerComponent extends ViewAndEditContainerBaseComponent {
-
-  protected readonly iconEdit: IconDefinition = faPen;
-  protected readonly iconSave: IconDefinition = faFloppyDisk;
-  protected readonly iconDelete: IconDefinition = faTrash;
-  protected readonly iconCancel: IconDefinition = faBan;
-
-  private setMode(mode: ViewAndEditContainerMode): void {
-    this.mode = mode;
-    this.modeChange.emit(mode);
-  }
-
-  protected async onEditClicked(): Promise<void> {
-    this.editClick.emit();
-    this.setMode('edit');
-  }
-
-  protected async onSaveClicked(): Promise<void> {
-    this.saveClick.emit();
-    this.setMode('view');
-  }
-
-  protected async onDeleteClicked(): Promise<void> {
-    this.deleteClick.emit();
-    this.setMode('view');
-  }
-
-  protected async onCancelClicked(): Promise<void> {
-    this.cancelClick.emit();
-    this.setMode('view');
-  }
 
 }

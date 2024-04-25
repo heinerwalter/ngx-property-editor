@@ -1,15 +1,22 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ViewAndEditContainerMode } from './view-and-edit-container-mode';
+import { PropertyEditorMode } from '../property-editor-mode';
+import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   template: '',
 })
 export abstract class ViewAndEditContainerBaseComponent {
 
+  // region Mode
+
   /** Select initial editor mode. */
-  @Input() public mode: ViewAndEditContainerMode = 'view';
+  @Input() public mode: PropertyEditorMode = 'view';
   /** Event is emitted when the editor mode changed. */
-  @Output() public readonly modeChange: EventEmitter<ViewAndEditContainerMode> = new EventEmitter<ViewAndEditContainerMode>();
+  @Output() public readonly modeChange: EventEmitter<PropertyEditorMode> = new EventEmitter<PropertyEditorMode>();
+
+  // endregion
+
+  // region Buttons
 
   /**
    * Only in view mode:
@@ -53,6 +60,26 @@ export abstract class ViewAndEditContainerBaseComponent {
    */
   @Input() public cancelButtonText: string = 'Abbrechen';
 
+  /** Icon of the edit button. */
+  protected readonly editButtonIcon: IconDefinition = faPen;
+  /** Icon of the save button. */
+  protected readonly saveButtonIcon: IconDefinition = faFloppyDisk;
+  /** Icon of the delete button. */
+  protected readonly deleteButtonIcon: IconDefinition = faTrash;
+  /** Icon of the cancel button. */
+  protected readonly cancelButtonIcon: IconDefinition = faBan;
+
+  /** This event is invoked, when the edit button was clicked. */
+  @Output() public readonly editClick: EventEmitter<void> = new EventEmitter<void>();
+  /** This event is invoked, when the save button was clicked. */
+  @Output() public readonly saveClick: EventEmitter<void> = new EventEmitter<void>();
+  /** This event is invoked, when the delete button was clicked. */
+  @Output() public readonly deleteClick: EventEmitter<void> = new EventEmitter<void>();
+  /** This event is invoked, when the cancel button was clicked. */
+  @Output() public readonly cancelClick: EventEmitter<void> = new EventEmitter<void>();
+
+  // endregion
+
   /**
    * If true, in view mode only the edit button (and the card header, if `displayAsCard`) is displayed.
    * In edit mode, the content is still displayed.
@@ -65,15 +92,64 @@ export abstract class ViewAndEditContainerBaseComponent {
    * - `mode == 'edit'`.
    */
   protected get showContent(): boolean {
-    return this.mode != 'view' || !this.hideContentInViewMode;
+    return (this.mode == 'view' && !this.hideContentInViewMode) ||
+      this.mode == 'edit';
   }
 
+  /** If true, this container is displayed as bootstrap card. */
   @Input() public displayAsCard: boolean = false;
+  /**
+   * Only if `displayAsCard` is true:
+   * Text in the card header.
+   */
   @Input() public cardHeader: string | undefined = undefined;
 
-  @Output() public readonly editClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public readonly saveClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public readonly deleteClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public readonly cancelClick: EventEmitter<void> = new EventEmitter<void>();
+  // region Functions to change the mode
+
+  /**
+   * Changes the current `mode` and emits its new value to the `modeChange` event.
+   */
+  protected setMode(mode: PropertyEditorMode): void {
+    this.mode = mode;
+    this.modeChange.emit(mode);
+  }
+
+  /**
+   * This function is called, when the edit button was clicked.
+   * Emits the `editClick` event and activates edit mode.
+   */
+  protected async onEditButtonClicked(): Promise<void> {
+    this.editClick.emit();
+    this.setMode('edit');
+  }
+
+  /**
+   * This function is called, when the save button was clicked.
+   * Emits the `saveClick` event and activates view mode.
+   */
+  protected async onSaveButtonClicked(): Promise<void> {
+    this.saveClick.emit();
+    this.setMode('view');
+  }
+
+  /**
+   * This function is called, when the delete button was clicked.
+   * Emits the `deleteClick` event and activates view mode.
+   */
+  protected async onDeleteButtonClicked(): Promise<void> {
+    this.deleteClick.emit();
+    this.setMode('view');
+  }
+
+  /**
+   * This function is called, when the cancel button was clicked.
+   * Emits the `cancelClick` event and activates view mode.
+   */
+  protected async onCancelButtonClicked(): Promise<void> {
+    this.cancelClick.emit();
+    this.setMode('view');
+  }
+
+  // endregion
 
 }
