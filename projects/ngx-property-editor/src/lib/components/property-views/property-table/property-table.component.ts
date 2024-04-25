@@ -33,6 +33,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   @Input() public data: any | undefined = undefined;
 
+  /**
+   * Result of `generateTableData()`:
+   * Table data generated from the `data` object together with the property `configuration`s
+   * assigned as input properties of this component.
+   */
   protected tableData: TableData = [];
 
   public ngOnInit(): void {
@@ -44,6 +49,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       this.generateTableData();
   }
 
+  /**
+   * Generate table data from the `data` object together with the property `configuration`s
+   * assigned as input properties of this component.
+   * The result is stored in the property `tableData`.
+   */
   private generateTableData(): void {
     const config: PropertiesConfiguration = this.configuration?.length ? this.configuration
       : generatePropertiesConfigurationFromData(this.data);

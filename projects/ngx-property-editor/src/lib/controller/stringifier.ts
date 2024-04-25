@@ -1,6 +1,7 @@
 'use strict';
 
 import { $localize } from '@angular/localize/init';
+import { PropertyType } from '../components/property-views/property-configuration';
 
 export module Stringifier {
 
@@ -11,26 +12,30 @@ export module Stringifier {
   const localizedBooleanFalse: string = $localize`:@@false:false`;
   const localizedBooleanYes: string = $localize`:@@yes:Ja`;
   const localizedBooleanNo: string = $localize`:@@no:Nein`;
-
+  const localizedBooleanIndeterminate: string = $localize`:@@indeterminate:Unbestimmt`;
+  
   /**
    * Converts a boolean value to a human-readable string.
    * @param value A boolean value. If undefined (or any other type but boolean), an empty string is returned.
    * @param type Choose how to display the boolean value:
    *             'true-false': true -> 'true'; false -> 'false'
    *             'yes-no':     true -> 'yes';  false -> 'no'
+   * @param includeIndeterminate If true and the value is undefined, 'indeterminate' is returned.
    */
   export function booleanToString(value: boolean | undefined,
-                                  type: 'true-false' | 'yes-no' = 'yes-no'): string {
+                                  type: 'true-false' | 'yes-no' = 'yes-no',
+                                  includeIndeterminate: boolean = false): string {
+    if (includeIndeterminate && value == undefined)
+      return localizedBooleanIndeterminate;
     if (typeof value !== 'boolean') return '';
 
     switch (type) {
       case 'true-false':
         return value ? localizedBooleanTrue : localizedBooleanFalse;
       case 'yes-no':
+        default:
         return value ? localizedBooleanYes : localizedBooleanNo;
     }
-
-    return '';
   }
 
   /**
@@ -136,6 +141,17 @@ export module Stringifier {
   // endregion
 
   // region Numbers
+
+  /**
+   * Returns the given number as locale string.
+   * @param value Convert this number to a string.
+   */
+  export function numberToString(value: number | bigint | undefined): string {
+    if ((typeof value !== 'number' && typeof value !== 'bigint') ||
+      (typeof value === 'number' && isNaN(value)))
+      return '';
+    return value.toLocaleString();
+  }
 
   /**
    * Returns the given number as padded string with a minimum length.
@@ -424,6 +440,16 @@ export module Stringifier {
     return words.join(' ');
   }
 
+  /**
+   * Converts a password into a masked string (e.g. '*****') with the same length as the password.
+   * @param password A password.
+   * @return A masked string with the same length as the password (e.g. '*****').
+   */
+  export function passwordToMaskedString(password: string): string {
+    if (!password) return '';
+    return ''.padStart(password.toString().length, '*');
+  }
+
   // endregion
 
   // region Arrays
@@ -458,6 +484,7 @@ export module Stringifier {
   // endregion
 
   // region Objects
+
   /**
    * Converts any object to a string.
    * If the object has a custom `toString` function which returns something different to '[object ...]',
@@ -616,11 +643,8 @@ export module Stringifier {
       case 'boolean':
         return booleanToString(value);
       case 'number':
-        if (isNaN(value))
-          return '';
-        return value.toLocaleString();
       case 'bigint':
-        return value.toLocaleString();
+        return numberToString(value);
       case 'string':
         return value;
       case 'function':
@@ -642,6 +666,67 @@ export module Stringifier {
     }
 
     return value.toString();
+  }
+
+  /**
+   * Converts any value to a string. If `Stringifier` contains a conversion function
+   * for the given property type, it is used to convert the value to a string.
+   * Otherwise, the default `toString()` function is used.
+   * @param value Any value. This value is considered to match the `propertyType` and
+   *              not to be an array.
+   * @param propertyType The property type of a `PropertyConfiguration`.
+   * @param addBrackets Array values: If true, brackets are added around array values like '[item 1, item 2, item 3]'.
+   *                    Object values: If true, object values are returned with JSON format;
+   *                                   if false they are returned with a pretty human-readable format.
+   * @param addSpaces Array values: If true, spaces and line breaks are added in between the items of array values.
+   *                  Object values: If true, spaces and line breaks are added to the JSON format of object values.
+   * @param includeUndefined If true and an object value is stringified using JSON format, any of its properties with
+   *                        the value `undefined` is stringified as `null`. If false, undefined properties are not
+   *                        stringified (JSON format does not support `undefined`).
+   * @returns A string representation of the given value.
+   */
+  export function propertyTypeToString(value: any,
+                                       propertyType: PropertyType | undefined,
+                                       addBrackets: boolean = false,
+                                       addSpaces: boolean = false,
+                                       includeUndefined: boolean = false): string {
+    switch (propertyType) {
+
+      case 'boolean':
+        return booleanToString(value);
+      case 'boolean-indeterminate':
+        return booleanToString(value, undefined, true);
+
+      case 'date':
+        return dateToString(value, true, false);
+      case 'datetime':
+        return dateToString(value, true, true);
+      case 'time':
+        return dateToString(value, false, true);
+      case 'month':
+        return dateMonthAndYearToString(value);
+
+      case 'number':
+      case 'rating':
+        return numberToString(value);
+
+      case 'string':
+      case 'id':
+      case 'string-multiline':
+      case 'tel':
+      case 'email':
+      case 'url':
+      case 'color':
+        return value?.toString();
+      
+      case 'password':
+        return passwordToMaskedString(value);
+
+      case 'select':
+      case undefined:
+      default:
+        return anyTypeToString(value, addBrackets, addSpaces, includeUndefined);
+    }
   }
 
   // endregion

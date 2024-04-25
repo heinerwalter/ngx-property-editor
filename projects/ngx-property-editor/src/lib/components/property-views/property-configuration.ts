@@ -292,9 +292,9 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     // Return propertyValue as string (or array of strings)
     if (this.isArray && Array.isArray(propertyValue)) {
       return propertyValue
-        .map(item => Stringifier.anyTypeToString(item));
+        .map(item => Stringifier.propertyTypeToString(item, this.propertyType));
     } else {
-      return Stringifier.anyTypeToString(propertyValue);
+      return Stringifier.propertyTypeToString(propertyValue, this.propertyType);
     }
   }
 

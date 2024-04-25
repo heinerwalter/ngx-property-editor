@@ -31,6 +31,10 @@ describe('Stringifier', () => {
     expect(Stringifier.booleanToString(true, 'yes-no')).toEqual('Ja');
     expect(Stringifier.booleanToString(false, 'yes-no')).toEqual('Nein');
     expect(Stringifier.booleanToString(undefined, 'yes-no')).toEqual('');
+
+    expect(Stringifier.booleanToString(true, 'true-false', true)).toEqual('true');
+    expect(Stringifier.booleanToString(false, 'true-false', true)).toEqual('false');
+    expect(Stringifier.booleanToString(undefined, 'true-false', true)).toEqual('Unbestimmt');
   });
 
   it('stringToBoolean', () => {
@@ -85,6 +89,23 @@ describe('Stringifier', () => {
   // endregion
 
   // region Numbers
+
+  it('numberToString', () => {
+    expect(Stringifier.numberToString(undefined)).toEqual('');
+    expect(Stringifier.numberToString(NaN)).toEqual('');
+    expect(Stringifier.numberToString('skjhd' as any)).toEqual('');
+    expect(Stringifier.numberToString({} as any)).toEqual('');
+
+    expect(Stringifier.numberToString(0)).toEqual('0');
+    expect(Stringifier.numberToString(1)).toEqual('1');
+    expect(Stringifier.numberToString(42)).toEqual('42');
+    expect(Stringifier.numberToString(11.11)).toEqual('11,11');
+    expect(Stringifier.numberToString(-11)).toEqual('-11');
+    expect(Stringifier.numberToString(-11.11)).toEqual('-11,11');
+
+    expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
+    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual('12345678901234567890');
+  });
 
   it('numberToPaddedString', () => {
     expect(Stringifier.numberToPaddedString(1, 4)).toEqual('0001');
@@ -236,6 +257,15 @@ describe('Stringifier', () => {
     expect(Stringifier.stringFromCamelCase('MyString with CamelCase')).toEqual('my string with camel case');
     expect(Stringifier.stringFromCamelCase('MyStringWithCAMELCase')).toEqual('my string with c a m e l case');
     expect(Stringifier.stringFromCamelCase('MyStringWith  C     amelCase')).toEqual('my string with c amel case');
+  });
+
+  it('passwordToMaskedString', () => {
+    // @ts-ignore
+    expect(Stringifier.passwordToMaskedString(undefined)).toEqual('');
+    expect(Stringifier.stringFromCamelCase('')).toEqual('');
+    expect(Stringifier.stringFromCamelCase(' ')).toEqual('*');
+    expect(Stringifier.stringFromCamelCase('abc')).toEqual('***');
+    expect(Stringifier.stringFromCamelCase(' abc   ')).toEqual('*******');
   });
 
   // endregion
@@ -425,6 +455,10 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(objUndefined, false, false, true)).toEqual('undefinedProperty:');
     expect(Stringifier.anyTypeToString(objUndefined, true, false, false)).toEqual('{}');
     expect(Stringifier.anyTypeToString(objUndefined, true, false, true)).toEqual('{"undefinedProperty":null}');
+  });
+
+  it('propertyTypeToString', () => {
+    // TODO: Implement unit tests
   });
 
   // endregion
