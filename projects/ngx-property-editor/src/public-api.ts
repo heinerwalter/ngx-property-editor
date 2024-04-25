@@ -62,7 +62,6 @@ export * from './lib/components/property-views/property-view-and-edit/property-v
 export * from './lib/components/property-views/table/table.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
-export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-mode';
 
 // Others:
 export * from './lib/controller/pe-global-functions';
