@@ -10,7 +10,7 @@ export class ColumnComponent implements OnChanges {
   /**
    * Bootstrap column width on md wide screens (class "col-md-...").
    */
-  @Input() public md: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined = undefined;
+  @Input() public md: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined = 12;
 
   /**
    * Bootstrap "col-..." classes are assigned to the host element of this component
@@ -28,7 +28,7 @@ export class ColumnComponent implements OnChanges {
    * Update the class property and thereby the class attribute of the host element of this component.
    */
   private updateClass(): void {
-    this.class = this.md == undefined ? 'col' : `col-md-${this.md}`;
+    this.class = `col-md-${this.md || 12}`;
   }
 
 }

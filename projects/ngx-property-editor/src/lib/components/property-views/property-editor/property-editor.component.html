@@ -3,7 +3,7 @@
   <ng-container *ngFor="let row of _configuration; let i = index">
 
     <ng-container *ngIf="row?.separator">
-      <ngb-col *ngIf="!row.isHidden(data, mode)">
+      <ngb-col *ngIf="!row.isHidden(data, mode)" [md]="12">
         <hr [style]="i == 0 ? '' : 'margin-top: 0'"/>
       </ngb-col>
     </ng-container>
