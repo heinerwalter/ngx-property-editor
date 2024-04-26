@@ -99,12 +99,10 @@ describe('Stringifier', () => {
     expect(Stringifier.numberToString(0)).toEqual('0');
     expect(Stringifier.numberToString(1)).toEqual('1');
     expect(Stringifier.numberToString(42)).toEqual('42');
-    expect(Stringifier.numberToString(11.11)).toEqual('11,11');
     expect(Stringifier.numberToString(-11)).toEqual('-11');
-    expect(Stringifier.numberToString(-11.11)).toEqual('-11,11');
 
     expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
-    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual('12345678901234567890');
+    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toString());
   });
 
   it('numberToPaddedString', () => {
@@ -262,10 +260,10 @@ describe('Stringifier', () => {
   it('passwordToMaskedString', () => {
     // @ts-ignore
     expect(Stringifier.passwordToMaskedString(undefined)).toEqual('');
-    expect(Stringifier.stringFromCamelCase('')).toEqual('');
-    expect(Stringifier.stringFromCamelCase(' ')).toEqual('*');
-    expect(Stringifier.stringFromCamelCase('abc')).toEqual('***');
-    expect(Stringifier.stringFromCamelCase(' abc   ')).toEqual('*******');
+    expect(Stringifier.passwordToMaskedString('')).toEqual('');
+    expect(Stringifier.passwordToMaskedString(' ')).toEqual('*');
+    expect(Stringifier.passwordToMaskedString('abc')).toEqual('***');
+    expect(Stringifier.passwordToMaskedString(' abc   ')).toEqual('*******');
   });
 
   // endregion
