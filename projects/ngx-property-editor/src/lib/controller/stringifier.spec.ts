@@ -102,7 +102,7 @@ describe('Stringifier', () => {
     expect(Stringifier.numberToString(-11)).toEqual('-11');
 
     expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
-    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toString());
+    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toLocaleString());
   });
 
   it('numberToPaddedString', () => {
