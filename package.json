@@ -47,7 +47,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "chardet": "^2.0.0",
-    "ngx-property-editor": "^0.0.32",
+    "ngx-property-editor": "^0.0.33",
     "rxjs": "^7.8.0",
     "tslib": "^2.6.2",
     "zone.js": "^0.13.3"
