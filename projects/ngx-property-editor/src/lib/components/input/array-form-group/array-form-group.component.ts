@@ -31,7 +31,8 @@ export class ArrayFormGroupComponent extends FormGroupComponent {
 
   /**
    * This function is called when the user requested a new item to be appended to the `value` array
-   * by clicking the plus button. If this function is not defined, `undefined` is added as new item.
+   * by clicking the plus button. The result of this function is added to the `value` array as new item.
+   * If this function is not defined, `undefined` is added to the `value` array as new item.
    */
   @Input() public newItemFunction: (() => any) | undefined = undefined;
 

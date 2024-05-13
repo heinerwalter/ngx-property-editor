@@ -19,6 +19,18 @@ export class PropertyInputComponent {
   @Input() public configuration: PropertyConfiguration | undefined = undefined;
 
   /**
+   * Only used if `configuration.isArray` is true:
+   * This function gets called, before a new item is added to the array property.
+   * The result of this function is added to the array as new item. If this function
+   * is not defined, `undefined` is added to the array as new item.
+   */
+  protected readonly newArrayItemFunction = (): any => {
+    if (typeof this.configuration?.newArrayItemFunction !== 'function') return undefined;
+
+    return this.configuration.newArrayItemFunction(this.data);
+  };
+
+  /**
    * Display a property of this object.
    */
   @Input() public data: any | undefined = undefined;

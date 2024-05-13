@@ -40,8 +40,12 @@ export type PropertyType =
 
 /**
  * Some properties of `PropertyConfiguration` can be defined as constant type or
- * as function depending on the displayed data object. If defined as function,
- * undefined is passed as data object for empty or multiple data objects.
+ * as function depending on the displayed data object.
+ *
+ * If defined as function, the currently displayed data object is passed as first
+ * parameter and the current property editor mode is passed as second parameter.
+ * Instead of the data object undefined is passed for empty objects (edit mode for
+ * creating new data objects) or multiple data objects (table mode).
  */
 type ValueOrFunctionType<T> = T | ((data: any | undefined, mode: PropertyEditorMode) => T);
 
@@ -139,10 +143,14 @@ export type PropertyConfigurationConstructorParameter = {
   isArray?: boolean,
   /**
    * If `isArray` is true:
-   * This function gets called, when a new item is added to the array.
-   * If not defined, undefined is added as new item.
+   * This function gets called, before a new item is added to the array property.
+   * The result of this function is added to the array as new item. If this function
+   * is not defined, `undefined` is added to the array as new item.
+   *
+   * The currently displayed data object which contains the array property is passed
+   * as first parameter.
    */
-  newArrayItemFunction?: (() => any) | undefined,
+  newArrayItemFunction?: ((data: any | undefined) => any) | undefined,
 
   /**
    * Display multiple properties within an input group
@@ -189,7 +197,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public separator: boolean = false;
 
   public isArray: boolean = false;
-  public newArrayItemFunction?: (() => any) | undefined = undefined;
+  public newArrayItemFunction?: ((data: any | undefined) => any) | undefined = undefined;
 
   public inputGroup?: PropertyConfiguration[][] = undefined;
 

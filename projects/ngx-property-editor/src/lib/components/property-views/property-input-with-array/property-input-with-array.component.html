@@ -7,7 +7,7 @@
                          [noFormGroup]="noFormGroup"
                          [disableAdd]="readonly || !configuration.isEditable(data, mode)"
                          [disableDelete]="readonly || !configuration.isEditable(data, mode)"
-                         [newItemFunction]="configuration.newArrayItemFunction"
+                         [newItemFunction]="newArrayItemFunction"
                          [itemTemplate]="arrayFormGroupTemplate"
                          [value]="configuration.getValue(data, mode)"
                          (valueChange)="configuration.setValue(data, $event)">

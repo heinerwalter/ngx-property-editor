@@ -31,7 +31,7 @@ const configuration1: PropertyConfigurationConstructorParameter = {
   columnWidth: '42px',
   separator: false,
   isArray: true,
-  newArrayItemFunction: () => '',
+  newArrayItemFunction: (data: any | undefined) => '',
   inputGroup: undefined,
 };
 
