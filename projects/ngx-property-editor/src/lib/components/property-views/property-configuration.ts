@@ -153,12 +153,22 @@ export type PropertyConfigurationConstructorParameter = {
   newArrayItemFunction?: ((data: any | undefined) => any) | undefined,
 
   /**
-   * Display multiple properties within an input group
-   * (input elements side by side with one label for the whole group).
-   * The outer array defines a vertical input group.
-   * The inner array(s) define horizontal input groups.
-   * If you want to define only one horizontal input group,
-   * the outer array should contain exactly one element (`[ [ input1, input2, ... ] ]`).
+   * Group multiple properties under the label of this property configuration.
+   * Warning: Only one level of grouping is supported. Groups within groups are ignored.
+   *
+   * How a group is displayed depends on the component used to display the properties:
+   * - `PropertyTableComponent`:
+   *   Display string values of multiple properties with one label. The outer array defines
+   *   a vertical group (string values separated by linebreak). The inner array(s) define
+   *   horizontal group(s) (string values separated by space). If you want to define only one
+   *   horizontal group, the outer array should contain exactly one element
+   *   (e.g. `[ [ property1, property2, ... ] ]`).
+   * - `PropertyEditorComponent`/`PropertyInputWithInputGroupComponent`:
+   *   Display multiple properties within an input group (input elements side by side
+   *   with one label for the whole group). The outer array defines a vertical input group.
+   *   The inner array(s) define horizontal input group(s). If you want to define only one
+   *   horizontal input group, the outer array should contain exactly one element
+   *  (e.g. `[ [ property1, property2, ... ] ]`).
    */
   inputGroup?: PropertyConfiguration[][],
 
@@ -248,9 +258,52 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
       return this.valueFunction(data, mode);
     } else if (this.propertyName) {
       return this.evaluateNestedPropertyName('get', data, this.propertyName);
+    } else if (this.inputGroup?.length) {
+      return this.getDisplayValueOfInputGroup(data, mode);
     } else {
       return undefined;
     }
+  }
+
+  /**
+   * Gets the joined property value of all properties in the `inputGroup` from the given data object.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode Property editor mode.
+   * @returns The joined property value of all properties in the `inputGroup`.
+   */
+  public getDisplayValueOfInputGroup(data: any | undefined, mode: PropertyEditorMode): string {
+    if (!this.inputGroup?.length) return '';
+
+    // Iterate over outer array
+    const outerArrayValues: string[] = [];
+    for (const properties of this.inputGroup) {
+      if (!properties?.length) continue;
+
+      // Iterate over inner array
+      const innerArrayValues: string[] = [];
+      for (const property of properties) {
+        if (!property) continue;
+
+        // Get property value as string
+        let value = property.getDisplayValue(data, mode);
+        if (Array.isArray(value)) {
+          value = Stringifier.arrayToString(value, false, false);
+        }
+        value = value?.trim();
+        if (!value) continue;
+
+        innerArrayValues.push(value);
+      }
+
+      // Join inner array elements by space
+      const value: string = innerArrayValues.join(' ');
+      if (!value) continue;
+
+      outerArrayValues.push(value);
+    }
+
+    // Join outer array elements by linebreak
+    return outerArrayValues.join('\n') || '';
   }
 
   /**

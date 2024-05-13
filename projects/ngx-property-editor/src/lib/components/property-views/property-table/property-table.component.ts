@@ -77,7 +77,9 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         if (property.isHidden(this.data, 'view')) continue;
 
         // Get displayed value
-        if (!property.valueFunction && !property.propertyName) continue;
+        if (!property.valueFunction &&
+          !property.propertyName &&
+          !property.inputGroup?.length) continue;
         let propertyValue: any = property.getDisplayValue(this.data, 'view');
         // Ignore empty values, if hideIfEmpty is true
         if (property.hideIfEmpty && propertyValue == undefined) continue;
