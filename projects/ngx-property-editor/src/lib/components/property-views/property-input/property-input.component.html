@@ -1,4 +1,4 @@
-<ng-container *ngIf="configuration && data && !configuration.separator && !configuration.isHidden(data, mode)">
+<ng-container *ngIf="configuration && !configuration.separator && !configuration.isHidden(data, mode)">
 
   <ng-container
     *ngIf="configuration.propertyType == 'boolean' || configuration.propertyType == 'boolean-indeterminate'">
