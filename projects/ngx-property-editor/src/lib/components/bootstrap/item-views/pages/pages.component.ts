@@ -82,41 +82,48 @@ export class PagesComponent extends ItemViewBaseComponent {
   public override updateItems(): void {
     super.updateItems();
     // Update the currently displayed item when the items array has changed
-    this.gotoPage(this.currentItemIndex);
+    this.gotoPage(this.currentItemIndex, true);
   }
 
   /**
    * Changes the currently displayed page.
-   * This function does not pay attention to hidden page items!
    * @param index Index of a page item. If the index is outside the valid range, it is mapped to [0, _items.length - 1].
-   * @see gotoPreviousPage
-   * @see gotoNextPage
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items.
    */
-  public gotoPage(index: number): void {
+  public gotoPage(index: number, ignoreHidden: boolean = false): void {
     if (index < 0) index = 0;
     if (index > this._items.length - 1) index = this._items.length - 1;
+	
+	// Is destination page hidden? And should we care?
+	if (!ignoreHidden && this.isPageHidden(index)) return;
 
     this.onItemChanged(this._items[index], index);
   }
 
+/**
+   * Go to the first page, if possible.
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items.
+   */
+  public gotoFirstPage(ignoreHidden: boolean = false): void {
+    this.gotoPage(0, ignoreHidden);
+  }
+  
   /**
    * Go to the previous page, if possible.
-   * @param ignoreHidden If true, this function does not pay attention to hidden page items (like `gotoPage`).
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items.
    */
   public gotoPreviousPage(ignoreHidden: boolean = false): void {
     if (!this.showPreviousButton) return;
-    if (!ignoreHidden && this.disablePreviousButton) return;
-    this.gotoPage(this.currentItemIndex - 1);
+    this.gotoPage(this.currentItemIndex - 1, ignoreHidden);
   }
 
   /**
    * Go to the next page, if possible.
-   * @param ignoreHidden If true, this function does not pay attention to hidden page items (like `gotoPage`).
+   * @param ignoreHidden If true, this function does not pay attention to hidden page items.
    */
   public gotoNextPage(ignoreHidden: boolean = false): void {
     if (!this.showNextButton) return;
-    if (!ignoreHidden && this.disableNextButton) return;
-    this.gotoPage(this.currentItemIndex + 1);
+    this.gotoPage(this.currentItemIndex + 1, ignoreHidden);
   }
 
   /**
@@ -134,11 +141,22 @@ export class PagesComponent extends ItemViewBaseComponent {
   }
 
   /**
+   * Returns false, if the queried page item is not hidden and it exists.
+   * Returns true, if the queried page item is hidden or it does not exist.
+   * @param index Index of a page item.
+   */
+  protected isPageHidden(index: number): boolean {
+    const item = this._items[index];
+	if (!item) return true;
+    return item.hidden || false;
+  }
+
+  /**
    * If true, the previous page button is disabled and thus the user cannot navigate to the previous page.
    */
   protected get disablePreviousButton(): boolean {
     if (!this.showPreviousButton) return true;
-    return this._items[this.currentItemIndex - 1]?.hidden || false;
+    return this.isPageHidden(this.currentItemIndex - 1);
   }
 
   /**
@@ -146,7 +164,7 @@ export class PagesComponent extends ItemViewBaseComponent {
    */
   protected get disableNextButton(): boolean {
     if (!this.showNextButton) return true;
-    return this._items[this.currentItemIndex + 1]?.hidden || false;
+    return this.isPageHidden(this.currentItemIndex + 1);
   }
 
 }
