@@ -312,9 +312,12 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * For any other property type the result of this function is the same as `getValue()`.
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @param mode Property editor mode.
+   * @param joinArray If true, array values are joined to a comma-separated string.
    * @returns The display value.
    */
-  public getDisplayValue(data: any | undefined, mode: PropertyEditorMode): string | string[] | undefined {
+  public getDisplayValue(data: any | undefined,
+                         mode: PropertyEditorMode,
+                         joinArray: boolean = false): string | string[] | undefined {
     // Get displayed value
     let propertyValue: any = this.getValue(data, mode);
     if (propertyValue == undefined) return undefined;
@@ -351,7 +354,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     }
 
     // Return propertyValue as string (or array of strings)
-    if (this.isArray && Array.isArray(propertyValue)) {
+    if (!joinArray && this.isArray && Array.isArray(propertyValue)) {
       return propertyValue
         .map(item => Stringifier.propertyTypeToString(item, this.propertyType));
     } else {

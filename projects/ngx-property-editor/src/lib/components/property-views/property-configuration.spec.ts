@@ -189,6 +189,9 @@ describe('PropertyConfiguration', () => {
       expect(value.length).toEqual(2);
       expect(value[0]).toEqual('Banana');
       expect(value[1]).toEqual('Apple');
+
+      const stringValue = propertyConfiguration.getDisplayValue(data, mode, true) as string;
+      expect(stringValue).toEqual('Banana, Apple');
     });
 
     it(`getDataSource function (${mode})`, () => {
@@ -205,7 +208,7 @@ describe('PropertyConfiguration', () => {
       expect(propertyConfiguration.isHidden({}, mode)).toEqual(mode == 'view');
       expect(propertyConfiguration.isHidden({ topics: [] }, mode)).toEqual(mode == 'view');
 
-      expect(new PropertyConfiguration({hidden: 'initially-hidden'}).isHidden({ topics: [] }, mode)).toEqual('initially-hidden');
+      expect(new PropertyConfiguration({ hidden: 'initially-hidden' }).isHidden({ topics: [] }, mode)).toEqual('initially-hidden');
     });
 
     it(`isEditable function (${mode})`, () => {
