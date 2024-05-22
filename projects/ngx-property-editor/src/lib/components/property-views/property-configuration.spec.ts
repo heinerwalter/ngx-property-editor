@@ -64,7 +64,7 @@ function expectAllUndefined(propertyConfiguration: PropertyConfiguration): void 
   expect(propertyConfiguration.isArray).toBeFalse();
   expect(propertyConfiguration.newArrayItemFunction).toBeUndefined();
   expect(propertyConfiguration.group).toBeUndefined();
-  expect(propertyConfiguration.disableGroup).toBeFalse();
+  expect(propertyConfiguration.disableGroup).toBeUndefined();
 }
 
 function expectConfiguration(propertyConfiguration: PropertyConfiguration, parameter: PropertyConfigurationConstructorParameter): void {
