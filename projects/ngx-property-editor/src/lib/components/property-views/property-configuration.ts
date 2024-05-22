@@ -49,7 +49,7 @@ export type PropertyType =
  */
 type ValueOrFunctionType<T> = T | ((data: any | undefined, mode: PropertyEditorMode) => T);
 
-export type HiddenPropertyConfigurationType = boolean | 'initially-hidden';
+export type PropertyConfigurationHiddenType = boolean | 'initially-hidden';
 
 /**
  * Type of the parameter which can be passed to the `PropertyConfiguration` constructor.
@@ -104,7 +104,7 @@ export type PropertyConfigurationConstructorParameter = {
    * If `'initially-hidden'`, this property is hidden, but it can be made visible
    * using a property chooser (especially for table mode).
    */
-  hidden?: ValueOrFunctionType<HiddenPropertyConfigurationType>,
+  hidden?: ValueOrFunctionType<PropertyConfigurationHiddenType>,
   /**
    * Only in `mode == 'view'`:
    * If true, this property is hidden, if its value is undefined, null,
@@ -192,7 +192,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public valuePropertyName?: string | undefined = undefined;
   public displayPropertyName?: string | undefined = undefined;
 
-  public hidden?: ValueOrFunctionType<HiddenPropertyConfigurationType> = undefined;
+  public hidden?: ValueOrFunctionType<PropertyConfigurationHiddenType> = undefined;
   public hideIfEmpty: boolean = false;
   public editable?: ValueOrFunctionType<boolean> = undefined;
   public required?: ValueOrFunctionType<boolean> = undefined;
@@ -424,7 +424,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param ignoreHideIfEmpty If true, `hideIfEmpty` is not evaluated.
    * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, mode: PropertyEditorMode, ignoreHideIfEmpty: boolean = false): HiddenPropertyConfigurationType {
+  public isHidden(data: any | undefined, mode: PropertyEditorMode, ignoreHideIfEmpty: boolean = false): PropertyConfigurationHiddenType {
     // Evaluate `hideIfEmpty` (only in view mode)
     if (!ignoreHideIfEmpty && mode == 'view' && this.hideIfEmpty) {
       const value = this.getValue(data, mode);
@@ -595,7 +595,7 @@ export class PropertyConfigurationSeparator extends PropertyConfiguration {
     super(configuration);
   }
 
-  public override isHidden(data: any, mode: PropertyEditorMode, ignoreHideIfEmpty?: boolean): HiddenPropertyConfigurationType {
+  public override isHidden(data: any, mode: PropertyEditorMode, ignoreHideIfEmpty?: boolean): PropertyConfigurationHiddenType {
     // Don't show separators in table mode
     if (mode == 'table') return true;
     return super.isHidden(data, mode, ignoreHideIfEmpty);
