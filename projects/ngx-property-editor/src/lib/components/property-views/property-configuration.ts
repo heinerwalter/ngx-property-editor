@@ -169,8 +169,34 @@ export type PropertyConfigurationConstructorParameter = {
    *   The inner array(s) define horizontal input group(s). If you want to define only one
    *   horizontal input group, the outer array should contain exactly one element
    *  (e.g. `[ [ property1, property2, ... ] ]`).
+   *
+   *  @see disableGroup
    */
   group?: PropertyConfiguration[][],
+  /**
+   * If true, the property configurations within `group` are considered as normal properties without a group.
+   * Thus, they are displayed instead of this property configuration.
+   *
+   * @example
+   * // Example 1 (without disableGroup):
+   * property1 = {
+   *   group: [[property2, property3]],
+   * }
+   * // Properties displayed in a property editor:
+   * // - property1 (with grouped properties property2 and property3)
+   *
+   * // Example 2 (with disableGroup):
+   * property1 = {
+   *   group: [[property2, property3]],
+   *   disableGroup: true,
+   * }
+   * // Properties displayed in a property editor:
+   * // - property2
+   * // - property3
+   *
+   * @see group
+   */
+  disableGroup?: ValueOrFunctionType<boolean>,
 
 };
 
@@ -210,6 +236,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public newArrayItemFunction?: ((data: any | undefined) => any) | undefined = undefined;
 
   public group?: PropertyConfiguration[][] = undefined;
+  public disableGroup?: ValueOrFunctionType<boolean> = undefined;
 
   public constructor(configuration?: PropertyConfigurationConstructorParameter) {
     // Assign properties from configuration object if defined
@@ -258,7 +285,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
       return this.valueFunction(data, mode);
     } else if (this.propertyName) {
       return this.evaluateNestedPropertyName('get', data, this.propertyName);
-    } else if (this.group?.length) {
+    } else if (this.hasGroup) {
       return this.getDisplayValueOfGroup(data, mode);
     } else {
       return undefined;
@@ -272,11 +299,11 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @returns The joined property value of all properties in the `group`.
    */
   public getDisplayValueOfGroup(data: any | undefined, mode: PropertyEditorMode): string {
-    if (!this.group?.length) return '';
+    if (!this.hasGroup) return '';
 
     // Iterate over outer array
     const outerArrayValues: string[] = [];
-    for (const properties of this.group) {
+    for (const properties of this.group!) {
       if (!properties?.length) continue;
 
       // Iterate over inner array
@@ -574,6 +601,37 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     itemConfig.setValueFunction = (data: any, newValue: any) => onValueChange(newValue);
 
     return itemConfig;
+  }
+
+  /**
+   * Returns true, if a `group` of nested property configurations exists
+   * (with at least one nested property configuration).
+   */
+  public get hasGroup(): boolean {
+    if (!this.group?.length) return false;
+    return this.group.some(array => array?.length);
+  }
+
+  /**
+   * Returns all property configurations of `group` in a flat array (one dimension).
+   */
+  public get flatGroup(): PropertyConfiguration[] {
+    if (!this.group?.length) return [];
+    return this.group.flat(1);
+  }
+
+  /**
+   * Evaluates the `disableGroup` configuration.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode Property editor mode.
+   * @returns true, if the property configurations within `group` are considered as normal properties without a group.
+   */
+  public getDisableGroup(data: any | undefined, mode: PropertyEditorMode): boolean {
+    if (typeof this.disableGroup === 'function') {
+      return this.disableGroup(data, mode) || false;
+    } else {
+      return this.disableGroup || false;
+    }
   }
 
 }

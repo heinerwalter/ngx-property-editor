@@ -51,8 +51,16 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    * The result is stored in the property `tableData`.
    */
   private generateTableData(): void {
-    const config: PropertiesConfiguration = this.configuration?.length ? this.configuration
+    let config: PropertiesConfiguration = this.configuration?.length ? [...this.configuration]
       : generatePropertiesConfigurationFromData(this.data);
+
+    // Extract disabled groups
+    config = config.map(property => {
+      if (property.hasGroup && property.getDisableGroup(this.data, 'view'))
+        return property.flatGroup;
+      else
+        return [property];
+    }).flat(1);
 
     if (!this.data || !config?.length) {
       this.tableData = [[{ content: 'Keine Daten', style: 'data' }]];
@@ -71,7 +79,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         // Get displayed value
         if (!property.valueFunction &&
           !property.propertyName &&
-          !property.group?.length) continue;
+          !property.hasGroup) continue;
         let propertyValue: any = property.getDisplayValue(this.data, 'view', false);
         // Ignore empty values, if hideIfEmpty is true
         if (property.hideIfEmpty && propertyValue == undefined) continue;

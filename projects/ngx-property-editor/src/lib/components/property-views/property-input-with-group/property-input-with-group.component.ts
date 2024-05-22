@@ -12,7 +12,7 @@ export class PropertyInputWithGroupComponent extends PropertyInputComponent {
    * True, if a group of properties is displayed.
    */
   public get hasGroup(): boolean {
-    return !!this.configuration && !!this.configuration.group?.length;
+    return !!this.configuration?.hasGroup;
   }
 
 }

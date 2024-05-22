@@ -33,6 +33,7 @@ const configuration1: PropertyConfigurationConstructorParameter = {
   isArray: true,
   newArrayItemFunction: (data: any | undefined) => '',
   group: undefined,
+  disableGroup: false,
 };
 
 function getDataObject1() {
@@ -63,6 +64,7 @@ function expectAllUndefined(propertyConfiguration: PropertyConfiguration): void 
   expect(propertyConfiguration.isArray).toBeFalse();
   expect(propertyConfiguration.newArrayItemFunction).toBeUndefined();
   expect(propertyConfiguration.group).toBeUndefined();
+  expect(propertyConfiguration.disableGroup).toBeFalse();
 }
 
 function expectConfiguration(propertyConfiguration: PropertyConfiguration, parameter: PropertyConfigurationConstructorParameter): void {
@@ -86,6 +88,7 @@ function expectConfiguration(propertyConfiguration: PropertyConfiguration, param
   expect(typeof propertyConfiguration.isArray).toEqual(typeof parameter.isArray);
   expect(typeof propertyConfiguration.newArrayItemFunction).toEqual(typeof parameter.newArrayItemFunction);
   expect(typeof propertyConfiguration.group).toEqual(typeof parameter.group);
+  expect(typeof propertyConfiguration.disableGroup).toEqual(typeof parameter.disableGroup);
 
   if (typeof parameter.propertyName !== 'function')
     expect(propertyConfiguration.propertyName).toEqual(parameter.propertyName);
@@ -127,6 +130,8 @@ function expectConfiguration(propertyConfiguration: PropertyConfiguration, param
     expect(propertyConfiguration.newArrayItemFunction).toEqual(parameter.newArrayItemFunction);
   if (typeof parameter.group !== 'function')
     expect(propertyConfiguration.group).toEqual(parameter.group);
+  if (typeof parameter.disableGroup !== 'function')
+    expect(propertyConfiguration.disableGroup).toEqual(parameter.disableGroup);
 }
 
 describe('PropertyConfiguration', () => {
@@ -158,6 +163,7 @@ describe('PropertyConfiguration', () => {
       isArray: undefined,
       newArrayItemFunction: undefined,
       group: undefined,
+      disableGroup: false,
     });
     expectAllUndefined(obj);
   });

@@ -13,7 +13,7 @@ export class PropertyInputWithArrayComponent extends PropertyInputComponent {
    */
   public get hasArray(): boolean {
     return !!this.configuration && this.configuration.isArray &&
-      (!this.configuration.group?.length || this.configuration.propertyType != 'select');
+      (!this.configuration.hasGroup || this.configuration.propertyType != 'select');
   }
 
 }
