@@ -1,5 +1,16 @@
 <ng-container *ngIf="configuration">
 
+  <ng-container *ngIf="!hasInputGroup">
+
+    <pe-property-input [id]="id"
+                       [configuration]="configuration"
+                       [data]="data"
+                       [readonly]="readonly"
+                       [noFormGroup]="noFormGroup">
+    </pe-property-input>
+
+  </ng-container>
+
   <ng-container *ngIf="hasInputGroup">
 
     <pe-form-group [id]="configuration.propertyName || id"
@@ -44,17 +55,6 @@
       </ng-container>
 
     </pe-form-group>
-
-  </ng-container>
-
-  <ng-container *ngIf="!hasInputGroup">
-
-    <pe-property-input [id]="id"
-                       [configuration]="configuration"
-                       [data]="data"
-                       [readonly]="readonly"
-                       [noFormGroup]="noFormGroup">
-    </pe-property-input>
 
   </ng-container>
 

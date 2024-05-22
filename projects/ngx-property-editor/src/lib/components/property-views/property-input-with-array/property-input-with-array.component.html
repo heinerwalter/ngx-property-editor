@@ -1,5 +1,16 @@
 <ng-container *ngIf="configuration">
 
+  <ng-container *ngIf="!hasArray">
+
+    <pe-property-input-with-input-group [id]="id"
+                                        [configuration]="configuration"
+                                        [data]="data"
+                                        [readonly]="readonly"
+                                        [noFormGroup]="noFormGroup">
+    </pe-property-input-with-input-group>
+
+  </ng-container>
+
   <ng-container *ngIf="hasArray">
 
     <pe-array-form-group [id]="configuration.propertyName || id"
@@ -21,17 +32,6 @@
                                           [noFormGroup]="true">
       </pe-property-input-with-input-group>
     </ng-template>
-
-  </ng-container>
-
-  <ng-container *ngIf="!hasArray">
-
-    <pe-property-input-with-input-group [id]="id"
-                                        [configuration]="configuration"
-                                        [data]="data"
-                                        [readonly]="readonly"
-                                        [noFormGroup]="noFormGroup">
-    </pe-property-input-with-input-group>
 
   </ng-container>
 
