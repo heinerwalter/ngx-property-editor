@@ -163,7 +163,7 @@ describe('PropertyConfiguration', () => {
       isArray: undefined,
       newArrayItemFunction: undefined,
       group: undefined,
-      disableGroup: false,
+      disableGroup: undefined,
     });
     expectAllUndefined(obj);
   });
