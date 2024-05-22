@@ -5,8 +5,8 @@ import { PropertyInputComponent } from '../property-input/property-input.compone
 import { inputComponents } from '../../input/input.components';
 import { FormsModule } from '@angular/forms';
 import {
-  PropertyInputWithInputGroupComponent,
-} from '../property-input-with-input-group/property-input-with-input-group.component';
+  PropertyInputWithGroupComponent,
+} from '../property-input-with-group/property-input-with-group.component';
 
 describe('PropertyInputWithArrayComponent', () => {
   let component: PropertyInputWithArrayComponent;
@@ -16,7 +16,7 @@ describe('PropertyInputWithArrayComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PropertyInputWithArrayComponent,
-        PropertyInputWithInputGroupComponent,
+        PropertyInputWithGroupComponent,
         PropertyInputComponent,
         ...inputComponents,
       ],

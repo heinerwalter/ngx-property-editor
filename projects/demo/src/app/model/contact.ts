@@ -101,7 +101,7 @@ export class Contact {
         propertyName: 'address',
         label: 'Address',
         editable: true,
-        inputGroup: [
+        group: [
           [
             new PropertyConfiguration({
               propertyName: 'address.street',
@@ -170,7 +170,7 @@ export class Contact {
         isArray: true,
         newArrayItemFunction: () => ({ name: undefined, type: undefined }),
         editable: true,
-        inputGroup: [[
+        group: [[
           new PropertyConfiguration({
             propertyName: 'name',
             label: 'Friend',

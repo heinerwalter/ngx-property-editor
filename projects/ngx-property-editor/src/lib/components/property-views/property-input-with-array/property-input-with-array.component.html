@@ -2,12 +2,12 @@
 
   <ng-container *ngIf="!hasArray">
 
-    <pe-property-input-with-input-group [id]="id"
+    <pe-property-input-with-group [id]="id"
                                         [configuration]="configuration"
                                         [data]="data"
                                         [readonly]="readonly"
                                         [noFormGroup]="noFormGroup">
-    </pe-property-input-with-input-group>
+    </pe-property-input-with-group>
 
   </ng-container>
 
@@ -25,12 +25,12 @@
     </pe-array-form-group>
 
     <ng-template #arrayFormGroupTemplate let-index="index" let-value="value" let-onValueChange="onValueChange">
-      <pe-property-input-with-input-group [id]="id + '-' + index"
+      <pe-property-input-with-group [id]="id + '-' + index"
                                           [configuration]="configuration.getArrayItemConfiguration(index, value, onValueChange)"
                                           [data]="value"
                                           [readonly]="readonly"
                                           [noFormGroup]="true">
-      </pe-property-input-with-input-group>
+      </pe-property-input-with-group>
     </ng-template>
 
   </ng-container>

@@ -32,7 +32,7 @@ const configuration1: PropertyConfigurationConstructorParameter = {
   separator: false,
   isArray: true,
   newArrayItemFunction: (data: any | undefined) => '',
-  inputGroup: undefined,
+  group: undefined,
 };
 
 function getDataObject1() {
@@ -62,7 +62,7 @@ function expectAllUndefined(propertyConfiguration: PropertyConfiguration): void 
   expect(propertyConfiguration.separator).toBeFalse();
   expect(propertyConfiguration.isArray).toBeFalse();
   expect(propertyConfiguration.newArrayItemFunction).toBeUndefined();
-  expect(propertyConfiguration.inputGroup).toBeUndefined();
+  expect(propertyConfiguration.group).toBeUndefined();
 }
 
 function expectConfiguration(propertyConfiguration: PropertyConfiguration, parameter: PropertyConfigurationConstructorParameter): void {
@@ -85,7 +85,7 @@ function expectConfiguration(propertyConfiguration: PropertyConfiguration, param
   expect(typeof propertyConfiguration.separator).toEqual(typeof parameter.separator);
   expect(typeof propertyConfiguration.isArray).toEqual(typeof parameter.isArray);
   expect(typeof propertyConfiguration.newArrayItemFunction).toEqual(typeof parameter.newArrayItemFunction);
-  expect(typeof propertyConfiguration.inputGroup).toEqual(typeof parameter.inputGroup);
+  expect(typeof propertyConfiguration.group).toEqual(typeof parameter.group);
 
   if (typeof parameter.propertyName !== 'function')
     expect(propertyConfiguration.propertyName).toEqual(parameter.propertyName);
@@ -125,8 +125,8 @@ function expectConfiguration(propertyConfiguration: PropertyConfiguration, param
     expect(propertyConfiguration.isArray).toEqual(!!parameter.isArray);
   if (typeof parameter.newArrayItemFunction !== 'function')
     expect(propertyConfiguration.newArrayItemFunction).toEqual(parameter.newArrayItemFunction);
-  if (typeof parameter.inputGroup !== 'function')
-    expect(propertyConfiguration.inputGroup).toEqual(parameter.inputGroup);
+  if (typeof parameter.group !== 'function')
+    expect(propertyConfiguration.group).toEqual(parameter.group);
 }
 
 describe('PropertyConfiguration', () => {
@@ -157,7 +157,7 @@ describe('PropertyConfiguration', () => {
       separator: undefined,
       isArray: undefined,
       newArrayItemFunction: undefined,
-      inputGroup: undefined,
+      group: undefined,
     });
     expectAllUndefined(obj);
   });
