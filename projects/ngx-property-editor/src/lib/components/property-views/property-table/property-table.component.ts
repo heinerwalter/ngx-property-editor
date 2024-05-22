@@ -1,9 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import {
-  generatePropertiesConfigurationFromData,
-  PropertiesConfiguration,
-  PropertyConfiguration,
-} from '../property-configuration';
+import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
 import { TableData } from '../table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -64,18 +60,14 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     }
 
     const tableData: TableData = [];
-    for (const item of config) {
+    for (const property of config) {
+      if (property.isHidden(this.data, 'view')) continue;
 
-      if (item.separator) {
+      if (property.separator) {
         // Add empty row as separator
         tableData.push([]);
 
       } else {
-        const property = item as PropertyConfiguration;
-
-
-        if (property.isHidden(this.data, 'view')) continue;
-
         // Get displayed value
         if (!property.valueFunction &&
           !property.propertyName &&
