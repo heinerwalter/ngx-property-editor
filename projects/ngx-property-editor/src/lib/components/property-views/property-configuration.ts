@@ -39,6 +39,70 @@ export type PropertyType =
   'select';
 
 /**
+ * Returns true, if the given property type requires boolean values.
+ * @param propertyType A property type.
+ */
+export function propertyTypeIsBoolean(propertyType: PropertyType): boolean {
+  switch (propertyType) {
+    case 'boolean':
+    case 'boolean-indeterminate':
+      return true;
+    default:
+      return false;
+  }
+}
+
+/**
+ * Returns true, if the given property type requires date values.
+ * @param propertyType A property type.
+ */
+export function propertyTypeIsDate(propertyType: PropertyType): boolean {
+  switch (propertyType) {
+    case 'date':
+    case 'datetime':
+    case 'time':
+    case 'month':
+      return true;
+    default:
+      return false;
+  }
+}
+
+/**
+ * Returns true, if the given property type requires numeric values.
+ * @param propertyType A property type.
+ */
+export function propertyTypeIsNumber(propertyType: PropertyType): boolean {
+  switch (propertyType) {
+    case 'number':
+    case 'rating':
+      return true;
+    default:
+      return false;
+  }
+}
+
+/**
+ * Returns true, if the given property type requires string values.
+ * @param propertyType A property type.
+ */
+export function propertyTypeIsString(propertyType: PropertyType): boolean {
+  switch (propertyType) {
+    case 'string':
+    case 'id':
+    case 'string-multiline':
+    case 'tel':
+    case 'email':
+    case 'url':
+    case 'color':
+    case 'password':
+      return true;
+    default:
+      return false;
+  }
+}
+
+/**
  * Some properties of `PropertyConfiguration` can be defined as constant type or
  * as function depending on the displayed data object.
  *
