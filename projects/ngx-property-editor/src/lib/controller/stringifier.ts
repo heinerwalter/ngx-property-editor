@@ -1,7 +1,7 @@
 'use strict';
 
 import { $localize } from '@angular/localize/init';
-import { PropertyType } from '../components/property-views/property-configuration';
+import { PropertyType, propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from '../components/property-views/property-configuration';
 
 export module Stringifier {
 
@@ -690,6 +690,16 @@ export module Stringifier {
                                        addBrackets: boolean = false,
                                        addSpaces: boolean = false,
                                        includeUndefined: boolean = false): string {
+    // Fix property type, if value type is not matching
+    if (typeof value === 'boolean' && !propertyTypeIsBoolean(propertyType))
+      propertyType = 'boolean';
+    if (value && value instanceof Date && !propertyTypeIsDate(propertyType))
+      propertyType = 'date';
+    if (typeof value === 'number' && !propertyTypeIsNumber(propertyType))
+      propertyType = 'number';
+    if (typeof value === 'string' && !propertyTypeIsString(propertyType))
+      propertyType = 'string';
+    
     switch (propertyType) {
 
       case 'boolean':
