@@ -214,7 +214,7 @@ describe('PropertyConfiguration', () => {
       expect(propertyConfiguration.isHidden({}, mode)).toEqual(mode == 'view');
       expect(propertyConfiguration.isHidden({ topics: [] }, mode)).toEqual(mode == 'view');
 
-      expect(new PropertyConfiguration({ hidden: 'initially-hidden' }).isHidden({ topics: [] }, mode)).toEqual('initially-hidden');
+      expect(new PropertyConfiguration({ hidden: 'initially-hidden' }).isHidden({ topics: [] }, mode)).toEqual(mode == 'table' ? 'initially-hidden' : false);
     });
 
     it(`isEditable function (${mode})`, () => {
