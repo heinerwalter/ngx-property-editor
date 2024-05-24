@@ -531,12 +531,19 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     }
 
     // Evaluate `hidden`
+    let result: PropertyConfigurationHiddenType = false;
     if (typeof this.hidden === 'function') {
-      return this.hidden(data, mode);
+      result = this.hidden(data, mode);
     } else if (this.hidden != undefined) {
-      return this.hidden;
+      result = this.hidden;
     }
-    return false;
+
+    // 'initially-hidden' is only valid in table mode; otherwise it is changed to false (visible)
+    if (result == 'initially-hidden' && mode != 'table') {
+      result = false;
+    }
+
+    return result;
   }
 
   /**
