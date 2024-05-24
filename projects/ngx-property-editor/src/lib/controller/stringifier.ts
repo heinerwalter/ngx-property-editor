@@ -690,15 +690,17 @@ export module Stringifier {
                                        addBrackets: boolean = false,
                                        addSpaces: boolean = false,
                                        includeUndefined: boolean = false): string {
-    // Fix property type, if value type is not matching
-    if (typeof value === 'boolean' && !propertyTypeIsBoolean(propertyType))
-      propertyType = 'boolean';
-    if (value && value instanceof Date && !propertyTypeIsDate(propertyType))
-      propertyType = 'date';
-    if (typeof value === 'number' && !propertyTypeIsNumber(propertyType))
-      propertyType = 'number';
-    if (typeof value === 'string' && !propertyTypeIsString(propertyType))
-      propertyType = 'string';
+    if (propertyType) {
+      // Fix property type, if value type is not matching
+      if (typeof value === 'boolean' && !propertyTypeIsBoolean(propertyType))
+        propertyType = 'boolean';
+      if (value && value instanceof Date && !propertyTypeIsDate(propertyType))
+        propertyType = 'date';
+      if (typeof value === 'number' && !propertyTypeIsNumber(propertyType))
+        propertyType = 'number';
+      if (typeof value === 'string' && !propertyTypeIsString(propertyType))
+        propertyType = 'string';
+    }
     
     switch (propertyType) {
 
