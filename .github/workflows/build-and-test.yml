@@ -1,5 +1,5 @@
 # This workflow will build the Angular library package and run all tests.
-name: build library
+name: build and test library
 
 on:
   # Runs on pushes targeting the default branch
