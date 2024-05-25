@@ -1,6 +1,6 @@
 # ngx-property-editor
 
-[![build](https://github.com/heinerwalter/ngx-property-editor/actions/workflows/build.yml/badge.svg)](https://github.com/heinerwalter/ngx-property-editor/actions/workflows/build.yml)
+[![build](https://github.com/heinerwalter/ngx-property-editor/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/heinerwalter/ngx-property-editor/actions/workflows/build-and-test.yml)
 [![npm version](https://img.shields.io/npm/v/ngx-property-editor?logo=npm&logoColor=fff)](https://www.npmjs.com/package/ngx-property-editor)
 
 This is an Angular library containing simple input components for different data types
