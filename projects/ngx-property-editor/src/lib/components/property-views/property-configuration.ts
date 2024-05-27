@@ -192,8 +192,8 @@ export type PropertyConfigurationConstructorParameter = {
 
   /** Bootstrap column width on md wide screens (class "col-md-..."). */
   md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined>,
-  /** Table column width (CSS width, e.g. "100px"). */
-  columnWidth?: ValueOrFunctionType<string | undefined>,
+  /** Table column width in pixel. */
+  columnWidth?: ValueOrFunctionType<number | undefined>,
 
   /**
    * Set `separator` to true, to add a separator between properties.
@@ -292,7 +292,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public routerLinkTooltip?: ValueOrFunctionType<string | undefined> = undefined;
 
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined> = undefined;
-  public columnWidth?: ValueOrFunctionType<string | undefined> = undefined;
+  public columnWidth?: ValueOrFunctionType<number | undefined> = undefined;
 
   public separator: boolean = false;
 
@@ -645,9 +645,9 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * Evaluates the `columnWidth` configuration.
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @param mode Property editor mode.
-   * @returns Table column width (CSS width, e.g. "100px").
+   * @returns Table column width in pixel.
    */
-  public getColumnWidth(data: any | undefined, mode: PropertyEditorMode): string | undefined {
+  public getColumnWidth(data: any | undefined, mode: PropertyEditorMode): number | undefined {
     if (typeof this.columnWidth === 'function') {
       return this.columnWidth(data, mode) || undefined;
     } else {
