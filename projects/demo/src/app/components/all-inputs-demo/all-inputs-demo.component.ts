@@ -53,7 +53,13 @@ export class AllInputsDemoComponent {
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
     array: ['Line 1', 'Line 2', 'Not line 3'] as any[],
+    arrayInitiallyEmpty: undefined as unknown as any[],
     arrayWithInputGroup: [{ name: 'Max', number: 5 }, { name: 'Moritz', number: 3, country: 'Germany' }] as {
+      name: string | undefined,
+      number: number | undefined,
+      country: string | undefined,
+    }[],
+    arrayWithInputGroupInitiallyEmpty: undefined as unknown as {
       name: string | undefined,
       number: number | undefined,
       country: string | undefined,

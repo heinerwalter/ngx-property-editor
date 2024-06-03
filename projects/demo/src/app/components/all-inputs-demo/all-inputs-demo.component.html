@@ -215,6 +215,15 @@
   </pe-array-form-group>
 </demo-input-demo-wrapper>
 
+<demo-input-demo-wrapper [value]="values.arrayInitiallyEmpty">
+  <pe-array-form-group label="Initially empty array with custom input elements (text input)"
+                       infoIconTooltip='Component: <pe-array-form-group> + <pe-text-input>'
+                       [(value)]="values.arrayInitiallyEmpty"
+                       [itemTemplate]="arrayFormGroupTemplate"
+                       (valueChange)="onInputValueChange('initially empty array', $event)">
+  </pe-array-form-group>
+</demo-input-demo-wrapper>
+
 <ng-template #arrayFormGroupTemplate let-value="value" let-onValueChange="onValueChange" let-index="index">
   <pe-text-input [value]="value"
                  (valueChange)="onValueChange($event)">
@@ -268,6 +277,16 @@
                        [itemTemplate]="arrayFormGroupWithInputGroupTemplate"
                        [newItemFunction]="arrayWithInputGroupNewItemFunction"
                        (valueChange)="onInputValueChange('array with input group', $event)">
+  </pe-array-form-group>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.arrayWithInputGroupInitiallyEmpty">
+  <pe-array-form-group label="Initially empty array with input group"
+                       infoIconTooltip='Components: <pe-array-form-group> + <pe-input-group>'
+                       [(value)]="values.arrayWithInputGroupInitiallyEmpty"
+                       [itemTemplate]="arrayFormGroupWithInputGroupTemplate"
+                       [newItemFunction]="arrayWithInputGroupNewItemFunction"
+                       (valueChange)="onInputValueChange('initially empty array with input group', $event)">
   </pe-array-form-group>
 </demo-input-demo-wrapper>
 

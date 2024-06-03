@@ -1,4 +1,4 @@
-import { PropertiesConfiguration, PropertyConfiguration } from 'ngx-property-editor';
+import { PropertiesConfiguration, PropertyConfiguration, PropertyEditorMode } from 'ngx-property-editor';
 import { Address } from './address';
 
 type FriendType = {
@@ -170,6 +170,16 @@ export class Contact {
         isArray: true,
         newArrayItemFunction: () => ({ name: undefined, type: undefined }),
         editable: true,
+        hideIfEmpty: true,
+        hidden: (data: Contact, mode: PropertyEditorMode) => {
+          switch (mode) {
+            case 'view':
+            case 'edit':
+              return false;
+            case 'table':
+              return true;
+          }
+        },
         group: [[
           new PropertyConfiguration({
             propertyName: 'name',
