@@ -1,4 +1,9 @@
-import { PropertiesConfiguration, PropertyConfiguration, PropertyEditorMode } from 'ngx-property-editor';
+import {
+  PropertiesConfiguration,
+  PropertyConfiguration,
+  PropertyConfigurationSeparator,
+  PropertyEditorMode,
+} from 'ngx-property-editor';
 import { Address } from './address';
 
 type FriendType = {
@@ -61,6 +66,7 @@ export class Contact {
 
   public static get propertiesConfiguration(): PropertiesConfiguration {
     return [
+      new PropertyConfigurationSeparator(),
       new PropertyConfiguration({
         propertyName: 'gender',
         label: 'Gender',
@@ -97,6 +103,7 @@ export class Contact {
         propertyType: 'date',
         editable: true,
       }),
+      new PropertyConfigurationSeparator(),
       new PropertyConfiguration({
         propertyName: 'address',
         label: 'Address',
@@ -152,50 +159,58 @@ export class Contact {
         propertyType: 'email',
         editable: true,
       }),
+      new PropertyConfigurationSeparator(),
       new PropertyConfiguration({
-        propertyName: 'favorite',
-        label: 'Favorite?',
-        propertyType: 'boolean',
-        editable: true,
-      }),
-      new PropertyConfiguration({
-        propertyName: 'rating',
-        label: 'Rating',
-        propertyType: 'rating',
-        editable: true,
-      }),
-      new PropertyConfiguration({
-        propertyName: 'friends',
-        label: 'Friends',
-        isArray: true,
-        newArrayItemFunction: () => ({ name: undefined, type: undefined }),
-        editable: true,
-        hideIfEmpty: true,
-        hidden: (data: Contact, mode: PropertyEditorMode) => {
-          switch (mode) {
-            case 'view':
-            case 'edit':
-              return false;
-            case 'table':
-              return true;
-          }
-        },
+        label: 'Additional Properties',
+        disableGroup: (data: Contact, mode: PropertyEditorMode) => mode != 'table',
         group: [[
           new PropertyConfiguration({
-            propertyName: 'name',
-            label: 'Friend',
-            propertyType: 'string',
+            propertyName: 'favorite',
+            label: 'Favorite?',
+            propertyType: 'boolean',
             editable: true,
           }),
           new PropertyConfiguration({
-            propertyName: 'type',
-            label: 'Type',
-            propertyType: 'select',
-            dataSource: ['Brother', 'Sister', 'Friend', 'Dog'],
+            propertyName: 'rating',
+            label: 'Rating',
+            propertyType: 'rating',
             editable: true,
+          }),
+          new PropertyConfiguration({
+            propertyName: 'friends',
+            label: 'Friends',
+            isArray: true,
+            newArrayItemFunction: () => ({ name: undefined, type: undefined }),
+            editable: true,
+            hideIfEmpty: true,
+            hidden: (data: Contact, mode: PropertyEditorMode) => {
+              switch (mode) {
+                case 'view':
+                case 'edit':
+                  return false;
+                case 'table':
+                  return true;
+              }
+            },
+            group: [[
+              new PropertyConfiguration({
+                propertyName: 'name',
+                label: 'Friend',
+                propertyType: 'string',
+                editable: true,
+              }),
+              new PropertyConfiguration({
+                propertyName: 'type',
+                label: 'Type',
+                propertyType: 'select',
+                dataSource: ['Brother', 'Sister', 'Friend', 'Dog'],
+                editable: true,
+              }),
+            ]],
           }),
         ]],
       }),
+      new PropertyConfigurationSeparator(),
     ];
   }
 

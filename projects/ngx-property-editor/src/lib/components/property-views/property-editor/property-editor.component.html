@@ -1,24 +1,33 @@
 <ngb-row *ngIf="data && _configuration"
          [id]="id">
-  <ng-container *ngFor="let row of _configuration; let i = index">
+  <ng-container *ngFor="let propertyConfiguration of _configuration; let i = index">
 
-    <ng-container *ngIf="row?.separator">
-      <ngb-col *ngIf="!row.isHidden(data, mode)" [md]="12">
-        <hr [style]="i == 0 ? '' : 'margin-top: 0'"/>
-      </ngb-col>
-    </ng-container>
-
-    <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, mode)">
-
-      <ngb-col [md]="row.getBootstrapColumnMD(data, mode)">
-        <pe-property-input-with-array [id]="id + '-input-' + i"
-                                      [configuration]="row"
-                                      [data]="data"
-                                      [readonly]="readonly">
-        </pe-property-input-with-array>
-      </ngb-col>
-
+    <ng-container [ngTemplateOutlet]="propertyConfigurationTemplate"
+                  [ngTemplateOutletContext]="{ propertyConfiguration: propertyConfiguration, index: i }">
     </ng-container>
 
   </ng-container>
 </ngb-row>
+
+
+<ng-template #propertyConfigurationTemplate let-row="propertyConfiguration" let-index="index">
+
+  <ng-container *ngIf="row?.separator">
+    <ngb-col *ngIf="!row.isHidden(data, mode)" [md]="12">
+      <hr [style]="index == 0 ? '' : 'margin-top: 0'"/>
+    </ngb-col>
+  </ng-container>
+
+  <ng-container *ngIf="row && !row?.separator && !row.isHidden(data, mode)">
+
+    <ngb-col [md]="row.getBootstrapColumnMD(data, mode)">
+      <pe-property-input-with-array [id]="id + '-input-' + index"
+                                    [configuration]="row"
+                                    [data]="data"
+                                    [readonly]="readonly">
+      </pe-property-input-with-array>
+    </ngb-col>
+
+  </ng-container>
+
+</ng-template>
