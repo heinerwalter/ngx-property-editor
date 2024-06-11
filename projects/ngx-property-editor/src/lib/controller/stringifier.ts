@@ -1,7 +1,13 @@
 'use strict';
 
 import { $localize } from '@angular/localize/init';
-import { PropertyType, propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from '../components/property-views/property-configuration';
+import {
+  PropertyType,
+  propertyTypeIsBoolean,
+  propertyTypeIsDate,
+  propertyTypeIsNumber,
+  propertyTypeIsString,
+} from '../components/property-views/property-configuration';
 
 export module Stringifier {
 
@@ -13,7 +19,7 @@ export module Stringifier {
   const localizedBooleanYes: string = $localize`:@@yes:Ja`;
   const localizedBooleanNo: string = $localize`:@@no:Nein`;
   const localizedBooleanIndeterminate: string = $localize`:@@indeterminate:Unbestimmt`;
-  
+
   /**
    * Converts a boolean value to a human-readable string.
    * @param value A boolean value. If undefined (or any other type but boolean), an empty string is returned.
@@ -33,7 +39,7 @@ export module Stringifier {
       case 'true-false':
         return value ? localizedBooleanTrue : localizedBooleanFalse;
       case 'yes-no':
-        default:
+      default:
         return value ? localizedBooleanYes : localizedBooleanNo;
     }
   }
@@ -450,6 +456,18 @@ export module Stringifier {
     return ''.padStart(password.toString().length, '*');
   }
 
+  /**
+   * Joins the given strings as sentence with commas and an "and".
+   * @param array One or multiple strings (e.g. `"string 1", "string 2", "string 3"`).
+   * @returns E.g. `"string 1, string 2 and string 3"`.
+   */
+  export function stringJoinAnd(...array: string[]): string {
+    if (!array?.length) return '';
+    if (array.length == 1) return array[0];
+    const allItemsButTheLastOne: string[] = array.slice(0, array.length - 1);
+    return allItemsButTheLastOne.join(', ') + ' und ' + array[array.length - 1];
+  }
+
   // endregion
 
   // region Arrays
@@ -701,7 +719,7 @@ export module Stringifier {
       if (typeof value === 'string' && !propertyTypeIsString(propertyType))
         propertyType = 'string';
     }
-    
+
     switch (propertyType) {
 
       case 'boolean':
@@ -730,7 +748,7 @@ export module Stringifier {
       case 'url':
       case 'color':
         return value?.toString();
-      
+
       case 'password':
         return passwordToMaskedString(value);
 

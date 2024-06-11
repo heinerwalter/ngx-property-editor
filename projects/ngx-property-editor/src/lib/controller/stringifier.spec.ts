@@ -266,6 +266,16 @@ describe('Stringifier', () => {
     expect(Stringifier.passwordToMaskedString(' abc   ')).toEqual('*******');
   });
 
+  it('stringJoinAnd', () => {
+    expect(Stringifier.stringJoinAnd()).toEqual('');
+    expect(Stringifier.stringJoinAnd('')).toEqual('');
+    expect(Stringifier.stringJoinAnd('aaa')).toEqual('aaa');
+    expect(Stringifier.stringJoinAnd('aaa', 'bbb')).toEqual('aaa und bbb');
+    expect(Stringifier.stringJoinAnd('aaa', 'bbb', 'ccc')).toEqual('aaa, bbb und ccc');
+    expect(Stringifier.stringJoinAnd('aaa', 'bbb', 'ccc', 'd dd')).toEqual('aaa, bbb, ccc und d dd');
+    expect(Stringifier.stringJoinAnd(...['aaa', 'bbb', 'ccc'])).toEqual('aaa, bbb und ccc');
+  });
+
   // endregion
 
   // region Arrays
