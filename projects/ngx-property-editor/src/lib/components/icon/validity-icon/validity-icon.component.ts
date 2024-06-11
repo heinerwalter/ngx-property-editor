@@ -10,7 +10,7 @@ import {
 
 /**
  * Available validity types for `ValidityIconComponent.validity`:
- * - `'valid'`:                Green check icon.
+ * - `'valid'` or `'success'`: Green check icon.
  * - `'invalid'` or `'error'`: Red exclamation mark icon.
  * - `'warning'`:              Yellow exclamation mark icon.
  * - `'info'`:                 Blue "i" icon.
@@ -18,7 +18,7 @@ import {
  * If undefined, nothing is displayed.
  */
 export type ValidityIconType =
-  'valid' |
+  'valid' | 'success' |
   'invalid' | 'error' |
   'warning' |
   'info' |
@@ -27,8 +27,8 @@ export type ValidityIconType =
 @Component({
   selector: 'pe-validity-icon',
   template: IconBaseComponent.generateIconComponentTemplate(
-    `<fa-icon *ngIf="validity == 'valid'" [icon]="validIcon" class="text-success"></fa-icon>
-    <fa-icon *ngIf="validity == 'invalid'" [icon]="invalidIcon" class="text-danger"></fa-icon>
+    `<fa-icon *ngIf="validity == 'valid' || validity == 'success'" [icon]="validIcon" class="text-success"></fa-icon>
+    <fa-icon *ngIf="validity == 'invalid' || validity == 'error'" [icon]="invalidIcon" class="text-danger"></fa-icon>
     <fa-icon *ngIf="validity == 'warning'" [icon]="warningIcon" class="text-warning"></fa-icon>
     <fa-icon *ngIf="validity == 'info'" [icon]="infoIcon" class="text-info"></fa-icon>
     <fa-icon *ngIf="validity == 'indeterminate'" [icon]="indeterminateIcon" class="text-muted"></fa-icon>`),
