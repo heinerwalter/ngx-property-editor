@@ -15,7 +15,7 @@
             <button ngbAccordionButton (click)="onItemChanged(item, i)">
               <span class="ngb-accordion-button-label">{{item.label}}</span>
               <pe-validity-icon class="ngb-accordion-button-validity-icon"
-                                [isValid]="item.isValid">
+                                [validity]="item.validity">
               </pe-validity-icon>
             </button>
           </ng-container>
@@ -23,7 +23,7 @@
             <button ngbAccordionButton [routerLink]="item.routerLink">
               <span class="ngb-accordion-button-label">{{item.label}}&hellip;</span>
               <pe-validity-icon class="ngb-accordion-button-validity-icon"
-                                [isValid]="item.isValid">
+                                [validity]="item.validity">
               </pe-validity-icon>
             </button>
           </ng-container>

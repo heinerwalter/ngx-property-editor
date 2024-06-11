@@ -10,6 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ItemViewBaseComponent } from './item-view-base.component';
+import { ValidityIconType } from '../../icon/validity-icon/validity-icon.component';
 
 
 /**
@@ -29,12 +30,10 @@ export type ItemDefinition = {
   routerLink?: any[] | string,
 
   /**
-   * If true, this item is displayed with a valid icon.
-   * If false, this item is displayed with an invalid icon.
-   * If 'indeterminate', this item is displayed with a indeterminate icon
-   * If undefined, no validity icon is displayed.
+   * If not undefined, a validity icon with this type is displayed on the item.
+   * @see ValidityIconType
    */
-  isValid?: boolean | 'indeterminate' | undefined;
+  validity?: ValidityIconType | undefined;
 
 };
 
@@ -61,12 +60,10 @@ export abstract class ItemViewItemBaseComponent implements OnInit, OnChanges, Af
   @Input() public routerLink: any[] | string | undefined = undefined;
 
   /**
-   * If true, this item is displayed with a valid icon.
-   * If false, this item is displayed with an invalid icon.
-   * If 'indeterminate', this item is displayed with a indeterminate icon
-   * If undefined, no validity icon is displayed.
+   * If not undefined, a validity icon with this type is displayed on the item.
+   * @see ValidityIconType
    */
-  @Input() public isValid: boolean | 'indeterminate' | undefined = undefined;
+  @Input() public validity: ValidityIconType | undefined = undefined;
 
   /**
    * This property is set to true after this item has been registered at the surrounding item view component.
