@@ -27,7 +27,8 @@
     "lint": "ng lint ngx-property-editor",
     "publish": "cd dist/ngx-property-editor/ && npm publish",
     "increment-version": "node scripts/increment-version.js",
-    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"Incremented package version.\""
+    "increment-version-and-commit": "npm run increment-version && npm i && git add package.json package-lock.json projects/ngx-property-editor/package.json && git commit -m \"Incremented package version.\" && git push",
+    "pic": "npm run publish && npm run increment-version-and-commit"
   },
   "private": true,
   "dependencies": {
@@ -47,7 +48,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "chardet": "^2.0.0",
-    "ngx-property-editor": "^0.0.39",
+    "ngx-property-editor": "^0.0.40",
     "rxjs": "^7.8.0",
     "tslib": "^2.6.2",
     "zone.js": "^0.13.3"
