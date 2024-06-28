@@ -4,6 +4,8 @@ import { DropdownInputComponent } from './dropdown-input.component';
 import { FormGroupComponent } from '../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { DropdownButtonComponent } from '../../bootstrap/dropdown-button/dropdown-button.component';
+import { ButtonComponent } from 'ngx-property-editor';
 
 describe('DropdownInputComponent', () => {
   let component: DropdownInputComponent;
@@ -14,6 +16,8 @@ describe('DropdownInputComponent', () => {
       declarations: [
         DropdownInputComponent,
         FormGroupComponent,
+        DropdownButtonComponent,
+        ButtonComponent,
       ],
       imports: [
         FormsModule,
