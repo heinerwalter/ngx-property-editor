@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 @Component({
   selector: 'ngb-dropdown-button',
@@ -8,6 +9,9 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./dropdown-button.component.scss']
 })
 export class DropdownButtonComponent {
+
+  /** Id attribute of the dropdown button container element. */
+  @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
    * Define the bootstrap button style class of the dropdown button (e.g. "btn-primary") here.
@@ -49,6 +53,13 @@ export class DropdownButtonComponent {
    * - `'dropstart'`: Display menu before the button (left in LTR mode).
    */
   @Input() public direction: 'dropdown' | 'dropup' | 'dropend' | 'dropstart' = 'dropdown';
+
+  /**
+   * The preferred placement of the dropdown, among the [possible values](#/guides/positioning#api).
+   *
+   * The default order of preference is `"bottom-start bottom-end top-start top-end"`
+   */
+  @Input() public placement: PlacementArray | undefined = undefined;
 
   /**
    * An array which is used to populate the dropdown menu.

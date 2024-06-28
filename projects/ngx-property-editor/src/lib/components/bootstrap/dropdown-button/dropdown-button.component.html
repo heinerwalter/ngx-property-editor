@@ -1,24 +1,29 @@
-<div class="{{direction}}">
-    <button ngb-btn
-            type="button"
-            [buttonClass]="buttonClass + ' dropdown-toggle'"
-            [active]="active"
-            [disabled]="disabled"
-            [icon]="icon"
-            [text]="text"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"><ng-content></ng-content></button>
-    <ul class="dropdown-menu">
-      <li *ngFor="let item of dataSource || []">
-        <button ngb-btn
-                type="button"
-                [removeBtnButtonClass]="true"
-                buttonClass="dropdown-item"
-                [active]="isItemActive(item)"
-                [disabled]="isItemDisabled(item)"
-                (click)="onItemClicked(item)">
-          {{getItemDisplayValue(item)}}
-        </button>
-      </li>
-    </ul>
+<div ngbDropdown
+     #myDrop="ngbDropdown"
+     [id]="id"
+     [placement]="placement || 'bottom-start'">
+  <button ngbDropdownAnchor
+          id="{{id}}-dropdown-btn"
+          type="button"
+          class="btn {{buttonClass}}"
+          [class.active]="active"
+          [class.disabled]="disabled">
+    <fa-icon *ngIf="icon" [icon]="icon"
+            [style.padding-right]="text ? '0.5em' : ''">
+    </fa-icon>
+    <span *ngIf="text">{{text}}</span>
+    <ng-content></ng-content>
+  </button>
+  <div ngbDropdownMenu
+       attr.aria-labelledby="{{id}}-dropdown-btn">
+    <ng-container *ngFor="let item of dataSource || []">
+      <button ngbDropdownItem
+              type="button"
+              [class.active]="isItemActive(item)"
+              [disabled]="isItemDisabled(item)"
+              (click)="onItemClicked(item)">
+        {{getItemDisplayValue(item)}}
+      </button>
+    </ng-container>
   </div>
+</div>

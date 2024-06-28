@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { DropdownButtonComponent } from '../../bootstrap/dropdown-button/dropdown-button.component';
 import { ButtonComponent } from 'ngx-property-editor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('DropdownInputComponent', () => {
   let component: DropdownInputComponent;
@@ -17,11 +18,11 @@ describe('DropdownInputComponent', () => {
         DropdownInputComponent,
         FormGroupComponent,
         DropdownButtonComponent,
-        ButtonComponent,
       ],
       imports: [
         FormsModule,
         FontAwesomeTestingModule,
+        NgbModule,
       ],
     });
     fixture = TestBed.createComponent(DropdownInputComponent);

@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
+import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 @Component({
   selector: 'pe-dropdown-input',
@@ -31,7 +32,14 @@ export class DropdownInputComponent extends InputBaseWithValueAndDataSource<any 
    * or by passing any element as content to the button component.
    */
   @Input() public text: string | undefined = undefined;
-  
+
+  /**
+   * The preferred placement of the dropdown, among the [possible values](#/guides/positioning#api).
+   *
+   * The default order of preference is `"bottom-start bottom-end top-start top-end"`
+   */
+  @Input() public placement: PlacementArray | undefined = undefined;
+
   /** If true, multiple items can be selected. */
   @Input() public multiple: boolean = false;
 
