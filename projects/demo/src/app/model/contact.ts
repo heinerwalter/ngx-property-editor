@@ -21,6 +21,7 @@ export class Contact {
   public tel: string | undefined;
   public email: string | undefined;
   public favorite: boolean = false;
+  public indeterminateBoolean: boolean | undefined = undefined;
   public rating: number | undefined;
   public friends: FriendType[] = [];
 
@@ -42,6 +43,7 @@ export class Contact {
     tel?: string | undefined,
     email?: string | undefined,
     favorite?: boolean | undefined,
+    indeterminateBoolean?: boolean | undefined,
     rating?: number | undefined,
     friends?: FriendType[] | undefined,
   }) {
@@ -53,6 +55,7 @@ export class Contact {
     this.tel = data?.tel;
     this.email = data?.email;
     this.favorite = data?.favorite || false;
+    this.indeterminateBoolean = data?.indeterminateBoolean;
     this.rating = data?.rating;
     this.friends = data?.friends || [];
   }
@@ -168,6 +171,12 @@ export class Contact {
             propertyName: 'favorite',
             label: 'Favorite?',
             propertyType: 'boolean',
+            editable: true,
+          }),
+          new PropertyConfiguration({
+            propertyName: 'indeterminateBoolean',
+            label: 'Really?',
+            propertyType: 'boolean-indeterminate',
             editable: true,
           }),
           new PropertyConfiguration({
