@@ -60,7 +60,7 @@ export module PEGlobalFunctions {
    */
   export function evaluateValuePropertyName(valuePropertyName: string | undefined,
                                             item: any | undefined): any {
-    if (!item || !valuePropertyName) return item;
+    if (!item || typeof item !== 'object' || !valuePropertyName) return item;
     return item[valuePropertyName];
   }
 
@@ -72,7 +72,7 @@ export module PEGlobalFunctions {
    */
   export function evaluateDisplayPropertyName(displayPropertyName: string | undefined,
                                               item: any | undefined): string {
-    if (!item) return '';
+    if (!item || typeof item !== 'object') return '';
     if (!displayPropertyName) return item.toString();
     return item[displayPropertyName]?.toString() || '';
   }

@@ -1,0 +1,22 @@
+<div class="{{direction}}">
+    <button ngb-btn
+            type="button"
+            [buttonClass]="buttonClass + ' dropdown-toggle'"
+            [icon]="icon"
+            [text]="text"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"><ng-content></ng-content></button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let item of dataSource || []">
+        <button ngb-btn
+                type="button"
+                [removeBtnButtonClass]="true"
+                buttonClass="dropdown-item"
+                [active]="isItemActive(item)"
+                [disabled]="isItemDisabled(item)"
+                (click)="onItemClicked(item)">
+          {{getItemDisplayValue(item)}}
+        </button>
+      </li>
+    </ul>
+  </div>

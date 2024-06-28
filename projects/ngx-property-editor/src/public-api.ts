@@ -8,6 +8,7 @@ export * from './lib/components/bootstrap/button/button.component';
 export * from './lib/components/bootstrap/button-group/button-group.component';
 export * from './lib/components/bootstrap/collapse/collapse.component';
 export * from './lib/components/bootstrap/column/column.component';
+export * from './lib/components/bootstrap/dropdown-button/dropdown-button.component';
 export * from './lib/components/bootstrap/row/row.component';
 export * from './lib/components/bootstrap/item-views/item-view-base.component';
 export * from './lib/components/bootstrap/item-views/item-view-item-base.component';

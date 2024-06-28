@@ -40,10 +40,25 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() public buttonClass: string = 'btn-primary';
 
   /**
+   * If `true`, the bootstrap button class `.btn` is not added to this button.
+   * Instead you can define the whole button class on your own by assigning it
+   * to the `buttonClass` property.
+   */
+  @Input() public removeBtnButtonClass: boolean = false;
+
+  /**
    * Assign true, if the `.active` class should be added to the <button> element.
    */
   @HostBinding('class.active')
+  @HostBinding('attr.aria-current')
   @Input() public active: boolean = false;
+
+  /**
+   * Assign true, if the `.disabled` class should be added to the <button> element.
+   */
+  @HostBinding('class.disabled')
+  @HostBinding('attr.aria-disabled')
+  @Input() public disabled: boolean = false;
 
   /**
    * FontAwesome icon displayed on the button.
@@ -66,7 +81,8 @@ export class ButtonComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('buttonClass')) {
+    if (changes.hasOwnProperty('buttonClass') ||
+        changes.hasOwnProperty('removeBtnButtonClass')) {
       this.updateClass();
     }
   }
@@ -75,7 +91,7 @@ export class ButtonComponent implements OnInit, OnChanges {
    * Update the class property and thereby the class attribute of the host element of this component.
    */
   private updateClass(): void {
-    this.class = 'btn ' + this.buttonClass;
+    this.class = (this.removeBtnButtonClass ? '' : 'btn ') + this.buttonClass;
   }
 
 }
