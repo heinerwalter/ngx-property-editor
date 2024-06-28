@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,16 @@ export class DropdownButtonComponent {
    */
   @Input() public buttonClass: string = 'btn-primary';
 
+  /**
+   * Assign true, if the `.active` class should be added to the dropdown <button> element.
+   */
+  @Input() public active: boolean = false;
+
+  /**
+   * Assign true, if the `.disabled` class should be added to the dropdown <button> element.
+   */
+  @Input() public disabled: boolean = false;
+  
   /**
    * FontAwesome icon displayed on the button.
    *

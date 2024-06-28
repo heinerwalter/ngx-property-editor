@@ -20,6 +20,7 @@ import { SelectInputComponent } from './select-input/select-input.component';
 import { SingleRadioInputComponent } from './single-radio-input/single-radio-input.component';
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
 import { TextInputComponent } from './text-input/text-input.component';
+import { DropdownInputComponent } from './dropdown-input/dropdown-input.component';
 
 export const inputComponents: Array<Type<any> | any[]> = [
   ArrayFormGroupComponent,
@@ -37,6 +38,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
   CheckboxSelectInputComponent,
   CodeInputComponent,
   DateInputComponent,
+  DropdownInputComponent,
   FileInputComponent,
   NumberInputComponent,
   RadioInputComponent,
