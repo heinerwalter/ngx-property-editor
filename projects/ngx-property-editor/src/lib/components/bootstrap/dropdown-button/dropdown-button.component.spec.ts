@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DropdownButtonComponent } from './dropdown-button.component';
+import { ButtonComponent } from '../button/button.component';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('DropdownButtonComponent', () => {
@@ -11,6 +12,7 @@ describe('DropdownButtonComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         DropdownButtonComponent,
+        ButtonComponent,
       ],
       imports: [
         FontAwesomeTestingModule,
