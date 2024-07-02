@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
@@ -6,11 +6,11 @@ import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 @Component({
   selector: 'ngb-dropdown-button',
   templateUrl: './dropdown-button.component.html',
-  styleUrls: ['./dropdown-button.component.scss']
+  styleUrls: ['./dropdown-button.component.scss'],
 })
 export class DropdownButtonComponent {
 
-  /** Id attribute of the dropdown button container element. */
+  /** ID attribute of the dropdown button container element. */
   @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
@@ -28,7 +28,7 @@ export class DropdownButtonComponent {
    * Assign true, if the `.disabled` class should be added to the dropdown <button> element.
    */
   @Input() public disabled: boolean = false;
-  
+
   /**
    * FontAwesome icon displayed on the button.
    *
@@ -82,18 +82,16 @@ export class DropdownButtonComponent {
   @Input() public displayPropertyName: string | undefined = undefined;
 
   /**
-   * Evaluate this property name on the data source items to get a
-   * boolean value defining the active state of the dropdown menu items.
-   * Without this property no item is marked as active.
+   * List of item values which should be displayed as active in the dropdown menu.
+   * Without this property no item is displayed as active.
    */
-  @Input() public isActivePropertyName: string | undefined = undefined;
+  @Input() public activeItems: any[] = [];
 
   /**
-   * Evaluate this property name on the data source items to get a
-   * boolean value defining the disabled state of the dropdown menu items.
-   * Without this property no item is marked as disabled.
+   List of item values which should be displayed as disabled in the dropdown menu.
+   Without this property no item is displayed as disabled.
    */
-  @Input() public isDisabledPropertyName: string | undefined = undefined;
+  @Input() public disabledItems: any[] = [];
 
   /**
    * This event is emitted when the user clicked a dropdown menu item.
@@ -113,21 +111,21 @@ export class DropdownButtonComponent {
   /**
    * Determines whether the given data source `item` is active.
    * @param item An data source item.
-   * @see isActivePropertyName
    */
   protected isItemActive(item: any): boolean {
-    if (!item || typeof item !== 'object' || !this.isActivePropertyName) return false;
-    return !!item[this.isActivePropertyName];
+    if (!this.activeItems?.length) return false;
+    item = PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
+    return this.activeItems.includes(item);
   }
 
   /**
    * Determines whether the given data source `item` is disabled.
    * @param item An data source item.
-   * @see isDisabledPropertyName
    */
   protected isItemDisabled(item: any): boolean {
-    if (!item || typeof item !== 'object' || !this.isDisabledPropertyName) return false;
-    return !!item[this.isDisabledPropertyName];
+    if (!this.disabledItems?.length) return false;
+    item = PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
+    return this.disabledItems.includes(item);
   }
 
   /**

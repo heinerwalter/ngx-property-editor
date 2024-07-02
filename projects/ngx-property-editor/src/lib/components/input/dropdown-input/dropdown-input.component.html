@@ -21,8 +21,7 @@
                        [dataSource]="dataSource"
                        [valuePropertyName]="undefined"
                        [displayPropertyName]="displayPropertyName"
-                       [isActivePropertyName]="isActivePropertyName"
-                       [isDisabledPropertyName]="isDisabledPropertyName"
+                       [activeItems]="multiple ? value : value != undefined ? [value] : []"
                        (itemClick)="onItemClicked($event)">
   </ngb-dropdown-button>
 </ng-template>
