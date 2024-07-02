@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { InputBaseWithValueAndDataSource } from '../input-base';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 @Component({
@@ -49,11 +48,9 @@ export class DropdownInputComponent extends InputBaseWithValueAndDataSource<any 
 
   /**
    * This function is called when the user clicked a dropdown menu item.
-   * @param item The data source item related to the clicked dropdown menu item.
+   * @param itemValue The value of the clicked data source item (see `valuePropertyName`).
    */
-  protected onItemClicked(item: any): void {
-    const itemValue: any = PEGlobalFunctions.evaluateValuePropertyName(this.valuePropertyName, item);
-
+  protected onItemClicked(itemValue: any): void {
     if (this.multiple) {
       // Multiple selected values allowed => value is array
       if (this.value == undefined)

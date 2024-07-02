@@ -19,7 +19,7 @@
                        [placement]="placement"
                        [disabled]="disabled || readonly"
                        [dataSource]="dataSource"
-                       [valuePropertyName]="undefined"
+                       [valuePropertyName]="valuePropertyName"
                        [displayPropertyName]="displayPropertyName"
                        [activeItems]="multiple ? value : value != undefined ? [value] : []"
                        (itemClick)="onItemClicked($event)">
