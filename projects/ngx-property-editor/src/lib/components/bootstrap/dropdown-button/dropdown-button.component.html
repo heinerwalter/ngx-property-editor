@@ -14,7 +14,7 @@
     <ng-content></ng-content>
   </button>
   <div ngbDropdownMenu
-       aria-labelledby="{{id}}-dropdown-btn">
+       [attr.aria-labelledby]="id + '-dropdown-btn'">
     <ng-container *ngFor="let item of dataSource || []">
       <button ngbDropdownItem
               type="button"
