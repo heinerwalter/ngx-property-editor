@@ -1,13 +1,12 @@
 <div ngbDropdown
-     #myDrop="ngbDropdown"
      [id]="id"
      [placement]="placement || 'bottom-start'">
-  <button ngbDropdownAnchor
+  <button ngbDropdownToggle
           id="{{id}}-dropdown-btn"
           type="button"
           class="btn {{buttonClass}}"
-          [class.active]="active"
-          [class.disabled]="disabled">
+          [class.active]="active" [attr.aria-current]="active"
+          [class.disabled]="disabled" [attr.aria-disabled]="disabled">
     <fa-icon *ngIf="icon" [icon]="icon"
             [style.padding-right]="text ? '0.5em' : ''">
     </fa-icon>
@@ -15,12 +14,12 @@
     <ng-content></ng-content>
   </button>
   <div ngbDropdownMenu
-       attr.aria-labelledby="{{id}}-dropdown-btn">
+       aria-labelledby="{{id}}-dropdown-btn">
     <ng-container *ngFor="let item of dataSource || []">
       <button ngbDropdownItem
               type="button"
-              [class.active]="isItemActive(item)"
-              [disabled]="isItemDisabled(item)"
+              [class.active]="isItemActive(item)" [attr.aria-current]="isItemActive(item)"
+              [disabled]="isItemDisabled(item)" [attr.aria-disabled]="isItemDisabled(item)"
               (click)="onItemClicked(item)">
         {{getItemDisplayValue(item)}}
       </button>
