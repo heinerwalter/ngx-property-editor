@@ -61,8 +61,8 @@
     "@angular-eslint/builder": "^16.3.1",
     "@angular-eslint/eslint-plugin": "^16.2.0",
     "@angular-eslint/eslint-plugin-template": "^16.2.0",
-    "@angular-eslint/schematics": "^16.3.1",
-    "@angular-eslint/template-parser": "^16.3.1",
+    "@angular-eslint/schematics": "^17.5.2",
+    "@angular-eslint/template-parser": "^17.5.2",
     "@angular/cli": "^16.2.14",
     "@angular/compiler-cli": "^16.2.0",
     "@angular/localize": "^16.2.12",
@@ -78,6 +78,6 @@
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^16.2.3",
-    "typescript": "^5.1.6"
+    "typescript": "~5.2.2"
   }
 }
