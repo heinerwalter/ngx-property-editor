@@ -7,12 +7,17 @@
                [label]="label"
                [inlineLabel]="inlineLabel"
                [infoIconTooltip]="infoIconTooltip"
-               [helpText]="helpText">
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </pe-form-group>
 
 <ng-template #contentTemplate>
   <input class="form-control"
+         [class.is-valid]="isValid == true"
+         [class.is-invalid]="isValid == false"
          [type]="type || 'date'"
          [id]="id"
          [name]="name || id"

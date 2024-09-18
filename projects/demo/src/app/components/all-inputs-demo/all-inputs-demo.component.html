@@ -4,6 +4,7 @@
 <demo-input-demo-wrapper [value]="values.boolean">
   <pe-boolean-input label="Boolean input"
                     infoIconTooltip="Component: <pe-boolean-input>"
+                    helpText="This is an optional help text. You can choose a boolean value here."
                     [(value)]="values.boolean"
                     (valueChange)="onInputValueChange('boolean', $event)">
   </pe-boolean-input>
@@ -13,6 +14,7 @@
 <demo-input-demo-wrapper [value]="values.date">
   <pe-date-input label="Date input"
                  infoIconTooltip='Component: <pe-date-input type="date">'
+                 helpText="Help texts work with all kinds of inputs but we will not add them to all inputs on this page."
                  type="date"
                  timezone="local"
                  [(value)]="values.date"
@@ -337,3 +339,27 @@
     </pe-select-input>
   </pe-input-group>
 </ng-template>
+
+<h4>Validation</h4>
+<demo-input-demo-wrapper [value]="values.boolean">
+  <pe-boolean-input label="Boolean input with validation"
+                    infoIconTooltip='Component: <pe-boolean-input [isValid]="...">'
+                    helpText="All inputs can be displayed as valid (green) or invalid (red) by assigning a boolean value to [isValid]. In this example only the true option is considered as valid."
+                    [required]="true"
+                    [isValid]="values.boolean"
+                    [(value)]="values.boolean"
+                    (valueChange)="onInputValueChange('boolean', $event)">
+  </pe-boolean-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.text">
+  <pe-text-input label="Text input with validation"
+                 infoIconTooltip='Component: <pe-text-input [isValid]="...">'
+                 [(value)]="values.text"
+                 [required]="true"
+                 [isValid]="!!values.text"
+                 validFeedback="In addition to the validity style of the input element, feedback texts for valid and invalid states can be added like the help text. This is the valid feedback. Clear the input to show the invalid feedback."
+                 invalidFeedback="In addition to the validity style of the input element, feedback texts for valid and invalid states can be added like the help text. This is the invalid feedback. Enter something to show the valid feedback."
+                 (valueChange)="onInputValueChange('text', $event)">
+  </pe-text-input>
+</demo-input-demo-wrapper>

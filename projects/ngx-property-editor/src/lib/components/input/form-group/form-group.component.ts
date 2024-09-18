@@ -36,6 +36,23 @@ export class FormGroupComponent {
    */
   @Input() public helpText: string | undefined = undefined;
 
+  /**
+   * If not empty, this text is displayed below the input element (like the `helpText`)
+   * when the entered value is marked as valid (`isValid == true`).
+   */
+  @Input() public validFeedback: string | undefined = undefined;
+  /**
+   * If not empty, this text is displayed below the input element (like the `helpText`)
+   * when the entered value is marked as invalid (`isValid == false`).
+   */
+  @Input() public invalidFeedback: string | undefined = undefined;
+  /**
+   * If false (default), the validity feedback texts (`validFeedback` and `invalidFeedback`)
+   * are displayed as block element below the content (input element) like the `helpText`.
+   * If true, the validity feedback texts are displayed as tooltip (not recommended!).
+   */
+  @Input() public validityFeedbackAsTooltip: boolean = false;
+
   /** If true, the input element is not wrapped inside a FormGroup component. */
   @Input() public noFormGroup: boolean = false;
 
