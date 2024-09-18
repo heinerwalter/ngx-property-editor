@@ -30,6 +30,12 @@ export class TextInputComponent extends InputBaseWithValue<string> {
    */
   @Input() public trimValue: boolean = false;
 
+  /**
+   * If defined and not empty, a list with recommendations is displayed (similar to the select input)
+   * that can be used to fill the text input.
+   */
+  @Input() public autocompleteList: string[] | undefined = undefined;
+
   public constructor() {
     super();
   }

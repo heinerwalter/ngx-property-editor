@@ -25,7 +25,12 @@
          [disabled]="disabled"
          [readonly]="readonly"
          [required]="required"
+         [attr.list]="autocompleteList?.length ? id + '-datalist' : ''"
          [(ngModel)]="value"
          (ngModelChange)="emitValueChange($event)"
          (change)="onChange()"/>
+  <datalist *ngIf="autocompleteList?.length"
+            [id]="id + '-datalist'">
+    <option *ngFor="let item of autocompleteList" [value]="item">
+  </datalist>
 </ng-template>

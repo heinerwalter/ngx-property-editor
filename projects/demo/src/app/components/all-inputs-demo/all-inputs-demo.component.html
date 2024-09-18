@@ -69,6 +69,16 @@
   </pe-goto-icon>
 </p>
 
+<demo-input-demo-wrapper [value]="values.textAutocomplete"
+                         valueModifier="quotes">
+  <pe-text-input label="Text input with autocompletion"
+                 infoIconTooltip='Component: <pe-text-input [autocompleteList]="...">'
+                 [autocompleteList]="['Apple', 'Banana', 'Grape']"
+                 [(value)]="values.textAutocomplete"
+                 (valueChange)="onInputValueChange('textAutocomplete', $event)">
+  </pe-text-input>
+</demo-input-demo-wrapper>
+
 <demo-input-demo-wrapper [value]="values.textMultiLine"
                          valueModifier="quotes">
   <pe-text-area-input label="Multi line text input (textarea)"
@@ -352,7 +362,8 @@
   </pe-boolean-input>
 </demo-input-demo-wrapper>
 
-<demo-input-demo-wrapper [value]="values.text">
+<demo-input-demo-wrapper [value]="values.text"
+                         valueModifier="quotes">
   <pe-text-input label="Text input with validation"
                  infoIconTooltip='Component: <pe-text-input [isValid]="...">'
                  [(value)]="values.text"
