@@ -20,6 +20,10 @@ pe-input-group {
     flex-shrink: 1;
     flex-grow: 1;
 
+    &pe-input-group-text, &.btn {
+      flex-grow: 0;
+    }
+
     .form-group {
       margin-bottom: 0 !important;
 
@@ -58,14 +62,14 @@ pe-input-group {
       &:not(:last-child) {
         margin-right: -$border-width;
 
-        .form-control, .form-select {
+        .form-control, .form-select, .input-group-text, &.btn {
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
         }
       }
 
       &:not(:first-child) {
-        .form-control, .form-select {
+        .form-control, .form-select, .input-group-text, &.btn {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
         }
@@ -80,14 +84,14 @@ pe-input-group {
       &:not(:last-child) {
         margin-bottom: -$border-width;
 
-        .form-control, .form-select {
+        .form-control, .form-select, .input-group-text, &.btn {
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
         }
       }
 
       &:not(:first-child) {
-        .form-control, .form-select {
+        .form-control, .form-select, .input-group-text, &.btn {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
         }

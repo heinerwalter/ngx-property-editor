@@ -74,6 +74,7 @@ export class AllInputsDemoComponent {
       city: undefined as string | undefined,
       country: undefined as string | undefined,
     },
+    inputGroupWithAddons: '' as string | undefined,
   };
 
   protected arrayWithInputGroupNewItemFunction(): {

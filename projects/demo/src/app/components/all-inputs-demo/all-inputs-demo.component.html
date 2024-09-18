@@ -269,7 +269,7 @@
 </ng-template>
 
 <demo-input-demo-wrapper [value]="values.inputGroup">
-  <pe-form-group label="Input Group"
+  <pe-form-group label="Input group"
                  infoIconTooltip='Component: <pe-input-group>'>
     <pe-input-group orientation="vertical">
       <pe-input-group orientation="horizontal">
@@ -304,6 +304,21 @@
                        [(value)]="values.inputGroup.country"
                        (valueChange)="onInputValueChange('Input group', values.inputGroup)">
       </pe-select-input>
+    </pe-input-group>
+  </pe-form-group>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.inputGroupWithAddons"
+                         valueModifier="quotes">
+  <pe-form-group label="Input group with text and button"
+                 infoIconTooltip='Component: <pe-input-group-text> and <button ngb-btn>'>
+    <pe-input-group orientation="horizontal">
+      <pe-input-group-text>Input:</pe-input-group-text>
+      <pe-text-input placeholder="Input"
+                     [(value)]="values.inputGroupWithAddons"
+                     (valueChange)="onInputValueChange('Input group with text and button', values.inputGroupWithAddons)">
+      </pe-text-input>
+      <button ngb-btn>Button</button>
     </pe-input-group>
   </pe-form-group>
 </demo-input-demo-wrapper>
