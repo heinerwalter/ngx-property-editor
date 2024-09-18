@@ -5,6 +5,7 @@ const modes: PropertyEditorMode[] = [
   'view',
   'table',
   'edit',
+  'new',
 ];
 
 const configuration1: PropertyConfigurationConstructorParameter = {

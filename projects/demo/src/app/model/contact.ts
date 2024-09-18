@@ -194,11 +194,10 @@ export class Contact {
             hideIfEmpty: true,
             hidden: (data: Contact, mode: PropertyEditorMode) => {
               switch (mode) {
-                case 'view':
-                case 'edit':
-                  return false;
                 case 'table':
                   return true;
+                default:
+                  return false;
               }
             },
             group: [[

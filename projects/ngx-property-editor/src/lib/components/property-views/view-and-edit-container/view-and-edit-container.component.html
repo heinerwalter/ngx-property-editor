@@ -15,8 +15,14 @@
                 [text]="editButtonText"
                 (click)="onEditButtonClicked()">
         </button>
+        <button ngb-btn *ngIf="showNewButton"
+                buttonClass="btn-sm btn-light"
+                [icon]="newButtonIcon"
+                [text]="newButtonText"
+                (click)="onNewButtonClicked()">
+        </button>
       </ng-container>
-      <ng-container *ngIf="mode == 'edit'">
+      <ng-container *ngIf="mode == 'edit' || mode == 'new'">
         <button ngb-btn *ngIf="showSaveButton"
                 buttonClass="btn-sm btn-success"
                 [icon]="saveButtonIcon"
@@ -45,7 +51,7 @@
     <ng-container *ngIf="mode == 'view'">
       <ng-content select="[content-view]"></ng-content>
     </ng-container>
-    <ng-container *ngIf="mode == 'edit'">
+    <ng-container *ngIf="mode == 'edit' || mode == 'new'">
       <ng-content select="[content-edit]"></ng-content>
     </ng-container>
     <ng-content select="[content-both]"></ng-content>

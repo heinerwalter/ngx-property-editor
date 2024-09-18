@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PropertyEditorMode } from '../property-editor-mode';
-import { faBan, faFloppyDisk, faPen, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faBan, faFloppyDisk, faPen, faPlus, faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -25,6 +25,11 @@ export abstract class ViewAndEditContainerBaseComponent {
    */
   @Input() public showEditButton: boolean = true;
   /**
+   * Only in view mode:
+   * If true, the new button is displayed.
+   */
+  @Input() public showNewButton: boolean = false;
+  /**
    * Only in edit mode:
    * If true, the save button is displayed.
    */
@@ -46,6 +51,11 @@ export abstract class ViewAndEditContainerBaseComponent {
    */
   @Input() public editButtonText: string = 'Bearbeiten';
   /**
+   * Only in view mode and if `showNewButton` is true:
+   * Text displayed on the new button.
+   */
+  @Input() public newButtonText: string = 'Neu';
+  /**
    * Only in edit mode and if `showSaveButton` is true:
    * Text displayed on the save button.
    */
@@ -63,6 +73,8 @@ export abstract class ViewAndEditContainerBaseComponent {
 
   /** Icon of the edit button. */
   protected readonly editButtonIcon: IconDefinition = faPen;
+  /** Icon of the new button. */
+  protected readonly newButtonIcon: IconDefinition = faPlus;
   /** Icon of the save button. */
   protected readonly saveButtonIcon: IconDefinition = faFloppyDisk;
   /** Icon of the delete button. */
@@ -72,6 +84,8 @@ export abstract class ViewAndEditContainerBaseComponent {
 
   /** This event is invoked, when the edit button was clicked. */
   @Output() public readonly editClick: EventEmitter<void> = new EventEmitter<void>();
+  /** This event is invoked, when the new button was clicked. */
+  @Output() public readonly newClick: EventEmitter<void> = new EventEmitter<void>();
   /** This event is invoked, when the save button was clicked. */
   @Output() public readonly saveClick: EventEmitter<void> = new EventEmitter<void>();
   /** This event is invoked, when the delete button was clicked. */
@@ -91,10 +105,12 @@ export abstract class ViewAndEditContainerBaseComponent {
    * Content is displayed if
    * - `mode == 'view'` and `hideContentInViewMode == false`.
    * - `mode == 'edit'`.
+   * - `mode == 'new'`.
    */
   protected get showContent(): boolean {
     return (this.mode == 'view' && !this.hideContentInViewMode) ||
-      this.mode == 'edit';
+      this.mode == 'edit' ||
+      this.mode == 'new';
   }
 
   /** If true, this container is displayed as bootstrap card. */
@@ -121,6 +137,15 @@ export abstract class ViewAndEditContainerBaseComponent {
    */
   protected async onEditButtonClicked(): Promise<void> {
     this.editClick.emit();
+    this.setMode('edit');
+  }
+
+  /**
+   * This function is called, when the new button was clicked.
+   * Emits the `newClick` event and activates edit mode.
+   */
+  protected async onNewButtonClicked(): Promise<void> {
+    this.newClick.emit();
     this.setMode('edit');
   }
 
