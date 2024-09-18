@@ -113,8 +113,15 @@ export module Stringifier {
    */
   export function dateToString(date: Date | undefined,
                                includeDate: boolean = true,
-                               includeTime: boolean | 'auto' = 'auto'): string {
+                               includeTime: boolean | 'auto' = 'auto',
+                               timezone: 'utc' | 'local' = 'utc'): string {
     if (!date) return '';
+
+    // If the date should be stringified as UTC, the local date is faked to represent the UTC date
+    if (timezone == 'utc') {
+      const localTimezoneOffset: number = date.getTimezoneOffset() * 60000;
+      date = new Date(date.valueOf() + localTimezoneOffset);
+    }
 
     function includeTimeAuto(): boolean {
       return !!date &&

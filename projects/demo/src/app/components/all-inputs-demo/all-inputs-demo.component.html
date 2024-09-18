@@ -16,7 +16,7 @@
                  infoIconTooltip='Component: <pe-date-input type="date">'
                  helpText="Help texts work with all kinds of inputs but we will not add them to all inputs on this page."
                  type="date"
-                 timezone="local"
+                 timezone="utc"
                  [(value)]="values.date"
                  (valueChange)="onInputValueChange('date', $event)">
   </pe-date-input>
@@ -26,7 +26,7 @@
   <pe-date-input label="Time input"
                  infoIconTooltip='Component: <pe-date-input type="time">'
                  type="time"
-                 timezone="local"
+                 timezone="utc"
                  [(value)]="values.time"
                  (valueChange)="onInputValueChange('time', $event)">
   </pe-date-input>
@@ -37,6 +37,7 @@
   <pe-date-input label="Date and time input"
                  infoIconTooltip='Component: <pe-date-input type="datetime-local">'
                  type="datetime-local"
+                 timezone="utc"
                  [(value)]="values.datetime"
                  (valueChange)="onInputValueChange('datetime', $event)">
   </pe-date-input>
