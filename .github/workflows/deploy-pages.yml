@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: '20.x'
           cache: 'npm'
-      - run: npm ci
+      - run: npm i
       - name: Change base URL for GitHub Pages
         run: node projects/demo/scripts/changeBaseUrl.js "/ngx-property-editor/"
       - name: Build Library
