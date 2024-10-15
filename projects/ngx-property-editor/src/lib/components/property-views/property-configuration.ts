@@ -37,7 +37,12 @@ export type PropertyType =
   'rating' |
   /** Select an item from a `dataSource`. */
   'select' |
-  /** A button triggering the `routerLink`. */
+  /**
+   * A button triggering the `setValueFunction`.
+   * The `label` is displayed as button text,
+   * the `routerLinkTooltip` is displayed as button tooltip,
+   * and the button is enabled when `editable`.
+   */
   'button';
 
 /**
