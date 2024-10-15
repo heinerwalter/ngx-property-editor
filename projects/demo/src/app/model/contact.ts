@@ -222,6 +222,7 @@ export class Contact {
             setValueFunction: (data: any, value: any) => {
               alert('The fancy button has been clicked!');
             },
+            editable: true,
           }),
         ]],
       }),
