@@ -216,6 +216,13 @@ export class Contact {
               }),
             ]],
           }),
+          new PropertyConfiguration({
+            label: 'Fancy Button',
+            propertyType: 'button',
+            setValueFunction: (data: any, value: any) => {
+              alert('The fancy button has been clicked!');
+            },
+          }),
         ]],
       }),
       new PropertyConfigurationSeparator(),
