@@ -36,7 +36,9 @@ export type PropertyType =
   /** Star rating. */
   'rating' |
   /** Select an item from a `dataSource`. */
-  'select';
+  'select' |
+  /** A button triggering the `routerLink`. */
+  'button';
 
 /**
  * Returns true, if the given property type requires boolean values.
