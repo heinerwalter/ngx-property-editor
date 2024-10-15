@@ -145,6 +145,12 @@ export type PropertyConfigurationConstructorParameter = {
   /**
    * For use with `propertyType == 'select'`:
    * An array from which the user can select one or multiple items.
+   *
+   * For use with `propertyType == 'string'`:
+   * In this case the `dataSource` is used for autocompletion
+   * (see `TextInputComponent.autocompleteList`).
+   * If defined and not empty, a list with recommendations is displayed
+   * (similar to the select input) that can be selected to fill the text input.
    */
   dataSource?: ValueOrFunctionType<any[]>,
   /**
