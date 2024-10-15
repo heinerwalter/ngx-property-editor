@@ -222,6 +222,7 @@ export class Contact {
             setValueFunction: (data: any, value: any) => {
               alert('The fancy button has been clicked!');
             },
+            routerLinkTooltip: 'Click this button and an alert will be displayed.',
             editable: true,
           }),
         ]],
