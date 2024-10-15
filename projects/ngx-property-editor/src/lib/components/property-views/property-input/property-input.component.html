@@ -127,4 +127,12 @@
     </pe-select-input>
   </ng-container>
 
+  <ng-container *ngIf="configuration.propertyType == 'button'">
+    <button ngb-btn [id]="configuration.propertyName || id"
+                    [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                    [text]="configuration.getLabel(data, mode)"
+                    (click)="onButtonClick($event)">
+    </pe-select-input>
+  </ng-container>
+
 </ng-container>
