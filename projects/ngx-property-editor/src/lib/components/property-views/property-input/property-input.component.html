@@ -131,7 +131,7 @@
     <button ngb-btn [id]="configuration.propertyName || id"
                     [class.mb-3]="!noFormGroup"
                     [buttonClass]="'btn-secondary btn-block'"
-                    [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                    [disabled]="!configuration.isEditable(data, mode)"
                     [text]="configuration.getLabel(data, mode)"
                     [ngbTooltip]="configuration.getRouterLinkTooltip(data, mode)"
                     (click)="onButtonClick($event)">
