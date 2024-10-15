@@ -131,6 +131,7 @@
     <button ngb-btn [id]="configuration.propertyName || id"
                     [disabled]="!readonly && !configuration.isEditable(data, mode)"
                     [text]="configuration.getLabel(data, mode)"
+                    [ngbTooltip]="configuration.getRouterLinkTooltip(data, mode)"
                     (click)="onButtonClick($event)">
     </pe-select-input>
   </ng-container>
