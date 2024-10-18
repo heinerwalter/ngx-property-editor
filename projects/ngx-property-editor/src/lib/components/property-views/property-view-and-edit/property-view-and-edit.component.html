@@ -2,6 +2,7 @@
                             [(mode)]="mode"
                             (modeChange)="modeChange.emit($event)"
                             [showEditButton]="showEditButton"
+                            [showNewButton]="showNewButton"
                             [showSaveButton]="showSaveButton"
                             [showDeleteButton]="showDeleteButton"
                             [showCancelButton]="showCancelButton"
@@ -9,6 +10,7 @@
                             [displayAsCard]="displayAsCard"
                             [cardHeader]="cardHeader"
                             (editClick)="editClick.emit()"
+                            (newClick)="newClick.emit()"
                             (saveClick)="saveClick.emit()"
                             (deleteClick)="deleteClick.emit()"
                             (cancelClick)="cancelClick.emit()">

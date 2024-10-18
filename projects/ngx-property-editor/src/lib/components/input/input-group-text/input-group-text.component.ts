@@ -4,7 +4,7 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 @Component({
   selector: 'pe-input-group-text',
   templateUrl: './input-group-text.component.html',
-  styleUrl: './input-group-text.component.scss',
+  styleUrls: ['./input-group-text.component.scss'],
 })
 export class InputGroupTextComponent {
 
