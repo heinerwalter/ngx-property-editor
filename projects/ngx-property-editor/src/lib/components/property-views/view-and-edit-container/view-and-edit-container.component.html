@@ -9,6 +9,12 @@
     </span>
     <ngb-btn-group class="view-and-edit-container-btn-group">
       <ng-container *ngIf="mode == 'view'">
+        <button ngb-btn *ngIf="showNewButton"
+                buttonClass="btn-sm btn-success"
+                [icon]="newButtonIcon"
+                [text]="newButtonText"
+                (click)="onNewButtonClicked()">
+        </button>
         <button ngb-btn *ngIf="showEditButton"
                 buttonClass="btn-sm btn-light"
                 [icon]="editButtonIcon"
