@@ -194,11 +194,10 @@ export class Contact {
             hideIfEmpty: true,
             hidden: (data: Contact, mode: PropertyEditorMode) => {
               switch (mode) {
-                case 'view':
-                case 'edit':
-                  return false;
                 case 'table':
                   return true;
+                default:
+                  return false;
               }
             },
             group: [[
@@ -216,6 +215,15 @@ export class Contact {
                 editable: true,
               }),
             ]],
+          }),
+          new PropertyConfiguration({
+            label: 'Fancy Button',
+            propertyType: 'button',
+            setValueFunction: (data: any, value: any) => {
+              alert('The fancy button has been clicked!');
+            },
+            routerLinkTooltip: 'Click this button and an alert will be displayed.',
+            editable: true,
           }),
         ]],
       }),

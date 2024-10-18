@@ -1,6 +1,8 @@
 <div class="form-check"
      [class.form-check-inline]="inline">
   <input class="form-check-input" type="radio"
+         [class.is-valid]="isValid == true"
+         [class.is-invalid]="isValid == false"
          [id]="id"
          [name]="name || id"
          [disabled]="disabled"

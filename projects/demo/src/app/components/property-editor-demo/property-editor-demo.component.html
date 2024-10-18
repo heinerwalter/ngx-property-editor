@@ -6,7 +6,7 @@
                  valuePropertyName="value"
                  [(value)]="viewModeType">
 </pe-select-input>
-<pe-select-input *ngIf="mode == 'edit'"
+<pe-select-input *ngIf="mode == 'edit' || mode == 'new'"
                  label="Choose edit mode"
                  [inlineLabel]="true"
                  [dataSource]="editModeTypeDataSource"

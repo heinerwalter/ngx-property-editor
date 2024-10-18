@@ -7,7 +7,10 @@
                [label]="label"
                [inlineLabel]="inlineLabel"
                [infoIconTooltip]="infoIconTooltip"
-               [helpText]="helpText">
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </pe-form-group>
 
@@ -16,6 +19,7 @@
     <pe-boolean-input [noFormGroup]="true"
                       [id]="id + i"
                       type="checkbox"
+                      [isValid]="isValid"
                       [label]="evaluateDisplayPropertyName(item)"
                       [value]="value?.includes(evaluateValuePropertyName(item))"
                       (valueChange)="onItemValueChanged(item, $event)">
@@ -26,6 +30,7 @@
                     [noFormGroup]="true"
                     [id]="id + '-select-all'"
                     type="checkbox"
+                    [isValid]="isValid"
                     [label]="'Alle auswählen'"
                     [allowIndeterminate]="true"
                     [value]="value?.length == 0 ? false : value?.length == dataSource.length ? true : undefined"

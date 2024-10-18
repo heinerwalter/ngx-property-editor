@@ -12,6 +12,6 @@ import { TextAreaInputComponent } from '../text-area-input/text-area-input.compo
 })
 export class CodeInputComponent extends TextAreaInputComponent {
 
-  public override readonly defaultHeight: number = 20;
+  public override readonly defaultHeight: number = 10;
 
 }

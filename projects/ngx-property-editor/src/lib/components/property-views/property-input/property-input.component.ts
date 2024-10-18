@@ -48,4 +48,14 @@ export class PropertyInputComponent {
   /** If true, the input element is not wrapped inside a form group component (no label). */
   @Input() public noFormGroup: boolean = false;
 
+  /**
+   * This function is triggered when the button (`propertyType == 'button'`)
+   * has been clicked by the user.
+   * @param event The button click event.
+   */
+  protected onButtonClick(event: any): void {
+    // TODO: Trigger router link if available
+    this.configuration?.setValue(this.data, undefined);
+  }
+
 }

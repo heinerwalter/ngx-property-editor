@@ -14,6 +14,14 @@
   </label>
   <div class="form-group-content">
     <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    <div *ngIf="validFeedback"
+         [class]="'valid-' + (validityFeedbackAsTooltip ? 'tooltip' : 'feedback')">
+      {{validFeedback}}
+    </div>
+    <div *ngIf="invalidFeedback"
+         [class]="'invalid-' + (validityFeedbackAsTooltip ? 'tooltip' : 'feedback')">
+      {{invalidFeedback}}
+    </div>
   </div>
   <pe-form-text *ngIf="helpText" [id]="for ? for + '-help' : ''">{{helpText}}</pe-form-text>
 </div>

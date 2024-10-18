@@ -3,6 +3,7 @@ import { ArrayFormGroupComponent } from './array-form-group/array-form-group.com
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormTextComponent } from './form-text/form-text.component';
 import { InputGroupComponent } from './input-group/input-group.component';
+import { InputGroupTextComponent } from './input-group-text/input-group-text.component';
 
 import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from './input-base';
 
@@ -27,6 +28,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
   FormGroupComponent,
   FormTextComponent,
   InputGroupComponent,
+  InputGroupTextComponent,
 
   InputBase,
   InputBaseWithValue,

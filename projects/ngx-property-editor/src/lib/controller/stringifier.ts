@@ -109,12 +109,20 @@ export module Stringifier {
    * @param includeDate Include date in the result.
    * @param includeTime Include time in the result.
    *                    Use 'auto' to include the time, if any date component is different from zero.
+   * @param timezone Stringify date with UTC or local timezone? Default: UTC.
    * @returns A string representation of the given date or an empty string, if `date` is undefined.
    */
   export function dateToString(date: Date | undefined,
                                includeDate: boolean = true,
-                               includeTime: boolean | 'auto' = 'auto'): string {
+                               includeTime: boolean | 'auto' = 'auto',
+                               timezone: 'utc' | 'local' = 'utc'): string {
     if (!date) return '';
+
+    // If the date should be stringified as UTC, the local date is faked to represent the UTC date
+    if (timezone == 'utc') {
+      const localTimezoneOffset: number = date.getTimezoneOffset() * 60000;
+      date = new Date(date.valueOf() + localTimezoneOffset);
+    }
 
     function includeTimeAuto(): boolean {
       return !!date &&

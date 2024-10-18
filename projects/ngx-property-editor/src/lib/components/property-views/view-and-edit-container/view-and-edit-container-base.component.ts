@@ -105,10 +105,12 @@ export abstract class ViewAndEditContainerBaseComponent {
    * Content is displayed if
    * - `mode == 'view'` and `hideContentInViewMode == false`.
    * - `mode == 'edit'`.
+   * - `mode == 'new'`.
    */
   protected get showContent(): boolean {
     return (this.mode == 'view' && !this.hideContentInViewMode) ||
-      this.mode == 'edit';
+      this.mode == 'edit' ||
+      this.mode == 'new';
   }
 
   /** If true, this container is displayed as bootstrap card. */

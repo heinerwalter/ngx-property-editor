@@ -36,7 +36,14 @@ export type PropertyType =
   /** Star rating. */
   'rating' |
   /** Select an item from a `dataSource`. */
-  'select';
+  'select' |
+  /**
+   * A button triggering the `setValueFunction`.
+   * The `label` is displayed as button text,
+   * the `routerLinkTooltip` is displayed as button tooltip,
+   * and the button is enabled when `editable`.
+   */
+  'button';
 
 /**
  * Returns true, if the given property type requires boolean values.
@@ -145,6 +152,12 @@ export type PropertyConfigurationConstructorParameter = {
   /**
    * For use with `propertyType == 'select'`:
    * An array from which the user can select one or multiple items.
+   *
+   * For use with `propertyType == 'string'`:
+   * In this case the `dataSource` is used for autocompletion
+   * (see `TextInputComponent.autocompleteList`).
+   * If defined and not empty, a list with recommendations is displayed
+   * (similar to the select input) that can be selected to fill the text input.
    */
   dataSource?: ValueOrFunctionType<any[]>,
   /**

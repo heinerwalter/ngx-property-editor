@@ -39,6 +39,7 @@ export class AllInputsDemoComponent {
     datetime: undefined as Date | undefined,
     number: undefined as number | undefined,
     text: '' as string | undefined,
+    textAutocomplete: '' as string | undefined,
     textMultiLine: '' as string | undefined,
     fileSingle: undefined as File[] | undefined,
     fileSingleContent: undefined as FileInputFileContentType | undefined,
@@ -73,6 +74,7 @@ export class AllInputsDemoComponent {
       city: undefined as string | undefined,
       country: undefined as string | undefined,
     },
+    inputGroupWithAddons: '' as string | undefined,
   };
 
   protected arrayWithInputGroupNewItemFunction(): {

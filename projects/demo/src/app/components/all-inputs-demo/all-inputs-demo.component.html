@@ -4,6 +4,7 @@
 <demo-input-demo-wrapper [value]="values.boolean">
   <pe-boolean-input label="Boolean input"
                     infoIconTooltip="Component: <pe-boolean-input>"
+                    helpText="This is an optional help text. You can choose a boolean value here."
                     [(value)]="values.boolean"
                     (valueChange)="onInputValueChange('boolean', $event)">
   </pe-boolean-input>
@@ -13,8 +14,9 @@
 <demo-input-demo-wrapper [value]="values.date">
   <pe-date-input label="Date input"
                  infoIconTooltip='Component: <pe-date-input type="date">'
+                 helpText="Help texts work with all kinds of inputs but we will not add them to all inputs on this page."
                  type="date"
-                 timezone="local"
+                 timezone="utc"
                  [(value)]="values.date"
                  (valueChange)="onInputValueChange('date', $event)">
   </pe-date-input>
@@ -24,7 +26,7 @@
   <pe-date-input label="Time input"
                  infoIconTooltip='Component: <pe-date-input type="time">'
                  type="time"
-                 timezone="local"
+                 timezone="utc"
                  [(value)]="values.time"
                  (valueChange)="onInputValueChange('time', $event)">
   </pe-date-input>
@@ -35,6 +37,7 @@
   <pe-date-input label="Date and time input"
                  infoIconTooltip='Component: <pe-date-input type="datetime-local">'
                  type="datetime-local"
+                 timezone="utc"
                  [(value)]="values.datetime"
                  (valueChange)="onInputValueChange('datetime', $event)">
   </pe-date-input>
@@ -66,6 +69,16 @@
                 (click)="onTextInputGotoIconClicked()">
   </pe-goto-icon>
 </p>
+
+<demo-input-demo-wrapper [value]="values.textAutocomplete"
+                         valueModifier="quotes">
+  <pe-text-input label="Text input with autocompletion"
+                 infoIconTooltip='Component: <pe-text-input [autocompleteList]="...">'
+                 [autocompleteList]="['Apple', 'Banana', 'Grape']"
+                 [(value)]="values.textAutocomplete"
+                 (valueChange)="onInputValueChange('textAutocomplete', $event)">
+  </pe-text-input>
+</demo-input-demo-wrapper>
 
 <demo-input-demo-wrapper [value]="values.textMultiLine"
                          valueModifier="quotes">
@@ -257,7 +270,7 @@
 </ng-template>
 
 <demo-input-demo-wrapper [value]="values.inputGroup">
-  <pe-form-group label="Input Group"
+  <pe-form-group label="Input group"
                  infoIconTooltip='Component: <pe-input-group>'>
     <pe-input-group orientation="vertical">
       <pe-input-group orientation="horizontal">
@@ -292,6 +305,21 @@
                        [(value)]="values.inputGroup.country"
                        (valueChange)="onInputValueChange('Input group', values.inputGroup)">
       </pe-select-input>
+    </pe-input-group>
+  </pe-form-group>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.inputGroupWithAddons"
+                         valueModifier="quotes">
+  <pe-form-group label="Input group with text and button"
+                 infoIconTooltip='Component: <pe-input-group-text> and <button ngb-btn>'>
+    <pe-input-group orientation="horizontal">
+      <pe-input-group-text>Input:</pe-input-group-text>
+      <pe-text-input placeholder="Input"
+                     [(value)]="values.inputGroupWithAddons"
+                     (valueChange)="onInputValueChange('Input group with text and button', values.inputGroupWithAddons)">
+      </pe-text-input>
+      <button ngb-btn>Button</button>
     </pe-input-group>
   </pe-form-group>
 </demo-input-demo-wrapper>
@@ -337,3 +365,28 @@
     </pe-select-input>
   </pe-input-group>
 </ng-template>
+
+<h4>Validation</h4>
+<demo-input-demo-wrapper [value]="values.boolean">
+  <pe-boolean-input label="Boolean input with validation"
+                    infoIconTooltip='Component: <pe-boolean-input [isValid]="...">'
+                    helpText="All inputs can be displayed as valid (green) or invalid (red) by assigning a boolean value to [isValid]. In this example only the true option is considered as valid."
+                    [required]="true"
+                    [isValid]="values.boolean"
+                    [(value)]="values.boolean"
+                    (valueChange)="onInputValueChange('boolean', $event)">
+  </pe-boolean-input>
+</demo-input-demo-wrapper>
+
+<demo-input-demo-wrapper [value]="values.text"
+                         valueModifier="quotes">
+  <pe-text-input label="Text input with validation"
+                 infoIconTooltip='Component: <pe-text-input [isValid]="...">'
+                 [(value)]="values.text"
+                 [required]="true"
+                 [isValid]="!!values.text"
+                 validFeedback="In addition to the validity style of the input element, feedback texts for valid and invalid states can be added like the help text. This is the valid feedback. Clear the input to show the invalid feedback."
+                 invalidFeedback="In addition to the validity style of the input element, feedback texts for valid and invalid states can be added like the help text. This is the invalid feedback. Enter something to show the valid feedback."
+                 (valueChange)="onInputValueChange('text', $event)">
+  </pe-text-input>
+</demo-input-demo-wrapper>

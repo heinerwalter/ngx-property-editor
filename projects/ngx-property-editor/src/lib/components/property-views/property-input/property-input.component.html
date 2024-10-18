@@ -56,6 +56,7 @@
                    [readonly]="readonly"
                    [disabled]="!readonly && !configuration.isEditable(data, mode)"
                    [required]="configuration.isRequired(data, mode)"
+                   [autocompleteList]="configuration.getDataSource(data, mode)"
                    [trimValue]="true"
                    [value]="configuration.getValue(data, mode)"
                    (valueChange)="configuration.setValue(data, $event)">
@@ -124,6 +125,17 @@
                      [value]="configuration.getValue(data, mode)"
                      (valueChange)="configuration.setValue(data, $event)">
     </pe-select-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'button'">
+    <button ngb-btn [id]="configuration.propertyName || id"
+                    [class.mb-3]="!noFormGroup"
+                    style="display: block; width: 100%;"
+                    [disabled]="!configuration.isEditable(data, mode)"
+                    [text]="configuration.getLabel(data, mode)"
+                    [ngbTooltip]="configuration.getRouterLinkTooltip(data, mode)"
+                    (click)="onButtonClick($event)">
+    </button>
   </ng-container>
 
 </ng-container>

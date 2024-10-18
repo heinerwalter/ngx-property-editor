@@ -13,7 +13,7 @@ export class DateInputComponent extends InputBaseWithValue<Date> {
   @Input() public type:
     /** Defines a date control (year, month, day (no time)). */
     'date' |
-    /** Defines a date and time control (year, month, day, time (no timezone). */
+    /** Defines a date and time control (year, month, day, time (no timezone)). */
     'datetime-local' |
     /** Defines a month and year control (no timezone). */
     'month' |

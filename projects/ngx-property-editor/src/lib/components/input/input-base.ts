@@ -44,6 +44,33 @@ export class InputBase {
   /** If true, an empty value is not valid. */
   @Input() public required: boolean = false;
 
+  /**
+   * Apply bootstrap validation style to the input element.
+   * If `true`, the input element is styled with green border.
+   * If `false`, the input element is styled with red border.
+   * If `undefined`, validation is not applied to the input element (default style).
+   */
+  @Input() public isValid: boolean | undefined = undefined;
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If not empty, this text is displayed below the input element (like the `helpText`)
+   * when the entered value is marked as valid (`isValid == true`).
+   */
+  @Input() public validFeedback: string | undefined = undefined;
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If not empty, this text is displayed below the input element (like the `helpText`)
+   * when the entered value is marked as invalid (`isValid == false`).
+   */
+  @Input() public invalidFeedback: string | undefined = undefined;
+  /**
+   * Only if a form group component is added (`noFormGroup == false`):
+   * If false (default), the validity feedback texts (`validFeedback` and `invalidFeedback`)
+   * are displayed as block element below the content (input element) like the `helpText`.
+   * If true, the validity feedback texts are displayed as tooltip (not recommended!).
+   */
+  @Input() public validityFeedbackAsTooltip: boolean = false;
+
   /** If true, the input element is not wrapped inside a form group component. */
   @Input() public noFormGroup: boolean = false;
 

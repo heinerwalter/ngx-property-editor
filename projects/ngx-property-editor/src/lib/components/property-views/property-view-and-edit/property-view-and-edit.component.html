@@ -25,7 +25,7 @@
       <ng-content select="[content-view-custom]"></ng-content>
     </ng-container>
 
-    <ng-container *ngIf="(mode == 'view' && viewModeType == 'editor') || (mode == 'edit' && editModeType == 'editor')">
+    <ng-container *ngIf="(mode == 'view' && viewModeType == 'editor') || ((mode == 'edit' || mode == 'new') && editModeType == 'editor')">
       <pe-property-editor [id]="id + '-property-editor'"
                           [configuration]="configuration"
                           [data]="data"
@@ -33,11 +33,11 @@
       </pe-property-editor>
     </ng-container>
 
-    <ng-container *ngIf="mode == 'edit' && editModeType == 'custom'">
+    <ng-container *ngIf="(mode == 'edit' || mode == 'new') && editModeType == 'custom'">
       <ng-content select="[content-edit-custom]"></ng-content>
     </ng-container>
 
-    <ng-container *ngIf="(mode == 'view' && viewModeType == 'custom') || (mode == 'edit' && editModeType == 'custom')">
+    <ng-container *ngIf="(mode == 'view' && viewModeType == 'custom') || ((mode == 'edit' || mode == 'new') && editModeType == 'custom')">
       <ng-content select="[content-custom]"></ng-content>
     </ng-container>
 

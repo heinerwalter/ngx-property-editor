@@ -7,7 +7,10 @@
                [label]="label"
                [inlineLabel]="inlineLabel"
                [infoIconTooltip]="infoIconTooltip"
-               [helpText]="helpText">
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
   <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
 </pe-form-group>
 
@@ -18,6 +21,7 @@
                            [name]="name || id"
                            [disabled]="disabled"
                            [readonly]="readonly"
+                           [isValid]="isValid"
                            [inline]="inline"
                            [option]="evaluateValuePropertyName(item)"
                            [(value)]="value"
