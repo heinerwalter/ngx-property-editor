@@ -7,8 +7,8 @@
           class="view-and-edit-container-header-text">
       {{cardHeader}}
     </span>
-    <ngb-btn-group class="view-and-edit-container-btn-group">
-      <ng-container *ngIf="mode == 'view'">
+    <ng-container *ngIf="mode == 'view'">
+      <div class="view-and-edit-container-btn-group">
         <button ngb-btn *ngIf="showEditButton"
                 buttonClass="btn-sm btn-light"
                 [icon]="editButtonIcon"
@@ -21,8 +21,10 @@
                 [text]="newButtonText"
                 (click)="onNewButtonClicked()">
         </button>
-      </ng-container>
-      <ng-container *ngIf="mode == 'edit' || mode == 'new'">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="mode == 'edit' || mode == 'new'">
+      <ngb-btn-group class="view-and-edit-container-btn-group">
         <button ngb-btn *ngIf="showSaveButton"
                 buttonClass="btn-sm btn-success"
                 [icon]="saveButtonIcon"
@@ -41,8 +43,8 @@
                 [text]="cancelButtonText"
                 (click)="onCancelButtonClicked()">
         </button>
-      </ng-container>
-    </ngb-btn-group>
+      </ngb-btn-group>
+    </ng-container>
   </h4>
 
   <div *ngIf="showContent"
