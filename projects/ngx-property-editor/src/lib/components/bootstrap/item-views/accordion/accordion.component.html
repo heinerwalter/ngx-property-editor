@@ -13,7 +13,12 @@
         <h2 ngbAccordionHeader>
           <ng-container *ngIf="!item.routerLink">
             <button ngbAccordionButton (click)="onItemChanged(item, i)">
-              <span class="ngb-accordion-button-label">{{item.label}}</span>
+              <span class="ngb-accordion-button-label">
+                <fa-icon *ngIf="item.icon" [icon]="item.icon"
+                         class="ngb-accordion-button-label-icon">
+                </fa-icon>
+                {{item.label}}
+              </span>
               <pe-validity-icon class="ngb-accordion-button-validity-icon"
                                 [validity]="item.validity">
               </pe-validity-icon>
@@ -21,7 +26,12 @@
           </ng-container>
           <ng-container *ngIf="item.routerLink">
             <button ngbAccordionButton [routerLink]="item.routerLink">
-              <span class="ngb-accordion-button-label">{{item.label}}&hellip;</span>
+              <span class="ngb-accordion-button-label">
+                <fa-icon *ngIf="item.icon" [icon]="item.icon"
+                         class="ngb-accordion-button-label-icon">
+                </fa-icon>
+                {{item.label}}&hellip;
+              </span>
               <pe-validity-icon class="ngb-accordion-button-validity-icon"
                                 [validity]="item.validity">
               </pe-validity-icon>
@@ -33,7 +43,7 @@
           <div ngbAccordionBody *ngIf="!item.routerLink && item.contentTemplate">
             <ng-template>
               <ng-template [ngTemplateOutlet]="item.contentTemplate"
-                           [ngTemplateOutletContext]="{ label: item.label, index: i }">
+                           [ngTemplateOutletContext]="{ label: item.label, icon: item.icon, index: i }">
               </ng-template>
             </ng-template>
           </div>

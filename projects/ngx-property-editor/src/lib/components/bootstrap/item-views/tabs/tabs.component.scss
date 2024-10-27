@@ -6,6 +6,11 @@
 
 pe-tabs {
 
+  .tab-label-icon {
+    display: inline-block;
+    padding-right: 0.5em;
+  }
+
   // Horizontal tabs:
   .tabs-horizontal {
     .nav-tabs {

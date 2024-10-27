@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ItemViewBaseComponent } from './item-view-base.component';
 import { ValidityIconType } from '../../icon/validity-icon/validity-icon.component';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
 
 /**
@@ -24,6 +25,8 @@ export type ItemDefinition = {
   order?: number | undefined,
   /** Label of the button selecting this item. */
   label: string,
+  /** Optional FontAwesome icon displayed on the button selecting this item. */
+  icon?: IconDefinition | undefined,
   /** Reference to the item content template. */
   contentTemplate?: TemplateRef<any>,
   /** If no `contentTemplate` is defined, the item button can be displayed as link to this destination. */
@@ -54,6 +57,9 @@ export abstract class ItemViewItemBaseComponent implements OnInit, OnChanges, Af
   @Input() public order: number | undefined = undefined;
   /** Label of the button selecting this item. */
   @Input() public label: string = '';
+  /** Optional FontAwesome icon displayed on the button selecting this item. */
+  @Input() public icon?: IconDefinition | undefined = undefined;
+
   /** Reference to the item content template. */
   @ViewChild('itemContentTemplate') public contentTemplate?: TemplateRef<any>;
   /** If no `contentTemplate` is defined, the item button can be displayed as link to this destination. */

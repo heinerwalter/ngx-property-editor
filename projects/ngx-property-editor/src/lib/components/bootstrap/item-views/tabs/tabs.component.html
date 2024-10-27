@@ -16,17 +16,24 @@
                       [ngbNavItem]="id + '-tab' + i">
 
           <ng-container *ngIf="!item.routerLink">
-            <button ngbNavLink (click)="onItemChanged(item, i)">{{item.label}}</button>
+            <button ngbNavLink (click)="onItemChanged(item, i)">
+              <fa-icon *ngIf="item.icon" [icon]="item.icon"
+                       class="tab-label-icon">
+              </fa-icon>
+              {{item.label}}
+            </button>
             <ng-template ngbNavContent>
               <ng-template *ngIf="item.contentTemplate"
                            [ngTemplateOutlet]="item.contentTemplate"
-                           [ngTemplateOutletContext]="{ label: item.label, index: i }">
+                           [ngTemplateOutletContext]="{ label: item.label, icon: item.icon, index: i }">
               </ng-template>
             </ng-template>
           </ng-container>
 
           <ng-container *ngIf="item.routerLink">
-            <a ngbNavLink [routerLink]="item.routerLink">{{item.label}}&hellip;</a>
+            <a ngbNavLink [routerLink]="item.routerLink"><fa-icon
+                *ngIf="item.icon" [icon]="item.icon"
+                class="tab-label-icon"></fa-icon>{{item.label}}&hellip;</a>
           </ng-container>
 
         </ng-container>

@@ -1,6 +1,11 @@
 [ngbAccordion] [ngbAccordionButton] {
   .ngb-accordion-button-label {
     flex-grow: 1;
+
+    .ngb-accordion-button-label-icon {
+      display: inline-block;
+      padding-right: 0.5em;
+    }
   }
 
   .ngb-accordion-button-validity-icon {
