@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 
 type RadioInputDataSourceOption = { value: boolean | undefined, name: string };
@@ -9,7 +9,7 @@ type RadioInputDataSourceOption = { value: boolean | undefined, name: string };
   templateUrl: './boolean-input.component.html',
   styleUrls: ['./boolean-input.component.scss'],
 })
-export class BooleanInputComponent extends InputBaseWithValue<boolean> {
+export class BooleanInputComponent extends InputBaseWithValue<boolean> implements OnChanges {
 
   /**
    * Choose how to display the boolean input:
@@ -43,21 +43,40 @@ export class BooleanInputComponent extends InputBaseWithValue<boolean> {
    */
   @Input() public indeterminateLabel: string | undefined = undefined;
 
-  /** Returns a data source for the radio input component based on the input properties of this component. */
-  protected get radioInputDataSource(): RadioInputDataSourceOption[] {
-    const yesOption: RadioInputDataSourceOption = { value: true, name: this.yesLabel || 'Ja' };
-    const noOption: RadioInputDataSourceOption = { value: false, name: this.noLabel || 'Nein' };
-    if (!this.allowIndeterminate)
-      return [yesOption, noOption];
+  protected yesOption: RadioInputDataSourceOption = { value: true, name: 'Ja' };
+  protected noOption: RadioInputDataSourceOption = { value: false, name: 'Nein' };
+  protected indeterminateOption: RadioInputDataSourceOption = { value: undefined, name: 'Keine Angabe' };
 
-    const indeterminateOption: RadioInputDataSourceOption = { value: undefined, name: this.indeterminateLabel || 'Keine Angabe' };
-    return [yesOption, noOption, indeterminateOption];
-  }
+  /** Returns a data source for the radio input component based on the input properties of this component. */
+  protected radioInputDataSource: RadioInputDataSourceOption[] = [this.yesOption, this.noOption];
 
   // endregion
 
   public constructor() {
     super();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    let updateRadioInputDataSource: boolean = false;
+    if (changes.hasOwnProperty('yesLabel')) {
+      this.yesOption = { value: true, name: this.yesLabel || 'Ja' };
+      updateRadioInputDataSource = true;
+    }
+    if (changes.hasOwnProperty('noLabel')) {
+      this.noOption = { value: false, name: this.noLabel || 'Nein' };
+      updateRadioInputDataSource = true;
+    }
+    if (changes.hasOwnProperty('indeterminateLabel')) {
+      this.indeterminateOption = { value: undefined, name: this.indeterminateLabel || 'Keine Angabe' };
+      updateRadioInputDataSource = true;
+    }
+
+    if (changes.hasOwnProperty('allowIndeterminate') || updateRadioInputDataSource) {
+      if (!this.allowIndeterminate)
+        this.radioInputDataSource = [this.yesOption, this.noOption];
+      else
+        this.radioInputDataSource = [this.yesOption, this.noOption, this.indeterminateOption];
+    }
   }
 
 }
