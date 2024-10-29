@@ -43,7 +43,7 @@
                   [readonly]="readonly"
                   [required]="required"
                   [inline]="true"
-                  [dataSource]="allowIndeterminate ? [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }, { value: undefined, name: 'Keine Angabe' }] : [{ value: true, name: 'Ja' }, { value: false, name: 'Nein' }]"
+                  [dataSource]="radioInputDataSource"
                   valuePropertyName="value"
                   displayPropertyName="name"
                   [(value)]="value"
