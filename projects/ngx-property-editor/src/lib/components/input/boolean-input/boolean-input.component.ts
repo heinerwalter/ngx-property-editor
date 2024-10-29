@@ -47,7 +47,7 @@ export class BooleanInputComponent extends InputBaseWithValue<boolean> {
   protected get radioInputDataSource(): RadioInputDataSourceOption[] {
     const yesOption: RadioInputDataSourceOption = { value: true, name: this.yesLabel || 'Ja' };
     const noOption: RadioInputDataSourceOption = { value: false, name: this.noLabel || 'Nein' };
-    if (!allowIndeterminate)
+    if (!this.allowIndeterminate)
       return [yesOption, noOption];
 
     const indeterminateOption: RadioInputDataSourceOption = { value: undefined, name: this.indeterminateLabel || 'Keine Angabe' };
