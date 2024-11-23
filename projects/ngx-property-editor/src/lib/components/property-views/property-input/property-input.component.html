@@ -32,7 +32,7 @@
     </pe-date-input>
   </ng-container>
 
-  <ng-container *ngIf="configuration.propertyType == 'number'">
+  <ng-container *ngIf="configuration.propertyType == 'number' || configuration.propertyType == 'year'">
     <pe-number-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
                      [noFormGroup]="noFormGroup"

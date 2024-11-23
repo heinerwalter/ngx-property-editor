@@ -101,6 +101,10 @@ describe('Stringifier', () => {
     expect(Stringifier.numberToString(42)).toEqual('42');
     expect(Stringifier.numberToString(-11)).toEqual('-11');
 
+    expect(Stringifier.numberToString(10245893)).toEqual('10.245.893');
+    expect(Stringifier.numberToString(10245893, true)).toEqual('10.245.893');
+    expect(Stringifier.numberToString(10245893, false)).toEqual('10245893');
+
     expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
     expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toLocaleString());
   });

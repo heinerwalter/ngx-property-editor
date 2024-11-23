@@ -53,6 +53,7 @@ export * from './lib/components/input/special-input/color-select-input/color-sel
 export * from './lib/components/input/special-input/icon-select-input/icon-select-input.component';
 // - property views
 export * from './lib/components/property-views/property-configuration';
+export * from './lib/components/property-views/property-type';
 export * from './lib/components/property-views/property-editor-mode';
 export * from './lib/components/property-views/table-configuration';
 export * from './lib/components/property-views/property-editor/property-editor.component';
@@ -73,6 +74,3 @@ export * from './lib/controller/text-file-reader';
 
 // Module:
 export * from './lib/property-editor.module';
-export {
-  PropertyEditorMode
-} from './lib/components/property-views/property-editor-mode';

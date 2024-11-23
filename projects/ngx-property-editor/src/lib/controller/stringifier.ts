@@ -2,12 +2,11 @@
 
 import { $localize } from '@angular/localize/init';
 import {
-  PropertyType,
-  propertyTypeIsBoolean,
+  PropertyType, propertyTypeIsBoolean,
   propertyTypeIsDate,
   propertyTypeIsNumber,
   propertyTypeIsString,
-} from '../components/property-views/property-configuration';
+} from '../components/property-views/property-type';
 
 export module Stringifier {
 
@@ -159,12 +158,15 @@ export module Stringifier {
   /**
    * Returns the given number as locale string.
    * @param value Convert this number to a string.
+   * @param useGrouping Should the returned string contain thousands separators?
+   *                    Use undefined for default.
    */
-  export function numberToString(value: number | bigint | undefined): string {
+  export function numberToString(value: number | bigint | undefined,
+                                 useGrouping: boolean | undefined = undefined): string {
     if ((typeof value !== 'number' && typeof value !== 'bigint') ||
       (typeof value === 'number' && isNaN(value)))
       return '';
-    return value.toLocaleString();
+    return value.toLocaleString(undefined, { useGrouping: useGrouping });
   }
 
   /**
@@ -747,6 +749,8 @@ export module Stringifier {
       case 'number':
       case 'rating':
         return numberToString(value);
+      case 'year':
+        return numberToString(value, false);
 
       case 'string':
       case 'id':
