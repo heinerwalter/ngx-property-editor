@@ -58,6 +58,4 @@ export class PropertyInputComponent {
     this.configuration?.setValue(this.data, undefined);
   }
 
-  protected readonly undefined = undefined;
-  protected readonly undefined = undefined;
 }
