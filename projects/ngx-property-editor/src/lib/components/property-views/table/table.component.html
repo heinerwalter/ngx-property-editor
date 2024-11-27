@@ -2,7 +2,7 @@
 
   <thead *ngIf="header?.length">
   <tr>
-    <th *ngFor="let cell of header">{{cell}}</th>
+    <th *ngFor="let cell of header; let c = index" c == 0 ? 'width: 1%;' : ''>{{cell}}</th>
   </tr>
   </thead>
 
@@ -15,10 +15,10 @@
         <td *ngFor="let cell of data[i + 1]"></td>
       </ng-container>
 
-      <ng-container *ngFor="let cell of row">
+      <ng-container *ngFor="let cell of row; let c = index">
 
         <ng-container *ngIf="cell.style == 'header'">
-          <th>
+          <th [style]="c == 0 ? 'width: 1%;' : ''">
             <ng-container [ngTemplateOutlet]="cellTemplate"
                           [ngTemplateOutletContext]="{cell: cell}"></ng-container>
           </th>
