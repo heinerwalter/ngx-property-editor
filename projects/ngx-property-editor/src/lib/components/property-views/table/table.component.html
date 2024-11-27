@@ -2,7 +2,8 @@
 
   <thead *ngIf="header?.length">
   <tr>
-    <th *ngFor="let cell of header; let c = index" c == 0 ? 'width: 1%;' : ''>{{cell}}</th>
+    <th *ngFor="let cell of header; let c = index"
+        [style]="c == 0 ? 'width: 1%;' : ''">{{cell}}</th>
   </tr>
   </thead>
 
