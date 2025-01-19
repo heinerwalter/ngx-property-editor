@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
 import { iconDifficulty1, iconDifficulty2, iconDifficulty3, iconDifficulty4, iconDifficulty5, iconDifficultyEmpty } from './icons-difficulty-data-urls';
 
@@ -7,12 +7,18 @@ import { iconDifficulty1, iconDifficulty2, iconDifficulty3, iconDifficulty4, ico
   templateUrl: './difficulty-input.component.html',
   styleUrls: ['./difficulty-input.component.scss'],
 })
-export class DifficultyInputComponent extends InputBaseWithValue<number> {
+export class DifficultyInputComponent extends InputBaseWithValue<number> implements OnInit, OnChanges {
 
   /**
    * Maximum value (5). Values from 1 to `max` can be selected.
    */
   protected max: number = 5;
+
+  /**
+   * Value of the hovered item.
+   * If no item is hovered, the `hoveredValue` equals the `value`.
+   */
+  protected hoverValue: number | undefined = undefined;
 
   // Icon images as base64 encoded data URLs:
   protected readonly iconDifficultyEmpty: string = iconDifficultyEmpty;
@@ -21,6 +27,16 @@ export class DifficultyInputComponent extends InputBaseWithValue<number> {
     super();
   }
 
+  public ngOnInit(): void {
+    this.hoverValue = this.value;
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('value')) {
+      this.hoverValue = this.value;
+    }
+  }
+ 
   /**
    * Returns one of the non-empty icon images (base64 encoded data URLs)
    * matching the given index.

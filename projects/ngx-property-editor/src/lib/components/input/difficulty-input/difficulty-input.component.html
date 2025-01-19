@@ -15,14 +15,16 @@
               [resettable]="true"
               [max]="max"
               [rate]="value || 0"
-              (rateChange)="value = $event; emitValueChange($event)">
+              (rateChange)="value = $event; hoverValue = value; emitValueChange($event)"
+              (hover)="hoverValue = $event"
+              (leave)="hoverValue = value">
     <ng-template let-fill="fill" let-index="index">
       <div class="item">
-        <img *ngIf="fill < 100"
+        <img *ngIf="fill < 100 || (hoverValue || value) > index + 1"
              class="item-inactive-icon"
              [src]="iconDifficultyEmpty"
              alt="" />
-        <img *ngIf="fill === 100"
+        <img *ngIf="fill === 100 || (hoverValue || value) == index + 1"
              class="item-active-icon"
              [src]="getActiveIcon(index)"
              alt="{{ index + 1 }}" />
