@@ -225,6 +225,14 @@
   </pe-rating-input>
 </demo-input-demo-wrapper>
 
+<demo-input-demo-wrapper [value]="values.difficulty">
+  <pe-difficulty-input label="Difficulty rating input"
+                       infoIconTooltip="Component: <pe-difficulty-input>"
+                       [(value)]="values.difficulty"
+                       (valueChange)="onInputValueChange('difficulty', $event)">
+  </pe-difficulty-input>
+</demo-input-demo-wrapper>
+
 <h4>Special Types</h4>
 <demo-input-demo-wrapper [value]="values.selectColor">
   <pe-color-select-input label="Color selection"

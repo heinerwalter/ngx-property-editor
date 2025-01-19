@@ -20,12 +20,14 @@
       <div class="item">
         <img *ngIf="fill < 100"
              class="item-inactive-icon"
-             [src]="iconDifficultyEmpty">
-        </img>
+             width="1em" height="1em"
+             [src]="iconDifficultyEmpty"
+             alt="" />
         <img *ngIf="fill === 100"
              class="item-active-icon"
-             [src]="getActiveIcon(index)">
-        </img>
+             width="1em" height="1em"
+             [src]="getActiveIcon(index)"
+             alt="{{ index + 1 }}" />
       </div>
     </ng-template>
   </ngb-rating>
