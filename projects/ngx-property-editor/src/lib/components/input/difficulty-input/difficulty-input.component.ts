@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
+import { iconDifficulty1, iconDifficulty2, iconDifficulty3, iconDifficulty4, iconDifficulty5, iconDifficultyEmpty } from './icons-difficulty-data-urls.ts';
 
 @Component({
   selector: 'pe-difficulty-input',
@@ -14,12 +15,7 @@ export class DifficultyInputComponent extends InputBaseWithValue<number> {
   protected max: number = 5;
 
   // Icon images as base64 encoded data URLs:
-  protected readonly iconDifficulty1: string = 'data:image/png;base64,...';
-  protected readonly iconDifficulty2: string = 'data:image/png;base64,...';
-  protected readonly iconDifficulty3: string = 'data:image/png;base64,...';
-  protected readonly iconDifficulty4: string = 'data:image/png;base64,...';
-  protected readonly iconDifficulty5: string = 'data:image/png;base64,...';
-  protected readonly iconDifficultyEmpty: string = 'data:image/png;base64,...';
+  protected readonly iconDifficultyEmpty: string = iconDifficultyEmpty;
 
   public constructor() {
     super();
@@ -31,11 +27,11 @@ export class DifficultyInputComponent extends InputBaseWithValue<number> {
    * @param index Index of a <ngb-rating> item.
    */
   protected getActiveIcon(index: number) {
-    if (index <= 0) return this.iconDifficulty1;
-    if (index <= 1) return this.iconDifficulty2;
-    if (index <= 2) return this.iconDifficulty3;
-    if (index <= 3) return this.iconDifficulty4;
-    return this.iconDifficulty5;
+    if (index <= 0) return iconDifficulty1;
+    if (index <= 1) return iconDifficulty2;
+    if (index <= 2) return iconDifficulty3;
+    if (index <= 3) return iconDifficulty4;
+    return iconDifficulty5;
   }
 
 }
