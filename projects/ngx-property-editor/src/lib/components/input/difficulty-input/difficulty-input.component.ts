@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { InputBaseWithValue } from '../input-base';
-import { iconDifficulty1, iconDifficulty2, iconDifficulty3, iconDifficulty4, iconDifficulty5, iconDifficultyEmpty } from './icons-difficulty-data-urls.ts';
+import { iconDifficulty1, iconDifficulty2, iconDifficulty3, iconDifficulty4, iconDifficulty5, iconDifficultyEmpty } from './icons-difficulty-data-urls';
 
 @Component({
   selector: 'pe-difficulty-input',
