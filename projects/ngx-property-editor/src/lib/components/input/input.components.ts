@@ -13,6 +13,7 @@ import { BooleanInputComponent } from './boolean-input/boolean-input.component';
 import { CheckboxSelectInputComponent } from './checkbox-select-input/checkbox-select-input.component';
 import { CodeInputComponent } from './code-input/code-input.component';
 import { DateInputComponent } from './date-input/date-input.component';
+import { DifficultyInputComponent } from './difficulty-input/difficulty-input.component';
 import { FileInputComponent } from './file-input/file-input.component';
 import { NumberInputComponent } from './number-input/number-input.component';
 import { RadioInputComponent } from './radio-input/radio-input.component';
@@ -40,6 +41,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
   CheckboxSelectInputComponent,
   CodeInputComponent,
   DateInputComponent,
+  DifficultyInputComponent,
   DropdownInputComponent,
   FileInputComponent,
   NumberInputComponent,

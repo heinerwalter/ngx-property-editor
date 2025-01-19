@@ -1,0 +1,32 @@
+<pe-form-group [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+               [noFormGroup]="noFormGroup">
+  <ngb-rating [id]="id"
+              [readonly]="readonly"
+              [disabled]="disabled"
+              [class.readonly]="readonly"
+              [class.disabled]="disabled"
+              [resettable]="true"
+              [max]="max"
+              [rate]="value || 0"
+              (rateChange)="value = $event; emitValueChange($event)">
+    <ng-template let-fill="fill" let-index="index">
+      <div class="item">
+        <img *ngIf="fill < 100"
+             class="item-inactive-icon"
+             [src]="iconDifficultyEmpty">
+        </img>
+        <img *ngIf="fill === 100"
+             class="item-active-icon"
+             [src]="getActiveIcon(index)">
+        </img>
+      </div>
+    </ng-template>
+  </ngb-rating>
+</pe-form-group>

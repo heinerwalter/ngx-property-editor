@@ -1,0 +1,19 @@
+@import "../../../../../styles/styles";
+
+ngb-rating {
+
+  .item {
+    //font-size: 1.5em;
+  }
+
+  &:not(.disabled):not(.readonly):hover {
+    .item {
+      opacity: 70%;
+    }
+  }
+
+  &.disabled {
+    // TODO: Add gray-ish appearance to disabled rating icons
+  }
+
+}
