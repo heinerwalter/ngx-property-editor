@@ -20,12 +20,10 @@
       <div class="item">
         <img *ngIf="fill < 100"
              class="item-inactive-icon"
-             width="1em" height="1em"
              [src]="iconDifficultyEmpty"
              alt="" />
         <img *ngIf="fill === 100"
              class="item-active-icon"
-             width="1em" height="1em"
              [src]="getActiveIcon(index)"
              alt="{{ index + 1 }}" />
       </div>

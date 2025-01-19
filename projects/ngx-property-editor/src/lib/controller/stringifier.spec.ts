@@ -111,7 +111,8 @@ describe('Stringifier', () => {
     expect(Stringifier.numberToString(1234.56, false)).toEqual('1234,56'); 
 
     expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
-    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toLocaleString());
+    expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual('12.345.678.901.234.567.890'));
+    expect(Stringifier.numberToString(BigInt('12345678901234567890'), false)).toEqual('12345678901234567890')); 
   });
 
   it('numberToPaddedString', () => {
