@@ -36,6 +36,8 @@ export type PropertyType =
   'color' |
   /** Star rating. */
   'rating' |
+  /** Difficulty icon rating. */
+  'difficulty' |
   /** Select an item from a `dataSource`. */
   'select' |
   /**
@@ -84,6 +86,7 @@ export function propertyTypeIsNumber(propertyType: PropertyType): boolean {
   switch (propertyType) {
     case 'number':
     case 'rating':
+    case 'difficulty':
     case 'year':
       return true;
     default:

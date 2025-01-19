@@ -108,6 +108,20 @@
     </pe-rating-input>
   </ng-container>
 
+  <ng-container *ngIf="configuration.propertyType == 'difficulty'">
+    <pe-difficulty-input [id]="configuration.propertyName || id"
+                         [name]="configuration.propertyName"
+                         [noFormGroup]="noFormGroup"
+                         [label]="configuration.getLabel(data, mode)"
+                         [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
+                         [readonly]="readonly"
+                         [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                         [required]="configuration.isRequired(data, mode)"
+                         [value]="configuration.getValue(data, mode)"
+                         (valueChange)="configuration.setValue(data, $event)">
+    </pe-difficulty-input>
+  </ng-container>
+
   <ng-container *ngIf="configuration.propertyType == 'select'">
     <pe-select-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"
