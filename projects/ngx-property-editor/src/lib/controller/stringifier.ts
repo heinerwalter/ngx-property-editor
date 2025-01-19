@@ -166,7 +166,7 @@ export module Stringifier {
     if ((typeof value !== 'number' && typeof value !== 'bigint') ||
       (typeof value === 'number' && isNaN(value)))
       return '';
-    return value.toLocaleString(undefined, { useGrouping: useGrouping });
+    return value.toLocaleString(navigator.language, { useGrouping: useGrouping });
   }
 
   /**
