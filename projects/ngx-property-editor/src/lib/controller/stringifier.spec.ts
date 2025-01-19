@@ -101,9 +101,14 @@ describe('Stringifier', () => {
     expect(Stringifier.numberToString(42)).toEqual('42');
     expect(Stringifier.numberToString(-11)).toEqual('-11');
 
+    expect(Stringifier.numberToString(12.34)).toEqual('12,34');
+    expect(Stringifier.numberToString(-1.1)).toEqual('-1,1');
+  
     expect(Stringifier.numberToString(10245893)).toEqual('10.245.893');
     expect(Stringifier.numberToString(10245893, true)).toEqual('10.245.893');
     expect(Stringifier.numberToString(10245893, false)).toEqual('10245893');
+    expect(Stringifier.numberToString(1234.56, true)).toEqual('1.234,56');
+    expect(Stringifier.numberToString(1234.56, false)).toEqual('1234,56'); 
 
     expect(Stringifier.numberToString(BigInt(12))).toEqual('12');
     expect(Stringifier.numberToString(BigInt('12345678901234567890'))).toEqual(BigInt('12345678901234567890').toLocaleString());
@@ -416,11 +421,11 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(true)).toEqual('Ja');
     expect(Stringifier.anyTypeToString(false)).toEqual('Nein');
 
-    expect(Stringifier.anyTypeToString(42000)).toEqual((42000).toLocaleString());
-    expect(Stringifier.anyTypeToString(0.1)).toEqual((0.1).toLocaleString());
+    expect(Stringifier.anyTypeToString(42000)).toEqual('42.000');
+    expect(Stringifier.anyTypeToString(0.1)).toEqual('0,1');
     expect(Stringifier.anyTypeToString(NaN)).toEqual('');
 
-    expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual(BigInt(9007199254740991).toLocaleString());
+    expect(Stringifier.anyTypeToString(BigInt(9007199254740991))).toEqual('9.007.199.254.740.991');
 
     expect(Stringifier.anyTypeToString('Just a string')).toEqual('Just a string');
     expect(Stringifier.anyTypeToString('')).toEqual('');
