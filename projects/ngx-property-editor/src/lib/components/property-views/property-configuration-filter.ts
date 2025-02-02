@@ -56,10 +56,20 @@ export module PropertyConfigurationFilter {
    *          If the `filter` is empty, true is returned.
    */
   export function evaluateBooleanFilter(value: boolean | undefined, filter: string): boolean {
-    filter = filter?.trim();
+    filter = filter?.trim().toLocaleLowerCase();
     if (!filter) return true;
 
-    return true;
+    switch (filter) {
+      case 'true':
+        return value == true;
+      case 'false':
+        return value == false;
+      case 'undefined':
+        return value == undefined;
+      default:
+        // TODO: Handle invalid filter!
+        return true;
+    }
   }
 
   /**
@@ -72,6 +82,8 @@ export module PropertyConfigurationFilter {
   export function evaluateDateFilter(value: Date | undefined, filter: string): boolean {
     filter = filter?.trim();
     if (!filter) return true;
+
+    // TODO
 
     return true;
   }
@@ -87,6 +99,47 @@ export module PropertyConfigurationFilter {
     filter = filter?.trim();
     if (!filter) return true;
 
+    let operator: string = '=';
+    let filterValue: number = parseInt(filter);
+
+    if (isNaN(filterValue)) {
+      // Extract operator and value from filter expression
+      let operators = ['=', '!=', '>', '>=', '<', '<='];
+      const regexp: RegExp = new RegExp(`^(?<operator>${operators.join('|')})(?<value>[^=].*)$`);
+      const match = filter.match(regexp);
+      if (match) {
+        operator = match.groups!['operator'];
+        filterValue = parseInt(match.groups!['value']?.trim());
+
+        if (isNaN(filterValue)) {
+          // TODO: Handle invalid filter!
+          return true;
+        }
+      } else {
+        // TODO: Handle invalid filter!
+        return true;
+      }
+    }
+
+    if (value == undefined) {
+      return false;
+    }
+
+    switch (operator) {
+      case '=':
+        return value == filterValue;
+      case '!=':
+        return value != filterValue;
+      case '>':
+        return value > filterValue;
+      case '>=':
+        return value >= filterValue;
+      case '<':
+        return value < filterValue;
+      case '<=':
+        return value <= filterValue;
+    }
+
     return true;
   }
 
@@ -98,7 +151,7 @@ export module PropertyConfigurationFilter {
    *          If the `filter` is empty, true is returned.
    */
   export function evaluateStringFilter(value: string | undefined, filter: string): boolean {
-    filter = filter?.trim();
+    //filter = filter?.trim();
     if (!filter) return true;
 
     if (!value?.toLowerCase().includes(filter)) return false;
