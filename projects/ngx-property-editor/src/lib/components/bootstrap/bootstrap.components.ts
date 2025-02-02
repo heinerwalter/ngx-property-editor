@@ -5,6 +5,7 @@ import { ButtonGroupComponent } from './button-group/button-group.component';
 import { CollapseComponent } from './collapse/collapse.component';
 import { ColumnComponent } from './column/column.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 import { RowComponent } from './row/row.component';
 
 export const bootstrapComponents: Array<Type<any> | any[]> = [
@@ -14,5 +15,6 @@ export const bootstrapComponents: Array<Type<any> | any[]> = [
   CollapseComponent,
   ColumnComponent,
   DropdownButtonComponent,
+  LoginPageComponent,
   RowComponent,
 ];

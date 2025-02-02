@@ -1,0 +1,34 @@
+<div class="login-page-container container"
+     [style]="containerStyle"
+     [style.backgroundColor]="containerBackgroundColor">
+  <div class="row align-items-center justify-content-center h-100">
+    <div class="login-form-container col col-md-6 col-lg-4"
+         [style.padding]="'calc(var(--bs-gutter-x) * 0.5)'"
+         [style.border]="'var(--bs-border-width) solid var(--bs-border-color)'"
+         [style.borderRadius]="'var(--bs-border-radius)'"
+         [style.backgroundColor]="formBackgroundColor"
+         [style]="formStyle">
+
+      <pe-text-input [label]="labelUsername"
+                     [placeholder]="placeholderUsername"
+                     class="login-input-username"
+                     [(value)]="username"
+                     (valueChange)="usernameChange.emit($event)">
+      </pe-text-input>
+
+      <pe-text-input [label]="labelPassword"
+                     [placeholder]="placeholderPassword"
+                     class="login-input-password"
+                     type="password"
+                     [(value)]="password"
+                     (valueChange)="passwordChange.emit($event)">
+      </pe-text-input>
+
+      <button ngb-btn buttonClass="btn-primary w-100 login-btn-submit"
+               (click)="submitClick.emit()">
+        {{labelSubmit}}
+    </button>
+
+    </div>
+  </div>
+</div>
