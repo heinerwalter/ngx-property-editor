@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
-import { TableCell, TableData } from '../table-configuration';
+import { TableHeader, TableCell, TableData } from '../table-configuration';
 
 /**
  * This component builds an HTML table element with bootstrap style
@@ -18,11 +18,40 @@ export class TableComponent {
   @Input() public id: string = PEGlobalFunctions.generateRandomId();
 
   /**
+   * If true, a container with class `table-responsive` is added around the table element,
+   * which causes the table to be horizontally scrollable, if its too wide.
+   */
+  @Input() public addResponsiveContainer: boolean = false;
+  /**
+   * Only if `addResponsiveContainer` is true:
+   * Optional class added to the responsive container element.
+   */
+  @Input() public responsiveContainerClass: string | undefined = undefined;
+
+  /**
+   * If true, the class `.table-striped` is added which causes
+   * alternating row colors.
+   */
+  @Input() public isStriped: boolean = false;
+  /**
+   * If true, the class `.table-bordered` is added which causes
+   * a border to be displayed around the whole table.
+   */
+  @Input() public isBordered: boolean = false;
+  /**
+   * If true, the class `.table-striped` is added which causes
+   * hovered rows to be highlighted.
+   */
+  @Input() public isHover: boolean = true;
+  /** Optional class added to the table element. */
+  @Input() public tableClass: string | undefined = undefined;
+
+  /**
    * This array contains the table header.
    * Each element is a cell of the header row.
    * If empty, no header is displayed.
    */
-  @Input() public header: string[] = [];
+  @Input() public header: TableHeader = [];
 
   /**
    * This two-dimensional array contains the table data.

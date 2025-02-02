@@ -63,7 +63,7 @@ export class PropertyViewComponent implements OnInit, OnChanges {
     }).flat(1);
 
     if (!this.data || !config?.length) {
-      this.tableData = [[{ content: 'Keine Daten', style: 'data' }]];
+      this.tableData = [[{ content: 'Keine Daten', elementType: 'data' }]];
       return;
     }
 
@@ -96,11 +96,12 @@ export class PropertyViewComponent implements OnInit, OnChanges {
         tableData.push([
           {
             content: label,
-            style: 'header',
+            elementType: 'header',
+            style: 'width: 1%;',
           },
           {
             content: propertyValue,
-            style: 'data',
+            elementType: 'data',
             routerLink: routerLink,
             routerLinkIsExternal: routerLinkIsExternal,
             routerLinkTooltip: routerLinkTooltip,

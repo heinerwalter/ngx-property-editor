@@ -1,33 +1,9 @@
-<div class="table-responsive">
-  <table [id]="id" class="table table-striped table-hover table-bordered">
-
-    <thead>
-      <tr>
-        <ng-container *ngFor="let property of _configuration; let c = index">
-          <th *ngIf="!property.isHidden(undefined, mode, true)">
-            {{ property.getLabel(undefined, mode) }}
-          </th>
-        </ng-container>
-      </tr>
-    </thead>
-
-    <tbody *ngIf="data?.length">
-
-      <ng-container *ngFor="let row of data; let i = index">
-        <tr>
-
-          <ng-container *ngFor="let property of _configuration; let c = index">
-            <td *ngIf="!property.isHidden(undefined, mode, true)">
-              {{ property.getDisplayValue(row, mode, true) }}
-            </td>
-          </ng-container>
-
-        </tr>
-      </ng-container>
-  
-    </tbody>
-  
-  </table>
-</div>
-
-Work in progress...
+<pe-table [addResponsiveContainer]="true"
+          responsiveContainerClass="property-table-container"
+          [isStriped]="true"
+          [isBordered]="true"
+          [isHover]="true"
+          tableClass="property-table"
+          [header]="_tableHeader"
+          [data]="_tableData">
+</pe-table>

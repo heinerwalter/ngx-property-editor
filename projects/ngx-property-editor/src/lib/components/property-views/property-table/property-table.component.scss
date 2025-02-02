@@ -1,0 +1,16 @@
+pe-property-table > pe-table > .property-table-container > .property-table {
+
+  & > thead  {
+    & > tr > .property-table-header-cell {
+      white-space: pre;
+      vertical-align: top;
+    }
+  }
+
+  & > tbody {
+    & > tr > .property-table-data-cell {
+      white-space: pre;
+    }
+  }
+
+}
