@@ -241,6 +241,20 @@ export class Contact {
     return address;
   }
 
+  /**
+   * Returns a contact array with all predefined contacts.
+   */
+  public static get Contacts(): Contact[] {
+    return [
+      this.Snoopy,
+      this.CharlieBrown,
+      this.SallyBrown,
+    ];
+  }
+
+  /**
+   * Returns a predefined contact entry of Snoopy.
+   */
   public static get Snoopy(): Contact {
     return new Contact({
       firstname: 'Snoopy',
@@ -257,6 +271,9 @@ export class Contact {
     });
   }
 
+  /**
+   * Returns a predefined contact entry of Charlie Brown.
+   */
   public static get CharlieBrown(): Contact {
     return new Contact({
       gender: 'male',
@@ -275,6 +292,9 @@ export class Contact {
     });
   }
 
+  /**
+   * Returns a predefined contact entry of Sally Brown.
+   */
   public static get SallyBrown(): Contact {
     return new Contact({
       gender: 'female',

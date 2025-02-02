@@ -10,7 +10,7 @@ import { EditModeType, PropertiesConfiguration, PropertyEditorMode, ViewModeType
 export class PropertyEditorDemoComponent {
 
   /**
-   * Display the properties of this object by the property table and editor.
+   * Display the properties of this object by a property editor.
    */
   public data: Contact = Contact.CharlieBrown;
 

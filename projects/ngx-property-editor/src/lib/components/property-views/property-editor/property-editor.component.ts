@@ -3,6 +3,11 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
 import { PropertyEditorMode } from '../property-editor-mode';
 
+/**
+ * A component displaying configured properties of a `data` object
+ * as form for editing.
+ * @see PropertiesConfiguration
+ */
 @Component({
   selector: 'pe-property-editor',
   templateUrl: './property-editor.component.html',
@@ -88,5 +93,4 @@ export class PropertyEditorComponent implements OnChanges {
     this._configuration = configuration;
   }
 
-  protected readonly undefined = undefined;
 }
