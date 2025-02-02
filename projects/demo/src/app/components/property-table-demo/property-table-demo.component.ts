@@ -12,7 +12,34 @@ export class PropertyTableDemoComponent {
 /**
    * Display the properties of these objects by a property table.
    */
-  public data: Contact[] = Contact.Contacts;
+  public data: Contact[] = [
+    ...Contact.Contacts,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+    Contact.Snoopy,
+  ];
 
   /**
    * Returns the `data` object as JSON string.

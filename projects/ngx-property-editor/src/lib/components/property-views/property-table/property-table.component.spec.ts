@@ -4,6 +4,7 @@ import { PropertyTableComponent } from './property-table.component';
 import { FormsModule } from '@angular/forms';
 import { inputComponents } from '../../input/input.components';
 import { TableComponent } from '../table/table.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('PropertyTableComponent', () => {
   let component: PropertyTableComponent;
@@ -16,7 +17,10 @@ describe('PropertyTableComponent', () => {
         TableComponent,
         ...inputComponents,
       ],
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        NgbModule,
+      ],
     })
     .compileComponents();
     

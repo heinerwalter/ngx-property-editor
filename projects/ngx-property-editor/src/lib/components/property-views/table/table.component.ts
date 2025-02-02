@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
 import { TableHeader, TableCell, TableData } from '../table-configuration';
@@ -13,7 +13,7 @@ import { TableHeader, TableCell, TableData } from '../table-configuration';
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class TableComponent {
+export class TableComponent implements OnChanges {
 
   /** ID attribute of the table element. */
   @Input() public id: string = PEGlobalFunctions.generateRandomId();
@@ -67,11 +67,60 @@ export class TableComponent {
    */
   @Input() public data: TableData = [];
 
+  /** If true, pagination is activated. */
+  @Input() public pagination: boolean = false;
+  /**
+   * Only if `pagination` is true:
+   * Show this many `data` rows on one page.
+   */
+  @Input() public pageSize: number = 10;
+  /**
+   * Only if `pagination` is true:
+   * The current page number (starting with 1).
+   */
+  protected currentPage: number = 1;
+
+  /**
+   * Only if `pagination` is true:
+   * Number of available pages.
+   */
+  protected get pageCount(): number {
+    return Math.ceil(this.data?.length / this.pageSize);
+  }
+
+  /**
+   * If `pagination` is true, this property returns the currently visible subset of `data`.
+   * Otherwise, it returns `data`.
+   */
+  protected get pageData(): TableData {
+    if (!this.data) return [];
+    if (!this.pagination) return this.data;
+
+    const startIndex: number = (this.currentPage - 1) * this.pageSize;
+    return this.data.slice(startIndex, startIndex + this.pageSize);
+  }
+
   /**
    * If true, for cells with a defined `propertyConfiguration` and `showPropertyInput == undefined`
    * a <pe-property-input> element is displayed inside the cell for editing of the cell content.
    */
   @Input() public showPropertyInput: boolean = false;
+
+  public constructor() {
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('data') ||
+      changes.hasOwnProperty('pageSize')) {
+      if (this.pageSize <= 0)
+        this.pageSize = 10;
+      if (this.currentPage < 1)
+        this.currentPage = 1;
+      const pageCount = this.pageCount;
+      if (this.currentPage > pageCount)
+        this.currentPage = pageCount;
+    }
+  }
 
   /**
    * Returns true, if a <pe-property-input> element should be displayed inside
