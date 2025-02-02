@@ -229,13 +229,12 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       for (let i = 0; i < columns.length; i++) {
         const column: PropertyTableColumn = columns[i];
 
-        const label = column.property.getLabel(undefined, 'table');
         tableHeader[tableHeader.length - 1].push({
           elementType: 'header',
           content: this.filter,
           propertyConfiguration: new PropertyConfiguration({
             propertyName: this.generateFilterPropertyName(i, column.property),
-            label: label ? 'Filter: ' + label : 'Filter',
+            label: 'Filter',
             propertyType: 'string',
             editable: true,
           }),
