@@ -17,7 +17,7 @@
          class="table {{tableClass || ''}}">
 
     <thead *ngIf="header?.length">
-    <tr *ngFor="let row of header">
+    <tr *ngFor="let row of header; let i = index">
 
       <ng-container [ngTemplateOutlet]="rowTemplate"
                     [ngTemplateOutletContext]="{row: row, index: i}">
