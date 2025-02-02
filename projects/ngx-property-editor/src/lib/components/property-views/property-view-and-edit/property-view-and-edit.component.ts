@@ -35,7 +35,7 @@ export class PropertyViewAndEditComponent extends ViewAndEditContainerBaseCompon
 
   /**
    * Choose how the properties are displayed in view mode:
-   * - 'table':  Display properties in a `PropertyTableComponent` (one row per property).
+   * - 'table':  Display properties in a `PropertyViewComponent` (table with one row per property).
    * - 'editor': Display same `PropertyEditorComponent` as in edit view but turn input fields to readonly.
    * - 'custom': Display a custom content passed as `<div content-view-custom>...</div>`.
    */

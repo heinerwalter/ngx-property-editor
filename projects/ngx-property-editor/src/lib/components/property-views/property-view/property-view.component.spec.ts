@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropertyTableComponent } from './property-table.component';
+import { PropertyViewComponent } from './property-view.component';
 import { TableComponent } from '../table/table.component';
 
-describe('PropertyTableComponent', () => {
-  let component: PropertyTableComponent;
-  let fixture: ComponentFixture<PropertyTableComponent>;
+describe('PropertyViewComponent', () => {
+  let component: PropertyViewComponent;
+  let fixture: ComponentFixture<PropertyViewComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        PropertyTableComponent,
+        PropertyViewComponent,
         TableComponent,
       ],
     });
-    fixture = TestBed.createComponent(PropertyTableComponent);
+    fixture = TestBed.createComponent(PropertyViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

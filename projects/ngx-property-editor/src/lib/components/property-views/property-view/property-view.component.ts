@@ -8,11 +8,11 @@ import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
  * with two columns: one for the property name and one for the property value.
  */
 @Component({
-  selector: 'pe-property-table',
-  templateUrl: './property-table.component.html',
-  styleUrls: ['./property-table.component.scss'],
+  selector: 'pe-property-view',
+  templateUrl: './property-view.component.html',
+  styleUrls: ['./property-view.component.scss'],
 })
-export class PropertyTableComponent implements OnInit, OnChanges {
+export class PropertyViewComponent implements OnInit, OnChanges {
 
   /** ID attribute of the table element. */
   @Input() public id: string = PEGlobalFunctions.generateRandomId();

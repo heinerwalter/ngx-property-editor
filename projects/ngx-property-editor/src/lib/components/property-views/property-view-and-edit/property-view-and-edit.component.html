@@ -17,10 +17,10 @@
   <div content-both>
 
     <ng-container *ngIf="mode == 'view' && viewModeType == 'table'">
-      <pe-property-table [id]="id + '-property-table'"
+      <pe-property-view [id]="id + '-property-view'"
                          [configuration]="configuration"
                          [data]="data">
-      </pe-property-table>
+      </pe-property-view>
     </ng-container>
 
     <ng-container *ngIf="mode == 'view' && viewModeType == 'custom'">

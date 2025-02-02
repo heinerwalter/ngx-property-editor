@@ -128,7 +128,7 @@ export type PropertyConfigurationConstructorParameter = {
    * Warning: Only one level of grouping is supported. Groups within groups are ignored.
    *
    * How a group is displayed depends on the component used to display the properties:
-   * - `PropertyTableComponent`:
+   * - `PropertyViewComponent`:
    *   Display string values of multiple properties with one label. The outer array defines
    *   a vertical group (string values separated by linebreak). The inner array(s) define
    *   horizontal group(s) (string values separated by space). If you want to define only one
