@@ -1,5 +1,6 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 import { Stringifier } from '../../controller/stringifier';
+import { PropertyConfigurationFilter } from './property-configuration-filter';
 import { PropertyEditorMode } from './property-editor-mode';
 import { generatePropertyTypeFromData, PropertyType } from './property-type';
 
@@ -398,6 +399,19 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
     } else if (this.propertyName) {
       this.evaluateNestedPropertyName('set', data, this.propertyName, value);
     }
+  }
+
+  /**
+   * Evaluates the given filter expression on the property value.
+   * @param data The data object.
+   * @param mode Property editor mode used to evaluate the property value.
+   * @param filter A filter expression as string.
+   * @returns True, if the filter matches.
+   *          If the `filter` is empty, true is returned.
+   *          If the `propertyConfiguration` is empty, false is returned.
+   */
+  public evaluateFilter(data: any, mode: PropertyEditorMode, filter: string): boolean {
+    return PropertyConfigurationFilter.evaluateFilter(this, data, mode, filter);
   }
 
   /**

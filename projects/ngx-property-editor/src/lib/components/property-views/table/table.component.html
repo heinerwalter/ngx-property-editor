@@ -18,14 +18,11 @@
 
     <thead *ngIf="header?.length">
     <tr *ngFor="let row of header">
-      <th *ngFor="let cell of row; let c = index"
-          [class]="cell.class || ''"
-          [style]="cell.style || ''"
-          [attr.colspan]="cell.colspan || 1"
-          [attr.rowspan]="cell.rowspan || 1">
-        <ng-container [ngTemplateOutlet]="cellTemplate"
-                      [ngTemplateOutletContext]="{cell: cell, index: c}"></ng-container>
-      </th>
+
+      <ng-container [ngTemplateOutlet]="rowTemplate"
+                    [ngTemplateOutletContext]="{row: row, index: i}">
+      </ng-container>
+
     </tr>
     </thead>
   
@@ -38,28 +35,8 @@
           <td *ngFor="let cell of data[i + 1]"></td>
         </ng-container>
   
-        <ng-container *ngFor="let cell of row; let c = index">
-  
-          <ng-container *ngIf="cell.elementType == 'header'">
-            <th [class]="cell.class || ''"
-                [style]="cell.style || ''"
-                [attr.colspan]="cell.colspan || 1"
-                [attr.rowspan]="cell.rowspan || 1">
-              <ng-container [ngTemplateOutlet]="cellTemplate"
-                            [ngTemplateOutletContext]="{cell: cell, index: c}"></ng-container>
-            </th>
-          </ng-container>
-  
-          <ng-container *ngIf="cell.elementType != 'header'">
-            <td [class]="cell.class || ''"
-                [style]="cell.style || ''"
-                [attr.colspan]="cell.colspan || 1"
-                [attr.rowspan]="cell.rowspan || 1">
-              <ng-container [ngTemplateOutlet]="cellTemplate"
-                            [ngTemplateOutletContext]="{cell: cell, index: c}"></ng-container>
-            </td>
-          </ng-container>
-  
+        <ng-container [ngTemplateOutlet]="rowTemplate"
+                      [ngTemplateOutletContext]="{row: row, index: i}">
         </ng-container>
   
       </tr>
@@ -71,25 +48,72 @@
 </ng-template>
 
 
+<ng-template #rowTemplate let-row="row" let-index="index">
+
+  <ng-container *ngFor="let cell of row; let c = index">
+  
+    <ng-container *ngIf="cell.elementType == 'header'">
+      <th [class]="cell.class || ''"
+          [class.cell-with-input]="getShowPropertyInput(cell)"
+          [style]="cell.style || ''"
+          [attr.colspan]="cell.colspan || 1"
+          [attr.rowspan]="cell.rowspan || 1">
+        <ng-container [ngTemplateOutlet]="cellTemplate"
+                      [ngTemplateOutletContext]="{cell: cell, index: c}">
+        </ng-container>
+      </th>
+    </ng-container>
+
+    <ng-container *ngIf="cell.elementType != 'header'">
+      <td [class]="cell.class || ''"
+          [class.cell-with-input]="getShowPropertyInput(cell)"
+          [style]="cell.style || ''"
+          [attr.colspan]="cell.colspan || 1"
+          [attr.rowspan]="cell.rowspan || 1">
+        <ng-container [ngTemplateOutlet]="cellTemplate"
+                      [ngTemplateOutletContext]="{cell: cell, index: c}">
+        </ng-container>
+      </td>
+    </ng-container>
+
+  </ng-container>
+
+</ng-template>
+
+
 <ng-template #cellTemplate let-cell="cell" let-index="index">
 
-  <span style="white-space: pre;">{{getContent(cell)}}</span>
+  <ng-container *ngIf="getShowPropertyInput(cell)">
 
-  <ng-container *ngIf="cell.routerLink">
-    <ng-container *ngIf="!cell.routerLinkIsExternal">
-      <pe-goto-icon [paddingLeft]="true"
-                    [routerLink]="cell.routerLink"
-                    [tooltip]="cell.routerLinkTooltip || ''">
-      </pe-goto-icon>
-    </ng-container>
-    <ng-container *ngIf="cell.routerLinkIsExternal">
-      <a [href]="cell.routerLink"
-         target="_blank"
-         [ngbTooltip]="cell.routerLinkTooltip || ''">
-        <pe-goto-icon [paddingLeft]="true">
+    <pe-property-input [configuration]="cell.propertyConfiguration"
+                       [data]="cell.content"
+                       [noFormGroup]="true"
+                       (valueChange)="cell.onPropertyInputValueChanged?.($event)">
+    </pe-property-input>
+
+  </ng-container>
+
+  <ng-container *ngIf="!getShowPropertyInput(cell)">
+
+    <span style="white-space: pre;">{{getContent(cell)}}</span>
+
+    <ng-container *ngIf="cell.routerLink">
+      <ng-container *ngIf="!cell.routerLinkIsExternal">
+        <pe-goto-icon [paddingLeft]="true"
+                      [routerLink]="cell.routerLink"
+                      [tooltip]="cell.routerLinkTooltip || ''">
         </pe-goto-icon>
-      </a>
+      </ng-container>
+      <ng-container *ngIf="cell.routerLinkIsExternal">
+        <a [href]="cell.routerLink"
+           target="_blank"
+           [ngbTooltip]="cell.routerLinkTooltip || ''">
+          <pe-goto-icon [paddingLeft]="true">
+          </pe-goto-icon>
+        </a>
+      </ng-container>
     </ng-container>
+
   </ng-container>
 
 </ng-template>

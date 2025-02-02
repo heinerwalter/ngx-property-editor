@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
 import { TableHeader, TableCell, TableData } from '../table-configuration';
@@ -11,6 +11,7 @@ import { TableHeader, TableCell, TableData } from '../table-configuration';
   selector: 'pe-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableComponent {
 
@@ -67,10 +68,32 @@ export class TableComponent {
   @Input() public data: TableData = [];
 
   /**
+   * If true, for cells with a defined `propertyConfiguration` and `showPropertyInput == undefined`
+   * a <pe-property-input> element is displayed inside the cell for editing of the cell content.
+   */
+  @Input() public showPropertyInput: boolean = false;
+
+  /**
+   * Returns true, if a <pe-property-input> element should be displayed inside
+   * the given cell for editing of the cell content.
+   * @param cell A table cell definition.
+   */
+  protected getShowPropertyInput(cell: TableCell): boolean {
+    if (!cell?.propertyConfiguration) return false;
+    return cell.showPropertyInput == true ||
+      (cell.showPropertyInput == undefined && this.showPropertyInput);
+  }
+
+  /**
    * Converts the `content` of a table cell to string.
-   * @see TableCell.content
+   * @param cell A table cell definition.
+   * @returns The table cell content as string.
    */
   protected getContent(cell: TableCell): string {
+    if (cell?.propertyConfiguration) {
+      return (cell.propertyConfiguration.getDisplayValue(cell.content, 'table', true) || '') as string;
+    }
+
     if (Array.isArray(cell?.content))
       return cell?.content
         .map(item => Stringifier.anyTypeToString(item))

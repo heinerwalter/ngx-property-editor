@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration } from '../property-configuration';
 import { PropertyEditorMode } from '../property-editor-mode';
@@ -49,13 +49,29 @@ export class PropertyInputComponent {
   @Input() public noFormGroup: boolean = false;
 
   /**
-   * This function is triggered when the button (`propertyType == 'button'`)
+   * This event is emitted when the user changed the value of the input element.
+   * The changed property value is passed as event argument.
+   */
+  @Output() public readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
+
+  /**
+   * This method is triggered when the user changed the value of the input element.
+   * It calls the `setValue` function of the property configuration.
+   * @param newValue The changed property value.
+   */
+  protected onValueChanged(newValue: any): void {
+    this.configuration?.setValue(this.data, newValue);
+    this.valueChange.emit(newValue);
+  }
+
+  /**
+   * This method is triggered when the button (`propertyType == 'button'`)
    * has been clicked by the user.
    * @param event The button click event.
    */
   protected onButtonClick(event: any): void {
     // TODO: Trigger router link if available
-    this.configuration?.setValue(this.data, undefined);
+    this.onValueChanged(undefined);
   }
 
 }

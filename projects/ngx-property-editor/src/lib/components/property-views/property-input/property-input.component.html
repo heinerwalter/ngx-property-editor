@@ -12,7 +12,7 @@
                       [required]="configuration.isRequired(data, mode)"
                       [allowIndeterminate]="configuration.propertyType == 'boolean-indeterminate'"
                       [value]="configuration.getValue(data, mode)"
-                      (valueChange)="configuration.setValue(data, $event)">
+                      (valueChange)="onValueChanged($event)">
     </pe-boolean-input>
   </ng-container>
 
@@ -28,7 +28,7 @@
                    [required]="configuration.isRequired(data, mode)"
                    [type]="configuration.propertyType == 'datetime' ? 'datetime-local' : configuration.propertyType"
                    [value]="configuration.getValue(data, mode)"
-                   (valueChange)="configuration.setValue(data, $event)">
+                   (valueChange)="onValueChanged($event)">
     </pe-date-input>
   </ng-container>
 
@@ -42,7 +42,7 @@
                      [disabled]="!readonly && !configuration.isEditable(data, mode)"
                      [required]="configuration.isRequired(data, mode)"
                      [value]="configuration.getValue(data, mode)"
-                     (valueChange)="configuration.setValue(data, $event)">
+                     (valueChange)="onValueChanged($event)">
     </pe-number-input>
   </ng-container>
 
@@ -59,7 +59,7 @@
                    [autocompleteList]="configuration.getDataSource(data, mode)"
                    [trimValue]="true"
                    [value]="configuration.getValue(data, mode)"
-                   (valueChange)="configuration.setValue(data, $event)">
+                   (valueChange)="onValueChanged($event)">
     </pe-text-input>
   </ng-container>
 
@@ -76,7 +76,7 @@
                    [type]="configuration.propertyType"
                    [trimValue]="configuration.propertyType !== 'password'"
                    [value]="configuration.getValue(data, mode)"
-                   (valueChange)="configuration.setValue(data, $event)">
+                   (valueChange)="onValueChanged($event)">
     </pe-text-input>
   </ng-container>
 
@@ -90,7 +90,7 @@
                         [disabled]="!readonly && !configuration.isEditable(data, mode)"
                         [required]="configuration.isRequired(data, mode)"
                         [value]="configuration.getValue(data, mode)"
-                        (valueChange)="configuration.setValue(data, $event)">
+                        (valueChange)="onValueChanged($event)">
     </pe-text-area-input>
   </ng-container>
 
@@ -104,7 +104,7 @@
                      [disabled]="!readonly && !configuration.isEditable(data, mode)"
                      [required]="configuration.isRequired(data, mode)"
                      [value]="configuration.getValue(data, mode)"
-                     (valueChange)="configuration.setValue(data, $event)">
+                     (valueChange)="onValueChanged($event)">
     </pe-rating-input>
   </ng-container>
 
@@ -118,7 +118,7 @@
                          [disabled]="!readonly && !configuration.isEditable(data, mode)"
                          [required]="configuration.isRequired(data, mode)"
                          [value]="configuration.getValue(data, mode)"
-                         (valueChange)="configuration.setValue(data, $event)">
+                         (valueChange)="onValueChanged($event)">
     </pe-difficulty-input>
   </ng-container>
 
@@ -137,7 +137,7 @@
                      [multiple]="configuration.isArray"
                      [allowEmpty]="!configuration.isRequired(data, mode)"
                      [value]="configuration.getValue(data, mode)"
-                     (valueChange)="configuration.setValue(data, $event)">
+                     (valueChange)="onValueChanged($event)">
     </pe-select-input>
   </ng-container>
 

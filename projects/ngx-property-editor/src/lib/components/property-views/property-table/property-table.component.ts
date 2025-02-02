@@ -1,17 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration, PropertiesConfiguration } from '../property-configuration';
-import { PropertyEditorMode } from '../property-editor-mode';
-import { TableData, TableHeader, TableRow, TableHeaderRow } from '../table-configuration';
-
-
-export type PropertyTableColumn = {
-  property: PropertyConfiguration,
-  parent: PropertyTableColumn | undefined,
-  isGroup: boolean,
-  children: PropertyTableColumn[],
-};
-
+import { TableData, TableHeader, TableRow } from '../table-configuration';
+import { PropertyTableColumn } from '../property-table-column';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
@@ -55,8 +46,13 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   @Input() public data: any[] | undefined = undefined;
 
-  /** Property editor mode (fixed to `'table'`). */
-  public readonly mode: PropertyEditorMode = 'table';
+  /** If true, a filter row is displayed below the header. */
+  @Input() public showFilterRow: boolean = true;
+  /**
+   * Only used if `showFilterRow` is true.
+   * Filter object into which the filter values are written.
+   */
+  protected filter: any = {};
 
   /** If true, the properties displayed in the table are editable by the user. */
   @Input() public editable: boolean = false;
@@ -71,7 +67,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     this.isInitialized = true;
 
     this.prepareConfiguration();
-    this.generateTableData();
+    this.generateTableHeader();
+    this.generateTableBody();
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -81,10 +78,10 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
     if (changes.hasOwnProperty('configuration')) {
       this.prepareConfiguration();
+      this.generateTableHeader();
     }
-    if (changes.hasOwnProperty('configuration') ||
-      changes.hasOwnProperty('data')) {
-      this.generateTableData();
+    if (changes.hasOwnProperty('data')) {
+      this.generateTableBody();
     }
   }
 
@@ -141,17 +138,16 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Generates the displayed table data from the given `configuration` and `data`.
+   * Generates the displayed table header data from the given `configuration`.
+   * This method must be called after `prepareConfiguration()`!
    */
-  private generateTableData(): void {
+  private generateTableHeader(): void {
     if (!this._configuration?.length) {
       this._tableHeader = [[]];
-      this._tableData = [];
     }
 
     // Initialize new table data
     const tableHeader: TableHeader = [];
-    const tableData: TableData = [];
     // Initialize table header rows
     for (let i = 0; i < this._headerRowCount; i++) {
       tableHeader.push([]);
@@ -193,6 +189,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
         if (columnCount > 0) {
           tableHeader[tableHeaderRowIndex].push({
+            elementType: 'header',
             content: property.getLabel(undefined, 'table'),
             class: 'property-table-header-cell',
             colspan: columnCount,
@@ -208,6 +205,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         // Generate single column
         columns.push(column);
         tableHeader[tableHeaderRowIndex].push({
+          elementType: 'header',
           content: property.getLabel(undefined, 'table'),
           class: 'property-table-header-cell',
           rowspan: tableHeader.length - tableHeaderRowIndex,
@@ -225,14 +223,60 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       handleHeaderProperty(property);
     }
 
+    // Generate filter row:
+    if (this.showFilterRow) {
+      tableHeader.push([]);
+      for (let i = 0; i < columns.length; i++) {
+        const column: PropertyTableColumn = columns[i];
+
+        const label = column.property.getLabel(undefined, 'table');
+        tableHeader[tableHeader.length - 1].push({
+          elementType: 'header',
+          content: this.filter,
+          propertyConfiguration: new PropertyConfiguration({
+            propertyName: this.generateFilterPropertyName(i, column.property),
+            label: label ? 'Filter: ' + label : 'Filter',
+            propertyType: 'string',
+            editable: true,
+          }),
+          showPropertyInput: true,
+          onPropertyInputValueChanged: () => this.onFilterChanged(),
+          class: 'property-table-filter-cell',
+        });
+      }
+    }
+
+    // Assign new table data
+    this._tableHeader = tableHeader;
+    this._columns = columns;
+  }
+
+  /**
+   * Generates the displayed table content data from the given `configuration` and `data`.
+   * This method must be called after `generateTableHeader()`!
+   */
+  private generateTableBody(): void {
+    if (!this._configuration?.length) {
+      this._tableData = [];
+    }
+
+    // Initialize new table data
+    const tableData: TableData = [];
+
     // Generate body:
     for (const dataRow of this.data || []) {
+      // Evaluate filter
+      if (!this.evaluateFilter(dataRow)) continue;
+
       // Initialize new table row
       const tableRow: TableRow = [];
-      // Generat cells:
-      for (const column of columns) {
+      // Generate cells:
+      for (const column of this._columns) {
         tableRow.push({
-          content: column.property.getDisplayValue(dataRow, 'table', true),
+          elementType: 'data',
+          content: dataRow, // column.property.getDisplayValue(dataRow, 'table', true),
+          propertyConfiguration: column.property,
+          showPropertyInput: undefined,
           class: 'property-table-data-cell',
         });
       }
@@ -241,9 +285,59 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     }
 
     // Assign new table data
-    this._tableHeader = tableHeader;
     this._tableData = tableData;
-    this._columns = columns;
   }
+
+  // region Filter
+
+  /**
+   * Generates a filter object property name by which the filter value
+   * for a visible table column is stored in the `filter` object.
+   * @param columnIndex Index of the visible column.
+   * @param propertyConfiguration Property configuration on which the column is based.
+   */
+  private generateFilterPropertyName(columnIndex: number,
+                                     propertyConfiguration: PropertyConfiguration): string {
+    if (propertyConfiguration.propertyName) {
+      return propertyConfiguration.propertyName.replaceAll('.', '_');
+    } else {
+      return `#column-index#${columnIndex}`;
+    }
+  }
+
+  /**
+   * Evaluates the `filter` object on the given data row
+   * @param row An element (row) of `data`.
+   * @returns True, if the given row should be displayed (filter is matching).
+   */
+  private evaluateFilter(row: any): boolean {
+    if (!this.filter || typeof this.filter !== 'object') return true;
+    if (typeof row !== 'object') return false;
+
+    for (let i = 0; i < this._columns.length; i++) {
+      const column = this._columns[i];
+
+      // Get filter value
+      let filterPropertyName: string = this.generateFilterPropertyName(i, column.property);
+      const filterValue: string = this.filter[filterPropertyName]?.toString().toLowerCase();
+      if (!filterValue) continue;
+
+      // Evaluate filter on the property value
+      if (!column.property.evaluateFilter(row, 'table', filterValue))
+        return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * This method is called, when the user changed any filter value.
+   */
+  private onFilterChanged(): void {
+    // Re generate table data
+    this.generateTableBody();
+  }
+
+  // endregion
 
 }
