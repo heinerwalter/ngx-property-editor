@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginPageComponent } from './login-page.component';
 import { ButtonComponent } from '../button/button.component';
 import { inputComponents } from '../../input/input.components';
+import { FormsModule } from '@angular/forms';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -15,6 +16,7 @@ describe('LoginPageComponent', () => {
         ButtonComponent,
         inputComponents,
       ],
+      imports: [FormsModule],
     })
     .compileComponents();
     

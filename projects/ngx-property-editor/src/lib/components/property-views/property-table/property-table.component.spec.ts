@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PropertyTableComponent } from './property-table.component';
 import { FormsModule } from '@angular/forms';
 import { inputComponents } from '../../input/input.components';
+import { TableComponent } from '../table/table.component';
 
 describe('PropertyTableComponent', () => {
   let component: PropertyTableComponent;
@@ -12,6 +13,7 @@ describe('PropertyTableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         PropertyTableComponent,
+        TableComponent,
         ...inputComponents,
       ],
       imports: [FormsModule],
