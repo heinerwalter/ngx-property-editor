@@ -23,6 +23,10 @@
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
+      <ng-container item-property-table>
+        <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
+      </ng-container>
+
       <ng-container item-property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
       </ng-container>
@@ -45,6 +49,10 @@
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
+      <ng-container item-property-table>
+        <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
+      </ng-container>
+
       <ng-container item-property-editor>
         <ng-container *ngTemplateOutlet="propertyEditorTemplate"></ng-container>
       </ng-container>
@@ -65,6 +73,10 @@
 
       <ng-container item-input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
+      </ng-container>
+
+      <ng-container item-property-table>
+        <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
       </ng-container>
 
       <ng-container item-property-editor>
@@ -98,6 +110,11 @@
   </demo-all-inputs-demo>
 </ng-template>
 
+<ng-template #propertyTableTemplate>
+  <demo-property-table-demo>
+  </demo-property-table-demo>
+</ng-template>
+
 <ng-template #propertyEditorTemplate>
   <demo-property-editor-demo>
   </demo-property-editor-demo>
@@ -109,6 +126,6 @@
 </ng-template>
 
 <ng-template #loginPageTemplate>
-  <pe-login-page containerStyle="height: 50vh;">
-  </pe-login-page>
+  <demo-login-page-demo>
+  </demo-login-page-demo>
 </ng-template>

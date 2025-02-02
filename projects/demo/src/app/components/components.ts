@@ -5,7 +5,9 @@ import { ContainerDemoPagesComponent } from './container-demo-pages/container-de
 import { ContainerDemoTabsComponent } from './container-demo-tabs/container-demo-tabs.component';
 import { InputDemoWrapperComponent } from './input-demo-wrapper/input-demo-wrapper.component';
 import { PageNavigationDemoComponent } from './page-navigation-demo/page-navigation-demo.component';
+import { PropertyTableDemoComponent } from './property-table-demo/property-table-demo.component';
 import { PropertyEditorDemoComponent } from './property-editor-demo/property-editor-demo.component';
+import { LoginPageDemoComponent } from './login-page-demo/login-page-demo.component';
 import { TerminalComponent } from './terminal/terminal.component';
 
 export const components: Array<Type<any> | any[]> = [
@@ -15,6 +17,8 @@ export const components: Array<Type<any> | any[]> = [
   ContainerDemoTabsComponent,
   InputDemoWrapperComponent,
   PageNavigationDemoComponent,
+  PropertyTableDemoComponent,
   PropertyEditorDemoComponent,
+  LoginPageDemoComponent,
   TerminalComponent,
 ];
