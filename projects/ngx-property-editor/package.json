@@ -1,6 +1,6 @@
 {
   "name": "ngx-property-editor",
-  "version": "0.17.9",
+  "version": "0.17.10",
   "license": "MIT",
   "description": "An Angular library containing simple input components and a property editor component which automatically builds a form for editing all properties of any object.",
   "keywords": [
