@@ -28,6 +28,7 @@
     "@angular/core": "^17.3.12",
     "@angular/forms": "^17.3.12",
     "@angular/router": "^17.3.12",
+    "@angular/localize": "^17.3.12",
     "@fortawesome/angular-fontawesome": "~0.14.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",

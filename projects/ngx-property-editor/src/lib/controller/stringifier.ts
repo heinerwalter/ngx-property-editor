@@ -12,11 +12,12 @@ export module Stringifier {
   // region Booleans
 
   // Localized human-readable string representations of boolean values used by the function booleanToString:
-  const localizedBooleanTrue: string = $localize`:@@true:true`;
-  const localizedBooleanFalse: string = $localize`:@@false:false`;
-  const localizedBooleanYes: string = $localize`:@@yes:Ja`;
-  const localizedBooleanNo: string = $localize`:@@no:Nein`;
-  const localizedBooleanIndeterminate: string = $localize`:@@indeterminate:Unbestimmt`;
+  // TODO: $localize does not work in the library
+  const localizedBooleanTrue: string = 'true'; // $localize`:@@true:true`;
+  const localizedBooleanFalse: string = 'false'; // $localize`:@@false:false`;
+  const localizedBooleanYes: string = 'Ja'; // $localize`:@@yes:Ja`;
+  const localizedBooleanNo: string = 'Nein'; // $localize`:@@no:Nein`;
+  const localizedBooleanIndeterminate: string = 'Unbestimmt'; // $localize`:@@indeterminate:Unbestimmt`;
 
   /**
    * Converts a boolean value to a human-readable string.
