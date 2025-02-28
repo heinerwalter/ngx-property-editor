@@ -1,6 +1,5 @@
 'use strict';
 
-import { $localize } from '@angular/localize/init';
 import {
   PropertyType, propertyTypeIsBoolean,
   propertyTypeIsDate,
