@@ -13,17 +13,19 @@ type FriendType = {
 
 export class Contact {
 
-  public gender: 'male' | 'female' | undefined;
-  public firstname: string | undefined;
-  public lastname: string | undefined;
-  public birthday: Date | undefined;
+  public gender: 'male' | 'female' | undefined = undefined;
+  public firstname: string | undefined = undefined;
+  public lastname: string | undefined = undefined;
+  public birthday: Date | undefined = undefined;
   public address: Address = new Address();
-  public tel: string | undefined;
-  public email: string | undefined;
+  public tel: string | undefined = undefined;
+  public email: string | undefined = undefined;
   public favorite: boolean = false;
   public indeterminateBoolean: boolean | undefined = undefined;
-  public rating: number | undefined;
+  public rating: number | undefined = undefined;
   public friends: FriendType[] = [];
+  public language: string | undefined = undefined;
+  public country: string | undefined = undefined;
 
   /** Returns the full name. */
   public get name(): string {
@@ -46,6 +48,8 @@ export class Contact {
     indeterminateBoolean?: boolean | undefined,
     rating?: number | undefined,
     friends?: FriendType[] | undefined,
+    language?: string | undefined,
+    country?: string | undefined,
   }) {
     this.gender = data?.gender;
     this.firstname = data?.firstname;
@@ -58,6 +62,8 @@ export class Contact {
     this.indeterminateBoolean = data?.indeterminateBoolean;
     this.rating = data?.rating;
     this.friends = data?.friends || [];
+    this.language = data?.language;
+    this.country = data?.country;
   }
 
   public toString(): string {
@@ -228,6 +234,23 @@ export class Contact {
         ]],
       }),
       new PropertyConfigurationSeparator(),
+      new PropertyConfiguration({
+        propertyName: 'language',
+        label: 'Language',
+        propertyType: 'language',
+        hideIfEmpty: true,
+        hidden: 'initially-hidden',
+        editable: true,
+      }),
+      new PropertyConfiguration({
+        propertyName: 'country',
+        label: 'Country',
+        propertyType: 'country',
+        hideIfEmpty: true,
+        hidden: 'initially-hidden',
+        editable: true,
+      }),
+      new PropertyConfigurationSeparator(),
     ];
   }
 
@@ -249,6 +272,7 @@ export class Contact {
       this.Snoopy,
       this.CharlieBrown,
       this.SallyBrown,
+      this.Me,
     ];
   }
 
@@ -268,6 +292,8 @@ export class Contact {
         { name: 'Woodstock', type: 'Friend' },
         { name: 'Charlie Brown' },
       ],
+      language: 'en',
+      country: 'us',
     });
   }
 
@@ -289,6 +315,8 @@ export class Contact {
         { name: 'Snoopy', type: 'Dog' },
         { name: 'Sally', type: 'Sister' },
       ],
+      language: 'en',
+      country: 'us',
     });
   }
 
@@ -310,6 +338,28 @@ export class Contact {
         { name: 'Charlie', type: 'Brother' },
         { name: 'Snoopy', type: 'Dog' },
       ],
+      language: 'en',
+      country: 'us',
+    });
+  }
+
+  /**
+   * Returns a predefined contact entry of Sally Brown.
+   */
+  public static get Me(): Contact {
+    return new Contact({
+      gender: 'male',
+      firstname: 'My',
+      lastname: 'Name',
+      birthday: new Date(1000, 0, 1),
+      tel: '+49 123456789',
+      email: 'my@email.de',
+      favorite: false,
+      friends: [
+        { name: 'Snoopy', type: 'Friend' },
+      ],
+      language: 'de',
+      country: 'de',
     });
   }
 

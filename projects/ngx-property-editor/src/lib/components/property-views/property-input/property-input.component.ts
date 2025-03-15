@@ -74,4 +74,5 @@ export class PropertyInputComponent {
     this.onValueChanged(undefined);
   }
 
+  protected readonly undefined = undefined;
 }

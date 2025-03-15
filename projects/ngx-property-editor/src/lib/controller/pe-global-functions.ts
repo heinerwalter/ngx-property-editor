@@ -72,8 +72,8 @@ export module PEGlobalFunctions {
    */
   export function evaluateDisplayPropertyName(displayPropertyName: string | undefined,
                                               item: any | undefined): string {
-    if (!item || typeof item !== 'object') return '';
-    if (!displayPropertyName) return item.toString();
+    if (!item || typeof item !== 'object' || !displayPropertyName)
+      return item?.toString() ?? '';
     return item[displayPropertyName]?.toString() || '';
   }
 

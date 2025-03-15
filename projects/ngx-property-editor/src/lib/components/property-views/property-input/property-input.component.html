@@ -94,6 +94,36 @@
     </pe-text-area-input>
   </ng-container>
 
+  <ng-container *ngIf="configuration.propertyType == 'language'">
+    <pe-language-input [id]="configuration.propertyName || id"
+                       [name]="configuration.propertyName"
+                       [noFormGroup]="noFormGroup"
+                       [label]="configuration.getLabel(data, mode)"
+                       [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
+                       [readonly]="readonly"
+                       [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                       [required]="configuration.isRequired(data, mode)"
+                       [multiple]="configuration.isArray"
+                       [value]="configuration.getValue(data, mode)"
+                       (valueChange)="onValueChanged($event)">
+    </pe-language-input>
+  </ng-container>
+
+  <ng-container *ngIf="configuration.propertyType == 'country'">
+    <pe-country-input [id]="configuration.propertyName || id"
+                      [name]="configuration.propertyName"
+                      [noFormGroup]="noFormGroup"
+                      [label]="configuration.getLabel(data, mode)"
+                      [placeholder]="noFormGroup ? configuration.getLabel(data, mode) : undefined"
+                      [readonly]="readonly"
+                      [disabled]="!readonly && !configuration.isEditable(data, mode)"
+                      [required]="configuration.isRequired(data, mode)"
+                      [multiple]="configuration.isArray"
+                      [value]="configuration.getValue(data, mode)"
+                      (valueChange)="onValueChanged($event)">
+    </pe-country-input>
+  </ng-container>
+
   <ng-container *ngIf="configuration.propertyType == 'rating'">
     <pe-rating-input [id]="configuration.propertyName || id"
                      [name]="configuration.propertyName"

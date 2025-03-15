@@ -34,7 +34,9 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "bootstrap": "^5.3.3",
-    "chardet": "^2.0.0"
+    "chardet": "^2.0.0",
+    "i18n-iso-countries": "^7.14.0",
+    "@cospired/i18n-iso-languages": "^4.2.0"
   },
   "dependencies": {
     "tslib": "^2.6.3"

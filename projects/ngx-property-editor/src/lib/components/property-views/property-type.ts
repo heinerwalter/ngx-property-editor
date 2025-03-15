@@ -30,13 +30,18 @@ export type PropertyType =
   'tel' |
   /** Internally a string property edited using an email address input. */
   'email' |
+  /** ISO 639 language code (two character string).
+   *  Language is displayed using the https://www.npmjs.com/package/language-icons (see `LanguageIconComponent`). */
+  'language' |
+  /** ISO 3166 country code (string, either the two or three character code or the full country name). */
+  'country' |
   /** Internally a string property edited using a URL input. */
   'url' |
   /** Internally a string property edited using a color picker. */
   'color' |
-  /** Star rating. */
+  /** Star rating (positive integer value). */
   'rating' |
-  /** Difficulty icon rating. */
+  /** Difficulty icon rating (positive integer value). */
   'difficulty' |
   /** Select an item from a `dataSource`. */
   'select' |
@@ -105,6 +110,8 @@ export function propertyTypeIsString(propertyType: PropertyType): boolean {
     case 'string-multiline':
     case 'tel':
     case 'email':
+    case 'language':
+    case 'country':
     case 'url':
     case 'color':
     case 'password':

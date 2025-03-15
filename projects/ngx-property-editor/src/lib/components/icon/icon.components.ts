@@ -8,6 +8,7 @@ import { PlusIconComponent } from './plus-icon/plus-icon.component';
 import { QuestionIconComponent } from './question-icon/question-icon.component';
 import { ValidityIconComponent } from './validity-icon/validity-icon.component';
 import { XMarkIconComponent } from './xmark-icon/xmark-icon.component';
+import { LanguageIconComponent } from './language-icon/language-icon.component';
 
 export const iconComponents: Array<Type<any> | any[]> = [
   CheckIconComponent,
@@ -19,4 +20,5 @@ export const iconComponents: Array<Type<any> | any[]> = [
   QuestionIconComponent,
   ValidityIconComponent,
   XMarkIconComponent,
+  LanguageIconComponent,
 ];
