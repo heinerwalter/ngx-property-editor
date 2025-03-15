@@ -24,6 +24,6 @@ export class LanguageIconComponent extends IconBaseComponent {
    */
   protected static readonly iconComponentTemplate: string =
     IconBaseComponent.generateIconComponentTemplate(
-      `<img *ngIf="language" class="language-flag" alt="{{ languageName || '' }}" src="https://unpkg.com/language-icons/icons/{{ language }}.svg" />`);
+      `<img *ngIf="language" class="language-flag" style="height: 2em;" alt="{{ languageName || '' }}" src="https://unpkg.com/language-icons/icons/{{ language }}.svg" />`);
 
 }
