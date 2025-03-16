@@ -19,7 +19,7 @@ export * from './lib/components/bootstrap/item-views/pages/pages.component';
 export * from './lib/components/bootstrap/item-views/pages-item/pages-item.component';
 export * from './lib/components/bootstrap/item-views/tabs/tabs.component';
 export * from './lib/components/bootstrap/item-views/tabs-item/tabs-item.component';
-export * from './lib/components/bootstrap/navbar/types';
+export * from './lib/components/bootstrap/navbar/types.d';
 export * from './lib/components/bootstrap/navbar/navbar/navbar.component';
 export * from './lib/components/bootstrap/navbar/navbar-item/navbar-item.component';
 // - icon
@@ -81,9 +81,9 @@ export * from './lib/components/property-views/view-and-edit-container/view-and-
 
 // Services:
 export * from './lib/services/interaction-service/interaction.service';
-export * from './lib/services/interaction-service/types';
+export * from './lib/services/interaction-service/types.d';
 export * from './lib/services/loading-service/loading.service';
-export * from './lib/services/loading-service/types';
+export * from './lib/services/loading-service/types.d';
 
 // Controller:
 export * from './lib/controller/benchmark-timer';

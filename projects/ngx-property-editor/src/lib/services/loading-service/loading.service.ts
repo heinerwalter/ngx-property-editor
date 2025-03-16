@@ -1,7 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BenchmarkTimer } from '../../controller/benchmark-timer';
-import { LoadingOptions } from './types';
+import { LoadingOptions } from './types.d';
 
 
 /**
