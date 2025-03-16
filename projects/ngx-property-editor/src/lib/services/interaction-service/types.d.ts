@@ -2,6 +2,9 @@
  * This file contains type definitions used by the `InteractionService`.
  */
 
+import { SweetAlertInput } from 'sweetalert2';
+
+
 /**
  * Toast type (info, success, warning or error).
  */
