@@ -17,6 +17,6 @@ export const bootstrapComponents: Array<Type<any> | any[]> = [
   CollapseComponent,
   ColumnComponent,
   DropdownButtonComponent,
-  LoginPageComponent,
+  LoginPageComponent, 
   RowComponent,
 ];

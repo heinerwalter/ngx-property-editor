@@ -1,0 +1,8 @@
+<swal #sweetalert
+      [title]="title"
+      [icon]="type"
+      [swalOptions]="options">
+  <div *swalPortal="undefined">
+    <ng-content></ng-content>
+  </div>
+</swal>

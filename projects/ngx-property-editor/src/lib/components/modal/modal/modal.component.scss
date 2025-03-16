@@ -1,0 +1,9 @@
+.modal-content,
+.modal-header,
+.modal-footer {
+  border-radius: 0;
+}
+
+.modal-content .modal-header .btn-close {
+  margin-right: -3px;
+}

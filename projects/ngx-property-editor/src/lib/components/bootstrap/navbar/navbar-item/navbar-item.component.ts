@@ -6,7 +6,7 @@ import { NavbarItem, NavbarItemMode } from '../types';
 
 
 @Component({
-  selector: 'app-navbar-item',
+  selector: 'pe-navbar-item',
   templateUrl: './navbar-item.component.html',
   styleUrls: ['./navbar-item.component.scss'],
 })

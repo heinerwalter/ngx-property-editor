@@ -6,7 +6,7 @@ import { PagesService } from '../../../services/pages-service/pages.service';
 import { NavbarItem } from '../types';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'pe-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })

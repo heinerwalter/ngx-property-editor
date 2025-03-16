@@ -1,0 +1,50 @@
+<app-modal *ngIf="version"
+           [title]="version.appTitle"
+           type="info">
+  <div class="about-dialog-content">
+    <p>
+      <fa-icon [icon]="iconCopyright"></fa-icon>
+      <span>{{version.copyright}}</span>
+    </p>
+    <p>
+      <fa-icon [icon]="iconVersion"></fa-icon>
+      <span>Version {{version.version}}</span>
+    </p>
+    <p>
+      <fa-icon [icon]="iconBuildDate"></fa-icon>
+      <span>Gebaut am {{version.buildDate | date: 'dd.MM.yyyy HH:MM'}}</span>
+    </p>
+    <ng-container *ngIf="!version.isRelease">
+      <p>
+        <fa-icon [icon]="iconCommit"></fa-icon>
+        <span>Commit: {{version.gitCommit}}</span>
+      </p>
+    </ng-container>
+    <p *ngIf="version.databaseInfo">
+      <fa-icon [icon]="iconDatabase"></fa-icon>
+      <span>Datenbank: {{version.databaseInfo}}</span>
+    </p>
+    <p *ngIf="version.connectionInfo">
+      <fa-icon [icon]="iconConnection"></fa-icon>
+      <span>Verbunden mit: {{version.connectionInfo}}</span>
+    </p>
+    </ng-container>
+    <ng-container *ngIf="version.isDevMode">
+      <p>
+        <fa-icon [icon]="iconDevMode" flip="horizontal"></fa-icon>
+        <span>Entwicklungsmodus</span>
+        <fa-icon [icon]="iconDevMode"></fa-icon>
+      </p>
+    </ng-container>
+    <p>
+      <fa-icon [icon]="iconEmail"></fa-icon>
+      <a href="mailto:{{version.authorEmail}}?subject=Feedback zu {{version.appTitle}}&body="
+      >Fehler, Wünsche, Feedback teilen&hellip;</a>
+    </p>
+    <p *ngIf="version.websiteUrl">
+      <fa-icon [icon]="iconWebsite"></fa-icon>
+      <a href="version.websiteUrl" target="_blank"
+      >{{ version.websiteTitle || 'Herstellerwebsite'}} öffnen&hellip;</a>
+    </p>
+  </div>
+</app-modal>

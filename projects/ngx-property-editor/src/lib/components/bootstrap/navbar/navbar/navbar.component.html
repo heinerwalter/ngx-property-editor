@@ -7,16 +7,16 @@
         <ul class="nav">
 
           <ng-container *ngIf="homeItem">
-            <app-navbar-item [item]="homeItem"
-                             mode="icon-or-text"
-                             class="nav-link-home">
-            </app-navbar-item>
+            <pe-navbar-item [item]="homeItem"
+                            mode="icon-or-text"
+                            class="nav-link-home">
+            </pe-navbar-item>
           </ng-container>
 
           <ng-container *ngFor="let item of items">
-            <app-navbar-item [item]="item"
-                             mode="text">
-            </app-navbar-item>
+            <pe-navbar-item [item]="item"
+                            mode="text">
+            </pe-navbar-item>
           </ng-container>
 
         </ul>
