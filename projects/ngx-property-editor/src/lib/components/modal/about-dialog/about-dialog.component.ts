@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { VersionInfo } from './version-info';
 import { ModalComponent } from '../modal.component';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
