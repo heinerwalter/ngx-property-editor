@@ -1,0 +1,76 @@
+<ng-container *ngIf="item">
+<ng-container *ngIf="!item.submenu?.length">
+  <li class="nav-item">
+
+    <a class="nav-link"
+       [id]="id"
+       [routerLink]="item.routerLink"
+       routerLinkActive="active"
+       [ngbTooltip]="showTitle ? undefined : item.title">
+      <fa-icon *ngIf="item.icon && showIcon" [icon]="item.icon"></fa-icon>
+      <span *ngIf="item.title && showTitle"
+            [class]="item.icon && mode == 'icon-and-text-on-wide-screen' ? 'd-none d-lg-inline' : ''">
+        {{item.title}}
+      </span>
+    </a>
+
+  </li>
+</ng-container>
+
+<ng-container *ngIf="item.submenu?.length">
+  <li ngbDropdown
+      #dropdownButton="ngbDropdown"
+      class="nav-item"
+      (focus)="onDropdownOpen(dropdownButton)"
+      (mouseenter)="onDropdownOpen(dropdownButton)"
+      (mouseleave)="onDropdownClose(dropdownButton, true)">
+
+    <a ngbDropdownAnchor
+       class="nav-link"
+       [id]="id"
+       [routerLink]="item.routerLink"
+       routerLinkActive="active"
+       [ngbTooltip]="showTitle ? undefined : item.title">
+      <fa-icon *ngIf="item.icon && showIcon" [icon]="item.icon"></fa-icon>
+      <span *ngIf="item.title && showTitle"
+            [class]="item.icon && mode == 'icon-and-text-on-wide-screen' ? 'd-none d-lg-inline' : ''">
+        {{title}}
+      </span>
+    </a>
+
+    <ul ngbDropdownMenu
+        *ngIf="item.submenu.length"
+        [attr.aria-labelledby]="id">
+      <ng-container *ngFor="let item of item.submenu">
+        <ng-container [ngTemplateOutlet]="templateDropdownItem"
+                      [ngTemplateOutletContext]="{ item: item }">
+        </ng-container>
+      </ng-container>
+    </ul>
+
+  </li>
+</ng-container>
+</ng-container>
+
+
+<ng-template #templateDropdownItem let-item="item">
+  <li ngbDropdownItem>
+    <hr *ngIf="item.separator" class="dropdown-divider">
+    <a *ngIf="!item.separator"
+       class="nav-link dropdown-item-link"
+       [routerLink]="item.routerLink"
+       routerLinkActive="active"
+       (click)="$event.stopPropagation()">
+      <!--<fa-icon *ngIf="item.icon" [icon]="item.icon" style="padding-right: 0.5em"></fa-icon>-->
+      <span *ngIf="item.title">{{item.title}}</span>
+    </a>
+    <ul *ngIf="item.submenu?.length"
+        class="dropdown-menu dropdown-submenu">
+      <ng-container *ngFor="let submenuItem of item.submenu">
+        <ng-container [ngTemplateOutlet]="templateDropdownItem"
+                      [ngTemplateOutletContext]="{ item: submenuItem }">
+        </ng-container>
+      </ng-container>
+    </ul>
+  </li>
+</ng-template>

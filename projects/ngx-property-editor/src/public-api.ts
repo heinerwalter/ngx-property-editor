@@ -19,6 +19,9 @@ export * from './lib/components/bootstrap/item-views/pages/pages.component';
 export * from './lib/components/bootstrap/item-views/pages-item/pages-item.component';
 export * from './lib/components/bootstrap/item-views/tabs/tabs.component';
 export * from './lib/components/bootstrap/item-views/tabs-item/tabs-item.component';
+export * from './lib/components/bootstrap/navbar/types';
+export * from './lib/components/bootstrap/navbar/navbar/navbar.component';
+export * from './lib/components/bootstrap/navbar/navbar-item/navbar-item.component';
 // - icon
 export * from './lib/components/icon/check-icon/check-icon.component';
 export * from './lib/components/icon/exclamation-icon/exclamation-icon.component';
