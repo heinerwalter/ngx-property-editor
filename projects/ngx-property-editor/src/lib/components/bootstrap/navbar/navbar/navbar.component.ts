@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AdminService } from '../../../services/admin-service/admin.service';
 import { faLock, faLockOpen, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Page } from '../../../model/settings/pages/page';
-import { PagesService } from '../../../services/pages-service/pages.service';
 import { NavbarItem } from '../types';
 
 @Component({
