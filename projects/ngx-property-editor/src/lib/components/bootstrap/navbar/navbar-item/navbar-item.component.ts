@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PEGlobalFunctions } from '../../../../controller/pe-global-functions';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { NavbarItem, NavbarItemMode } from '../types.d';
+import { NavbarItem, NavbarItemMode } from '../types';
 
 
 @Component({

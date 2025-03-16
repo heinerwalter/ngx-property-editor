@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GlobalConfig } from 'ngx-toastr/toastr/toastr-config';
 import sweetalert, { SweetAlertIcon, SweetAlertInput, SweetAlertResult } from 'sweetalert2';
-import { ToastType, ToastOptions, AlertOptions, FullAlertOptions } from './types.d';
+import { ToastType, ToastOptions, AlertOptions, FullAlertOptions } from './types';
 
 
 /**
