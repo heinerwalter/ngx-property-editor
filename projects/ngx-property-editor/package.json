@@ -29,14 +29,18 @@
     "@angular/forms": "^17.3.12",
     "@angular/router": "^17.3.12",
     "@angular/localize": "^17.3.12",
+    "@cospired/i18n-iso-languages": "^4.2.0", 
     "@fortawesome/angular-fontawesome": "~0.14.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@sweetalert2/ngx-sweetalert2": "^12.4.0", 
     "bootstrap": "^5.3.3",
     "chardet": "^2.0.0",
     "i18n-iso-countries": "^7.14.0",
-    "@cospired/i18n-iso-languages": "^4.2.0"
+    "ngx-toastr": "^19.0.0", 
+    "rxjs": "^7.8.2",
+    "sweetalert2": "^11.14.5" 
   },
   "dependencies": {
     "tslib": "^2.6.3"

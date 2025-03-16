@@ -72,7 +72,14 @@ export * from './lib/components/property-views/table/table.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
 
-// Others:
+// Services:
+export * from './lib/services/interaction-service/interaction.service';
+export * from './lib/services/interaction-service/types';
+export * from './lib/services/loading-service/loading.service';
+export * from './lib/services/loading-service/types';
+
+// Controller:
+export * from './lib/controller/benchmark-timer';
 export * from './lib/controller/pe-global-functions';
 export * from './lib/controller/stringifier';
 export * from './lib/controller/text-file-reader';
