@@ -34,12 +34,11 @@
       <fa-icon *ngIf="item.icon && showIcon" [icon]="item.icon"></fa-icon>
       <span *ngIf="item.title && showTitle"
             [class]="item.icon && mode == 'icon-and-text-on-wide-screen' ? 'd-none d-lg-inline' : ''">
-        {{title}}
+        {{item.title}}
       </span>
     </a>
 
     <ul ngbDropdownMenu
-        *ngIf="item.submenu.length"
         [attr.aria-labelledby]="id">
       <ng-container *ngFor="let item of item.submenu">
         <ng-container [ngTemplateOutlet]="templateDropdownItem"

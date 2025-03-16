@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
+import { PEGlobalFunctions } from '../../../../controller/pe-global-functions';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarItem, NavbarItemMode } from '../types';
 
@@ -40,7 +40,7 @@ export class NavbarItemComponent {
    */
   protected get showTitle(): boolean {
     return this.mode == 'text' || this.mode == 'icon-and-text' || this.mode == 'icon-and-text-on-wide-screen' ||
-      (this.mode == 'icon-or-text' && !this.icon);
+      (this.mode == 'icon-or-text' && !this.item?.icon);
   }
 
   // region Dropdown

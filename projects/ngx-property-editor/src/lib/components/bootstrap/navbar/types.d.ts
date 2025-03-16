@@ -2,6 +2,8 @@
  * This file contains types used by the navication bar components.
  */
 
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
 
 /**
  * Type of the display mode of the `NavbarItemComponent`.
