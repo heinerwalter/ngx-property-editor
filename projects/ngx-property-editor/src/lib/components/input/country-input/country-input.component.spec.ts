@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CountryInputComponent } from './country-input.component';
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../form-group/form-group.component';
+import { SelectInputComponent } from '../select-input/select-input.component';
 
 describe('CountryInputComponent', () => {
   let component: CountryInputComponent;
@@ -13,6 +14,7 @@ describe('CountryInputComponent', () => {
       imports: [FormsModule],
       declarations: [
         CountryInputComponent,
+        SelectInputComponent,
         FormGroupComponent,
       ],
     })
