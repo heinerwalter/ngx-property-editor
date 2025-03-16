@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LanguageIconComponent } from './language-icon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('LanguageIconComponent', () => {
   let component: LanguageIconComponent;
@@ -8,7 +10,11 @@ describe('LanguageIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LanguageIconComponent]
+      declarations: [LanguageIconComponent],
+      import: [
+       NgbModule,
+       FontAwesomeTestingModule,
+      ],
     })
     .compileComponents();
 
