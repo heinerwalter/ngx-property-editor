@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ToastrModule } from 'ngx-toastr';
 
 import { components } from './components/components';
 
@@ -14,11 +15,15 @@ import { components } from './components/components';
     ...components,
   ],
   imports: [
+    // Angular modules:
     CommonModule,
-    FormsModule,
-    RouterModule,
-    NgbModule,
-    FontAwesomeModule,
+    FormsModule, // Angular forms
+    RouterModule, // Angular router
+    // 3rd party modules:
+    FontAwesomeModule, // FontAwesome
+    NgbModule, // Bootstrap
+    ToastrModule, // Toastr
+    SweetAlert2Module, // SweetAlert2
   ],
   exports: [
     ...components,
