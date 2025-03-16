@@ -11,7 +11,7 @@ describe('LanguageIconComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LanguageIconComponent],
-      import: [
+      imports: [
        NgbModule,
        FontAwesomeTestingModule,
       ],
