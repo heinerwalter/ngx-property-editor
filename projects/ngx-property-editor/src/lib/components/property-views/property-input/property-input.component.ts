@@ -41,7 +41,6 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'pe-property-input',
   templateUrl: './property-input.component.html',
-  styleUrls: ['./property-input.component.scss'],
 })
 export class PropertyInputComponent implements OnInit, OnChanges {
 
