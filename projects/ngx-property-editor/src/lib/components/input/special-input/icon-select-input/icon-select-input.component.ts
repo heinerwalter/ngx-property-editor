@@ -1,6 +1,6 @@
-import { Component, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { InputBaseWithValue } from '../../input-base';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { SelectInputBase } from '../../input-base';
 import { getIconDataSource } from './fa-icon-data-source';
 import { PEGlobalFunctions } from '../../../../controller/pe-global-functions';
 
@@ -14,10 +14,7 @@ import { PEGlobalFunctions } from '../../../../controller/pe-global-functions';
   templateUrl: './icon-select-input.component.html',
   styleUrls: ['./icon-select-input.component.scss'],
 })
-export class IconSelectInputComponent extends InputBaseWithValue<string> implements OnChanges {
-
-  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
-  @Input() public allowEmpty: boolean = false;
+export class IconSelectInputComponent extends SelectInputBase<string> implements OnChanges {
 
   /**
    * An array of selectable icons.
@@ -44,7 +41,7 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * The FontAwesome icon definition of the newly selected icon is passed as event argument.
    */
   @Output() public readonly iconChange: EventEmitter<IconDefinition | undefined> = new EventEmitter<IconDefinition | undefined>();
-  
+
   public constructor() {
     super();
     this.assignDefaultDataSource();
@@ -71,7 +68,8 @@ export class IconSelectInputComponent extends InputBaseWithValue<string> impleme
    * Updates the `icon` property from the current `value`.
    */
   private updateIconFromValue(): void {
-    this.icon = this.value ? PEGlobalFunctions.getFontAwesomeIconDefinition(this.value) : undefined;
+    this.icon = typeof this.value === 'string' && this.value ? PEGlobalFunctions.getFontAwesomeIconDefinition(this.value) : undefined;
     this.iconChange.emit(this.icon);
   }
+
 }

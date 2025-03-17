@@ -5,11 +5,10 @@ import { FormTextComponent } from './form-text/form-text.component';
 import { InputGroupComponent } from './input-group/input-group.component';
 import { InputGroupTextComponent } from './input-group-text/input-group-text.component';
 
-import { InputBase, InputBaseWithValue, InputBaseWithValueAndDataSource } from './input-base';
-
 import { specialInputComponents } from './special-input/special-input.components';
 
 import { BooleanInputComponent } from './boolean-input/boolean-input.component';
+import { ButtonInputComponent } from './button-input/button-input.component';
 import { CheckboxSelectInputComponent } from './checkbox-select-input/checkbox-select-input.component';
 import { CodeInputComponent } from './code-input/code-input.component';
 import { DateInputComponent } from './date-input/date-input.component';
@@ -23,8 +22,6 @@ import { SingleRadioInputComponent } from './single-radio-input/single-radio-inp
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
 import { TextInputComponent } from './text-input/text-input.component';
 import { DropdownInputComponent } from './dropdown-input/dropdown-input.component';
-import { LanguageInputComponent } from './language-input/language-input.component';
-import { CountryInputComponent } from './country-input/country-input.component';
 
 export const inputComponents: Array<Type<any> | any[]> = [
   ArrayFormGroupComponent,
@@ -33,21 +30,16 @@ export const inputComponents: Array<Type<any> | any[]> = [
   InputGroupComponent,
   InputGroupTextComponent,
 
-  InputBase,
-  InputBaseWithValue,
-  InputBaseWithValueAndDataSource,
-
   ...specialInputComponents,
 
   BooleanInputComponent,
+  ButtonInputComponent,
   CheckboxSelectInputComponent,
   CodeInputComponent,
-  CountryInputComponent,
   DateInputComponent,
   DifficultyInputComponent,
   DropdownInputComponent,
   FileInputComponent,
-  LanguageInputComponent,
   NumberInputComponent,
   RadioInputComponent,
   RatingInputComponent,

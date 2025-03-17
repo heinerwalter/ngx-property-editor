@@ -41,7 +41,7 @@ export class ButtonComponent implements OnInit, OnChanges {
 
   /**
    * If `true`, the bootstrap button class `.btn` is not added to this button.
-   * Instead you can define the whole button class on your own by assigning it
+   * Instead, you can define the whole button class on your own by assigning it
    * to the `buttonClass` property.
    */
   @Input() public removeBtnButtonClass: boolean = false;

@@ -41,14 +41,13 @@ export * from './lib/components/input/form-text/form-text.component';
 export * from './lib/components/input/input-group/input-group.component';
 export * from './lib/components/input/input-group-text/input-group-text.component';
 export * from './lib/components/input/boolean-input/boolean-input.component';
+export * from './lib/components/input/button-input/button-input.component';
 export * from './lib/components/input/checkbox-select-input/checkbox-select-input.component';
 export * from './lib/components/input/code-input/code-input.component';
-export * from './lib/components/input/country-input/country-input.component';
 export * from './lib/components/input/date-input/date-input.component';
 export * from './lib/components/input/difficulty-input/difficulty-input.component';
 export * from './lib/components/input/dropdown-input/dropdown-input.component';
 export * from './lib/components/input/file-input/file-input.component';
-export * from './lib/components/input/language-input/language-input.component';
 export * from './lib/components/input/number-input/number-input.component';
 export * from './lib/components/input/radio-input/radio-input.component';
 export * from './lib/components/input/rating-input/rating-input.component';
@@ -58,7 +57,9 @@ export * from './lib/components/input/text-area-input/text-area-input.component'
 export * from './lib/components/input/text-input/text-input.component';
 // - special input
 export * from './lib/components/input/special-input/color-select-input/color-select-input.component';
+export * from './lib/components/input/special-input/country-input/country-select-input.component';
 export * from './lib/components/input/special-input/icon-select-input/icon-select-input.component';
+export * from './lib/components/input/special-input/language-input/language-select-input.component';
 // - modal
 export * from './lib/components/modal/modal/modal.component';
 export * from './lib/components/modal/about-dialog/about-dialog.component';

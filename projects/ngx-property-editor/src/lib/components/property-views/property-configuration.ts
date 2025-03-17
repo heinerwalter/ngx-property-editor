@@ -27,6 +27,11 @@ export type PropertyConfigurationConstructorParameter = {
   propertyName?: string,
   /** If defined this text is used instead of the `propertyName` as label. */
   label?: ValueOrFunctionType<string>,
+  /**
+   * An optional text which describes the meaning of this property.
+   * In the property editor the `helpText` is displayed below the input element.
+   */
+  helpText?: string | undefined,
 
   /** Type of the property. Used for choosing an input component. */
   propertyType?: PropertyType,
@@ -180,6 +185,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
 
   public propertyName?: string = undefined;
   public label?: ValueOrFunctionType<string> = undefined;
+  public helpText?: string | undefined = undefined;
 
   public propertyType?: PropertyType = undefined;
 
@@ -196,7 +202,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public required?: ValueOrFunctionType<boolean> = undefined;
 
   public routerLink?: ValueOrFunctionType<any[] | string | undefined> = undefined;
-  public routerLinkIsExternal?: ValueOrFunctionType<boolean | undefined> = undefined;
+  public routerLinkIsExternal?: ValueOrFunctionType<boolean> = undefined;
   public routerLinkTooltip?: ValueOrFunctionType<string | undefined> = undefined;
 
   public md?: ValueOrFunctionType<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined> = undefined;
@@ -430,6 +436,21 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   }
 
   /**
+   * For use with `propertyType == 'text'` etc.:
+   * Evaluates the `dataSource` configuration and applies the `displayPropertyName`
+   * on each data source item to get an array of strings which can be used as autocomplete list
+   * for text input elements.
+   * @param data The data object. Undefined is passed for empty or multiple objects.
+   * @param mode Property editor mode.
+   * @returns An array from which the user can select an item.
+   */
+  public getDataSourceDisplayValues(data: any | undefined, mode: PropertyEditorMode): string[] {
+    const dataSource = this.getDataSource(data, mode);
+    if (!dataSource?.length) return [];
+    return dataSource.map(item => PEGlobalFunctions.evaluateDisplayPropertyName(this.displayPropertyName, item))
+  }
+
+  /**
    * Gets whether this property should be hidden based on `hidden`, `hideIfEmpty` and the value.
    * @param data The data object. Undefined is passed for empty or multiple objects.
    * @param mode Property editor mode.
@@ -515,11 +536,11 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param mode Property editor mode.
    * @returns True if the router link points to an external site.
    */
-  public getRouterLinkIsExternal(data: any | undefined, mode: PropertyEditorMode): boolean | undefined {
+  public getRouterLinkIsExternal(data: any | undefined, mode: PropertyEditorMode): boolean {
     if (typeof this.routerLinkIsExternal === 'function') {
       return this.routerLinkIsExternal(data, mode);
     } else {
-      return this.routerLinkIsExternal;
+      return this.routerLinkIsExternal || false;
     }
   }
 

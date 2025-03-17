@@ -5,7 +5,7 @@
          [class.is-invalid]="isValid == false"
          [id]="id"
          [name]="name || id"
-         [disabled]="disabled"
+         [disabled]="disabled || readonly"
          [readonly]="readonly"
          [value]="option"
          [(ngModel)]="value"

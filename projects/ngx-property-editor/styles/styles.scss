@@ -10,3 +10,8 @@
 .circle-icon + .circle-icon {
   padding-left: 0.5em;
 }
+
+// Display readonly radio buttons like non-disabled radio buttons
+.form-check-input[readonly]:disabled {
+  opacity: 1;
+}

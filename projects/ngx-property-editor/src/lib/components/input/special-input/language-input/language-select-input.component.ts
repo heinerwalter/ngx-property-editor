@@ -1,19 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InputBaseWithValue } from '../input-base';
+import { SelectInputBase } from '../../input-base';
 import * as languages from '@cospired/i18n-iso-languages';
 
 @Component({
   selector: 'pe-language-input',
-  templateUrl: './language-input.component.html',
-  styleUrls: ['./language-input.component.scss'],
+  templateUrl: './language-select-input.component.html',
+  styleUrls: ['./language-select-input.component.scss'],
 })
-export class LanguageInputComponent extends InputBaseWithValue<string> implements OnInit {
-
-  /** If true, multiple items can be selected. */
-  @Input() public multiple: boolean = false;
-
-  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
-  @Input() public allowEmpty: boolean = false;
+export class LanguageSelectInputComponent extends SelectInputBase<string> implements OnInit {
 
   /**
    * Optional: Add this class to the select element.
@@ -30,9 +24,9 @@ export class LanguageInputComponent extends InputBaseWithValue<string> implement
   }
 
   public ngOnInit(): void {
-    if (!LanguageInputComponent.staticDataSource.length)
-      LanguageInputComponent.initializeDataSource();
-    this.dataSource = LanguageInputComponent.staticDataSource;
+    if (!LanguageSelectInputComponent.staticDataSource.length)
+      LanguageSelectInputComponent.initializeDataSource();
+    this.dataSource = LanguageSelectInputComponent.staticDataSource;
   }
 
   // region Static data source (generates only once)

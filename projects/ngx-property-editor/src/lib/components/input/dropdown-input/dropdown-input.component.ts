@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { InputBaseWithValueAndDataSource } from '../input-base';
+import { SelectInputBaseWithDataSource } from '../input-base';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
@@ -8,7 +8,7 @@ import { PlacementArray } from '@ng-bootstrap/ng-bootstrap/util/positioning';
   templateUrl: './dropdown-input.component.html',
   styleUrls: ['./dropdown-input.component.scss'],
 })
-export class DropdownInputComponent extends InputBaseWithValueAndDataSource<any | any[]> {
+export class DropdownInputComponent extends SelectInputBaseWithDataSource<any> {
 
   /**
    * Define the bootstrap button style class of the dropdown button (e.g. "btn-primary") here.
@@ -39,8 +39,8 @@ export class DropdownInputComponent extends InputBaseWithValueAndDataSource<any 
    */
   @Input() public placement: PlacementArray | undefined = undefined;
 
-  /** If true, multiple items can be selected. */
-  @Input() public multiple: boolean = false;
+  /** The `allowEmpty input property has no effect on this component. */
+  public override readonly allowEmpty: boolean = false;
 
   public constructor() {
     super();

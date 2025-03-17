@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { InputBaseWithValue } from '../../input-base';
+import { SelectInputBase } from '../../input-base';
 
 /**
  * This component provides a simplified select field for selecting color classes.
@@ -12,10 +12,7 @@ import { InputBaseWithValue } from '../../input-base';
   templateUrl: './color-select-input.component.html',
   styleUrls: ['./color-select-input.component.scss'],
 })
-export class ColorSelectInputComponent extends InputBaseWithValue<string> implements OnChanges {
-
-  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
-  @Input() public allowEmpty: boolean = false;
+export class ColorSelectInputComponent extends SelectInputBase<string> implements OnChanges {
 
   /**
    * An array of selectable color classes.

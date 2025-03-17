@@ -68,6 +68,7 @@ export class BooleanInputComponent extends InputBaseWithValue<boolean> implement
     }
     if (changes.hasOwnProperty('indeterminateLabel')) {
       this.indeterminateOption = { value: undefined, name: this.indeterminateLabel || 'Keine Angabe' };
+      if (this.allowIndeterminate)
       updateRadioInputDataSource = true;
     }
 

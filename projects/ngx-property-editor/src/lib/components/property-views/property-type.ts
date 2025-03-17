@@ -30,15 +30,19 @@ export type PropertyType =
   'tel' |
   /** Internally a string property edited using an email address input. */
   'email' |
+  /** Internally a string property edited using a URL input. */
+  'url' |
   /** ISO 639 language code (two character string).
    *  Language is displayed using the https://www.npmjs.com/package/language-icons (see `LanguageIconComponent`). */
   'language' |
   /** ISO 3166 country code (string, either the two or three character code or the full country name). */
   'country' |
-  /** Internally a string property edited using a URL input. */
-  'url' |
   /** Internally a string property edited using a color picker. */
   'color' |
+  /** Internally a string property edited using a select input for selecting predefined bootstrap color classes. */
+  'color-class' |
+  /** Internally a string property edited using a select input for selecting FontAwesome icons. */
+  'icon' |
   /** Star rating (positive integer value). */
   'rating' |
   /** Difficulty icon rating (positive integer value). */
@@ -46,25 +50,75 @@ export type PropertyType =
   /** Select an item from a `dataSource`. */
   'select' |
   /**
-   * A button triggering the `setValueFunction`.
+   * A button triggering the `setValueFunction` or the `routerLink` (if `setValueFunction == undefined`).
    * The `label` is displayed as button text,
    * the `routerLinkTooltip` is displayed as button tooltip,
    * and the button is enabled when `editable`.
    */
   'button';
 
+
+/**
+ * Possible property value data types of property configurations.
+ * Different `PropertyType`s share the same `PropertyValueDataType`
+ * but use different visualizations.
+ * @see getPropertyTypeDataType
+ */
+export type PropertyValueDataType = 'boolean' | 'date' | 'number' | 'string';
+
+/**
+ * Returns the property value data type of properties with the given property type.
+ * Different `PropertyType`s share the same `PropertyValueDataType`
+ * but use different visualizations.
+ * There are some property types ('select' and 'button') which cannot be mapped to
+ * a fixed property value data type. Thus, they return undefined.
+ * @param propertyType A property type.
+ * @returns A property value data type.
+ */
+export function getPropertyValueDataType(propertyType: PropertyType): PropertyValueDataType | undefined {
+  switch (propertyType) {
+    case 'boolean':
+    case 'boolean-indeterminate':
+      return 'boolean';
+
+    case 'date':
+    case 'datetime':
+    case 'time':
+    case 'month':
+      return 'date';
+
+    case 'number':
+    case 'rating':
+    case 'difficulty':
+    case 'year':
+      return 'number';
+
+    case 'string':
+    case 'id':
+    case 'string-multiline':
+    case 'password':
+    case 'tel':
+    case 'email':
+    case 'url':
+    case 'language':
+    case 'country':
+    case 'color':
+    case 'color-class':
+    case 'icon':
+      return 'string';
+
+    case 'select':
+    case 'button':
+      return undefined;
+  }
+}
+
 /**
  * Returns true, if the given property type requires boolean values.
  * @param propertyType A property type.
  */
 export function propertyTypeIsBoolean(propertyType: PropertyType): boolean {
-  switch (propertyType) {
-    case 'boolean':
-    case 'boolean-indeterminate':
-      return true;
-    default:
-      return false;
-  }
+  return getPropertyValueDataType(propertyType) == 'boolean';
 }
 
 /**
@@ -72,15 +126,7 @@ export function propertyTypeIsBoolean(propertyType: PropertyType): boolean {
  * @param propertyType A property type.
  */
 export function propertyTypeIsDate(propertyType: PropertyType): boolean {
-  switch (propertyType) {
-    case 'date':
-    case 'datetime':
-    case 'time':
-    case 'month':
-      return true;
-    default:
-      return false;
-  }
+  return getPropertyValueDataType(propertyType) == 'date';
 }
 
 /**
@@ -88,15 +134,7 @@ export function propertyTypeIsDate(propertyType: PropertyType): boolean {
  * @param propertyType A property type.
  */
 export function propertyTypeIsNumber(propertyType: PropertyType): boolean {
-  switch (propertyType) {
-    case 'number':
-    case 'rating':
-    case 'difficulty':
-    case 'year':
-      return true;
-    default:
-      return false;
-  }
+  return getPropertyValueDataType(propertyType) == 'number';
 }
 
 /**
@@ -104,21 +142,7 @@ export function propertyTypeIsNumber(propertyType: PropertyType): boolean {
  * @param propertyType A property type.
  */
 export function propertyTypeIsString(propertyType: PropertyType): boolean {
-  switch (propertyType) {
-    case 'string':
-    case 'id':
-    case 'string-multiline':
-    case 'tel':
-    case 'email':
-    case 'language':
-    case 'country':
-    case 'url':
-    case 'color':
-    case 'password':
-      return true;
-    default:
-      return false;
-  }
+  return getPropertyValueDataType(propertyType) == 'string';
 }
 
 /**

@@ -1,0 +1,28 @@
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
+
+<ng-template #contentTemplate>
+  <button ngb-btn
+          [buttonClass]="isValid == true ? 'btn-success' : isValid == false ? 'btn-danger' : 'btn-primary'"
+          style="display: block; width: 100%;"
+          [id]="id"
+          [name]="name || id"
+          [disabled]="disabled || readonly"
+          [text]="label"
+          [ngbTooltip]="tooltip"
+          (click)="onButtonClick($event)">
+  </button>
+</ng-template>

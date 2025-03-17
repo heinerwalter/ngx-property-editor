@@ -759,6 +759,8 @@ export module Stringifier {
       case 'email':
       case 'url':
       case 'color':
+      case 'color-class':
+      case 'icon':
         return value?.toString();
 
       case 'password':

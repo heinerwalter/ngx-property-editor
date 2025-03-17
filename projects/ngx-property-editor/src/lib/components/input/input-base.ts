@@ -1,10 +1,15 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
+import {
+  IInputBaseProperties,
+  IInputBaseWithValueAndDataSourceProperties,
+  IInputBaseWithValueProperties, ISelectInputBaseProperties,
+} from './input-base.interface';
 
 @Component({
   template: '',
 })
-export class InputBase {
+export abstract class InputBase implements IInputBaseProperties {
 
   /** Add class `.pe-input` to all input components. */
   @HostBinding('class.pe-input')
@@ -83,7 +88,9 @@ export class InputBase {
 @Component({
   template: '',
 })
-export class InputBaseWithValue<T> extends InputBase {
+export abstract class InputBaseWithValue<T>
+  extends InputBase
+  implements IInputBaseWithValueProperties<T> {
 
   /** The entered value. */
   @Input() public value: T | undefined = undefined;
@@ -109,7 +116,24 @@ export class InputBaseWithValue<T> extends InputBase {
 @Component({
   template: '',
 })
-export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends InputBaseWithValue<TValue> {
+export abstract class SelectInputBase<T>
+  extends InputBaseWithValue<T | T[]>
+  implements ISelectInputBaseProperties<T> {
+
+  /** If true, multiple items can be selected. */
+  @Input() public multiple: boolean = false;
+
+  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
+  @Input() public allowEmpty: boolean = false;
+
+}
+
+@Component({
+  template: '',
+})
+export abstract class InputBaseWithValueAndDataSource<TValue, TDataSource = any>
+  extends InputBaseWithValue<TValue>
+  implements IInputBaseWithValueAndDataSourceProperties<TValue, TDataSource> {
 
   /**
    * An array from which the user can select one or multiple items.
@@ -149,5 +173,22 @@ export class InputBaseWithValueAndDataSource<TValue, TDataSource = any> extends 
   public evaluateDisplayPropertyName(item: any, displayPropertyName: string | undefined = undefined): string {
     return PEGlobalFunctions.evaluateDisplayPropertyName(displayPropertyName || this.displayPropertyName, item);
   }
+
+}
+
+
+@Component({
+  template: '',
+})
+export abstract class SelectInputBaseWithDataSource<TValue, TDataSource = any>
+  extends InputBaseWithValueAndDataSource<TValue | TValue[], TDataSource>
+  implements ISelectInputBaseProperties<TValue>,
+    IInputBaseWithValueAndDataSourceProperties<TValue | TValue[], TDataSource> {
+
+  /** If true, multiple items can be selected. */
+  @Input() public multiple: boolean = false;
+
+  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
+  @Input() public allowEmpty: boolean = false;
 
 }

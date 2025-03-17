@@ -1,19 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InputBaseWithValue } from '../input-base';
+import { SelectInputBase } from '../../input-base';
 import * as countries from 'i18n-iso-countries';
 
 @Component({
-  selector: 'pe-country-input',
-  templateUrl: './country-input.component.html',
-  styleUrls: ['./country-input.component.scss'],
+  selector: 'pe-country-select-input',
+  templateUrl: './country-select-input.component.html',
+  styleUrls: ['./country-select-input.component.scss'],
 })
-export class CountryInputComponent extends InputBaseWithValue<string> implements OnInit {
-
-  /** If true, multiple items can be selected. */
-  @Input() public multiple: boolean = false;
-
-  /** If true, an additional empty item is added to enable empty selection (`value == undefined`). */
-  @Input() public allowEmpty: boolean = false;
+export class CountrySelectInputComponent extends SelectInputBase<string> implements OnInit {
 
   /**
    * Optional: Add this class to the select element.
@@ -30,9 +24,9 @@ export class CountryInputComponent extends InputBaseWithValue<string> implements
   }
 
   public ngOnInit(): void {
-    if (!CountryInputComponent.staticDataSource.length)
-      CountryInputComponent.initializeDataSource();
-    this.dataSource = CountryInputComponent.staticDataSource;
+    if (!CountrySelectInputComponent.staticDataSource.length)
+      CountrySelectInputComponent.initializeDataSource();
+    this.dataSource = CountrySelectInputComponent.staticDataSource;
   }
 
   // region Static data source (generates only once)
