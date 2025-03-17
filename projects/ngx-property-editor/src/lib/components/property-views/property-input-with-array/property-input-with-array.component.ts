@@ -37,6 +37,18 @@ export class PropertyInputWithArrayComponent {
       (!this.configuration.hasGroup || this.configuration.propertyType != 'select');
   }
 
+  /**
+   * Only used if `configuration.isArray` is true:
+   * This function gets called, before a new item is added to the array property.
+   * The result of this function is added to the array as new item. If this function
+   * is not defined, `undefined` is added to the array as new item.
+   */
+  protected readonly newArrayItemFunction = (): any => {
+    if (typeof this.configuration?.newArrayItemFunction !== 'function') return undefined;
+
+    return this.configuration.newArrayItemFunction(this.data);
+  };
+
   // region Properties for modifying the input element appearance
 
   /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it. */

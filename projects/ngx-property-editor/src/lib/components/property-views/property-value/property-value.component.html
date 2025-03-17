@@ -1,0 +1,39 @@
+<ng-container *ngIf="displayType">
+
+  <ng-container *ngIf="displayType == 'html'">
+    <div [id]="id" [innerHTML]="valueAsString"></div>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'icon'">
+    <ng-container *ngIf="!configuration?.isArray">
+      <i [id]="id" [class]="valueAsString"></i>
+    </ng-container>
+    <ng-container *ngIf="configuration?.isArray">
+      <ng-container *ngFor="let item of valueAsArray; let index = i">
+        <i [id]="id + '-' + index" [class]="item"></i>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'language'">
+    <ng-container *ngIf="!configuration?.isArray">
+      <pe-language-icon [id]="id" [languageCode]="valueAsString"></pe-language-icon>
+    </ng-container>
+    <ng-container *ngIf="configuration?.isArray">
+      <ng-container *ngFor="let item of valueAsArray; let index = i">
+        <pe-language-icon [id]="id + '-' + index" [languageCode]="item"></pe-language-icon>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'readonly-input'">
+    <pe-property-input [id]="id"
+                       [configuration]="configuration"
+                       [data]="data"
+                       [mode]="mode"
+                       [readonly]="true"
+                       [noFormGroup]="true">
+    </pe-property-input>
+  </ng-container>
+
+</ng-container>

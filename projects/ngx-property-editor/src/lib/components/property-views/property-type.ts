@@ -35,7 +35,7 @@ export type PropertyType =
   /** ISO 639 language code (two character string).
    *  Language is displayed using the https://www.npmjs.com/package/language-icons (see `LanguageIconComponent`). */
   'language' |
-  /** ISO 3166 country code (string, either the two or three character code or the full country name). */
+  /** ISO 3166 country code (two character string). */
   'country' |
   /** Internally a string property edited using a color picker. */
   'color' |
@@ -52,8 +52,7 @@ export type PropertyType =
   /**
    * A button triggering the `setValueFunction` or the `routerLink` (if `setValueFunction == undefined`).
    * The `label` is displayed as button text,
-   * the `routerLinkTooltip` is displayed as button tooltip,
-   * and the button is enabled when `editable`.
+   * the `routerLinkTooltip` is displayed as button tooltip.
    */
   'button';
 

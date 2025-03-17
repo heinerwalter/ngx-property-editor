@@ -24,12 +24,22 @@ export class LanguageSelectInputComponent extends SelectInputBase<string> implem
   }
 
   public ngOnInit(): void {
-    if (!LanguageSelectInputComponent.staticDataSource.length)
-      LanguageSelectInputComponent.initializeDataSource();
+    LanguageSelectInputComponent.initializeDataSource();
     this.dataSource = LanguageSelectInputComponent.staticDataSource;
   }
 
   // region Static data source (generates only once)
+
+  /**
+   * Returns the human-readable name of the language with the given language code.
+   * Returns undefined, if the given language code is invalid.
+   * @param languageCode ISO 639 language code (two character string).
+   * @returns Human-readable language name.
+   */
+  public static getLanguageName(languageCode: string): string | undefined {
+    if (!languageCode) return undefined;
+    return languages.getName(languageCode, navigator.language);
+  }
 
   /** Static data source containing all language codes and localized names. */
   private static staticDataSource: { languageCode: string, name: string }[] = [];
@@ -38,6 +48,9 @@ export class LanguageSelectInputComponent extends SelectInputBase<string> implem
    * Generates the `staticDataSource` of all language codes and localized names.
    */
   private static initializeDataSource(): void {
+    if (this.staticDataSource.length)
+      return;
+
     this.staticDataSource = [];
 
     // Build data source from all country codes

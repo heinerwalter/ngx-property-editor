@@ -24,12 +24,22 @@ export class CountrySelectInputComponent extends SelectInputBase<string> impleme
   }
 
   public ngOnInit(): void {
-    if (!CountrySelectInputComponent.staticDataSource.length)
-      CountrySelectInputComponent.initializeDataSource();
+    CountrySelectInputComponent.initializeDataSource();
     this.dataSource = CountrySelectInputComponent.staticDataSource;
   }
 
   // region Static data source (generates only once)
+
+  /**
+   * Returns the human-readable name of the country with the given country code.
+   * Returns undefined, if the given country code is invalid.
+   * @param countryCode ISO 3166 country code (two character string).
+   * @returns Human-readable country name.
+   */
+  public static getCountryName(countryCode: string): string | undefined {
+    if (!countryCode) return undefined;
+    return countries.getName(countryCode, navigator.language);
+  }
 
   /** Static data source containing all country codes and localized names. */
   private static staticDataSource: { countryCode: string, name: string }[] = [];
@@ -38,6 +48,9 @@ export class CountrySelectInputComponent extends SelectInputBase<string> impleme
    * Generates the `staticDataSource` of all country codes and localized names.
    */
   private static initializeDataSource(): void {
+    if (this.staticDataSource.length)
+      return;
+
     this.staticDataSource = [];
 
     // Build data source from all country codes

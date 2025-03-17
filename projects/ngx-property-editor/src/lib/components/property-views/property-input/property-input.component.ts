@@ -67,18 +67,6 @@ export class PropertyInputComponent implements OnInit, OnChanges {
    */
   @Output() public readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  /**
-   * Only used if `configuration.isArray` is true:
-   * This function gets called, before a new item is added to the array property.
-   * The result of this function is added to the array as new item. If this function
-   * is not defined, `undefined` is added to the array as new item.
-   */
-  protected readonly newArrayItemFunction = (): any => {
-    if (typeof this.configuration?.newArrayItemFunction !== 'function') return undefined;
-
-    return this.configuration.newArrayItemFunction(this.data);
-  };
-
   // region Properties for modifying the input element appearance
 
   /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it. */
@@ -87,9 +75,13 @@ export class PropertyInputComponent implements OnInit, OnChanges {
   /**
    * Returns the editor mode based on the `readonly` property.
    */
-  protected get mode(): PropertyEditorMode {
+  public get mode(): PropertyEditorMode {
     // TODO: Make mode editable ('new' and 'table')
     return this.readonly ? 'view' : 'edit';
+  }
+
+  @Input() public set mode(value: PropertyEditorMode) {
+    // TODO: Make mode editable ('new' and 'table')
   }
 
   /** If true, the input element is not wrapped inside a form group component (no label). */
@@ -252,7 +244,7 @@ export class PropertyInputComponent implements OnInit, OnChanges {
           // Trigger routerLink
           if (routerLink) {
             if (routerLinkIsExternal) {
-              window.open(Array.isArray(routerLink) ? routerLink.join('/') : routerLink);
+              window.open(Array.isArray(routerLink) ? routerLink.join('/') : routerLink, '_blank');
             } else {
               this.router.navigate(Array.isArray(routerLink) ? routerLink : [routerLink]).then();
             }

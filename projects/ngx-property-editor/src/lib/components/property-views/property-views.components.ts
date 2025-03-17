@@ -10,6 +10,7 @@ import { PropertyTableComponent } from './property-table/property-table.componen
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { PropertyViewAndEditComponent } from './property-view-and-edit/property-view-and-edit.component';
 import { TableComponent } from './table/table.component';
+import { PropertyValueComponent } from './property-value/property-value.component';
 
 export const propertyViewComponents: Array<Type<any> | any[]> = [
   ViewAndEditContainerComponent,
@@ -18,6 +19,7 @@ export const propertyViewComponents: Array<Type<any> | any[]> = [
   PropertyInputWithArrayComponent,
   PropertyInputWithGroupComponent,
   PropertyTableComponent,
+  PropertyValueComponent,
   PropertyViewComponent,
   PropertyViewAndEditComponent,
   TableComponent,
