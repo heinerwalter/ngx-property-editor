@@ -74,6 +74,7 @@ export * from './lib/components/property-views/property-input/property-input.com
 export * from './lib/components/property-views/property-input-with-array/property-input-with-array.component';
 export * from './lib/components/property-views/property-input-with-group/property-input-with-group.component';
 export * from './lib/components/property-views/property-table/property-table.component';
+export * from './lib/components/property-views/property-value/property-value.component';
 export * from './lib/components/property-views/property-view/property-view.component';
 export * from './lib/components/property-views/property-view-and-edit/property-view-and-edit.component';
 export * from './lib/components/property-views/table/table.component';
