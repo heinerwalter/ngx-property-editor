@@ -5,11 +5,11 @@ import * as languages from '@cospired/i18n-iso-languages';
 @Component({
   selector: 'pe-language-icon',
   template: IconBaseComponent.generateIconComponentTemplate(
-    `<img *ngIf="language"
+    `<img *ngIf="languageCode"
     class="language-flag"
     style="height: 2em;"
     alt="{{ languageName || '' }}"
-    src="https://unpkg.com/language-icons/icons/{{ language.toLowerCase() }}.svg" />`),
+    src="https://unpkg.com/language-icons/icons/{{ languageCode.toLowerCase() }}.svg" />`),
   styleUrls: ['../icon.component.scss'],
 })
 export class LanguageIconComponent extends IconBaseComponent implements OnChanges {
