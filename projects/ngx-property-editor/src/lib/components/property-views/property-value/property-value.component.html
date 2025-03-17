@@ -9,8 +9,8 @@
       <i [id]="id" [class]="valueAsString"></i>
     </ng-container>
     <ng-container *ngIf="configuration?.isArray">
-      <ng-container *ngFor="let item of valueAsArray; let index = i">
-        <i [id]="id + '-' + index" [class]="item"></i>
+      <ng-container *ngFor="let item of valueAsArray; let i = index">
+        <i [id]="id + '-' + i" [class]="item"></i>
       </ng-container>
     </ng-container>
   </ng-container>
@@ -20,8 +20,8 @@
       <pe-language-icon [id]="id" [languageCode]="valueAsString"></pe-language-icon>
     </ng-container>
     <ng-container *ngIf="configuration?.isArray">
-      <ng-container *ngFor="let item of valueAsArray; let index = i">
-        <pe-language-icon [id]="id + '-' + index" [languageCode]="item"></pe-language-icon>
+      <ng-container *ngFor="let item of valueAsArray; let i = index">
+        <pe-language-icon [id]="id + '-' + i" [languageCode]="item"></pe-language-icon>
       </ng-container>
     </ng-container>
   </ng-container>
