@@ -38,6 +38,10 @@ import { ButtonInputComponent } from '../../input/button-input/button-input.comp
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+/**
+ * This component displays an input component for a given property `configuration` (editable).
+ * @see PropertyValueComponent
+ */
 @Component({
   selector: 'pe-property-input',
   templateUrl: './property-input.component.html',
@@ -84,6 +88,7 @@ export class PropertyInputComponent implements OnInit, OnChanges {
    * Returns the editor mode based on the `readonly` property.
    */
   protected get mode(): PropertyEditorMode {
+    // TODO: Make mode editable ('new' and 'table')
     return this.readonly ? 'view' : 'edit';
   }
 
