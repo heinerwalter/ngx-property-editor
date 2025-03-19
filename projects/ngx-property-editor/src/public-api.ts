@@ -24,6 +24,7 @@ export * from './lib/components/bootstrap/navbar/navbar/navbar.component';
 export * from './lib/components/bootstrap/navbar/navbar-item/navbar-item.component';
 // - icon
 export * from './lib/components/icon/check-icon/check-icon.component';
+export * from './lib/components/icon/color-icon/color-icon.component';
 export * from './lib/components/icon/exclamation-icon/exclamation-icon.component';
 export * from './lib/components/icon/goto-icon/goto-icon.component';
 export * from './lib/components/icon/info-icon/info-icon.component';

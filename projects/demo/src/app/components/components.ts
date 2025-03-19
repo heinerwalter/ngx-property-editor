@@ -9,6 +9,7 @@ import { PropertyTableDemoComponent } from './property-table-demo/property-table
 import { PropertyEditorDemoComponent } from './property-editor-demo/property-editor-demo.component';
 import { LoginPageDemoComponent } from './login-page-demo/login-page-demo.component';
 import { TerminalComponent } from './terminal/terminal.component';
+import { PropertyTypesDemoComponent } from './property-types-demo/property-types-demo.component';
 
 export const components: Array<Type<any> | any[]> = [
   AllInputsDemoComponent,
@@ -19,6 +20,7 @@ export const components: Array<Type<any> | any[]> = [
   PageNavigationDemoComponent,
   PropertyTableDemoComponent,
   PropertyEditorDemoComponent,
+  PropertyTypesDemoComponent,
   LoginPageDemoComponent,
   TerminalComponent,
 ];

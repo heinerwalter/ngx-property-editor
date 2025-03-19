@@ -57,6 +57,35 @@ export type PropertyType =
   'button';
 
 
+/** Returns all possible `PropertyType` values. */
+export const PropertyTypeOptions: PropertyType[] = [
+  'boolean',
+  'boolean-indeterminate',
+  'date',
+  'datetime',
+  'time',
+  'month',
+  'year',
+  'number',
+  'string',
+  'id',
+  'string-multiline',
+  'password',
+  'tel',
+  'email',
+  'url',
+  'language',
+  'country',
+  'color',
+  'color-class',
+  'icon',
+  'rating',
+  'difficulty',
+  'select',
+  'button',
+];
+
+
 /**
  * Possible property value data types of property configurations.
  * Different `PropertyType`s share the same `PropertyValueDataType`

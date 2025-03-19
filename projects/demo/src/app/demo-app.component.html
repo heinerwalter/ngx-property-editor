@@ -23,6 +23,10 @@
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
+      <ng-container item-property-types>
+        <ng-container *ngTemplateOutlet="propertyTypesTemplate"></ng-container>
+      </ng-container>
+
       <ng-container item-property-table>
         <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
       </ng-container>
@@ -49,6 +53,10 @@
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
       </ng-container>
 
+      <ng-container item-property-types>
+        <ng-container *ngTemplateOutlet="propertyTypesTemplate"></ng-container>
+      </ng-container>
+
       <ng-container item-property-table>
         <ng-container *ngTemplateOutlet="propertyTableTemplate"></ng-container>
       </ng-container>
@@ -73,6 +81,10 @@
 
       <ng-container item-input-components>
         <ng-container *ngTemplateOutlet="inputComponentsTemplate"></ng-container>
+      </ng-container>
+
+      <ng-container item-property-types>
+        <ng-container *ngTemplateOutlet="propertyTypesTemplate"></ng-container>
       </ng-container>
 
       <ng-container item-property-table>
@@ -113,6 +125,11 @@
 <ng-template #propertyTableTemplate>
   <demo-property-table-demo>
   </demo-property-table-demo>
+</ng-template>
+
+<ng-template #propertyTypesTemplate>
+  <demo-property-types-demo>
+  </demo-property-types-demo>
 </ng-template>
 
 <ng-template #propertyEditorTemplate>

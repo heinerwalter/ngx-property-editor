@@ -9,7 +9,7 @@ import { Contact } from '../../model/contact';
 })
 export class PropertyTableDemoComponent {
 
-/**
+  /**
    * Display the properties of these objects by a property table.
    */
   public data: Contact[] = [

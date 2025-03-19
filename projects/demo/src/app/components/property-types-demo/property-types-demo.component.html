@@ -1,0 +1,51 @@
+<pe-boolean-input label="Editable?"
+                  [(value)]="isEditable">
+</pe-boolean-input>
+<pe-boolean-input label="Show multi-value inputs?"
+                  [(value)]="isArray">
+</pe-boolean-input>
+
+<hr/>
+
+<ng-container *ngFor="let item of propertyTypesDataSource">
+
+  <!-- TODO: Fix datetime inputs -->
+  <ng-container *ngIf="item.propertyType != 'datetime'">
+
+    <ng-container *ngIf="!isEditable">
+      <pe-form-group [label]="item.propertyType">
+
+        <ng-container *ngIf="!isArray">
+          <pe-property-value [configuration]="item.configurationSingleValues"
+                             [data]="dataSingleValues">
+          </pe-property-value>
+        </ng-container>
+
+        <ng-container *ngIf="isArray">
+          <pe-property-value [configuration]="item.configurationArrayValues"
+                             [data]="dataArrayValues">
+          </pe-property-value>
+        </ng-container>
+
+      </pe-form-group>
+    </ng-container>
+
+    <ng-container *ngIf="isEditable">
+
+      <ng-container *ngIf="!isArray">
+        <pe-property-input [configuration]="item.configurationSingleValues"
+                           [data]="dataSingleValues">
+        </pe-property-input>
+      </ng-container>
+
+      <ng-container *ngIf="isArray">
+        <pe-property-input [configuration]="item.configurationArrayValues"
+                           [data]="dataArrayValues">
+        </pe-property-input>
+      </ng-container>
+
+    </ng-container>
+
+  </ng-container>
+
+</ng-container>

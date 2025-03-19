@@ -26,6 +26,17 @@
     </ng-container>
   </ng-container>
 
+  <ng-container *ngIf="displayType == 'color'">
+    <ng-container *ngIf="!configuration?.isArray">
+      <pe-color-icon [id]="id" [color]="valueAsString"></pe-color-icon>
+    </ng-container>
+    <ng-container *ngIf="configuration?.isArray">
+      <ng-container *ngFor="let item of valueAsArray; let i = index">
+        <pe-color-icon [id]="id + '-' + i" [color]="item"></pe-color-icon>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
   <ng-container *ngIf="displayType == 'readonly-input'">
     <pe-property-input [id]="id"
                        [configuration]="configuration"

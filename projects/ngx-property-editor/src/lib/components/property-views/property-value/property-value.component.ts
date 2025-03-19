@@ -5,7 +5,7 @@ import { PropertyEditorMode } from '../property-editor-mode';
 import { CountrySelectInputComponent } from '../../input/special-input/country-input/country-select-input.component';
 
 
-type PropertyValueComponentDisplayType = 'html' | 'icon' | 'language' | 'readonly-input';
+type PropertyValueComponentDisplayType = 'html' | 'icon' | 'language' | 'color' | 'readonly-input';
 
 
 /**
@@ -92,7 +92,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
     const propertyType = this.configuration.propertyType;
 
     let stringValue: string | string[] | undefined = undefined;
-    let preserveLineBreaks: boolean = false;
+    const preserveLineBreaks: boolean = propertyType == 'string-multiline';
 
     switch (propertyType) {
 
@@ -117,7 +117,6 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
       case 'select':
         stringValue = this.configuration.getDisplayValue(this.data, this.mode, false);
-        preserveLineBreaks = propertyType == 'string-multiline';
         break;
 
       case 'language':
@@ -148,6 +147,8 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
       case 'color':
       case 'color-class':
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        return this.displayType = 'color';
 
       case 'rating':
       case 'difficulty':
@@ -189,4 +190,5 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
   // endregion
 
+  protected readonly undefined = undefined;
 }
