@@ -149,13 +149,15 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         return this.displayType = 'language';
 
       case 'country':
-        stringValue = this.configuration.getDisplayValue(this.data, this.mode, false);
-        if (Array.isArray(stringValue))
-          stringValue = stringValue
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        if (Array.isArray(this.value))
+          this.value = this.value
             .map(item => CountrySelectInputComponent.getCountryName(item))
             .filter(item => !!item) as string[];
-        else if (typeof stringValue === 'string')
-          stringValue = CountrySelectInputComponent.getCountryName(stringValue);
+        else if (typeof this.value === 'string')
+          this.value = CountrySelectInputComponent.getCountryName(stringValue);
+        else
+          this.value = undefined;
         break;
 
       case 'icon':
