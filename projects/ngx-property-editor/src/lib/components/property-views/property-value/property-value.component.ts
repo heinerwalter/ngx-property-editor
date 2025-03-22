@@ -40,9 +40,11 @@ export class PropertyValueComponent implements OnInit, OnChanges {
   @Input() public mode: PropertyEditorMode = 'view';
 
   protected isInitialized: boolean = false;
-  protected value: string | string[] | undefined = undefined;
-  protected label: string = '';
+
   protected displayType: PropertyValueComponentDisplayType | undefined = undefined;
+  protected value: string | string[] | undefined = undefined;
+  protected numericValues: number[] = [];
+  protected label: string = '';
 
   protected get valueAsString(): string {
     if (Array.isArray(this.value))
@@ -172,6 +174,12 @@ export class PropertyValueComponent implements OnInit, OnChanges {
       case 'rating':
       case 'difficulty':
         this.value = this.configuration.getValue(this.data, this.mode);
+        if (Array.isArray(this.value))
+          this.numericValues = this.value as number[];
+        else if (typeof this.value === 'number')
+          this.numericValues = [this.value];
+        else
+          this.numericValues [];
         return this.displayType = propertyType;
 
       case 'button':
