@@ -6,7 +6,7 @@ import { CountrySelectInputComponent } from '../../input/special-input/country-i
 
 
 type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' |
-  'url' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
+  'url' | 'email' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
   'readonly-input';
 
 
@@ -114,7 +114,6 @@ export class PropertyValueComponent implements OnInit, OnChanges {
       case 'id':
       case 'password':
       case 'tel':
-      case 'email':
 
       case 'select':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
@@ -143,8 +142,9 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         return this.displayType = this.value ? 'text-multiline' : undefined;
 
       case 'url':
+      case 'email':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
-        return this.displayType = 'url';
+        return this.displayType = propertyType;
  
       case 'language':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
