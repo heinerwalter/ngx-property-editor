@@ -107,11 +107,13 @@
 
   <ng-container *ngIf="!getShowPropertyInput(cell)">
 
-    <!--span style="white-space: pre-line;">{{getContent(cell)}}</span-->
-    <pe-property-value [configuration]="cell.propertyConfiguration"
+    <pe-property-value *ngIf="cell.propertyConfiguration"
+                       [configuration]="cell.propertyConfiguration"
                        [data]="cell.content"
                        mode="table">
     </pe-property-value>
+    <span *ngIf="!cell.propertyConfiguration" style="white-space: pre-line;"
+      >{{getContent(cell)}}</span>
 
     <ng-container *ngIf="cell.routerLink">
       <ng-container *ngIf="!cell.routerLinkIsExternal">
