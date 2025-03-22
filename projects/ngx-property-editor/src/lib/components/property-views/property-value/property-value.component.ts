@@ -5,7 +5,9 @@ import { PropertyEditorMode } from '../property-editor-mode';
 import { CountrySelectInputComponent } from '../../input/special-input/country-input/country-select-input.component';
 
 
-type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' | 'url' | 'icon' | 'language' | 'color' | 'readonly-input';
+type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' |
+  'url' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
+  'readonly-input';
 
 
 /**
@@ -167,6 +169,8 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
       case 'rating':
       case 'difficulty':
+        this.value = this.configuration.getValue(this.data, this.mode);
+        return this.displayType = propertyType;
 
       case 'button':
         this.value = undefined;
