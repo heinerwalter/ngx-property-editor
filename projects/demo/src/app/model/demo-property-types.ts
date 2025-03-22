@@ -58,7 +58,7 @@ export function getDemoPropertyTypeValues(propertyType: PropertyType): any[] {
     case 'rating':
       return [5, 1, 3];
     case 'difficulty':
-      return [1, 2, 3];
+      return [1, 2, 3, 4, 5];
     case 'select':
       return ['1', '2', '3'];
     case 'button':
