@@ -7,7 +7,7 @@ import { CountrySelectInputComponent } from '../../input/special-input/country-i
 
 type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' |
   'url' | 'email' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
-  'readonly-input';
+  'button';
 
 
 /**
@@ -198,7 +198,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
       case 'button':
         this.value = undefined;
-        return this.displayType = 'readonly-input';
+        return this.displayType = 'button';
 
     }
   }
