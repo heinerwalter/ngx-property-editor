@@ -98,6 +98,7 @@
 
     <pe-property-input [configuration]="cell.propertyConfiguration"
                        [data]="cell.content"
+                       mode="table"
                        [noFormGroup]="true"
                        (valueChange)="cell.onPropertyInputValueChanged?.($event)">
     </pe-property-input>
@@ -108,7 +109,8 @@
 
     <!--span style="white-space: pre-line;">{{getContent(cell)}}</span-->
     <pe-property-value [configuration]="cell.propertyConfiguration"
-                       [data]="cell.content">
+                       [data]="cell.content"
+                       mode="table">
     </pe-property-value>
 
     <ng-container *ngIf="cell.routerLink">
