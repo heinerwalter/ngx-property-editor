@@ -50,4 +50,17 @@ export class DifficultyInputComponent extends InputBaseWithValue<number> impleme
     return iconDifficulty5;
   }
 
+  /**
+   * This method is triggered, when the mouse hovers over an item.
+   * @param index Index of the hovered item or undefined for leaving an item.
+   */
+  protected onHover(index: number | undefined): void {
+    if (this.disabled || this.readonly) return;
+
+    if (index != undefined) // hover
+      this.hoverValue = index;
+    else // leave
+      this.hoverValue = this.value;
+  }
+
 }
