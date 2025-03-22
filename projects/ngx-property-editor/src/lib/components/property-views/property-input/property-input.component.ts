@@ -67,23 +67,19 @@ export class PropertyInputComponent implements OnInit, OnChanges {
    */
   @Output() public readonly valueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  // region Properties for modifying the input element appearance
-
-  /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it (readonly). */
-  public get readonly(): boolean {
-    return this.mode == 'view';
-  }
-
   /**
    * The property editor mode.
    * The input element is editable, if the mode is not "view".
    */
   @Input() public mode: PropertyEditorMode = 'edit';
 
+  /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it (readonly). */
+  public get readonly(): boolean {
+    return this.mode == 'view';
+  }
+
   /** If true, the input element is not wrapped inside a form group component (no label). */
   @Input() public noFormGroup: boolean = false;
-
-  // endregion
 
   /**
    * Container element in which the property component is created.
