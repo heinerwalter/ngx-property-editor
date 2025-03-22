@@ -49,21 +49,18 @@ export class PropertyInputWithArrayComponent {
     return this.configuration.newArrayItemFunction(this.data);
   };
 
-  // region Properties for modifying the input element appearance
-
-  /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it. */
-  @Input() public readonly: boolean = false;
-
   /**
-   * Returns the editor mode based on the `readonly` property.
+   * The property editor mode.
+   * The input element is editable, if the mode is not "view".
    */
-  protected get mode(): PropertyEditorMode {
-    return this.readonly ? 'view' : 'edit';
+  @Input() public mode: PropertyEditorMode = 'edit';
+
+  /** If true, the value is displayed as usual (not grey/disabled) but the user cannot change it (readonly). */
+  public get readonly(): boolean {
+    return this.mode == 'view';
   }
 
   /** If true, the input element is not wrapped inside a form group component (no label). */
   @Input() public noFormGroup: boolean = false;
-
-  // endregion>
 
 }
