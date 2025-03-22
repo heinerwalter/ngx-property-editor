@@ -5,7 +5,7 @@ import { PropertyEditorMode } from '../property-editor-mode';
 import { CountrySelectInputComponent } from '../../input/special-input/country-input/country-select-input.component';
 
 
-type PropertyValueComponentDisplayType = 'html' | 'icon' | 'language' | 'color' | 'readonly-input';
+type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' | 'url' | 'icon' | 'language' | 'color' | 'readonly-input';
 
 
 /**
@@ -39,6 +39,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
   protected isInitialized: boolean = false;
   protected value: string | string[] | undefined = undefined;
+  protected label: string = '';
   protected displayType: PropertyValueComponentDisplayType | undefined = undefined;
 
   protected get valueAsString(): string {
@@ -80,6 +81,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
   private createPropertyComponent(): PropertyValueComponentDisplayType | undefined {
     this.isInitialized = true;
+    this.label = this.configuration?.getLabel(this.data, this.mode) || '';
 
     if (!this.configuration?.propertyType ||
       this.configuration.separator ||
@@ -108,26 +110,42 @@ export class PropertyValueComponent implements OnInit, OnChanges {
       case 'number':
 
       case 'string':
-      case 'string-multiline':
       case 'id':
       case 'password':
       case 'tel':
       case 'email':
-      case 'url':
 
       case 'select':
-        stringValue = this.configuration.getDisplayValue(this.data, this.mode, false);
-        break;
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
 
+        if (Array.isArray(this.value)) {
+          if (this.value.length > 1) {
+            return this.displayType = 'list';
+          } else if (this.value.length == 1) { 
+            this.value = this.value[0];
+          } else {
+            this.value = undefined;
+          }
+        } 
+
+        if (this.value) {
+          return this.displayType = 'text';
+        } else {
+          this.value = undefined;
+          return this.displayType = undefined;
+        }
+
+      case 'string-multiline':
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        if (Array.isArray(this.value))
+          this.value = stringValue.join('\n');
+        return this.displayType = this.value ? 'text-multiline' : undefined;
+
+      case url:
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        return this.displayType = 'url';
+ 
       case 'language':
-        /*stringValue = this.configuration.getDisplayValue(this.data, this.mode, false);
-        if (Array.isArray(stringValue))
-          stringValue = stringValue
-            .map(item => LanguageSelectInputComponent.getLanguageName(item))
-            .filter(item => !!item) as string[];
-        else if (typeof stringValue === 'string')
-          stringValue = LanguageSelectInputComponent.getLanguageName(stringValue);
-        break;*/
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         return this.displayType = 'language';
 
@@ -158,37 +176,8 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         return this.displayType = 'readonly-input';
 
     }
-
-    // Add Link to URLs
-    if (propertyType == 'url') {
-      if (stringValue && this.configuration.isArray && Array.isArray(stringValue)) {
-        stringValue = stringValue.map(item => `<a href="${item}" title="${this.configuration?.getLabel(this.data, this.mode)}" target="_blank">${item}</a>`);
-      }
-    }
-
-    // Add preserve line break style
-    const preserveLineBreaksStyle: string = preserveLineBreaks ? ' style="white-space: pre-line"' : '';
-
-    // Add HTML tags (list or span)
-    let htmlValue: string;
-    if (stringValue && this.configuration.isArray && Array.isArray(stringValue) && stringValue?.length) {
-      htmlValue = `<ul${preserveLineBreaksStyle}>${stringValue.map(item => `<li>${item}</li>`).join('')}</ul>`;
-    } else if (stringValue && typeof stringValue === 'string') {
-      htmlValue = `<span${preserveLineBreaksStyle}>${stringValue}</span>`;
-    } else {
-      htmlValue = '';
-    }
-
-    if (htmlValue) {
-      this.value = htmlValue;
-      return this.displayType = 'html';
-    } else {
-      this.value = undefined;
-      return this.displayType = undefined;
-    }
   }
 
   // endregion
 
-  protected readonly undefined = undefined;
 }

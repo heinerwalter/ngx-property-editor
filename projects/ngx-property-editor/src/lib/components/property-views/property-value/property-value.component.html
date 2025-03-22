@@ -1,9 +1,26 @@
 <ng-container *ngIf="displayType">
 
-  <ng-container *ngIf="displayType == 'html'">
-    <div [id]="id" [innerHTML]="valueAsString"></div>
+  <ng-container *ngIf="displayType == 'text'">
+    <span [id]="id">{{ valueAsString }}</span>
   </ng-container>
 
+  <ng-container *ngIf="displayType == 'list'">
+    <ul [id]="id" *ngFor="let item of valueAsArray; let i = index">
+      <li [id]="id + '-' + i">{{ item }}</li>
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'url'">
+    <ng-container *ngIf="!configuration?.isArray">
+      <a [id]="id" href="{{ valueAsString }}" title="{{ label }}" target="_blank">{{ valueAsString }}</a>
+    </ng-container>
+    <ng-container *ngIf="configuration?.isArray">
+      <ng-container *ngFor="let item of valueAsArray; let i = index">
+        <a [id]="id + '-' + i" href="{{ item }}" title="{{ label }}" target="_blank">{{ item }}</a>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+ 
   <ng-container *ngIf="displayType == 'icon'">
     <ng-container *ngIf="!configuration?.isArray">
       <i [id]="id" [class]="valueAsString"></i>
