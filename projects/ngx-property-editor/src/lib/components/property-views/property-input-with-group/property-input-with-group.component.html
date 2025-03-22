@@ -5,7 +5,7 @@
     <pe-property-input [id]="id"
                        [configuration]="configuration"
                        [data]="data"
-                       [readonly]="readonly"
+                       [mode]="mode"
                        [noFormGroup]="noFormGroup">
     </pe-property-input>
 
@@ -25,7 +25,7 @@
                                [id]="id + '-' + index"
                                [configuration]="itemConfiguration"
                                [data]="data"
-                               [readonly]="readonly"
+                               [mode]="mode"
                                [noFormGroup]="true">
             </pe-property-input>
           </pe-input-group>
@@ -38,7 +38,7 @@
                 <pe-property-input [id]="id + '-' + outerIndex + '-' + 0"
                                    [configuration]="outerItemConfiguration[0]"
                                    [data]="data"
-                                   [readonly]="readonly"
+                                   [mode]="mode"
                                    [noFormGroup]="true">
                 </pe-property-input>
               </ng-container>
@@ -48,7 +48,7 @@
                                    [id]="id + '-' + outerIndex + '-' + innerIndex"
                                    [configuration]="innerItemConfiguration"
                                    [data]="data"
-                                   [readonly]="readonly"
+                                   [mode]="mode"
                                    [noFormGroup]="true">
                 </pe-property-input>
               </pe-input-group>
@@ -66,7 +66,7 @@
         <pe-property-input [id]="id + '-' + index + '-' + 0"
                            [configuration]="itemConfiguration"
                            [data]="data"
-                           [readonly]="readonly"
+                           [mode]="mode"
                            [noFormGroup]="noFormGroup">
         </pe-property-input>
       </ng-container>
