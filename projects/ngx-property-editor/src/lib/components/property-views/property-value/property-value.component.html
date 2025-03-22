@@ -55,24 +55,14 @@
   </ng-container>
 
   <ng-container *ngIf="displayType == 'rating'">
-    <ng-container *ngIf="!configuration?.isArray">
-      <pe-rating-input [id]="id" [value]="value" [readonly]="true" [noFormGroup]="true"></pe-rating-input>
-    </ng-container>
-    <ng-container *ngIf="configuration?.isArray">
-      <ng-container *ngFor="let item of valueAsArray; let i = index">
-        <pe-rating-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-rating-input>
-      </ng-container>
+    <ng-container *ngFor="let item of numericValues; let i = index">
+      <pe-rating-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-rating-input>
     </ng-container>
   </ng-container>
 
   <ng-container *ngIf="displayType == 'difficulty'">
-    <ng-container *ngIf="!configuration?.isArray">
-      <pe-difficulty-input [id]="id" [value]="value" [readonly]="true" [noFormGroup]="true"></pe-difficulty-input>
-    </ng-container>
-    <ng-container *ngIf="configuration?.isArray">
-      <ng-container *ngFor="let item of valueAsArray; let i = index">
-        <pe-difficulty-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-difficulty-input>
-      </ng-container>
+    <ng-container *ngFor="let item of numericValues; let i = index">
+      <pe-difficulty-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-difficulty-input>
     </ng-container>
   </ng-container>
 
