@@ -10,14 +10,16 @@
     </ul>
   </ng-container>
 
-  <ng-container *ngIf="displayType == 'url'">
+  <ng-container *ngIf="displayType == 'url' || displayType == 'email'">
     <ng-container *ngIf="!configuration?.isArray">
-      <a [id]="id" href="{{ valueAsString }}" title="{{ label }}" target="_blank">{{ valueAsString }}</a>
+      <a [id]="id" href="{{ (displayType == 'email' ? 'mailto:' : '') + valueAsString }}"
+         title="{{ label }}" target="_blank">{{ valueAsString }}</a>
     </ng-container>
     <ng-container *ngIf="configuration?.isArray">
       <ul [id]="id" *ngFor="let item of valueAsArray; let i = index">
         <li [id]="id + '-' + i">
-          <a href="{{ item }}" title="{{ label }}" target="_blank">{{ item }}</a>
+          <a href="{{ (displayType == 'email' ? 'mailto:' : '') + item }}"
+             title="{{ label }}" target="_blank">{{ item }}</a>
         </li>
       </ul>
     </ng-container>
