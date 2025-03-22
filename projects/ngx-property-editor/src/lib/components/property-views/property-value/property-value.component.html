@@ -74,12 +74,11 @@
     </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="displayType == 'readonly-input'">
+  <ng-container *ngIf="displayType == 'button'">
     <pe-property-input [id]="id"
                        [configuration]="configuration"
                        [data]="data"
                        [mode]="mode"
-                       [readonly]="true"
                        [noFormGroup]="true">
     </pe-property-input>
   </ng-container>
