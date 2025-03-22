@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyValueComponent } from './property-value.component';
 import { inputComponents } from '../../input/input.components';
+import { iconComponents } from '../../icon/icon.components';
 import { FormsModule } from '@angular/forms';
 
 describe('PropertyValueComponent', () => {
@@ -13,6 +14,7 @@ describe('PropertyValueComponent', () => {
       declarations: [
         PropertyValueComponent,
         ...inputComponents,
+        ...iconComponents,
       ],
       imports: [FormsModule],
     });
