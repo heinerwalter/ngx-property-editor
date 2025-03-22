@@ -93,9 +93,6 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
     const propertyType = this.configuration.propertyType;
 
-    let stringValue: string | string[] | undefined = undefined;
-    const preserveLineBreaks: boolean = propertyType == 'string-multiline';
-
     switch (propertyType) {
 
       case 'boolean':
@@ -138,10 +135,10 @@ export class PropertyValueComponent implements OnInit, OnChanges {
       case 'string-multiline':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         if (Array.isArray(this.value))
-          this.value = stringValue.join('\n');
+          this.value = this.value.join('\n');
         return this.displayType = this.value ? 'text-multiline' : undefined;
 
-      case url:
+      case 'url':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         return this.displayType = 'url';
  
