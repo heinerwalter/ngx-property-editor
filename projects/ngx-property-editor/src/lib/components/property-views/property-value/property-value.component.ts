@@ -184,14 +184,16 @@ export class PropertyValueComponent implements OnInit, OnChanges {
 
       case 'rating':
       case 'difficulty':
-        const value = this.configuration.getValue(this.data, this.mode);
-        if (Array.isArray(value))
-          this.numericValues = value as number[];
-        else if (typeof value === 'number')
-          this.numericValues = [value];
-        else
-          this.numericValues [];
         this.value = undefined;
+        const value = this.configuration.getValue(this.data, this.mode);
+        if (Array.isArray(value)) {
+          this.numericValues = value as number[];
+        } else if (typeof value === 'number') {
+          this.numericValues = [value];
+        } else {
+          this.numericValues = [];
+          return this.displayType = undefined;
+        }
         return this.displayType = propertyType;
 
       case 'button':
