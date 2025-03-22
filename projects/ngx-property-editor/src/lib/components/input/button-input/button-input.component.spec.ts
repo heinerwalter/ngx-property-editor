@@ -4,6 +4,7 @@ import { ButtonInputComponent } from './button-input.component';
 import { FormGroupComponent } from '../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../bootstrap/button/button.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ButtonInputComponent', () => {
   let component: ButtonInputComponent;
@@ -16,7 +17,10 @@ describe('ButtonInputComponent', () => {
         ButtonComponent,
         FormGroupComponent,
       ],
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        NgbModule,
+      ],
     });
     fixture = TestBed.createComponent(ButtonInputComponent);
     component = fixture.componentInstance;
