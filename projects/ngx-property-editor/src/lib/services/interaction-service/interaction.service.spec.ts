@@ -11,9 +11,11 @@ describe('InteractionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterModule,
-        ToastrModule,
-        SweetAlert2Module,
+        // Angular modules:
+        RouterModule.forRoot([], { useHash: true }), // Angular Router
+        // 3rd party modules:
+        ToastrModule.forRoot(), // Toastr
+        SweetAlert2Module.forRoot(), // SweetAlert2 for Angular
       ],
     });
     service = TestBed.inject(InteractionService);

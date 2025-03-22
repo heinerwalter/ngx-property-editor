@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ButtonInputComponent } from './button-input.component';
 import { FormGroupComponent } from '../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from '../../bootstrap/button/button.component';
 
 describe('ButtonInputComponent', () => {
   let component: ButtonInputComponent;
@@ -12,6 +13,7 @@ describe('ButtonInputComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ButtonInputComponent,
+        ButtonComponent,
         FormGroupComponent,
       ],
       imports: [FormsModule],

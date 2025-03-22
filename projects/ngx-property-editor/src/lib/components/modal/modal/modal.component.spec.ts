@@ -10,7 +10,7 @@ describe('ModalComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        SweetAlert2Module,
+        SweetAlert2Module.forRoot(),
       ],
       declarations: [ModalComponent],
     });
