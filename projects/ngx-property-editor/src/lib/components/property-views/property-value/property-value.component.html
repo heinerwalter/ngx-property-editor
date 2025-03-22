@@ -15,9 +15,11 @@
       <a [id]="id" href="{{ valueAsString }}" title="{{ label }}" target="_blank">{{ valueAsString }}</a>
     </ng-container>
     <ng-container *ngIf="configuration?.isArray">
-      <ng-container *ngFor="let item of valueAsArray; let i = index">
-        <a [id]="id + '-' + i" href="{{ item }}" title="{{ label }}" target="_blank">{{ item }}</a>
-      </ng-container>
+      <ul [id]="id" *ngFor="let item of valueAsArray; let i = index">
+        <li [id]="id + '-' + i">
+          <a href="{{ item }}" title="{{ label }}" target="_blank">{{ item }}</a>
+        </li>
+      </ul>
     </ng-container>
   </ng-container>
  
@@ -56,13 +58,17 @@
 
   <ng-container *ngIf="displayType == 'rating'">
     <ng-container *ngFor="let item of numericValues; let i = index">
-      <pe-rating-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-rating-input>
+      <pe-rating-input [id]="id + '-' + i" style="display: block;"
+                       [value]="item" [readonly]="true" [noFormGroup]="true">
+      </pe-rating-input>
     </ng-container>
   </ng-container>
 
   <ng-container *ngIf="displayType == 'difficulty'">
     <ng-container *ngFor="let item of numericValues; let i = index">
-      <pe-difficulty-input [id]="id + '-' + i" [value]="item" [readonly]="true" [noFormGroup]="true"></pe-difficulty-input>
+      <pe-difficulty-input [id]="id + '-' + i" style="display: block;"
+                           [value]="item" [readonly]="true" [noFormGroup]="true">
+      </pe-difficulty-input>
     </ng-container>
   </ng-container>
 
