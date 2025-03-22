@@ -16,8 +16,8 @@
               [max]="max"
               [rate]="value || 0"
               (rateChange)="value = $event; hoverValue = value; emitValueChange($event)"
-              (hover)="hoverValue = $event"
-              (leave)="hoverValue = value">
+              (hover)="onHover($event)"
+              (leave)="onHover(undefined)">
     <ng-template let-fill="fill" let-index="index">
       <div class="item">
         <img *ngIf="fill < 100 || !(hoverValue == undefined || hoverValue == index + 1)"
