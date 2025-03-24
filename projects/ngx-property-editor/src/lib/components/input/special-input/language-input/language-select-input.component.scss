@@ -1,11 +1,16 @@
-$language-select-icon-width: 2em;
+.language-select-container {
+  display: flex;
+  gap: 0.5em;
 
-.language-select-icon {
-  display: inline-block;
-  width: $language-select-icon-width;
-}
+  //&.show-icon {}
 
-pe-select-input.show-icon {
-  display: inline-block;
-  width: calc(100% - $language-select-icon-width);
+  .language-select-icon {
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  pe-select-input {
+    flex-grow: 1;
+  }
 }
