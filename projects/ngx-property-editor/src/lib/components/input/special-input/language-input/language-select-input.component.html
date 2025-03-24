@@ -1,25 +1,44 @@
-<pe-select-input [id]="id + '-select'"
-                 [name]="name"
-                 [noFormGroup]="noFormGroup"
-                 [label]="label"
-                 [inlineLabel]="inlineLabel"
-                 [infoIconTooltip]="infoIconTooltip"
-                 [helpText]="helpText"
-                 [isValid]="isValid"
-                 [validFeedback]="validFeedback"
-                 [invalidFeedback]="invalidFeedback"
-                 [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
-                 [flexGrow]="flexGrow"
-                 [required]="required"
-                 [readonly]="readonly"
-                 [disabled]="disabled"
-                 [placeholder]="placeholder"
-                 [multiple]="multiple"
-                 [allowEmpty]="allowEmpty"
-                 [selectClass]="selectClass"
-                 [dataSource]="dataSource"
-                 valuePropertyName="languageCode"
-                 displayPropertyName="name"
-                 [(value)]="value"
-                 (valueChange)="emitValueChange($event)">
-</pe-select-input>
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
+
+<ng-template #contentTemplate>
+  <pe-language-icon *ngIf="value && typeof value === 'string'" class="language-select-icon" [languageCode]="value"></pe-language-icon>
+  <pe-select-input [noFormGroup]="true"
+                   [class]="value ? 'show-icon' : ''"
+                   [id]="id"
+                   [name]="name"
+                   [placeholder]="placeholder"
+                   [disabled]="disabled"
+                   [readonly]="readonly"
+                   [required]="required"
+                   [isValid]="isValid"
+                   [validFeedback]="validFeedback"
+                   [invalidFeedback]="invalidFeedback"
+                   [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+                   [flexGrow]="flexGrow"
+                   [selectClass]="selectClass"
+
+                   [(value)]="value"
+                   (valueChange)="emitValueChange($event)"
+
+                   [dataSource]="dataSource"
+                   valuePropertyName="languageCode"
+                   displayPropertyName="name"
+
+                   [multiple]="multiple"
+                   [allowEmpty]="allowEmpty">
+  </pe-select-input>
+</ng-template>

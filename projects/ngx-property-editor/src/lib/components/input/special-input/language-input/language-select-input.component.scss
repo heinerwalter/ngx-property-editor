@@ -1,0 +1,11 @@
+$language-select-icon-width: 2em;
+
+.language-select-icon {
+  display: inline-block;
+  width: $language-select-icon-width;
+}
+
+pe-select-input.show-icon {
+  display: inline-block;
+  width: calc(100% - $language-select-icon-width);
+}

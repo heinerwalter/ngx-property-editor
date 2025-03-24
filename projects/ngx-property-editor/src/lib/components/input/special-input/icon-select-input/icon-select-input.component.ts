@@ -42,6 +42,11 @@ export class IconSelectInputComponent extends SelectInputBase<string> implements
    */
   @Output() public readonly iconChange: EventEmitter<IconDefinition | undefined> = new EventEmitter<IconDefinition | undefined>();
 
+  /**
+   * Optional: Add this class to the select element.
+   */
+  @Input() public selectClass: string | undefined = undefined;
+
   public constructor() {
     super();
     this.assignDefaultDataSource();
