@@ -478,6 +478,19 @@ export module Stringifier {
     return allItemsButTheLastOne.join(', ') + ' und ' + array[array.length - 1];
   }
 
+  /**
+   * Converts a country code to a flag emoji.
+   * @param countryCode An ISO 3166 country code (two character string).
+   * @returns Flag emoji string.
+   */
+  export function countryCodeToFlagEmoji(countryCode: string): string {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map(char => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+  }
+
   // endregion
 
   // region Arrays
