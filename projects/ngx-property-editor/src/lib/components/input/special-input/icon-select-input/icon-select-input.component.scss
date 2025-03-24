@@ -1,11 +1,21 @@
 $icon-select-icon-width: 2em;
 
-.icon-select-icon {
-  display: inline-block;
-  width: $icon-select-icon-width;
-}
+.icon-select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 
-pe-select-input.show-icon {
-  display: inline-block;
-  width: calc(100% - $icon-select-icon-width);
+  //&.show-icon {}
+
+  .icon-select-icon {
+    width: $icon-select-icon-width;
+
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  pe-select-input {
+    flex-grow: 1;
+  }
 }

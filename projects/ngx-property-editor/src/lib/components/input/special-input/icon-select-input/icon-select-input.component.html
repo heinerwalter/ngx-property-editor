@@ -15,30 +15,31 @@
 </pe-form-group>
 
 <ng-template #contentTemplate>
-  <fa-icon *ngIf="icon" class="icon-select-icon" [icon]="icon"></fa-icon>
-  <pe-select-input [noFormGroup]="true"
-                   [class]="value ? 'show-icon' : ''"
-                   [id]="id"
-                   [name]="name"
-                   [placeholder]="placeholder"
-                   [disabled]="disabled"
-                   [readonly]="readonly"
-                   [required]="required"
-                   [isValid]="isValid"
-                   [validFeedback]="validFeedback"
-                   [invalidFeedback]="invalidFeedback"
-                   [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
-                   [flexGrow]="flexGrow"
-                   [selectClass]="selectClass"
-
-                   [(value)]="value"
-                   (valueChange)="emitValueChange($event)"
-
-                   [dataSource]="dataSource"
-                   valuePropertyName="value"
-                   [displayPropertyName]="displayIconValue ? 'value' : 'label'"
-
-                   [multiple]="multiple"
-                   [allowEmpty]="allowEmpty">
-  </pe-select-input>
+  <div class="icon-select-container" [class.show-icon]="icon">
+    <fa-icon *ngIf="icon" class="icon-select-icon" [icon]="icon"></fa-icon>
+    <pe-select-input [noFormGroup]="true"
+                     [id]="id"
+                     [name]="name"
+                     [placeholder]="placeholder"
+                     [disabled]="disabled"
+                     [readonly]="readonly"
+                     [required]="required"
+                     [isValid]="isValid"
+                     [validFeedback]="validFeedback"
+                     [invalidFeedback]="invalidFeedback"
+                     [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+                     [flexGrow]="flexGrow"
+                     [selectClass]="selectClass"
+  
+                     [(value)]="value"
+                     (valueChange)="emitValueChange($event)"
+  
+                     [dataSource]="dataSource"
+                     valuePropertyName="value"
+                     [displayPropertyName]="displayIconValue ? 'value' : 'label'"
+  
+                     [multiple]="multiple"
+                     [allowEmpty]="allowEmpty">
+    </pe-select-input>
+  </div>
 </ng-template>
