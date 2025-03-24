@@ -19,6 +19,15 @@ export class LanguageSelectInputComponent extends SelectInputBase<string> implem
    */
   protected dataSource: any[] = [];
 
+  /**
+   * Returns a single selected value as string (language code for use in the language icon).
+   * If `multiple == true`, undefined is returned.
+   */
+  protected get languageCode(): string | undefined {
+    if (!this.value || typeof this.value !== 'string') return undefined;
+    return this.value;
+  }
+
   public constructor() {
     super();
   }

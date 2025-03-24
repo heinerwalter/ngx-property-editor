@@ -15,9 +15,9 @@
 </pe-form-group>
 
 <ng-template #contentTemplate>
-  <pe-language-icon *ngIf="value && typeof value === 'string'" class="language-select-icon" [languageCode]="value"></pe-language-icon>
+  <pe-language-icon *ngIf="languageCode" class="language-select-icon" [languageCode]="languageCode"></pe-language-icon>
   <pe-select-input [noFormGroup]="true"
-                   [class]="value ? 'show-icon' : ''"
+                   [class]="languageCode ? 'show-icon' : ''"
                    [id]="id"
                    [name]="name"
                    [placeholder]="placeholder"
