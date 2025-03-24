@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Stringifier } from 'projects/ngx-property-editor/src/public-api';
+import { Stringifier } from '../../../controller/stringifier';
 import { IconBaseComponent } from '../icon-base.component';
 
 @Component({
