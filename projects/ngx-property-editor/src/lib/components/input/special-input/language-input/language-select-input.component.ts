@@ -3,7 +3,7 @@ import { SelectInputBase } from '../../input-base';
 import * as languages from '@cospired/i18n-iso-languages';
 
 @Component({
-  selector: 'pe-language-input',
+  selector: 'pe-language-select-input',
   templateUrl: './language-select-input.component.html',
   styleUrls: ['./language-select-input.component.scss'],
 })

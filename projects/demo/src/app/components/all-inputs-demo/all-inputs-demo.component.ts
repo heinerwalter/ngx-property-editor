@@ -33,17 +33,23 @@ export class AllInputsDemoComponent {
    * This object contains the values of all input components.
    */
   public values = {
+    // Boolean Input
     boolean: undefined as boolean | undefined,
+    // Date Input
     date: undefined as Date | undefined,
     time: undefined as Date | undefined,
     datetime: undefined as Date | undefined,
+    // Number Input
     number: undefined as number | undefined,
+    // Text Input
     text: '' as string | undefined,
     textAutocomplete: '' as string | undefined,
     textMultiLine: '' as string | undefined,
+    // File Input
     fileSingle: undefined as File[] | undefined,
     fileSingleContent: undefined as FileInputFileContentType | undefined,
     fileMultiple: undefined as File[] | undefined,
+    // Select Input
     selectSingle: undefined as any | undefined,
     selectMultiple: [] as any[] | undefined,
     selectRadio: undefined as any | undefined,
@@ -51,11 +57,17 @@ export class AllInputsDemoComponent {
     selectCheckbox: [] as any[] | undefined,
     selectDropdown: undefined as any | undefined,
     selectDropdownMultiple: [] as any[] | undefined,
-    selectColor: undefined as string | undefined,
-    selectIcon: undefined as string | undefined,
+    // Rating
     rating: 0 as number | undefined,
     ratingCustom: 0 as number | undefined,
     difficulty: 0 as number | undefined,
+    // Special Types
+    selectColor: undefined as string | undefined,
+    selectColorClass: undefined as string | undefined,
+    selectIcon: undefined as string | undefined,
+    selectLanguage: undefined as string | undefined,
+    selectCountry: undefined as string | undefined,
+    // Groups
     array: ['Line 1', 'Line 2', 'Not line 3'] as any[],
     arrayInitiallyEmpty: undefined as unknown as any[],
     arrayWithInputGroup: [{ name: 'Max', number: 5 }, { name: 'Moritz', number: 3, country: 'Germany' }] as {
@@ -76,6 +88,9 @@ export class AllInputsDemoComponent {
       country: undefined as string | undefined,
     },
     inputGroupWithAddons: '' as string | undefined,
+    // Validation
+    validationBoolean: undefined as boolean | undefined,
+    validationText: '' as string | undefined,
   };
 
   protected arrayWithInputGroupNewItemFunction(): {
