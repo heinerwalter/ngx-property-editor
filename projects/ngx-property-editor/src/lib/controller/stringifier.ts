@@ -480,6 +480,9 @@ export module Stringifier {
 
   /**
    * Converts a country code to a flag emoji.
+   *
+   * Code taken from: https://dev.to/jorik/country-code-to-flag-emoji-a21
+   *
    * @param countryCode An ISO 3166 country code (two character string).
    * @returns Flag emoji string.
    */
