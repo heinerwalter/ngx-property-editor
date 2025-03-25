@@ -296,11 +296,18 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   // region Toolbar Buttons
 
   /**
-   * This method is invoked when the column chooser button in the toolbar was clicked.
-   * It opens the column chooser modal window.
+   * If true, the column chooser is visible.
+   * @see onBtnColumnChooserClicked
    */
-  protected onBtnColumnChooserClicked(): void {
-    // TODO: Show column chooser
+  protected isColumnChooserVisible: boolean = false;
+
+  /**
+   * This method toggles the visibility of the column chooser.
+   * @property newValue If not `undefined`, the column chooser visibility
+   *                    is set to the given value instead of being toggled.
+   */
+  public toggleIsColumnChooserVisible(newValue: boolean | undefined = undefined): void {
+    this.isColumnChooserVisible = newValue == undefined ? !this.isColumnChooserVisible : newValue;
   }
 
   // endregion

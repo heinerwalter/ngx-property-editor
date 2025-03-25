@@ -65,6 +65,7 @@ export * from './lib/components/input/special-input/icon-select-input/icon-selec
 export * from './lib/components/input/special-input/language-input/language-select-input.component';
 // - modal
 export * from './lib/components/modal/modal/modal.component';
+export * from './lib/components/modal/movable-modal/movable-modal.component';
 export * from './lib/components/modal/about-dialog/about-dialog.component';
 export * from './lib/components/modal/about-dialog/version-info';
 // - property table

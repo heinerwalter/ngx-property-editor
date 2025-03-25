@@ -1,8 +1,17 @@
-<ng-container *ngFor="let column of columns || []">
-  <pe-boolean-input [label]="column?.property?.getLabel(undefined, 'table') || 'Unnamed column'"
-                    [inlineLabel]="true"
-                    type="checkbox"
-                    [(value)]="column.isVisible"
-                    (valueChange)="visibleColumnsChanged.emit([column])">
-  </pe-boolean-input>
-</ng-container>
+<pe-movable-modal [id]="id"
+                  modalContainerClass="table-column-chooser-modal-container"
+                  modalClass="table-column-chooser-modal"
+                  header="Column chooser">
+
+  <ng-container modal-body>
+    <ng-container *ngFor="let column of columns || []">
+      <pe-boolean-input [label]="column?.property?.getLabel(undefined, 'table') || 'Unnamed column'"
+                        [inlineLabel]="true"
+                        type="checkbox"
+                        [(value)]="column.isVisible"
+                        (valueChange)="visibleColumnsChanged.emit([column])">
+      </pe-boolean-input>
+    </ng-container>
+  </ng-container>
+
+</pe-movable-modal>
