@@ -24,6 +24,7 @@ export class Contact {
   public indeterminateBoolean: boolean | undefined = undefined;
   public rating: number | undefined = undefined;
   public friends: FriendType[] = [];
+  public hobbies: string[] = [];
   public language: string | undefined = undefined;
   public country: string | undefined = undefined;
 
@@ -48,6 +49,7 @@ export class Contact {
     indeterminateBoolean?: boolean | undefined,
     rating?: number | undefined,
     friends?: FriendType[] | undefined,
+    hobbies?: string[] | undefined,
     language?: string | undefined,
     country?: string | undefined,
   }) {
@@ -62,6 +64,7 @@ export class Contact {
     this.indeterminateBoolean = data?.indeterminateBoolean;
     this.rating = data?.rating;
     this.friends = data?.friends || [];
+    this.hobbies = data?.hobbies || [];
     this.language = data?.language;
     this.country = data?.country;
   }
@@ -223,6 +226,15 @@ export class Contact {
             ]],
           }),
           new PropertyConfiguration({
+            propertyName: 'hobbies',
+            label: 'Hobbies',
+            propertyType: 'string',
+            isArray: true,
+            newArrayItemFunction: () => "",
+            editable: true,
+            hideIfEmpty: true,
+          }),
+          new PropertyConfiguration({
             label: 'Fancy Button',
             propertyType: 'button',
             setValueFunction: (data: any, value: any) => {
@@ -292,6 +304,7 @@ export class Contact {
         { name: 'Woodstock', type: 'Friend' },
         { name: 'Charlie Brown' },
       ],
+      hobbies: ['Eating', 'Sleeping', 'Writing'],
       language: 'en',
       country: 'us',
     });

@@ -1,0 +1,27 @@
+// Remove all margin of first element inside <pe-property-value>
+:host > * {
+  margin: 0;
+}
+
+
+// Style multiline lists, if class .property-value-list-type-block is assigned to <pe-property-value> (default!)
+:host/*.property-value-list-type-block*/ .property-value-list {
+  display: block;
+
+  .property-value-list-item {
+    display: block;
+  }
+}
+
+// Style inline lists, if class .property-value-list-type-inline is assigned to <pe-property-value>
+:host.property-value-list-type-inline .property-value-list {
+  display: inline;
+
+  .property-value-list-item {
+    display: inline;
+
+    &:not(:last-of-type)::after {
+      content: ", ";
+    }
+  }
+}

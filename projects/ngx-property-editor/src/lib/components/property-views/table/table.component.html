@@ -2,7 +2,7 @@
      [id]="id + '-responsive-container'"
      class="table-responsive {{responsiveContainerClass || ''}}">
   <ng-container [ngTemplateOutlet]="tableTemplate">
-  </ng-container>  
+  </ng-container>
 </div>
 
 <ng-container *ngIf="!addResponsiveContainer" [ngTemplateOutlet]="tableTemplate">
@@ -36,25 +36,25 @@
 
     </tr>
     </thead>
-  
+
     <tbody *ngIf="data?.length">
-  
+
     <ng-container *ngFor="let row of pageData; let i = index">
       <tr [class.separator]="row.length == 0">
-  
+
         <ng-container *ngIf="row.length == 0 && i + 1 < data.length">
           <td *ngFor="let cell of data[i + 1]"></td>
         </ng-container>
-  
+
         <ng-container [ngTemplateOutlet]="rowTemplate"
                       [ngTemplateOutletContext]="{row: row, index: i}">
         </ng-container>
-  
+
       </tr>
     </ng-container>
-  
+
     </tbody>
-  
+
   </table>
 </ng-template>
 
@@ -62,7 +62,7 @@
 <ng-template #rowTemplate let-row="row" let-index="index">
 
   <ng-container *ngFor="let cell of row; let c = index">
-  
+
     <ng-container *ngIf="cell.elementType == 'header'">
       <th [class]="cell.class || ''"
           [class.cell-with-input]="getShowPropertyInput(cell)"
@@ -110,6 +110,7 @@
     <pe-property-value *ngIf="cell.propertyConfiguration"
                        [configuration]="cell.propertyConfiguration"
                        [data]="cell.content"
+                       listType="inline"
                        mode="table">
     </pe-property-value>
     <span *ngIf="!cell.propertyConfiguration" style="white-space: pre-line;"

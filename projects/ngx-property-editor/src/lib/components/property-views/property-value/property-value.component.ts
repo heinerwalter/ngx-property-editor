@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration } from '../property-configuration';
 import { PropertyEditorMode } from '../property-editor-mode';
@@ -38,6 +38,21 @@ export class PropertyValueComponent implements OnInit, OnChanges {
    * The property editor mode.
    */
   @Input() public mode: PropertyEditorMode = 'view';
+
+  /**
+   * How to display lists of multiple values (`configuration.isArray == true`)?
+   * - `'block'` (default): Display values in separate lines.
+   * - `'inline'`:          Display values inline separated by commas.
+   */
+  @Input() public listType: 'block' | 'inline' = 'block';
+
+  /**
+   * Add class to this component `.property-value-list-type-{listType}` depending on the `listType` property.
+   */
+  @HostBinding('class')
+  protected get listTypeClass(): string {
+    return 'property-value-list-type-' + this.listType;
+  }
 
   protected isInitialized: boolean = false;
 
@@ -121,12 +136,12 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         if (Array.isArray(this.value)) {
           if (this.value.length > 1) {
             return this.displayType = 'list';
-          } else if (this.value.length == 1) { 
+          } else if (this.value.length == 1) {
             this.value = this.value[0];
           } else {
             this.value = undefined;
           }
-        } 
+        }
 
         if (this.value) {
           return this.displayType = 'text';
@@ -145,7 +160,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
       case 'email':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         return this.displayType = propertyType;
- 
+
       case 'language':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         return this.displayType = 'language';
