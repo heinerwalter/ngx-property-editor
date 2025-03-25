@@ -1,25 +1,33 @@
-<pe-select-input [id]="id + '-select'"
-                 [name]="name"
-                 [noFormGroup]="noFormGroup"
-                 [label]="label"
-                 [inlineLabel]="inlineLabel"
-                 [infoIconTooltip]="infoIconTooltip"
-                 [helpText]="helpText"
-                 [isValid]="isValid"
-                 [validFeedback]="validFeedback"
-                 [invalidFeedback]="invalidFeedback"
-                 [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
-                 [flexGrow]="flexGrow"
-                 [required]="required"
-                 [readonly]="readonly"
-                 [disabled]="disabled"
-                 [placeholder]="placeholder"
-                 [multiple]="multiple"
-                 [allowEmpty]="allowEmpty"
-                 [selectClass]="selectClass"
-                 [dataSource]="dataSource"
-                 valuePropertyName="countryCode"
-                 displayPropertyName="name"
-                 [(value)]="value"
-                 (valueChange)="emitValueChange($event)">
-</pe-select-input>
+<pe-select-input-with-icon [noFormGroup]="noFormGroup"
+                           [id]="id"
+                           [name]="name"
+                           [label]="label"
+                           [inlineLabel]="inlineLabel"
+                           [infoIconTooltip]="infoIconTooltip"
+                           [helpText]="helpText"
+                           [placeholder]="placeholder"
+                           [disabled]="disabled"
+                           [readonly]="readonly"
+                           [required]="required"
+                           [isValid]="isValid"
+                           [validFeedback]="validFeedback"
+                           [invalidFeedback]="invalidFeedback"
+                           [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+                           [flexGrow]="flexGrow"
+                           [selectClass]="selectClass"
+
+                           [(value)]="value"
+                           (valueChange)="emitValueChange($event)"
+
+                           [dataSource]="dataSource"
+                           valuePropertyName="countryCode"
+                           displayPropertyName="name"
+
+                           [multiple]="multiple"
+                           [allowEmpty]="allowEmpty"
+
+                           [showIcon]="!!countryCode">
+  <div icon>
+    <pe-country-icon [countryCode]="countryCode"></pe-country-icon>
+  </div>
+</pe-select-input-with-icon>

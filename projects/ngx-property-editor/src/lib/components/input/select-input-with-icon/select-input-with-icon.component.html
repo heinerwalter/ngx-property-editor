@@ -1,0 +1,49 @@
+<ng-container *ngIf="noFormGroup">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</ng-container>
+
+<pe-form-group *ngIf="!noFormGroup"
+               [for]="id"
+               [label]="label"
+               [inlineLabel]="inlineLabel"
+               [infoIconTooltip]="infoIconTooltip"
+               [helpText]="helpText"
+               [validFeedback]="validFeedback"
+               [invalidFeedback]="invalidFeedback"
+               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
+  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</pe-form-group>
+
+<ng-template #contentTemplate>
+  <div class="select-container">
+    <div *ngIf="showIcon" class="select-icon">
+      <ng-content select="[icon]"></ng-content>
+    </div>
+    <pe-select-input [noFormGroup]="true"
+                     [id]="id"
+                     [name]="name"
+                     [placeholder]="placeholder"
+                     [disabled]="disabled"
+                     [readonly]="readonly"
+                     [required]="required"
+                     [isValid]="isValid"
+                     [validFeedback]="validFeedback"
+                     [invalidFeedback]="invalidFeedback"
+                     [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+                     [flexGrow]="flexGrow"
+
+                     [(value)]="value"
+                     (valueChange)="emitValueChange($event)"
+
+                     [dataSource]="dataSource"
+                     [valuePropertyName]="valuePropertyName"
+                     [displayPropertyName]="displayPropertyName"
+                     [selectClass]="selectClass"
+                     [optionClassPropertyName]="optionClassPropertyName"
+                     [displayAsInnerHTML]="displayAsInnerHTML"
+
+                     [multiple]="multiple"
+                     [allowEmpty]="allowEmpty">
+    </pe-select-input>
+  </div>
+</ng-template>

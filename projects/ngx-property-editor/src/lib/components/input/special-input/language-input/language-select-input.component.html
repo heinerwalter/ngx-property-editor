@@ -1,45 +1,33 @@
-<ng-container *ngIf="noFormGroup">
-  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-</ng-container>
+<pe-select-input-with-icon [noFormGroup]="noFormGroup"
+                           [id]="id"
+                           [name]="name"
+                           [label]="label"
+                           [inlineLabel]="inlineLabel"
+                           [infoIconTooltip]="infoIconTooltip"
+                           [helpText]="helpText"
+                           [placeholder]="placeholder"
+                           [disabled]="disabled"
+                           [readonly]="readonly"
+                           [required]="required"
+                           [isValid]="isValid"
+                           [validFeedback]="validFeedback"
+                           [invalidFeedback]="invalidFeedback"
+                           [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
+                           [flexGrow]="flexGrow"
+                           [selectClass]="selectClass"
 
-<pe-form-group *ngIf="!noFormGroup"
-               [for]="id"
-               [label]="label"
-               [inlineLabel]="inlineLabel"
-               [infoIconTooltip]="infoIconTooltip"
-               [helpText]="helpText"
-               [validFeedback]="validFeedback"
-               [invalidFeedback]="invalidFeedback"
-               [validityFeedbackAsTooltip]="validityFeedbackAsTooltip">
-  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-</pe-form-group>
+                           [(value)]="value"
+                           (valueChange)="emitValueChange($event)"
 
-<ng-template #contentTemplate>
-  <div class="language-select-container" [class.show-icon]="languageCode">
-    <pe-language-icon *ngIf="languageCode" class="language-select-icon" [languageCode]="languageCode"></pe-language-icon>
-    <pe-select-input [noFormGroup]="true"
-                     [id]="id"
-                     [name]="name"
-                     [placeholder]="placeholder"
-                     [disabled]="disabled"
-                     [readonly]="readonly"
-                     [required]="required"
-                     [isValid]="isValid"
-                     [validFeedback]="validFeedback"
-                     [invalidFeedback]="invalidFeedback"
-                     [validityFeedbackAsTooltip]="validityFeedbackAsTooltip"
-                     [flexGrow]="flexGrow"
-                     [selectClass]="selectClass"
-  
-                     [(value)]="value"
-                     (valueChange)="emitValueChange($event)"
-  
-                     [dataSource]="dataSource"
-                     valuePropertyName="languageCode"
-                     displayPropertyName="name"
-  
-                     [multiple]="multiple"
-                     [allowEmpty]="allowEmpty">
-    </pe-select-input>
+                           [dataSource]="dataSource"
+                           valuePropertyName="languageCode"
+                           displayPropertyName="name"
+
+                           [multiple]="multiple"
+                           [allowEmpty]="allowEmpty"
+
+                           [showIcon]="!!languageCode">
+  <div icon>
+    <pe-language-icon [languageCode]="languageCode"></pe-language-icon>
   </div>
-</ng-template>
+</pe-select-input-with-icon>

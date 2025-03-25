@@ -1,0 +1,15 @@
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  .select-icon {
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  pe-select-input {
+    flex-grow: 1;
+  }
+}

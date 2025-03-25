@@ -19,6 +19,15 @@ export class CountrySelectInputComponent extends SelectInputBase<string> impleme
    */
   protected dataSource: { countryCode: string, name: string }[] = [];
 
+  /**
+   * Returns a single selected value as string (country code for use in the country icon).
+   * If `multiple == true`, undefined is returned.
+   */
+  protected get countryCode(): string | undefined {
+    if (!this.value || typeof this.value !== 'string') return undefined;
+    return this.value;
+  }
+
   public constructor() {
     super();
   }

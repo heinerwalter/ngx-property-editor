@@ -18,6 +18,7 @@ import { NumberInputComponent } from './number-input/number-input.component';
 import { RadioInputComponent } from './radio-input/radio-input.component';
 import { RatingInputComponent } from './rating-input/rating-input.component';
 import { SelectInputComponent } from './select-input/select-input.component';
+import { SelectInputWithIconComponent } from './select-input-with-icon/select-input-with-icon.component';
 import { SingleRadioInputComponent } from './single-radio-input/single-radio-input.component';
 import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
 import { TextInputComponent } from './text-input/text-input.component';
@@ -44,6 +45,7 @@ export const inputComponents: Array<Type<any> | any[]> = [
   RadioInputComponent,
   RatingInputComponent,
   SelectInputComponent,
+  SelectInputWithIconComponent,
   SingleRadioInputComponent,
   TextAreaInputComponent,
   TextInputComponent,

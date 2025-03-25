@@ -5,7 +5,7 @@ import { IconBaseComponent } from '../icon-base.component';
 @Component({
   selector: 'pe-country-icon',
   template: IconBaseComponent.generateIconComponentTemplate(
-    '<span *ngIf="emoji" class="country-flag">{{ emoji }}</span>'),
+    '<span *ngIf="emoji" class="country-flag" style="display: block; width: 1em;">{{ emoji }}</span>'),
   styleUrls: ['../icon.component.scss'],
 })
 export class CountryIconComponent extends IconBaseComponent implements OnChanges {

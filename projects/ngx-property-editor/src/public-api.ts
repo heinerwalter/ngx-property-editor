@@ -54,6 +54,7 @@ export * from './lib/components/input/number-input/number-input.component';
 export * from './lib/components/input/radio-input/radio-input.component';
 export * from './lib/components/input/rating-input/rating-input.component';
 export * from './lib/components/input/select-input/select-input.component';
+export * from './lib/components/input/select-input-with-icon/select-input-with-icon.component';
 export * from './lib/components/input/single-radio-input/single-radio-input.component';
 export * from './lib/components/input/text-area-input/text-area-input.component';
 export * from './lib/components/input/text-input/text-input.component';
