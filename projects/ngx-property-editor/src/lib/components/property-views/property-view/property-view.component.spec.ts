@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PropertyViewComponent } from './property-view.component';
-import { TableComponent } from '../table/table.component';
+import { TableComponent } from '../../property-table/table/table.component';
 
 describe('PropertyViewComponent', () => {
   let component: PropertyViewComponent;

@@ -6,10 +6,8 @@ import { PropertyInputWithArrayComponent } from './property-input-with-array/pro
 import {
   PropertyInputWithGroupComponent,
 } from './property-input-with-group/property-input-with-group.component';
-import { PropertyTableComponent } from './property-table/property-table.component';
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { PropertyViewAndEditComponent } from './property-view-and-edit/property-view-and-edit.component';
-import { TableComponent } from './table/table.component';
 import { PropertyValueComponent } from './property-value/property-value.component';
 
 export const propertyViewComponents: Array<Type<any> | any[]> = [
@@ -18,9 +16,7 @@ export const propertyViewComponents: Array<Type<any> | any[]> = [
   PropertyInputComponent,
   PropertyInputWithArrayComponent,
   PropertyInputWithGroupComponent,
-  PropertyTableComponent,
   PropertyValueComponent,
   PropertyViewComponent,
   PropertyViewAndEditComponent,
-  TableComponent,
 ];

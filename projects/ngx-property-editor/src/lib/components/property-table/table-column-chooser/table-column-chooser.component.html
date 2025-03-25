@@ -1,0 +1,8 @@
+<ng-container *ngFor="let column of columns || []">
+  <pe-boolean-input [label]="column?.property?.getLabel(undefined, 'table') || 'Unnamed column'"
+                    [inlineLabel]="true"
+                    type="checkbox"
+                    [(value)]="column.isVisible"
+                    (valueChange)="visibleColumnsChanged.emit([column])">
+  </pe-boolean-input>
+</ng-container>

@@ -1,8 +1,10 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { PropertyConfiguration, PropertiesConfiguration } from '../property-configuration';
+import { PropertiesConfiguration, PropertyConfiguration } from '../../property-views/property-configuration';
 import { TableData, TableHeader, TableRow } from '../table-configuration';
 import { PropertyTableColumn } from '../property-table-column';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faColumns } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
@@ -12,7 +14,7 @@ import { PropertyTableColumn } from '../property-table-column';
   selector: 'pe-property-table',
   templateUrl: './property-table.component.html',
   styleUrls: ['./property-table.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class PropertyTableComponent implements OnInit, OnChanges {
 
@@ -56,6 +58,9 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
   /** If true, the properties displayed in the table are editable by the user. */
   @Input() public editable: boolean = false;
+
+  // Icons used in the template
+  protected iconColumnChooser: IconDefinition = faColumns;
 
   /** This property is set to true by `ngOnInit()`. */
   private isInitialized: boolean = false;
@@ -153,10 +158,10 @@ export class PropertyTableComponent implements OnInit, OnChanges {
       tableHeader.push([]);
     }
 
-    const columns: PropertyTableColumn[] = []
+    const columns: PropertyTableColumn[] = [];
 
     /**
-     * 
+     *
      * @param tableHeaderRowIndex The index of the table header row into which the property column should be added.
      * @param property The Property definition from which a table header cell should be generated.
      * @returns The total number of added columns (1 without property groups).
@@ -172,7 +177,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         parent: parentColumn,
         isGroup: false,
         children: [],
-      }
+        isVisible: true,
+      };
 
       if (property.hasGroup) {
         column.isGroup = true;
@@ -286,6 +292,18 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     // Assign new table data
     this._tableData = tableData;
   }
+
+  // region Toolbar Buttons
+
+  /**
+   * This method is invoked when the column chooser button in the toolbar was clicked.
+   * It opens the column chooser modal window.
+   */
+  protected onBtnColumnChooserClicked(): void {
+    // TODO: Show column chooser
+  }
+
+  // endregion
 
   // region Filter
 

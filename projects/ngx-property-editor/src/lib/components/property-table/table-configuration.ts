@@ -1,4 +1,4 @@
-import { PropertyConfiguration } from './property-configuration';
+import { PropertyConfiguration } from '../property-views/property-configuration';
 
 /**
  * Decide whether a table cell should be displayed as

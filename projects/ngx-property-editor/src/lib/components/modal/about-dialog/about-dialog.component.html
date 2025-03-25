@@ -6,15 +6,15 @@
       <fa-icon [icon]="iconCopyright"></fa-icon>
       <span>{{version.copyright}}</span>
     </p>
-    <p>
+    <p *ngIf="version.version">
       <fa-icon [icon]="iconVersion"></fa-icon>
       <span>Version {{version.version}}</span>
     </p>
-    <p>
+    <p *ngIf="version.buildDate">
       <fa-icon [icon]="iconBuildDate"></fa-icon>
       <span>Gebaut am {{version.buildDate | date: 'dd.MM.yyyy HH:MM'}}</span>
     </p>
-    <ng-container *ngIf="!version.isRelease">
+    <ng-container *ngIf="!version.isRelease && version.gitCommit">
       <p>
         <fa-icon [icon]="iconCommit"></fa-icon>
         <span>Commit: {{version.gitCommit}}</span>
@@ -24,9 +24,9 @@
       <fa-icon [icon]="iconDatabase"></fa-icon>
       <span>Datenbank: {{version.databaseInfo}}</span>
     </p>
-    <p *ngIf="version.connectionInfo">
-      <fa-icon [icon]="iconConnection"></fa-icon>
-      <span>Verbunden mit: {{version.connectionInfo}}</span>
+    <p *ngIf="version.serverInfo">
+      <fa-icon [icon]="iconServer"></fa-icon>
+      <span>{{version.serverInfo}}</span>
     </p>
     <ng-container *ngIf="version.isDevMode">
       <p>
@@ -35,9 +35,10 @@
         <fa-icon [icon]="iconDevMode"></fa-icon>
       </p>
     </ng-container>
-    <p>
+    <p *ngIf="version.authorEmail">
       <fa-icon [icon]="iconEmail"></fa-icon>
-      <a href="mailto:{{version.authorEmail}}?subject=Feedback zu {{version.appTitle}}&body="
+      <a
+        href="mailto:{{version.authorEmail}}?subject=Feedback{{version.appTitle ? ' zu ' + version.appTitle : ''}}&body="
       >Fehler, Wünsche, Feedback teilen&hellip;</a>
     </p>
     <p *ngIf="version.websiteUrl">

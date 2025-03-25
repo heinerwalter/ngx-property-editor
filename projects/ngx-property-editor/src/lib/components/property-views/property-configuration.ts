@@ -1,6 +1,6 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 import { Stringifier } from '../../controller/stringifier';
-import { PropertyConfigurationFilter } from './property-configuration-filter';
+import { PropertyConfigurationFilter } from '../property-table/property-configuration-filter';
 import { PropertyEditorMode } from './property-editor-mode';
 import { generatePropertyTypeFromData, PropertyType } from './property-type';
 

@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { VersionInfo } from './version-info';
 import { ModalComponent } from '../modal/modal.component';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
@@ -6,12 +6,12 @@ import {
   faCodeCommit,
   faDatabase,
   faEnvelope,
+  faGlobe,
   faPenRuler,
   faPersonDigging,
   faServer,
   faV,
   IconDefinition,
-  faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,7 +30,7 @@ export class AboutDialogComponent {
   protected readonly iconBuildDate: IconDefinition = faPersonDigging;
   protected readonly iconCommit: IconDefinition = faCodeCommit;
   protected readonly iconDatabase: IconDefinition = faDatabase;
-  protected readonly iconConnection: IconDefinition = faServer;
+  protected readonly iconServer: IconDefinition = faServer;
   protected readonly iconDevMode: IconDefinition = faPenRuler;
   protected readonly iconEmail: IconDefinition = faEnvelope;
   protected readonly iconWebsite: IconDefinition = faGlobe;

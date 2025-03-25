@@ -1,6 +1,6 @@
-import { PropertyConfiguration } from './property-configuration';
-import { PropertyEditorMode } from './property-editor-mode';
-import { propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from './property-type';
+import { PropertyConfiguration } from '../property-views/property-configuration';
+import { PropertyEditorMode } from '../property-views/property-editor-mode';
+import { propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from '../property-views/property-type';
 
 /**
  * This module contains functions for evaluating filter expressions
