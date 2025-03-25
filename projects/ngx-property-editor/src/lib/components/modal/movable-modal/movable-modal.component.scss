@@ -1,0 +1,12 @@
+.movable-modal-container {
+  overflow: visible;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  .movable-modal {
+    position: absolute;
+    margin: 0;
+  }
+}
