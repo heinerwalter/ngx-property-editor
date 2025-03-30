@@ -19,14 +19,13 @@ describe('TimelineItemComponent', () => {
       ],
     })
     .compileComponents();
+
+    fixture = TestBed.createComponent(TimelineItemComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should not create', () => {
-    // Item cannot be created outside the timeline component
-    expect(() => {
-      fixture = TestBed.createComponent(TimelineItemComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    }).toThrowError();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
