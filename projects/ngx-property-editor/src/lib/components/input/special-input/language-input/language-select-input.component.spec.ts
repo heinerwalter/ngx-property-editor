@@ -4,6 +4,8 @@ import { LanguageSelectInputComponent } from './language-select-input.component'
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../form-group/form-group.component';
 import { SelectInputComponent } from '../../select-input/select-input.component';
+import { LanguageIconComponent } from '../../../icon/language-icon/language-icon.component';
+import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
 
 describe('LanguageSelectInputComponent', () => {
   let component: LanguageSelectInputComponent;
@@ -17,6 +19,8 @@ describe('LanguageSelectInputComponent', () => {
       declarations: [
         LanguageSelectInputComponent,
         SelectInputComponent,
+        SelectInputWithIconComponent,
+        LanguageIconComponent,
         FormGroupComponent,
       ],
     })

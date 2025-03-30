@@ -4,6 +4,8 @@ import { CountrySelectInputComponent } from './country-select-input.component';
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../form-group/form-group.component';
 import { SelectInputComponent } from '../../select-input/select-input.component';
+import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
+import { CountryIconComponent } from '../../../icon/country-icon/country-icon.component';
 
 describe('CountrySelectInputComponent', () => {
   let component: CountrySelectInputComponent;
@@ -14,6 +16,8 @@ describe('CountrySelectInputComponent', () => {
       imports: [FormsModule],
       declarations: [
         CountrySelectInputComponent,
+        SelectInputWithIconComponent,
+        CountryIconComponent
         SelectInputComponent,
         FormGroupComponent,
       ],

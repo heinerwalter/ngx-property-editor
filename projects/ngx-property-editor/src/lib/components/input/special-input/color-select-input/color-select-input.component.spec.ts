@@ -4,6 +4,8 @@ import { ColorSelectInputComponent } from './color-select-input.component';
 import { SelectInputComponent } from '../../select-input/select-input.component';
 import { FormGroupComponent } from '../../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
+import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
+import { ColorIconComponent } from '../../../icon/color-icon/color-icon.component';
 
 describe('ColorSelectInputComponent', () => {
   let component: ColorSelectInputComponent;
@@ -13,6 +15,8 @@ describe('ColorSelectInputComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         ColorSelectInputComponent,
+        SelectInputWithIconComponent,
+        ColorIconComponent,
         SelectInputComponent,
         FormGroupComponent,
       ],
