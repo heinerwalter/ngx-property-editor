@@ -5,6 +5,7 @@ import { inputComponents } from './input/input.components';
 import { modalComponents } from './modal/modal.components';
 import { propertyTableComponents } from './property-table/property-table.components';
 import { propertyViewComponents } from './property-views/property-views.components';
+import { timelineComponents } from './timeline/timeline.components';
 
 export const components: Array<Type<any> | any[]> = [
   ...bootstrapComponents,
@@ -13,4 +14,5 @@ export const components: Array<Type<any> | any[]> = [
   ...modalComponents,
   ...propertyTableComponents,
   ...propertyViewComponents,
+  ...timelineComponents,
 ];

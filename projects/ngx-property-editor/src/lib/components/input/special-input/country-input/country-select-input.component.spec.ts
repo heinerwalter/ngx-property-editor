@@ -17,7 +17,7 @@ describe('CountrySelectInputComponent', () => {
       declarations: [
         CountrySelectInputComponent,
         SelectInputWithIconComponent,
-        CountryIconComponent
+        CountryIconComponent,
         SelectInputComponent,
         FormGroupComponent,
       ],

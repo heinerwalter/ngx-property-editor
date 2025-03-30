@@ -1,0 +1,31 @@
+/* Style of the timeline. */
+@import '../../../../styles/variables.scss';
+
+$timeline-line-width: 1px;
+$timeline-margin: $default-margin;
+
+.timeline {
+  display: block;
+  width: 100%;
+
+  .timeline-line {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: $timeline-line-width;
+
+    background-color: black;
+  }
+
+  .timeline-item {
+    display: block;
+
+    margin-left: $timeline-margin;
+
+    .timeline-item-text {
+      margin: 0;
+    }
+  }
+}

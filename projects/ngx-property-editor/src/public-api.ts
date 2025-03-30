@@ -89,6 +89,10 @@ export * from './lib/components/property-views/property-view/property-view.compo
 export * from './lib/components/property-views/property-view-and-edit/property-view-and-edit.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container.component';
 export * from './lib/components/property-views/view-and-edit-container/view-and-edit-container-base.component';
+// - timeline
+export * from './lib/components/timeline/timeline-configuration';
+export * from './lib/components/timeline/timeline/timeline.component';
+export * from './lib/components/timeline/timeline-item/timeline-item.component';
 
 // Services:
 export * from './lib/services/interaction-service/interaction.service';
