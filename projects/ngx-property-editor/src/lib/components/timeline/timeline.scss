@@ -3,7 +3,7 @@
 
 $timeline-line-width: 1px;
 $timeline-margin: $default-margin;
-$timeline-circle-size: 2 * $timeline-margin;
+$timeline-circle-size: 1.5 * $timeline-margin;
 
 $timeline-border-color: #ccc;
 $timeline-background-color: #fff;
@@ -22,7 +22,7 @@ $timeline-circle-background-color: #eee;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
+    left: $timeline-margin;
     width: $timeline-line-width;
 
     background-color: $timeline-border-color;
@@ -30,11 +30,12 @@ $timeline-circle-background-color: #eee;
 
   .timeline-item {
     display: block;
+    position: relative;
     border: solid 1px $timeline-border-color;
     background-color: $timeline-background-color;
 
     padding: $timeline-margin;
-    margin-left: $timeline-margin;
+    margin-left: 2 * $timeline-margin;
     margin-bottom: $timeline-margin;
 
     &::before {
@@ -43,18 +44,21 @@ $timeline-circle-background-color: #eee;
 
       display: block;
       position: relative;
-      left: - 2 * $timeline-margin;
+      left: -0.5 * $timeline-margin;
       top: 0;
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
       background-color: $timeline-background-color;
+      border-bottom-width: 0;
+      border-right-width: 0;
       transform: rotate(45deg);
     }
 
     .timeline-item-circle {
       position: absolute;
-      left: 0;
+      left: (-2 * $timeline-margin) - math.div($timeline-circle-size, 2);
+      top: $timeline-margin;
       width: $timeline-circle-size;
       height: $timeline-circle-size;
 
