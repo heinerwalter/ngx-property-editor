@@ -43,12 +43,11 @@ $timeline-circle-background-color: #eee;
     &::before {
       // Arrow towards the timeline line
       content: "";
-      box-sizing: border-box;
 
       display: block;
       position: absolute;
       left: calc((-0.5 * math.sqrt(2) * $timeline-margin) + (2 * $timeline-line-width));
-      top: calc($timeline-margin + math.div($timeline-circle-size, 2) + (0.5 * math.sqrt(2) * $timeline-margin) - (2 * $timeline-line-width));
+      top: calc($timeline-margin + math.div($timeline-circle-size, 2) - (0.5 * math.sqrt(2) * $timeline-margin) + (2 * $timeline-line-width));
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
