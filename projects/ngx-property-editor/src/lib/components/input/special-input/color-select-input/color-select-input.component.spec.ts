@@ -6,6 +6,7 @@ import { FormGroupComponent } from '../../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
 import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
 import { ColorIconComponent } from '../../../icon/color-icon/color-icon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ColorSelectInputComponent', () => {
   let component: ColorSelectInputComponent;
@@ -20,7 +21,10 @@ describe('ColorSelectInputComponent', () => {
         SelectInputComponent,
         FormGroupComponent,
       ],
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        NgbModule,
+      ],
     });
     fixture = TestBed.createComponent(ColorSelectInputComponent);
     component = fixture.componentInstance;

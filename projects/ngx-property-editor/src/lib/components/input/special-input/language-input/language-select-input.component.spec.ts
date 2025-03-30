@@ -6,6 +6,7 @@ import { FormGroupComponent } from '../../form-group/form-group.component';
 import { SelectInputComponent } from '../../select-input/select-input.component';
 import { LanguageIconComponent } from '../../../icon/language-icon/language-icon.component';
 import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('LanguageSelectInputComponent', () => {
   let component: LanguageSelectInputComponent;
@@ -15,6 +16,7 @@ describe('LanguageSelectInputComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        NgbModule,
       ],
       declarations: [
         LanguageSelectInputComponent,

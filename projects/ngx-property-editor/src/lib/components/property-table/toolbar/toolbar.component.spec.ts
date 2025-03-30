@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarComponent } from './toolbar.component';
+import { ButtonComponent } from '../../bootstrap/button/button.component';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -8,7 +9,10 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarComponent]
+      declarations: [
+        ToolbarComponent,
+        ButtonComponent,
+      ],
     })
     .compileComponents();
     

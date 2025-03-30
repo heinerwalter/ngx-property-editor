@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimelineComponent } from './timeline.component';
 import { TimelineItemComponent } from '../timeline-item/timeline-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('TimelineComponent', () => {
   let component: TimelineComponent;
@@ -12,6 +13,9 @@ describe('TimelineComponent', () => {
       declarations: [
         TimelineComponent,
         TimelineItemComponent,
+      ],
+      imports: [
+        NgbModule,
       ],
     })
     .compileComponents();

@@ -6,6 +6,7 @@ import { FormGroupComponent } from '../../form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('IconSelectInputComponent', () => {
   let component: IconSelectInputComponent;
@@ -22,6 +23,7 @@ describe('IconSelectInputComponent', () => {
       imports: [
         FormsModule,
         FontAwesomeTestingModule,
+        NgbModule,
       ],
     });
     fixture = TestBed.createComponent(IconSelectInputComponent);

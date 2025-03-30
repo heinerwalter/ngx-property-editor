@@ -6,6 +6,7 @@ import { FormGroupComponent } from '../../form-group/form-group.component';
 import { SelectInputComponent } from '../../select-input/select-input.component';
 import { SelectInputWithIconComponent } from '../../select-input-with-icon/select-input-with-icon.component';
 import { CountryIconComponent } from '../../../icon/country-icon/country-icon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('CountrySelectInputComponent', () => {
   let component: CountrySelectInputComponent;
@@ -13,7 +14,10 @@ describe('CountrySelectInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [
+        FormsModule,
+        NgbModule,
+      ],
       declarations: [
         CountrySelectInputComponent,
         SelectInputWithIconComponent,

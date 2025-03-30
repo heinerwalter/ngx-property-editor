@@ -8,7 +8,9 @@ describe('MovableModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MovableModalComponent]
+      declarations: [
+        MovableModalComponent,
+      ],
     })
     .compileComponents();
     
