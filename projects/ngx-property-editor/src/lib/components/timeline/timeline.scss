@@ -1,4 +1,5 @@
 /* Style of the timeline. */
+@use 'sass:math';
 @import '../../../../styles/variables.scss';
 
 $timeline-line-width: 1px;
@@ -44,7 +45,7 @@ $timeline-circle-background-color: #eee;
 
       display: block;
       position: relative;
-      left: -0.5 * $timeline-margin;
+      left: -0.5 * math.sqrt(2) * $timeline-margin;
       top: 0;
       width: $timeline-margin;
       height: $timeline-margin;
