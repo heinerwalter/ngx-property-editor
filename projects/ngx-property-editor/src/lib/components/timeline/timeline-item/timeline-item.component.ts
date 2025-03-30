@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { TimelineItem } from '../timeline-configuration';
+import { TimelineItem, TimelineAlign } from '../timeline-configuration';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { TimelineAlign } from 'ngx-property-editor';
 
 @Component({
   selector: 'pe-timeline-item',
