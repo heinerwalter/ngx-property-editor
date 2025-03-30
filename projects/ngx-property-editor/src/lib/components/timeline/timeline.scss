@@ -43,6 +43,7 @@ $timeline-circle-background-color: #eee;
     &::before {
       // Arrow towards the timeline line
       content: "";
+      box-sizing: border-box;
 
       display: block;
       position: absolute;
