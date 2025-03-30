@@ -3,6 +3,8 @@
 
 $timeline-line-width: 1px;
 $timeline-margin: $default-margin;
+$timeline-circle-size: $timeline-margin;
+
 $timeline-border-color: #ccc;
 $timeline-background-color: #eee;
 
@@ -11,8 +13,10 @@ $timeline-background-color: #eee;
   width: 100%;
 
   .timeline-line {
+    content: "&nbsp;";
+
     display: block;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     height: 100%;
@@ -23,16 +27,17 @@ $timeline-background-color: #eee;
 
   .timeline-item {
     display: block;
-    padding: $timeline-margin;
     border: solid 1px $timeline-border-color;
 
+    padding: $timeline-margin;
     margin-left: $timeline-margin;
+    margin-bottom: $timeline-margin;
 
     .timeline-item-circle {
-      position: absolute;
+      position: relative;
       left: 0;
-      width: 2em;
-      height: 2em;
+      width: $timeline-circle-size;
+      height: $timeline-circle-size;
 
       display: grid;
       grid-template-columns: 1fr;
