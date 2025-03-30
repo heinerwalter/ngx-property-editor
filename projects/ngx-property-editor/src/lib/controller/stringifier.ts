@@ -764,7 +764,7 @@ export module Stringifier {
 
       case 'number':
       case 'rating':
-      case 'difficulty'
+      case 'difficulty':
       case 'year':
         return numberToString(value, false);
 
