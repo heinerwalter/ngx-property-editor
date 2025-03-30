@@ -6,21 +6,23 @@ $timeline-margin: $default-margin;
 $timeline-circle-size: $timeline-margin;
 
 $timeline-border-color: #ccc;
-$timeline-background-color: #eee;
+$timeline-background-color: #fff;
+$timeline-circle-background-color: #eee;
 
 .timeline {
   display: block;
   position: relative;
   width: 100%;
 
-  .timeline-line {
-    content: "&nbsp;";
+  &::after {
+    // The timeline line
+    content: "";
 
     display: block;
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
-    height: 100%;
     width: $timeline-line-width;
 
     background-color: $timeline-border-color;
@@ -28,12 +30,25 @@ $timeline-background-color: #eee;
 
   .timeline-item {
     display: block;
-    position: relative;
     border: solid 1px $timeline-border-color;
+    background-color: $timeline-background-color;
 
     padding: $timeline-margin;
     margin-left: $timeline-margin;
     margin-bottom: $timeline-margin;
+
+    &::after {
+      // Arrow towards the timeline line
+      content: "";
+
+      display: block;
+      position: relative;
+      width: $timeline-margin;
+      height: $timeline-margin;
+      border: solid $timeline-line-width $timeline-border-color;
+      background-color: $timeline-background-color;
+      transform: rotate(45deg);
+    }
 
     .timeline-item-circle {
       position: absolute;
@@ -50,7 +65,7 @@ $timeline-background-color: #eee;
 
       border-radius: 50%;
       border: solid 1px $timeline-border-color;
-      background-color: $timeline-background-color;
+      background-color: $timeline-circle-background-color;
     }
 
     .timeline-item-text {
