@@ -3,7 +3,7 @@
 
 $timeline-line-width: 1px;
 $timeline-margin: $default-margin;
-$timeline-circle-size: $timeline-margin;
+$timeline-circle-size: 2 * $timeline-margin;
 
 $timeline-border-color: #ccc;
 $timeline-background-color: #fff;
