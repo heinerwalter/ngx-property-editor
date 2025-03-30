@@ -18,7 +18,6 @@ export class PageNavigationDemoComponent {
     { title: 'Item 2', text: 'This is another timeline item with an even longer text below the timeline item title. It consists of multiple sentences so that it hopefully spans across multiple lines. The timeline works.' },
     { title: 'Item 3', text: 'A timeline item with an icon.', icon: faClock },
     { title: 'Item 4' },
-    { title: 'Item 5', text: 'And this is the last timeline item.' },
   ];
 
 }

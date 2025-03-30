@@ -1,7 +1,8 @@
-<div class="timeline-item" *ngIf="item">
+<div class="timeline-item">
   <div class="timeline-item-circle">
-    <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon>
+    <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
   </div>
-  <h2 *ngIf="item.title" class="timeline-item-title">{{ item.title }}</h2>
-  <p *ngIf="item.text" class="timeline-item-text">{{ item.text }}</p>
+  <h2 *ngIf="title" class="timeline-item-title">{{ title }}</h2>
+  <p *ngIf="text" class="timeline-item-text">{{ text }}</p>
+  <ng-content *ngIf="!text"></ng-content>
 </div>

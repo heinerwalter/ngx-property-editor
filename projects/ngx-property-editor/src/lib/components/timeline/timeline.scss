@@ -75,8 +75,7 @@ $timeline-circle-background-color: #eee;
       background-color: $timeline-circle-background-color;
     }
 
-    .timeline-item-title:last-child,
-    .timeline-item-text:last-child {
+    & > *:last-child {
       margin-bottom: 0;
     }
   }
