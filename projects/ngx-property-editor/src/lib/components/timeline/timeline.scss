@@ -45,12 +45,12 @@ $timeline-circle-background-color: #eee;
       content: "";
 
       // Half length of the arrow square diagonal
-      $half-diagonal: calc(0.5 * math.sqrt(2) * $timeline-margin - (2 * $timeline-line-width));
+      --half-diagonal: calc(0.5 * math.sqrt(2) * $timeline-margin - (2 * $timeline-line-width));
 
       display: block;
       position: absolute;
-      left: - $half-diagonal;
-      top: 2 * $timeline-margin - $half-diagonal;
+      left: - var(--half-diagonal);
+      top: 2 * $timeline-margin - var(--half-diagonal);
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
