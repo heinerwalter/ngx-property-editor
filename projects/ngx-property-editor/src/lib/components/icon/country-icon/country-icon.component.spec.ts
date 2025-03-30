@@ -8,7 +8,9 @@ describe('CountryIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CountryIconComponent]
+      declarations: [
+        CountryIconComponent,
+      ],
     })
     .compileComponents();
     

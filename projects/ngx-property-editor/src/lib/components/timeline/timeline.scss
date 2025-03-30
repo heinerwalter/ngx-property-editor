@@ -3,6 +3,8 @@
 
 $timeline-line-width: 1px;
 $timeline-margin: $default-margin;
+$timeline-border-color: #ccc;
+$timeline-background-color: #eee;
 
 .timeline {
   display: block;
@@ -10,19 +12,38 @@ $timeline-margin: $default-margin;
 
   .timeline-line {
     display: block;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: $timeline-line-width;
 
-    background-color: black;
+    background-color: $timeline-border-color;
   }
 
   .timeline-item {
     display: block;
+    padding: $timeline-margin;
+    border: solid 1px $timeline-border-color;
 
     margin-left: $timeline-margin;
+
+    .timeline-item-circle {
+      position: absolute;
+      left: 0;
+      width: 2em;
+      height: 2em;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      justify-items: center;
+      align-items: center;
+
+      border-radius: 50%;
+      border: solid 1px $timeline-border-color;
+      background-color: $timeline-background-color;
+    }
 
     .timeline-item-text {
       margin: 0;

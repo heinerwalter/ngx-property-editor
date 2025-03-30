@@ -7,6 +7,7 @@ import { TableComponent } from '../table/table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { ButtonComponent } from '../../bootstrap/button/button.component';
+import { TableColumnChooserComponent } from '../table-column-chooser/table-column-chooser.component';
 
 describe('PropertyTableComponent', () => {
   let component: PropertyTableComponent;
@@ -17,6 +18,7 @@ describe('PropertyTableComponent', () => {
       declarations: [
         PropertyTableComponent,
         TableComponent,
+        TableColumnChooserComponent,
         ToolbarComponent,
         ButtonComponent,
         ...inputComponents,
