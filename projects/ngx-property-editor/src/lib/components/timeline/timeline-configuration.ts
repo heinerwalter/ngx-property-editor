@@ -19,6 +19,8 @@ export type TimelineItemType = 'default' | 'box' | 'header';
 export type TimelineItem = {
   /** Modify the timeline item appearance by changing the item type. */
   type?: TimelineItemType;
+  /** Optional date displayed above the title. */
+  date?: Date;
   /** Title of the timeline item. */
   title?: string;
   /** Longer description text of the timeline item. */

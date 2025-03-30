@@ -2,7 +2,9 @@
   <div class="timeline-item-circle">
     <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
   </div>
-  <h2 *ngIf="title" class="timeline-item-title">{{ title }}</h2>
-  <p *ngIf="text" class="timeline-item-text">{{ text }}</p>
+  <div *ngIf="date" class="timeline-item-date">{{ date | date: 'dd.MM.yyyy' }}</div>
+  <h3 *ngIf="title && type == 'header'" class="timeline-item-title">{{ title }}</h3>
+  <h4 *ngIf="title && type != 'header'" class="timeline-item-title">{{ title }}</h4>
+  <div *ngIf="text" class="timeline-item-text">{{ text }}</div>
   <ng-content *ngIf="!text"></ng-content>
 </div>

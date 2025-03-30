@@ -16,6 +16,11 @@ export class TimelineItemComponent implements TimelineItem {
   @Input() public type: TimelineItemType | undefined = undefined;
 
   /**
+   * Optional date displayed above the title.
+   */
+  @Input() public date: Date | undefined = undefined;
+
+  /**
    * Title of the timeline item.
    */
   @Input() public title: string | undefined = undefined;

@@ -2,6 +2,7 @@
 
   <ng-container *ngFor="let item of timeline || []">
     <pe-timeline-item [type]="item?.type"
+                      [date]="item?.date"
                       [title]="item?.title"
                       [text]="item?.text"
                       [icon]="item?.icon"
