@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TimelineItem, TimelineAlign } from '../timeline-configuration';
+import { TimelineItem, TimelineItemType, TimelineAlign } from '../timeline-configuration';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,6 +8,12 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
   styleUrls: [],
 })
 export class TimelineItemComponent implements TimelineItem {
+
+  /**
+   * Modify the timeline item appearance by changing the item type.
+   * @see TimelineItemType
+   */
+  @Input() public type: TimelineItemType | undefined = undefined;
 
   /**
    * Title of the timeline item.

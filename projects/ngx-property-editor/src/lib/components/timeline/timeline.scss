@@ -57,7 +57,7 @@ $timeline-circle-background-color: #eee;
       transform: rotate(45deg);
     }
 
-    .timeline-item-circle {
+    & > .timeline-item-circle {
       position: absolute;
       left: -$timeline-item-margin - math.div($timeline-circle-size, 2);
       top: $timeline-margin;
@@ -78,5 +78,19 @@ $timeline-circle-background-color: #eee;
     & > *:last-child {
       margin-bottom: 0;
     }
+
+    // Item type:
+    &:not(.timeline-item-type-default)::before {
+      display: none;
+    }
+    &:not(.timeline-item-type-default) > .timeline-item-circle {
+      display: none;
+    }
+    &.timeline-item-type-header {
+      border: none;
+      background: transparent;
+      padding-block: 0;
+    }
+
   }
 }

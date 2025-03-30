@@ -6,9 +6,19 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export type Timeline = TimelineItem[];
 
 /**
+ * Modify the timeline item appearance by changing the item type:
+ * - undefined or 'default': Normal timeline item with border and mark on the timeline.
+ * - 'box': Item with border and normal timeline item content but without mark on the timeline.
+ * - 'header': Timeline header without border and without mark on the timeline.
+ */
+export type TimelineItemType = 'default' | 'box' | 'header';
+
+/**
  * Definition of a timeline item.
  */
 export type TimelineItem = {
+  /** Modify the timeline item appearance by changing the item type. */
+  type?: TimelineItemType;
   /** Title of the timeline item. */
   title?: string;
   /** Longer description text of the timeline item. */

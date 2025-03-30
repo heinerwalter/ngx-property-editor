@@ -9,8 +9,13 @@
 
     <h1>Timeline:</h1>
     <pe-timeline [timeline]="timelineData">
+      <pe-timeline-item type="header" title="Special Items">
+      </pe-timeline-item>
       <pe-timeline-item title="Item 5">
         A timeline item with <strong>formatted</strong> content.
+      </pe-timeline-item>
+      <pe-timeline-item type="box" title="Item 6">
+        Item without timeline mark.
       </pe-timeline-item>
     </pe-timeline>
 

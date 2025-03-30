@@ -1,7 +1,8 @@
 <div class="timeline">
 
   <ng-container *ngFor="let item of timeline || []">
-    <pe-timeline-item [title]="item?.title"
+    <pe-timeline-item [type]="item?.type"
+                      [title]="item?.title"
                       [text]="item?.text"
                       [icon]="item?.icon"
                       [align]="item?.align">
