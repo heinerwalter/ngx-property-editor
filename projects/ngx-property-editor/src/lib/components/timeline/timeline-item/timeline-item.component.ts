@@ -18,7 +18,19 @@ export class TimelineItemComponent implements TimelineItem {
   /**
    * Optional date displayed above the title.
    */
-  @Input() public date: Date | undefined = undefined;
+  @Input() public date: Date | string | undefined = undefined;
+
+  /** Returns true, if the `date` is a `Date` instance. */
+  protected get dateIsDateInstance(): boolean {
+    return this.date instanceof Date;
+  }
+
+  /** Returns the `date` as `Date` instance or undefined. */
+  protected get dateAsDateInstance(): Date | undefined {
+    if (this.date instanceof Date)
+      return this.date;
+    return undefined;
+  }
 
   /**
    * Title of the timeline item.

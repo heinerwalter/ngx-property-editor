@@ -20,13 +20,13 @@ export type TimelineItem = {
   /** Modify the timeline item appearance by changing the item type. */
   type?: TimelineItemType;
   /** Optional date displayed above the title. */
-  date?: Date;
+  date?: Date | string;
   /** Title of the timeline item. */
   title?: string;
   /** Longer description text of the timeline item. */
   text?: string;
   /** Optional FontAwesome icon in the timeline icon circle. */
-  icon?: IconDefinition | undefined;
+  icon?: IconDefinition;
   /** Alignment of the timeline item. Automatic alignment, if undefined. */
   align?: TimelineAlign;
 };
