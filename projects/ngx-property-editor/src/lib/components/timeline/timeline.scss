@@ -78,8 +78,9 @@ $timeline-circle-background-color: #eee;
       background-color: $timeline-circle-background-color;
     }
 
-    .timeline-item-text {
-      margin: 0;
+    .timeline-item-title:last-child,
+    .timeline-item-text:last-child {
+      margin-bottom: 0;
     }
   }
 }

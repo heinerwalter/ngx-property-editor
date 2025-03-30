@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 /**
  * Definition of a whole timeline with all of its items.
  */
@@ -11,6 +13,8 @@ export type TimelineItem = {
   title?: string;
   /** Longer description text of the timeline item. */
   text?: string;
+  /** Optional FontAwesome icon in the timeline icon circle. */
+  icon?: IconDefinition | undefined;
   /** Alignment of the timeline item. Automatic alignment, if undefined. */
   align?: TimelineAlign;
 };

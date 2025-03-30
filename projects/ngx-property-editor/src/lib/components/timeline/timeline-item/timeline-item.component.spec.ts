@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimelineItemComponent } from './timeline-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('TimelineItemComponent', () => {
   let component: TimelineItemComponent;
@@ -14,6 +15,7 @@ describe('TimelineItemComponent', () => {
       ],
       imports: [
         NgbModule,
+        FontAwesomeTestingModule,
       ],
     })
     .compileComponents();
