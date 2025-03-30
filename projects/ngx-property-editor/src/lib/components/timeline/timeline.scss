@@ -45,7 +45,7 @@ $timeline-circle-background-color: #eee;
       content: "";
 
       // Half length of the arrow square diagonal
-      $half-diagonal: 0.5 * math.sqrt(2) * $timeline-margin - (2 * $timeline-line-width);
+      $half-diagonal: calc(0.5 * math.sqrt(2) * $timeline-margin - (2 * $timeline-line-width));
 
       display: block;
       position: absolute;
