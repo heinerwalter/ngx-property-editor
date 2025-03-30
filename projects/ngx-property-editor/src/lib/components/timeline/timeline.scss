@@ -49,7 +49,7 @@ $timeline-circle-background-color: #eee;
 
       display: block;
       position: absolute;
-      left: calc(- $timeline-margin + var(--half-diagonal));
+      left: calc(-$timeline-margin + var(--half-diagonal));
       top: calc($timeline-margin + math.div($timeline-circle-size, 2) + var(--half-diagonal));
       width: $timeline-margin;
       height: $timeline-margin;
