@@ -10,13 +10,14 @@ $timeline-background-color: #eee;
 
 .timeline {
   display: block;
+  position: relative;
   width: 100%;
 
   .timeline-line {
     content: "&nbsp;";
 
     display: block;
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     height: 100%;
@@ -27,6 +28,7 @@ $timeline-background-color: #eee;
 
   .timeline-item {
     display: block;
+    position: relative;
     border: solid 1px $timeline-border-color;
 
     padding: $timeline-margin;
@@ -34,8 +36,9 @@ $timeline-background-color: #eee;
     margin-bottom: $timeline-margin;
 
     .timeline-item-circle {
-      position: relative;
+      position: absolute;
       left: 0;
+      top: $timeline-margin;
       width: $timeline-circle-size;
       height: $timeline-circle-size;
 
