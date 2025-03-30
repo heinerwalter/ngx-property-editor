@@ -4,7 +4,8 @@
 
 $timeline-line-width: 1px;
 $timeline-margin: $default-margin;
-$timeline-circle-size: 1.5 * $timeline-margin;
+$timeline-item-margin: 2 * $default-margin;
+$timeline-circle-size: 1.7 * $timeline-margin;
 
 $timeline-border-color: #ccc;
 $timeline-background-color: #fff;
@@ -15,7 +16,7 @@ $timeline-circle-background-color: #eee;
   position: relative;
   width: 100%;
 
-  &::after {
+  &::before {
     // The timeline line
     content: "";
 
@@ -36,17 +37,20 @@ $timeline-circle-background-color: #eee;
     background-color: $timeline-background-color;
 
     padding: $timeline-margin;
-    margin-left: 3 * $timeline-margin;
+    margin-left: $timeline-margin + $timeline-item-margin;
     margin-bottom: $timeline-margin;
 
     &::before {
       // Arrow towards the timeline line
       content: "";
 
+      // Half length of the arrow square diagonal
+      $half-diagonal: 0.5 * math.sqrt(2) * $timeline-margin - (2 * $timeline-line-width);
+
       display: block;
       position: absolute;
-      left: -0.5 * math.sqrt(2) * $timeline-margin;
-      top: $timeline-margin;
+      left: - $half-diagonal;
+      top: 2 * $timeline-margin - $half-diagonal;
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
@@ -58,7 +62,7 @@ $timeline-circle-background-color: #eee;
 
     .timeline-item-circle {
       position: absolute;
-      left: (-2 * $timeline-margin) - math.div($timeline-circle-size, 2);
+      left: -$timeline-item-margin - math.div($timeline-circle-size, 2);
       top: $timeline-margin;
       width: $timeline-circle-size;
       height: $timeline-circle-size;
