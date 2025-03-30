@@ -53,7 +53,7 @@
     "bootstrap": "^5.3.3",
     "chardet": "^2.1.0",
     "i18n-iso-countries": "^7.14.0",
-    "ngx-property-editor": "^0.17.14",
+    "ngx-property-editor": "^0.17.15",
     "ngx-toastr": "^19.0.0",
     "rxjs": "^7.8.2",
     "sweetalert2": "^11.14.5",
