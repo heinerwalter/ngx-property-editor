@@ -37,12 +37,14 @@ $timeline-circle-background-color: #eee;
     margin-left: $timeline-margin;
     margin-bottom: $timeline-margin;
 
-    &::after {
+    &::before {
       // Arrow towards the timeline line
       content: "";
 
       display: block;
       position: relative;
+      left: - 2 * $timeline-margin;
+      top: 0;
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
@@ -53,7 +55,6 @@ $timeline-circle-background-color: #eee;
     .timeline-item-circle {
       position: absolute;
       left: 0;
-      top: $timeline-margin;
       width: $timeline-circle-size;
       height: $timeline-circle-size;
 
