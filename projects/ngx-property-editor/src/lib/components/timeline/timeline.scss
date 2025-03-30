@@ -36,7 +36,7 @@ $timeline-circle-background-color: #eee;
     background-color: $timeline-background-color;
 
     padding: $timeline-margin;
-    margin-left: 2 * $timeline-margin;
+    margin-left: 3 * $timeline-margin;
     margin-bottom: $timeline-margin;
 
     &::before {
@@ -44,14 +44,14 @@ $timeline-circle-background-color: #eee;
       content: "";
 
       display: block;
-      position: relative;
+      position: absolute;
       left: -0.5 * math.sqrt(2) * $timeline-margin;
-      top: 0;
+      top: $timeline-margin;
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
       background-color: $timeline-background-color;
-      border-bottom-width: 0;
+      border-top-width: 0;
       border-right-width: 0;
       transform: rotate(45deg);
     }

@@ -5,11 +5,6 @@
   <pe-pages-item label="Page 1"
                  [hidden]="!isReadyForStep1">
 
-    <pe-boolean-input label="Enable Page 2"
-                      type="checkbox"
-                      [(value)]="isReadyForStep2">
-    </pe-boolean-input>
-
     <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
 
     <h1>Timeline:</h1>
@@ -20,27 +15,12 @@
   <pe-pages-item label="Page 2"
                  [hidden]="!isReadyForStep2">
 
-    <pe-boolean-input label="Enable Page 1"
-                      type="checkbox"
-                      [(value)]="isReadyForStep1">
-    </pe-boolean-input>
-
-    <pe-boolean-input label="Enable Page 3"
-                      type="checkbox"
-                      [(value)]="isReadyForStep3">
-    </pe-boolean-input>
-
     <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
 
   </pe-pages-item>
 
   <pe-pages-item label="Page 3"
                  [hidden]="!isReadyForStep3">
-
-    <pe-boolean-input label="Enable Page 2"
-                      type="checkbox"
-                      [(value)]="isReadyForStep2">
-    </pe-boolean-input>
 
     <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
 
@@ -50,6 +30,9 @@
 
 
 <ng-template #isReadyForStepButtonGroupTemplate>
+
+  <div>Enable navigation pages:</div>
+
   <ngb-btn-group>
     <button ngb-btn
             [buttonClass]="isReadyForStep1 ? 'btn-success' : 'btn-danger'"
@@ -70,4 +53,7 @@
             (click)="isReadyForStep3 = !isReadyForStep3">
     </button>
   </ngb-btn-group>
+
+  <hr/>
+
 </ng-template>
