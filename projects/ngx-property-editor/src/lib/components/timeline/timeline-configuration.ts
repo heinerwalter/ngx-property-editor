@@ -28,12 +28,22 @@ export type TimelineItem = {
   /** Optional FontAwesome icon in the timeline icon circle. */
   icon?: IconDefinition;
   /** Alignment of the timeline item. Automatic alignment, if undefined. */
-  align?: TimelineAlign;
+  align?: TimelineItemAlign;
 };
+
+/**
+ * Possible timeline alignment values.
+ * Can timeline items be displayed left and/or right of the timeline?
+ * - 'items-both': The timeline is located at the center. Timeline items can be located at the left and right.
+ *                 The item align can be chosen using `TimelineItemAlign`.
+ * - 'items-left': The timeline is located at the right container border. Timeline items are located at the left.
+ * - 'items-right': The timeline is located at the left container border. Timeline items are located at the right.
+ */
+export type TimelineAlign = 'items-both' | 'items-left' | 'items-right';
 
 /**
  * Possible timeline item alignment values.
  * Is a timeline item displayed left or right of the timeline?
  * If 'auto', the alignment is chosen automatically by timeline.
  */
-export type TimelineAlign = 'auto' | 'left' | 'right';
+export type TimelineItemAlign = 'auto' | 'left' | 'right';

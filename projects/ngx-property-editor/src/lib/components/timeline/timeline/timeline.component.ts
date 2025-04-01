@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Timeline } from '../timeline-configuration';
+import { Timeline, TimelineAlign, TimelineItemAlign } from '../timeline-configuration';
 
 @Component({
   selector: 'pe-timeline',
@@ -13,5 +13,10 @@ export class TimelineComponent {
    * Definition of the timeline.
    */
   @Input() public timeline: Timeline = [];
+
+  /**
+   * Alignment of all timeline items.
+   */
+  @Input() public align: TimelineAlign = 'items-right';
 
 }

@@ -24,7 +24,6 @@ $timeline-circle-background-color: #fff;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: $timeline-margin;
     width: $timeline-line-width;
 
     background-color: $timeline-border-color;
@@ -37,7 +36,6 @@ $timeline-circle-background-color: #fff;
     background-color: $timeline-background-color;
 
     padding: $timeline-margin;
-    margin-left: $timeline-margin + $timeline-item-margin;
     margin-bottom: $timeline-margin;
 
     &::before {
@@ -46,20 +44,16 @@ $timeline-circle-background-color: #fff;
 
       display: block;
       position: absolute;
-      left: calc((-0.5 * math.sqrt(2) * $timeline-margin) + (3 * $timeline-line-width));
       top: calc($timeline-margin + math.div($timeline-circle-size, 2) - (0.5 * math.sqrt(2) * $timeline-margin) + (3 * $timeline-line-width));
       width: $timeline-margin;
       height: $timeline-margin;
       border: solid $timeline-line-width $timeline-border-color;
       background-color: $timeline-background-color;
-      border-top-width: 0;
-      border-right-width: 0;
       transform: rotate(45deg);
     }
 
     & > .timeline-item-circle {
       position: absolute;
-      left: -$timeline-item-margin - math.div($timeline-circle-size, 2);
       top: $timeline-margin;
       width: $timeline-circle-size;
       height: $timeline-circle-size;
@@ -83,14 +77,66 @@ $timeline-circle-background-color: #fff;
     &:not(.timeline-item-type-default)::before {
       display: none;
     }
+
     &:not(.timeline-item-type-default) > .timeline-item-circle {
       display: none;
     }
+
     &.timeline-item-type-header {
       border: none;
       background: transparent;
       padding: 0;
     }
 
+  }
+
+  // Align:
+  /** Timeline left, items right. */
+  &.timeline-align-items-right {
+    &::before {
+      left: $timeline-margin;
+    }
+
+    .timeline-item {
+      margin-left: $timeline-margin + $timeline-item-margin;
+
+      &::before {
+        left: calc((-0.5 * math.sqrt(2) * $timeline-margin) + (3 * $timeline-line-width));
+        border-top-width: 0;
+        border-right-width: 0;
+      }
+
+      & > .timeline-item-circle {
+        left: -$timeline-item-margin - math.div($timeline-circle-size, 2);
+      }
+    }
+  }
+
+  /** Timeline right, items left. */
+  &.timeline-align-items-left {
+    &::before {
+      right: $timeline-margin;
+    }
+
+    .timeline-item {
+      margin-right: $timeline-margin + $timeline-item-margin;
+
+      &::before {
+        right: calc((-0.5 * math.sqrt(2) * $timeline-margin) + (3 * $timeline-line-width));
+        border-bottom-width: 0;
+        border-left-width: 0;
+      }
+
+      & > .timeline-item-circle {
+        right: -$timeline-item-margin - math.div($timeline-circle-size, 2);
+      }
+    }
+  }
+
+  /** Timeline center, items left and right. */
+  &.timeline-align-items-both {
+    &::before {
+      left: 50%;
+    }
   }
 }

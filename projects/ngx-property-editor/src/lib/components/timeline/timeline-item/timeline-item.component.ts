@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TimelineItem, TimelineItemType, TimelineAlign } from '../timeline-configuration';
+import { TimelineItem, TimelineItemType, TimelineItemAlign } from '../timeline-configuration';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -51,9 +51,10 @@ export class TimelineItemComponent implements TimelineItem {
   /**
    * Alignment of the timeline item. Automatic alignment, if undefined.
    */
-  @Input() public align: TimelineAlign | undefined = undefined;
+  @Input() public align: TimelineItemAlign | undefined = undefined;
 
   public constructor() {
   }
 
+  protected readonly undefined = undefined;
 }
