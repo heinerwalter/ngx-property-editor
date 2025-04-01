@@ -116,7 +116,7 @@ export class MovableModalComponent {
     } else if (event) {
       position = { x: event.clientX, y: event.clientY };
     }
-    if (position) position.minWindowMargin = 10;
+    if (position) position.minWindowMargin = 20;
 
     const isVisible: boolean = this.toggleVisibility(undefined, position);
 
