@@ -10,6 +10,8 @@ export type MovableModalPosition = {
   x: number,
   /** Y coordinate of the top left corner of modal window in pixel. */
   y: number,
+  /** Optional minimum distance between the modal window and the browser window bounds. */
+  minWindowMargin?: number,
 };
 
 
@@ -100,6 +102,32 @@ export class MovableModalComponent {
   }
 
   /**
+   * The click event of a button for toggling the visibility of the modal window
+   * can be passed directly to this method.
+   * @param event Button click event.
+   * @returns The new visibility value.
+   */
+  public onToggleVisibilityButtonClick(event: MouseEvent): boolean {
+    event?.preventDefault();
+    let position: MovableModalPosition | undefined = undefined;
+    if (event?.target instanceof HTMLElement) {
+      const rect = event.target.getBoundingClientRect();
+      position = { x: rect.left, y: rect.bottom };
+    } else if (event) {
+      position = { x: event.clientX, y: event.clientY };
+    }
+    if (position) position.minWindowMargin = 10;
+
+    const isVisible: boolean = this.toggleVisibility(undefined, position);
+
+    if (event?.target instanceof HTMLButtonElement) {
+      event.target.classList.toggle('active', isVisible);
+    }
+
+    return isVisible;
+  }
+
+  /**
    * Assigns a new position of the top left corner of the modal window.
    * @param position Position of the top left corner of the modal window in pixel.
    */
@@ -107,12 +135,17 @@ export class MovableModalComponent {
     if (!position) return;
 
     // Fix position for the modal window to not leave the browser window
-    if (position.x == undefined || position.x < 0) position.x = 0;
-    if (position.y == undefined || position.y < 0) position.y = 0;
+    let margin: number = position.minWindowMargin || 0;
+    if (margin < 0) margin = 0;
 
-    let maxX = window.innerWidth - this.width;
+    let minX: number = margin;
+    let minY: number = margin;
+    if (position.x == undefined || position.x < minX) position.x = minX;
+    if (position.y == undefined || position.y < minY) position.y = minY;
+
+    let maxX: number = window.innerWidth - this.width - margin;
     if (maxX < 0) maxX = 0;
-    let maxY = window.innerHeight - this.height;
+    let maxY: number = window.innerHeight - this.height - margin;
     if (maxY < 0) maxY = 0;
     if (position.x > maxX) position.x = maxX;
     if (position.y > maxY) position.y = maxY;

@@ -73,26 +73,14 @@ export class TableColumnChooserComponent implements OnInit, OnChanges {
 
   /**
    * The click event of a button for toggling the visibility of the column chooser
-   * can be passed directly to this method.
+   * modal window can be passed directly to this method.
    * @param event Button click event.
    * @returns The new visibility value.
    */
   public onToggleVisibilityButtonClick(event: MouseEvent): boolean {
-    let position: MovableModalPosition | undefined = undefined;
-    if (event?.target instanceof HTMLElement) {
-      const rect = event.target.getBoundingClientRect();
-      position = { x: rect.left, y: rect.bottom };
-    } else if (event) {
-      position = { x: event.clientX, y: event.clientY };
-    }
+    if (!this.modalComponent) return false;
 
-    const isVisible: boolean = this.toggleVisibility(undefined, position);
-
-    if (event?.target instanceof HTMLButtonElement) {
-      event.target.classList.toggle('active', isVisible);
-    }
-
-    return isVisible;
+    return this.modalComponent.onToggleVisibilityButtonClick(event);
   }
 
 }
