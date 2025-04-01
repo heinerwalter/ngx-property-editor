@@ -301,15 +301,6 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   protected isColumnChooserVisible: boolean = false;
 
-  /**
-   * This method toggles the visibility of the column chooser.
-   * @property newValue If not `undefined`, the column chooser visibility
-   *                    is set to the given value instead of being toggled.
-   */
-  public toggleIsColumnChooserVisible(newValue: boolean | undefined = undefined): void {
-    this.isColumnChooserVisible = newValue == undefined ? !this.isColumnChooserVisible : newValue;
-  }
-
   // endregion
 
   // region Filter

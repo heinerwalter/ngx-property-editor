@@ -1,12 +1,32 @@
-<ng-template #contentTemplate let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ header }}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+<div class="modal movable-modal"
+     [style.display]="isVisible ? 'block' : 'none'">
+  <div role="dialog"
+       [id]="id"
+       class="modal-dialog movable-modal-dialog {{modalClass}}"
+       [class.movable-modal-is-dragged]="isDrag"
+       [draggable]="true"
+       (dragstart)="onDragstart($event)"
+       (dragend)="onDragend($event)"
+       [style.left]="(position?.x ?? 0) + 'px'"
+       [style.top]="(position?.y ?? 0) + 'px'"
+       [style.width]="(width ?? 0) + 'px'"
+       [style.height]="(height ?? 0) + 'px'"
+       [attr.aria-labelledby]="'modal-title-' + id">
+    <div class="modal-content" *ngIf="isVisible">
+
+      <div class="modal-header">
+        <h6 class="modal-title" [id]="'modal-title-' + id">{{ header }}</h6>
+        <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
+      </div>
+
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+
+    </div>
   </div>
-  <div class="modal-body">
-    <ng-content select="[modal-body]"></ng-content>
-  </div>
-  <div class="modal-footer">
-    <ng-content select="[modal-footer]"></ng-content>
-  </div>
-</ng-template>
+</div>
