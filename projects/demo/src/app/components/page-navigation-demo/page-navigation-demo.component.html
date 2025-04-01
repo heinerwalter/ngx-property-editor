@@ -8,13 +8,64 @@
     <ng-container *ngTemplateOutlet="isReadyForStepButtonGroupTemplate"></ng-container>
 
     <h1>Timeline:</h1>
-    <pe-timeline [timeline]="timelineData">
-      <pe-timeline-item type="header" title="Special Items">
+
+    <pe-select-input label="Align"
+                     [inlineLabel]="true"
+                     [dataSource]="timelineAlignDataSource"
+                     valuePropertyName="value"
+                     displayPropertyName="name"
+                     [(value)]="timelineAlign">
+    </pe-select-input>
+
+    <pe-select-input label="Item Align"
+                     [inlineLabel]="true"
+                     [dataSource]="timelineItemAlignDataSource"
+                     valuePropertyName="value"
+                     displayPropertyName="name"
+                     [(value)]="timelineItemAlign">
+    </pe-select-input>
+
+    <pe-timeline [align]="timelineAlign">
+
+      <pe-timeline-item title="Item 1"
+                        [align]="timelineItemAlign"
+                        [date]="now">
+        This is the first timeline item with a text.
       </pe-timeline-item>
-      <pe-timeline-item title="Item 5">
-        A timeline item with <strong>formatted</strong> content.
+
+      <pe-timeline-item title="Item 2"
+                        [align]="timelineItemAlign">
+        This is another timeline item with an even longer text below the timeline item title.
+        It consists of multiple sentences so that it hopefully spans across multiple lines.
+        <strong>The timeline works!</strong>
       </pe-timeline-item>
-      <pe-timeline-item type="box" title="Item 6">
+
+      <pe-timeline-item title="Item 3" [icon]="iconClock"
+                        [align]="timelineItemAlign">
+        A timeline item with an icon.
+      </pe-timeline-item>
+
+      <pe-timeline-item title="Item 4"
+                        [align]="'right'">
+        A timeline item with fixed right align.
+      </pe-timeline-item>
+
+      <pe-timeline-item title="Documentation" [icon]="iconCode"
+                        [align]="timelineItemAlign">
+        <p>Such a timeline item can be created like:</p>
+        <pre><code>&lt;pe-timeline&gt;
+  &lt;pe-timeline-item title="Item 1" [date]="now"&gt;
+    This is the first timeline item with a text.
+  &lt;/pe-timeline-item&gt;
+&lt;/pe-timeline&gt;</code></pre>
+      </pe-timeline-item>
+
+      <pe-timeline-item type="header" title="Special Items"
+                        [align]="timelineItemAlign">
+      </pe-timeline-item>
+
+      <pe-timeline-item type="box" title="Item 5"
+                        [align]="timelineItemAlign">
         Item without timeline mark.
       </pe-timeline-item>
     </pe-timeline>

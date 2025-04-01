@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { Timeline } from 'ngx-property-editor';
+import { faClock, faCode, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Timeline, TimelineAlign, TimelineItemAlign } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-page-navigation-demo',
@@ -13,11 +13,29 @@ export class PageNavigationDemoComponent {
   protected isReadyForStep2: boolean = true;
   protected isReadyForStep3: boolean = false;
 
-  protected timelineData: Timeline = [
-    { title: 'Item 1', text: 'This is the first timeline item with a text.', date: new Date() },
-    { title: 'Item 2', text: 'This is another timeline item with an even longer text below the timeline item title. It consists of multiple sentences so that it hopefully spans across multiple lines. The timeline works.' },
-    { title: 'Item 3', text: 'A timeline item with an icon.', icon: faClock },
-    { title: 'Item 4' },
+  // region Timeline
+
+  protected iconClock: IconDefinition = faClock;
+  protected iconCode: IconDefinition = faCode;
+
+  protected readonly now: Date = new Date();
+
+  protected timelineAlign: TimelineAlign = 'items-both';
+
+  protected timelineAlignDataSource: { value: TimelineAlign, name: string }[] = [
+    { value: 'items-right', name: 'Left' },
+    { value: 'items-both', name: 'Center' },
+    { value: 'items-left', name: 'Right' },
   ];
+
+  protected timelineItemAlign: TimelineItemAlign = 'auto';
+
+  protected timelineItemAlignDataSource: { value: TimelineItemAlign, name: string }[] = [
+    { value: 'auto', name: 'Auto' },
+    { value: 'left', name: 'Left' },
+    { value: 'right', name: 'Right' },
+  ];
+
+  // endregion
 
 }

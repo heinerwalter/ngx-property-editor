@@ -1,6 +1,6 @@
 <div class="timeline timeline-align-{{ (align || 'items-right') }}">
 
-  <ng-container *ngFor="let item of timeline || []">
+  <!--ng-container *ngFor="let item of timeline || []">
     <pe-timeline-item [type]="item?.type"
                       [date]="item?.date"
                       [title]="item?.title"
@@ -8,8 +8,10 @@
                       [icon]="item?.icon"
                       [align]="item?.align">
     </pe-timeline-item>
-  </ng-container>
+  </ng-container-->
 
   <ng-content></ng-content>
 
 </div>
+
+<p>{{ test }}</p>
