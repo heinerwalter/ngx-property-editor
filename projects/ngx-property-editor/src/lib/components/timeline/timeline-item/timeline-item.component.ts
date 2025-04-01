@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { TimelineItem, TimelineItemType, TimelineItemAlign } from '../timeline-configuration';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { TimelineComponent } from '../timeline/timeline.component';
 
 @Component({
   selector: 'pe-timeline-item',
   templateUrl: './timeline-item.component.html',
   styleUrls: [],
 })
-export class TimelineItemComponent implements TimelineItem {
+export class TimelineItemComponent implements TimelineItem, OnChanges, AfterContentChecked {
 
   /**
    * Modify the timeline item appearance by changing the item type.
@@ -53,8 +54,66 @@ export class TimelineItemComponent implements TimelineItem {
    */
   @Input() public align: TimelineItemAlign | undefined = undefined;
 
-  public constructor() {
+  public autoAlign: 'left' | 'right' = 'left';
+
+  @ViewChild('timelineItem', { static: true }) protected elementRef?: ElementRef<HTMLDivElement>;
+
+  public constructor(private timelineRef: TimelineComponent) {
   }
 
-  protected readonly undefined = undefined;
+  public ngAfterContentChecked(): void {
+    this.timelineRef.updateAutoAlign();
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.timelineRef.updateAutoAlign();
+  }
+
+  /**
+   * Returns the position and size of this components HTML element.
+   */
+  public rect(): DOMRect {
+    return this.elementRef?.nativeElement?.getBoundingClientRect() ?? new DOMRect();
+  }
+
+  /**
+   * Returns the top position of this components HTML element in pixel.
+   */
+  public get top(): number {
+    return this.rect().top;
+  }
+
+  /**
+   * Returns the bottom position of this components HTML element in pixel.
+   */
+  public get bottom(): number {
+    return this.rect().bottom;
+  }
+
+  /**
+   * Returns the height of this components HTML element in pixel.
+   */
+  public get height(): number {
+    return this.rect().height;
+  }
+
+  /**
+   * Returns the value of the CSS variable margin-top in pixel.
+   */
+  public get marginTop(): number {
+    if (!this.elementRef) return 0;
+    let length = this.elementRef?.nativeElement.style.marginTop;
+    if (!length) return 0;
+    length = length.replace('px', '');
+    return parseInt(length) || 0;
+  }
+
+  /**
+   * Assigns the given length in pixel to the CSS variable margin-top.
+   */
+  public set marginTop(length: number) {
+    if (!this.elementRef) return;
+    this.elementRef.nativeElement.style.marginTop = length + 'px';
+  }
+
 }

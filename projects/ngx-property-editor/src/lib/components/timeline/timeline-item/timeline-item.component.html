@@ -1,4 +1,5 @@
-<div class="timeline-item timeline-item-align-{{ (align || 'auto') }} timeline-item-type-{{ (type || 'default') }}">
+<div #timelineItem
+     class="timeline-item timeline-item-align-{{ (align || 'auto') }} timeline-item-auto-align-{{ (autoAlign || 'left') }} timeline-item-type-{{ (type || 'default') }}">
   <div class="timeline-item-circle">
     <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
   </div>

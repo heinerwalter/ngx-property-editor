@@ -12,6 +12,9 @@ $timeline-background-color: #fff;
 $timeline-circle-background-color: #fff;
 
 .timeline {
+  --timeline-margin: $timeline-margin;
+  --timeline-min-distance-y: $timeline-circle-size + 2 * $timeline-margin;
+
   display: block;
   position: relative;
   width: 100%;
@@ -144,7 +147,7 @@ $timeline-circle-background-color: #fff;
     }
 
     .timeline-item.timeline-item-align-right,
-    .timeline-item.timeline-item-align-auto {
+    .timeline-item.timeline-item-align-auto.timeline-item-auto-align-right {
       margin-left: calc(50% + $timeline-item-margin);
 
       &::before {
@@ -158,7 +161,8 @@ $timeline-circle-background-color: #fff;
       }
     }
 
-    .timeline-item.timeline-item-align-left {
+    .timeline-item.timeline-item-align-left,
+    .timeline-item.timeline-item-align-auto.timeline-item-auto-align-left {
       margin-right: calc(50% + $timeline-item-margin);
 
       &::before {
