@@ -34,12 +34,12 @@ export type TimelineItem = {
 /**
  * Possible timeline alignment values.
  * Can timeline items be displayed left and/or right of the timeline?
- * - 'items-both': The timeline is located at the center. Timeline items can be located at the left and right.
- *                 The item align can be chosen using `TimelineItemAlign`.
- * - 'items-left': The timeline is located at the right container border. Timeline items are located at the left.
- * - 'items-right': The timeline is located at the left container border. Timeline items are located at the right.
+ * - 'left': The timeline is located at the left container border. Timeline items are located at the right.
+ * - 'center': The timeline is located at the center. Timeline items can be located at the left and right.
+ *             The item align can be chosen using `TimelineItemAlign`.
+ * - 'right': The timeline is located at the right container border. Timeline items are located at the left.
  */
-export type TimelineAlign = 'items-both' | 'items-left' | 'items-right';
+export type TimelineAlign = 'left' | 'center' | 'right';
 
 /**
  * Possible timeline item alignment values.

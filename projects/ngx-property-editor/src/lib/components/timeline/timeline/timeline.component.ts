@@ -14,8 +14,9 @@ export class TimelineComponent implements AfterContentInit {
   /**
    * Alignment of all timeline items.
    */
-  @Input() public align: TimelineAlign = 'items-right';
+  @Input() public align: TimelineAlign = 'left';
 
+  /** Reference to the `.timeline` HTML element. */
   @ViewChild('timeline', { static: true }) protected elementRef?: ElementRef<HTMLDivElement>;
 
   /** Reference to all timeline item components in the timeline. */
@@ -25,6 +26,7 @@ export class TimelineComponent implements AfterContentInit {
   }
 
   public ngAfterContentInit(): void {
+    // Initialize the position of all timeline items (see `updateAutoAlign()`).
     this.timelineItemRefs!.changes
       .pipe(startWith(this.timelineItemRefs!.toArray()))
       .pipe(delay(0))
@@ -33,11 +35,16 @@ export class TimelineComponent implements AfterContentInit {
       });
   }
 
+  /**
+   * Updates the position of automatically aligned timeline items (if timeline align is 'center').
+   * @param items Optional array of timeline item.
+   *              If undefined, all timeline items from `timelineItemRefs` are used instead.
+   */
   public updateAutoAlign(items: TimelineItemComponent[] | undefined = undefined): void {
     if (!items) items = this.timelineItemRefs?.toArray();
     if (!items?.length) return;
 
-    if (this.align != 'items-both') {
+    if (this.align != 'center') {
       for (const item of items) {
         item.marginTop = 0;
       }

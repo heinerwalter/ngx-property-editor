@@ -20,12 +20,12 @@ export class PageNavigationDemoComponent {
 
   protected readonly now: Date = new Date();
 
-  protected timelineAlign: TimelineAlign = 'items-both';
+  protected timelineAlign: TimelineAlign = 'center';
 
   protected timelineAlignDataSource: { value: TimelineAlign, name: string }[] = [
-    { value: 'items-right', name: 'Left' },
-    { value: 'items-both', name: 'Center' },
-    { value: 'items-left', name: 'Right' },
+    { value: 'left', name: 'Left' },
+    { value: 'center', name: 'Center' },
+    { value: 'right', name: 'Right' },
   ];
 
   protected timelineItemAlign: TimelineItemAlign = 'auto';

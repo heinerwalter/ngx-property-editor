@@ -95,7 +95,7 @@ $timeline-circle-background-color: #fff;
 
   // Align:
   /** Timeline left, items right. */
-  &.timeline-align-items-right {
+  &.timeline-align-left {
     &::before {
       left: $timeline-margin;
     }
@@ -116,7 +116,7 @@ $timeline-circle-background-color: #fff;
   }
 
   /** Timeline right, items left. */
-  &.timeline-align-items-left {
+  &.timeline-align-right {
     &::before {
       right: $timeline-margin;
     }
@@ -137,7 +137,7 @@ $timeline-circle-background-color: #fff;
   }
 
   /** Timeline center, items left and right. */
-  &.timeline-align-items-both {
+  &.timeline-align-center {
     &::before {
       left: 50%;
     }

@@ -56,7 +56,7 @@ export class TimelineItemComponent implements TimelineItem, OnChanges, AfterCont
 
   public autoAlign: 'left' | 'right' = 'left';
 
-  /** Reference to the `.timeline-item` HTML element.  */
+  /** Reference to the `.timeline-item` HTML element. */
   @ViewChild('timelineItem', { static: true }) protected elementRef?: ElementRef<HTMLDivElement>;
 
   public constructor(
