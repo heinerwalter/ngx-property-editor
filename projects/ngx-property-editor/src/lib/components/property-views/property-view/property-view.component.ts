@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
+import { generatePropertyConfigurationsFromData, PropertyConfiguration } from '../property-configuration';
 import { TableData } from '../../property-table/table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 
@@ -22,7 +22,7 @@ export class PropertyViewComponent implements OnInit, OnChanges {
    * If undefined, the configuration will be automatically generated from the properties
    * of the `data` object.
    */
-  @Input() public configuration: PropertiesConfiguration | undefined = undefined;
+  @Input() public configuration: PropertyConfiguration[] | undefined = undefined;
 
   /**
    * Display the properties of this object.
@@ -51,8 +51,8 @@ export class PropertyViewComponent implements OnInit, OnChanges {
    * The result is stored in the property `tableData`.
    */
   private generateTableData(): void {
-    let config: PropertiesConfiguration = this.configuration?.length ? [...this.configuration]
-      : generatePropertiesConfigurationFromData(this.data);
+    let config: PropertyConfiguration[] = this.configuration?.length ? [...this.configuration]
+      : generatePropertyConfigurationsFromData(this.data);
 
     // Extract disabled groups
     config = config.map(property => {

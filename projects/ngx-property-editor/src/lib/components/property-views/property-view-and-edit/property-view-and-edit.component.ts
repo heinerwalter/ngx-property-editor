@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { PropertiesConfiguration } from '../property-configuration';
+import { PropertyConfiguration } from '../property-configuration';
 import { ViewAndEditContainerBaseComponent } from '../view-and-edit-container/view-and-edit-container-base.component';
 
 
@@ -26,7 +26,7 @@ export class PropertyViewAndEditComponent extends ViewAndEditContainerBaseCompon
    * If undefined, the configuration will be automatically generated from the properties
    * of the `data` object.
    */
-  @Input() public configuration: PropertiesConfiguration | undefined = undefined;
+  @Input() public configuration: PropertyConfiguration[] | undefined = undefined;
 
   /**
    * Display the properties of this object.

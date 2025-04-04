@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { generatePropertiesConfigurationFromData, PropertiesConfiguration } from '../property-configuration';
+import { generatePropertyConfigurationsFromData, PropertyConfiguration } from '../property-configuration';
 import { PropertyEditorMode } from '../property-editor-mode';
 
 /**
  * A component displaying configured properties of a `data` object
  * as form for editing.
- * @see PropertiesConfiguration
+ * @see PropertyConfiguration
  */
 @Component({
   selector: 'pe-property-editor',
@@ -23,9 +23,9 @@ export class PropertyEditorComponent implements OnChanges {
    * If undefined, the configuration will be automatically generated from the properties
    * of the `data` object.
    */
-  @Input() public configuration: PropertiesConfiguration | undefined = undefined;
+  @Input() public configuration: PropertyConfiguration[] | undefined = undefined;
 
-  protected _configuration: PropertiesConfiguration = [];
+  protected _configuration: PropertyConfiguration[] = [];
 
   /**
    * Display the properties of this object.
@@ -51,16 +51,17 @@ export class PropertyEditorComponent implements OnChanges {
   }
 
   /**
-   * Automatically generates a `PropertiesConfiguration` from the properties of the data object,
-   * if no `configuration` is given as input property.
+   * Automatically generates a `PropertyConfiguration` array
+   * from the properties of the data object, if no `configuration`
+   * is given as input property.
    */
   private generateConfiguration(): void {
     // Get properties configuration
-    let configuration: PropertiesConfiguration =
-      this.configuration || generatePropertiesConfigurationFromData(this.data, true);
+    let configuration: PropertyConfiguration[] =
+      this.configuration || generatePropertyConfigurationsFromData(this.data, true);
 
     // Join items from disabled groups
-    let modifiedConfiguration: PropertiesConfiguration = [];
+    let modifiedConfiguration: PropertyConfiguration[] = [];
     for (let item of configuration) {
       if (item.hasGroup &&
         item.getDisableGroup(this.data, this.mode)) {

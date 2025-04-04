@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PropertiesConfiguration, PropertyEditorMode } from 'ngx-property-editor';
+import { PropertyConfiguration, PropertyEditorMode } from 'ngx-property-editor';
 import { Contact } from '../../model/contact';
 
 @Component({
@@ -52,7 +52,7 @@ export class PropertyTableDemoComponent {
    * Configuration of displayed properties of each table entry including name, data type,
    * displayed value etc.
    */
-  public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
+  public propertyConfigurations: PropertyConfiguration[] | undefined = Contact.propertyConfigurations;
 
   /** Property editor mode. */
   public readonly mode: PropertyEditorMode = 'table';

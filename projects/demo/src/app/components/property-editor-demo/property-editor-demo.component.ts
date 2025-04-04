@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Contact } from '../../model/contact';
-import { EditModeType, PropertiesConfiguration, PropertyEditorMode, ViewModeType } from 'ngx-property-editor';
+import { EditModeType, PropertyConfiguration, PropertyEditorMode, ViewModeType } from 'ngx-property-editor';
 
 @Component({
   selector: 'demo-property-editor-demo',
@@ -26,7 +26,7 @@ export class PropertyEditorDemoComponent {
    * If undefined, the configuration will be automatically generated from the properties
    * of the `data` object.
    */
-  public propertiesConfiguration: PropertiesConfiguration | undefined = Contact.propertiesConfiguration;
+  public propertyConfigurations: PropertyConfiguration[] | undefined = Contact.propertyConfigurations;
 
   /** Property editor mode. */
   public mode: PropertyEditorMode = 'view';

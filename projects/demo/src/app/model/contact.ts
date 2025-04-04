@@ -1,5 +1,4 @@
 import {
-  PropertiesConfiguration,
   PropertyConfiguration,
   PropertyConfigurationSeparator,
   PropertyEditorMode,
@@ -76,7 +75,7 @@ export class Contact {
     ].map(str => str?.trim()).filter(str => !!str).join(', ');
   }
 
-  public static get propertiesConfiguration(): PropertiesConfiguration {
+  public static get propertyConfigurations(): PropertyConfiguration[] {
     return [
       new PropertyConfigurationSeparator(),
       new PropertyConfiguration({

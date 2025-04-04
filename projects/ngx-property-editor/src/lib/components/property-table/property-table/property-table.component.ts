@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { PropertiesConfiguration, PropertyConfiguration } from '../../property-views/property-configuration';
+import { PropertyConfiguration } from '../../property-views/property-configuration';
 import { TableData, TableHeader, TableRow } from '../table-configuration';
 import { PropertyTableColumn } from '../property-table-column';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -8,7 +8,7 @@ import { faColumns } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
- * @see PropertiesConfiguration
+ * @see PropertyConfiguration
  */
 @Component({
   selector: 'pe-property-table',
@@ -25,9 +25,9 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    * Configuration of displayed properties of each table entry including name,
    * data type, displayed value etc.
    */
-  @Input() public configuration: PropertiesConfiguration | undefined = undefined;
+  @Input() public configuration: PropertyConfiguration[] | undefined = undefined;
 
-  protected _configuration: PropertiesConfiguration = [];
+  protected _configuration: PropertyConfiguration[] = [];
   /** Maximum number of header rows based on the group depth of `_configuration`. */
   protected _headerRowCount: number = 1;
   /**
@@ -94,15 +94,15 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    * Prepares the given `configuration`.
    */
   private prepareConfiguration(): void {
-    function helper(configuration: PropertiesConfiguration | undefined, currentGroupDepth: number): {
-      configuration: PropertiesConfiguration,
+    function helper(configuration: PropertyConfiguration[] | undefined, currentGroupDepth: number): {
+      configuration: PropertyConfiguration[],
       maxGroupDepth: number,
     } {
       configuration = configuration || [];
       let maxGroupDepth: number = currentGroupDepth;
 
       // Join items from disabled groups
-      let modifiedConfiguration: PropertiesConfiguration = [];
+      let modifiedConfiguration: PropertyConfiguration[] = [];
       for (let item of configuration) {
         if (item.hasGroup) {
           if (item.getDisableGroup(undefined, 'table')) {
@@ -185,7 +185,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
         // Generate group columns
         let columnCount: number = 0;
-        const groupProperties: PropertiesConfiguration = property.group![0];
+        const groupProperties: PropertyConfiguration[] = property.group![0];
         if (tableHeader.length <= tableHeaderRowIndex + 1) tableHeader.push([]);
         for (const property of groupProperties) {
           const result = handleHeaderProperty(property, tableHeaderRowIndex + 1);

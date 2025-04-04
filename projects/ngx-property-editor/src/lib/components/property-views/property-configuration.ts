@@ -457,7 +457,9 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param ignoreHideIfEmpty If true, `hideIfEmpty` is not evaluated.
    * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, mode: PropertyEditorMode, ignoreHideIfEmpty: boolean = false): PropertyConfigurationHiddenType {
+  public isHidden(data: any | undefined, 
+                  mode: PropertyEditorMode,
+                  ignoreHideIfEmpty: boolean = false): PropertyConfigurationHiddenType {
     // Evaluate `hideIfEmpty` (only in view mode)
     if (!ignoreHideIfEmpty && mode == 'view' && this.hideIfEmpty) {
       const value = this.getValue(data, mode);
@@ -679,21 +681,15 @@ export class PropertyConfigurationSeparator extends PropertyConfiguration {
 
 }
 
-
 /**
- * Configuration of how to display multiple properties
- * of a data object in any property view or property editor.
- */
-export type PropertiesConfiguration = PropertyConfiguration[];
-
-
-/**
- * Generates a `PropertiesConfiguration` from the properties of the given data object.
+ * Generates a `PropertyConfiguration` array from the properties of the given data object.
  * @param data A data object to be displayed by a property table or property editor.
  * @param editable If true, all properties are editable.
  */
-export function generatePropertiesConfigurationFromData(data: any | undefined = undefined,
-                                                        editable: boolean = false): PropertiesConfiguration {
+export function generatePropertyConfigurationsFromData(
+  data: any | undefined = undefined,
+  editable: boolean = false
+): PropertyConfiguration[] {
   if (!data) return [];
 
   return Object.getOwnPropertyNames(data)
