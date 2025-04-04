@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild, Optional } from '@angular/core';
 import { TimelineItem, TimelineItemType, TimelineItemAlign } from '../timeline-configuration';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { TimelineComponent } from '../timeline/timeline.component';
@@ -56,17 +56,23 @@ export class TimelineItemComponent implements TimelineItem, OnChanges, AfterCont
 
   public autoAlign: 'left' | 'right' = 'left';
 
+  /** Reference to the `.timeline-item` HTML element.  */
   @ViewChild('timelineItem', { static: true }) protected elementRef?: ElementRef<HTMLDivElement>;
 
-  public constructor(private timelineRef: TimelineComponent) {
+  public constructor(
+    /**
+     * Reference to the surrounding timeline component.
+     * This reference is used to update the automatic alignment upon changes on the timeline item.
+     */
+    @Optional() private timelineRef?: TimelineComponent) {
   }
 
   public ngAfterContentChecked(): void {
-    this.timelineRef.updateAutoAlign();
+    this.timelineRef?.updateAutoAlign();
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    this.timelineRef.updateAutoAlign();
+    this.timelineRef?.updateAutoAlign();
   }
 
   /**
