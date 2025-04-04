@@ -110,7 +110,7 @@ $timeline-circle-background-color: #fff;
       }
 
       & > .timeline-item-circle {
-        left: calc(0 - $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
+        left: calc(-1 * $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
       }
     }
   }
@@ -131,7 +131,7 @@ $timeline-circle-background-color: #fff;
       }
 
       & > .timeline-item-circle {
-        right: calc(0 - $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
+        right: calc(-1 * $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
       }
     }
   }
@@ -157,7 +157,7 @@ $timeline-circle-background-color: #fff;
       }
 
       & > .timeline-item-circle {
-        left: calc(0 - $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
+        left: calc(-1 * $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
       }
     }
 
@@ -172,7 +172,7 @@ $timeline-circle-background-color: #fff;
       }
 
       & > .timeline-item-circle {
-        right: calc(0 - $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
+        right: calc(-1 * $timeline-item-margin - math.div($timeline-circle-size, 2) - 1px);
       }
     }
   }
