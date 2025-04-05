@@ -425,7 +425,8 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param filter A filter expression as string.
    * @returns True, if the filter matches.
    *          If the `filter` is empty, true is returned.
-   *          If the `propertyConfiguration` is empty, false is returned.
+   *          If the property configuration is empty or its `propertyType`
+   *          does not support filtering, false is returned.
    */
   public evaluateFilter(data: any, mode: PropertyEditorMode, filter: string): boolean {
     return PropertyConfigurationFilterController.evaluateFilter(this, data, mode, filter);

@@ -51,6 +51,8 @@ export namespace PropertyTableColumnController {
       {
         isVisible: property.isHidden(undefined, 'table', true) == false,
         parent: parentColumn,
+        // Don't filter columns with some property types
+        hideFilter: !property.propertyType || property.propertyType == 'button',
       });
 
     // Has the property a group?
