@@ -1,7 +1,27 @@
 <pe-toolbar toolbarClass="property-table-toolbar">
+  <ng-container *ngIf="!isEditing">
+    <button ngb-btn buttonClass="btn-secondary"
+            [icon]="iconEdit"
+            ngbTooltip="Edit"
+            (click)="startEditing()">
+    </button>
+  </ng-container>
+  <ng-container *ngIf="isEditing">
+    <button ngb-btn buttonClass="btn-secondary"
+            [icon]="iconSave"
+            ngbTooltip="Save changes"
+            (click)="saveChanges()">
+    </button>
+    <button ngb-btn buttonClass="btn-secondary"
+            [icon]="iconRevert"
+            ngbTooltip="Revert changes"
+            (click)="revertChanges()">
+    </button>
+  </ng-container>
+
   <button ngb-btn buttonClass="btn-secondary"
           [icon]="iconColumnChooser"
-          ngbTooltip="Show or hide columns"
+          ngbTooltip="Column Chooser"
           (click)="columnChooser.onToggleVisibilityButtonClick($event)">
   </button>
 </pe-toolbar>
@@ -14,7 +34,8 @@
           [isHover]="true"
           [pagination]="true"
           [header]="tableHeader"
-          [data]="tableData">
+          [data]="tableData"
+          [showPropertyInput]="isEditing">
 </pe-table>
 
 <pe-table-column-chooser #columnChooser

@@ -128,9 +128,12 @@ export class TableComponent implements OnChanges {
    * @param cell A table cell definition.
    */
   protected getShowPropertyInput(cell: TableCell): boolean {
-    if (!cell?.propertyConfiguration) return false;
-    return cell.showPropertyInput == true ||
-      (cell.showPropertyInput == undefined && this.showPropertyInput);
+    if (!cell?.propertyConfiguration)
+      return false;
+    if (typeof cell.showPropertyInput === 'boolean')
+      return cell.showPropertyInput;
+    return this.showPropertyInput &&
+      cell.propertyConfiguration.isEditable(cell.content, 'table');
   }
 
   /**

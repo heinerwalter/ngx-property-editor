@@ -4,7 +4,7 @@ import { PropertyConfiguration } from '../../property-views/property-configurati
 import { TableData, TableHeader, TableRow } from '../table-configuration';
 import { PropertyTableColumn } from '../property-table-column';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faColumns } from '@fortawesome/free-solid-svg-icons';
+import { faColumns, faPen, faRotateBack, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyTableColumnController } from '../property-table-column-controller';
 import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
 import { PropertyTableFilterController } from '../property-table-filter-controller';
@@ -57,6 +57,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   protected tableData: TableData = [];
 
+  /**
+   * If true the table data can be edited by the user inside the table.
+   */
+  protected isEditing: boolean = false;
+
   // region Filter
 
   /**
@@ -76,6 +81,10 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   @Input() public editable: boolean = false;
 
   // Icons used in the template
+  protected iconEdit: IconDefinition = faPen;
+  protected iconDelete: IconDefinition = faTrash;
+  protected iconSave: IconDefinition = faSave;
+  protected iconRevert: IconDefinition = faRotateBack;
   protected iconColumnChooser: IconDefinition = faColumns;
 
   /** This property is set to true by `ngOnInit()`. */
@@ -352,6 +361,26 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   private onFilterChanged(): void {
     // Re generate table data
     this.generateTableBody(this.visibleColumns);
+  }
+
+  // endregion
+
+  // region Editing
+
+  protected startEditing(): void {
+    this.isEditing = true;
+  }
+
+  protected saveChanges(): void {
+    // TODO: Save changes
+
+    this.isEditing = false;
+  }
+
+  protected revertChanges(): void {
+    // TODO: Revert changes
+
+    this.isEditing = false;
   }
 
   // endregion
