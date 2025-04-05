@@ -1,3 +1,4 @@
+import { PropertyTableColumn } from './property-table-column';
 import { PropertyConfiguration } from '../property-views/property-configuration';
 import { PropertyEditorMode } from '../property-views/property-editor-mode';
 import { PropertyFilter, PropertyTableFilter } from './property-table-filter';
@@ -7,6 +8,49 @@ import { PropertyFilter, PropertyTableFilter } from './property-table-filter';
  * on multiple columns of a property table.
  */
 export namespace PropertyTableFilterController {
+
+  /**
+   * Evaluates a global filter expression on all given property table columns
+   * of the given data object (row). If the filter matches the data object on
+   * at least one column, this function returns true.
+   * @param columns Visible property table columns.
+   * @param data The data object.
+   * @param filter The global filter expression.
+   * @param mode Property editor mode used to evaluate the property value (should always be 'table').
+   * @returns True, if the given data object should be displayed (filter is empty or matching at least one column).
+   */
+  export function evaluateGlobalFilter(
+    columns: PropertyTableColumn[],
+    data: any,
+    filter: string,
+    mode: PropertyEditorMode = 'table'
+  ): boolean {
+    // Is the filter empty?
+    if (!filter) return true;
+    // Is any column visible?
+    if (!columns?.length) return false;
+    // Does the data object exist?
+    if (!data || typeof data !== 'object') return false;
+  
+    // Iterate over all columns and apply the filter on those columns to the data object
+    for (const column of columns) {
+      if (column.isGroup) {
+        // Evaluate filter on child columns
+        if (evaluateGlobalFilter(column.children, data, filter, mode))
+          // Filter is matching on one column
+          return true;
+
+      } else {
+        // Evaluate filter expression on the property value
+        if (column.property.evaluateFilter(data, mode, filter))
+          // Filter is matching on one column
+          return true;
+      }
+    }
+
+    // Filters is not matching on any column
+    return false;
+  }
 
   /**
    * Evaluates the `filter` object on the given data object (row).

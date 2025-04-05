@@ -1,4 +1,7 @@
 <pe-toolbar toolbarClass="property-table-toolbar">
+
+  <!-- Editing: -->
+
   <ng-container *ngIf="!isEditing">
     <button ngb-btn buttonClass="btn-secondary"
             [icon]="iconEdit"
@@ -19,11 +22,22 @@
     </button>
   </ng-container>
 
+  <!-- Table Configuration: -->
+
   <button ngb-btn buttonClass="btn-secondary"
           [icon]="iconColumnChooser"
           ngbTooltip="Column Chooser"
           (click)="columnChooser.onToggleVisibilityButtonClick($event)">
   </button>
+
+  <!-- Filter: -->
+
+  <pe-text-input placeholder="Search"
+                 [noFormGroup]="true"
+                 [(value)]="globalFilter"
+                 (valueChange)="onFilterChanged()">
+  </pe-text-input>
+
 </pe-toolbar>
 
 <pe-table [addResponsiveContainer]="true"

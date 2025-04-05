@@ -75,6 +75,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   protected filter: PropertyTableFilter = {};
 
+  /**
+   * Global filter value which is applied to any column.
+   */
+  protected globalFilter: string = '';
+
   // endregion
 
   /** If true, the properties displayed in the table are editable by the user. */
@@ -337,7 +342,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     // Generate body
     for (const dataEntry of this.data || []) {
       // Evaluate filter
-      if (!PropertyTableFilterController.evaluateFilters(dataEntry, this.filter)) continue;
+      if (!this.evaluateFilter(columns, dataEntry)) continue;
 
       // Initialize new table row
       const tableRow: TableRow = [];
@@ -358,9 +363,30 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   /**
    * This method is called, when the user changed any filter value.
    */
-  private onFilterChanged(): void {
+  protected onFilterChanged(): void {
     // Re generate table data
     this.generateTableBody(this.visibleColumns);
+  }
+
+  /**
+   * Evaluates the filter on the given data object (row).
+   * @param columns The visible columns which should be displayed in the table.
+   * @param dataEntry The data object.
+   * @returns True, if the given data object should be displayed (filter is empty or matching).
+   */
+  private evaluateFilter(
+    columns: PropertyTableColumn[],
+    dataEntry: any
+  ): boolean {
+    // Evaluate table column filters
+    if (!PropertyTableFilterController.evaluateFilters(dataEntry, this.filter))
+      return false;
+
+    // Evaluate global filter
+    if (!PropertyTableFilterController.evaluateGlobalFilter(columns, dataEntry, this.globalFilter))
+      return false;
+
+    return true;
   }
 
   // endregion

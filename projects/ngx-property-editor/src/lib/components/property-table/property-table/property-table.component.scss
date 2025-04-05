@@ -1,15 +1,25 @@
-pe-property-table > pe-table > .property-table-container > .property-table {
+pe-property-table {
 
-  & > thead  {
-    & > tr > .property-table-header-cell {
-      white-space: pre;
-      vertical-align: top;
+  // Toolbar style:
+  .property-table-toolbar {
+    .form-control {
+      max-width: 200px;
     }
   }
 
-  & > tbody {
-    & > tr > .property-table-data-cell {
-      white-space: pre;
+  &>pe-table>.property-table-container>.property-table {
+
+    &>thead {
+      &>tr>.property-table-header-cell {
+        white-space: pre;
+        vertical-align: top;
+      }
+    }
+
+    &>tbody {
+      &>tr>.property-table-data-cell {
+        white-space: pre;
+      }
     }
   }
 
