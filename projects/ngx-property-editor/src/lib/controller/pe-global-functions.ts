@@ -6,7 +6,10 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
 
-export module PEGlobalFunctions {
+/**
+ * This module provides various functions.
+ */
+export namespace PEGlobalFunctions {
 
   // region ID
 

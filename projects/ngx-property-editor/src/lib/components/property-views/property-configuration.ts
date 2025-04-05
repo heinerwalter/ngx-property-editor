@@ -1,6 +1,6 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 import { Stringifier } from '../../controller/stringifier';
-import { PropertyConfigurationFilter } from '../property-table/property-configuration-filter';
+import { PropertyConfigurationFilterController } from '../property-table/property-configuration-filter-controller';
 import { PropertyEditorMode } from './property-editor-mode';
 import { generatePropertyTypeFromData, PropertyType } from './property-type';
 
@@ -417,7 +417,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    *          If the `propertyConfiguration` is empty, false is returned.
    */
   public evaluateFilter(data: any, mode: PropertyEditorMode, filter: string): boolean {
-    return PropertyConfigurationFilter.evaluateFilter(this, data, mode, filter);
+    return PropertyConfigurationFilterController.evaluateFilter(this, data, mode, filter);
   }
 
   /**

@@ -1,13 +1,41 @@
 import { PropertyConfiguration } from '../property-views/property-configuration';
 import { PropertyEditorMode } from '../property-views/property-editor-mode';
 import { propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from '../property-views/property-type';
+import { PropertyFilter } from './property-table-filter';
 
 /**
  * This module contains functions for evaluating filter expressions
  * on property configurations.
  */
-export module PropertyConfigurationFilter {
+export namespace PropertyConfigurationFilterController {
 
+  /**
+   * Evaluates the given filter expression on a property value.
+   * The property value is evaluated from the given `data` object
+   * using the property configuration of the given `propertyFilter` object.
+   * @param propertyFilter A property filter object containing a property
+   *                       configuration and a filter expression.
+   * @param data The data object.
+   * @param mode Property editor mode used to evaluate the property value.
+   * @returns True, if the filter matches the property value.
+   *          If the filter expression is empty, true is returned.
+   *          If the property configuration is empty or its `propertyType`
+   *          does not support filtering, true is returned.
+   */
+  export function evaluatePropertyFilter(
+    propertyFilter: PropertyFilter,
+    data: any,
+    mode: PropertyEditorMode
+  ): boolean {
+    if (!propertyFilter?.property || !propertyFilter.filter) return true;
+
+    return evaluateFilter(
+      propertyFilter.property,
+      data,
+      mode,
+      propertyFilter.filter);
+  }
+  
   /**
    * Evaluates the given filter expression on a property value.
    * The property value is evaluated from the given `data` object
@@ -21,10 +49,12 @@ export module PropertyConfigurationFilter {
    *          If the `propertyConfiguration` is empty or its `propertyType`
    *          does not support filtering, true is returned.
    */
-  export function evaluateFilter(propertyConfiguration: PropertyConfiguration,
-                                 data: any,
-                                 mode: PropertyEditorMode,
-                                 filter: string): boolean {
+  export function evaluateFilter(
+    propertyConfiguration: PropertyConfiguration,
+    data: any,
+    mode: PropertyEditorMode,
+    filter: string
+  ): boolean {
     if (!filter) return true;
     if (!propertyConfiguration?.propertyType) return true;
 
@@ -55,7 +85,11 @@ export module PropertyConfigurationFilter {
    * @param evaluateFunction One of the evaluate filter functions for the specific value type.
    * @returns True, if the filter matches at least one item of the array property value.
    */
-  function handleArrayValue<TValue>(value: TValue[], filter: string, evaluateFunction: (value: TValue | TValue[] | undefined, filter: string) => boolean): boolean {
+  function handleArrayValue<TValue>(
+    value: TValue[],
+    filter: string,
+    evaluateFunction: (value: TValue | TValue[] | undefined, filter: string) => boolean
+  ): boolean {
     for (const item of value) {
       if (evaluateFunction(item, filter)) return true;
     }
@@ -69,7 +103,10 @@ export module PropertyConfigurationFilter {
    * @returns True, if the filter matches the property value.
    *          If the `filter` is empty, true is returned.
    */
-  export function evaluateBooleanFilter(value: boolean | boolean[] | undefined, filter: string): boolean {
+  export function evaluateBooleanFilter(
+    value: boolean | boolean[] | undefined,
+    filter: string
+  ): boolean {
     filter = filter?.trim().toLocaleLowerCase();
     if (!filter) return true;
 
@@ -97,7 +134,10 @@ export module PropertyConfigurationFilter {
    * @returns True, if the filter matches the property value.
    *          If the `filter` is empty, true is returned.
    */
-  export function evaluateDateFilter(value: Date | Date[] | undefined, filter: string): boolean {
+  export function evaluateDateFilter(
+    value: Date | Date[] | undefined,
+    filter: string
+  ): boolean {
     filter = filter?.trim();
     if (!filter) return true;
 
@@ -117,7 +157,10 @@ export module PropertyConfigurationFilter {
    * @returns True, if the filter matches the property value.
    *          If the `filter` is empty, true is returned.
    */
-  export function evaluateNumberFilter(value: number | number[] | undefined, filter: string): boolean {
+  export function evaluateNumberFilter(
+    value: number | number[] | undefined,
+    filter: string
+  ): boolean {
     filter = filter?.trim();
     if (!filter) return true;
 
@@ -176,7 +219,10 @@ export module PropertyConfigurationFilter {
    * @returns True, if the filter matches the property value.
    *          If the `filter` is empty, true is returned.
    */
-  export function evaluateStringFilter(value: string | string[] | undefined, filter: string): boolean {
+  export function evaluateStringFilter(
+    value: string | string[] | undefined,
+    filter: string
+  ): boolean {
     filter = filter?.trim().toLocaleLowerCase();
     if (!filter) return true;
 

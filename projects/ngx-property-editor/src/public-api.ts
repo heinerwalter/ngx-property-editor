@@ -69,8 +69,10 @@ export * from './lib/components/modal/movable-modal/movable-modal.component';
 export * from './lib/components/modal/about-dialog/about-dialog.component';
 export * from './lib/components/modal/about-dialog/version-info';
 // - property table
-export * from './lib/components/property-table/property-configuration-filter';
+export * from './lib/components/property-table/property-configuration-filter-controller';
+export * from './lib/components/property-table/property-table-column-controller';
 export * from './lib/components/property-table/property-table-column';
+export * from './lib/components/property-table/property-table-filter-controller';
 export * from './lib/components/property-table/table-configuration';
 export * from './lib/components/property-table/property-table/property-table.component';
 export * from './lib/components/property-table/table/table.component';

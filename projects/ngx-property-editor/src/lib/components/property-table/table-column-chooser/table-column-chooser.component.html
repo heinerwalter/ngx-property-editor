@@ -3,14 +3,34 @@
                   header="Column chooser">
 
   <ng-container modal-body>
+
     <ng-container *ngFor="let column of columns || []">
-      <pe-boolean-input [label]="column?.property?.getLabel(undefined, 'table') || 'Unnamed column'"
-                        [inlineLabel]="true"
-                        type="checkbox"
-                        [(value)]="column.isVisible"
-                        (valueChange)="visibleColumnsChanged.emit([column])">
-      </pe-boolean-input>
+      <ng-container [ngTemplateOutlet]="columnTemplate"
+                    [ngTemplateOutletContext]="{ column: column }">
+      </ng-container>
     </ng-container>
+
   </ng-container>
 
 </pe-movable-modal>
+
+
+<ng-template #columnTemplate let-column="column">
+  
+  <pe-boolean-input [label]="column.property?.getLabel(undefined, 'table') || 'Unnamed column'"
+                    [inlineLabel]="true"
+                    type="checkbox"
+                    [(value)]="column.isVisible"
+                    (valueChange)="visibleColumnsChanged.emit([column])">
+  </pe-boolean-input>
+
+  <div *ngIf="column.isGroup"
+       class="table-column-chooser-indent">
+    <ng-container *ngFor="let childColumn of column.children">
+      <ng-container [ngTemplateOutlet]="columnTemplate"
+                    [ngTemplateOutletContext]="{ column: childColumn }">
+      </ng-container>
+    </ng-container>
+  </div>
+
+</ng-template>

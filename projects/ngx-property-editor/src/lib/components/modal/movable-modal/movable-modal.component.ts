@@ -31,7 +31,7 @@ export class MovableModalComponent {
   @Input() public header: string = '';
 
   /** Width of the modal window in pixel. */
-  @Input() public width: number = 200;
+  @Input() public width: number = 300;
   /** This event is emitted when the width of the modal window has changed. */
   @Output() public readonly widthChange: EventEmitter<number> = new EventEmitter<number>();
 

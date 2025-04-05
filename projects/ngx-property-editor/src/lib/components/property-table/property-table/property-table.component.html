@@ -2,7 +2,7 @@
   <button ngb-btn buttonClass="btn-secondary"
           [icon]="iconColumnChooser"
           ngbTooltip="Show or hide columns"
-          (click)="isColumnChooserVisible = columnChooser.onToggleVisibilityButtonClick($event)">
+          (click)="columnChooser.onToggleVisibilityButtonClick($event)">
   </button>
 </pe-toolbar>
 
@@ -13,11 +13,11 @@
           [isBordered]="true"
           [isHover]="true"
           [pagination]="true"
-          [header]="_tableHeader"
-          [data]="_tableData">
+          [header]="tableHeader"
+          [data]="tableData">
 </pe-table>
 
 <pe-table-column-chooser #columnChooser
-                         [isVisible]="isColumnChooserVisible"
-                         [columns]="_columns">
+                         [columns]="columns"
+                         (visibleColumnsChanged)="updateVisibleColumns()">
 </pe-table-column-chooser>

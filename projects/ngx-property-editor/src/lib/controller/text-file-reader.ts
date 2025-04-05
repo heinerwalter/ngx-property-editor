@@ -1,6 +1,10 @@
 import { detect as detectEncoding, DetectResult } from 'chardet';
 
-export module TextFileReader {
+/**
+ * This module provides functionality to read text files
+ * selected by the user in a file input element.
+ */
+export namespace TextFileReader {
 
   /**
    * Reads the content of a given file object as string.

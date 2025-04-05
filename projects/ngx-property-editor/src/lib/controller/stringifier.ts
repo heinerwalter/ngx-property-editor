@@ -7,7 +7,11 @@ import {
   propertyTypeIsString,
 } from '../components/property-views/property-type';
 
-export module Stringifier {
+/**
+ * This module provides utility functions to convert
+ * values of various types to strings.
+ */
+export namespace Stringifier {
 
   // region Booleans
 
