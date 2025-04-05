@@ -1,5 +1,5 @@
 import { PropertyConfiguration } from '../property-views/property-configuration';
-import { PropertyTableColumnController } from './property-table-column-controller';
+import { PropertyTableColumnController } from './controller/property-table-column-controller';
 
 /**
  * Definition of a column of the `PropertyTableComponent`.

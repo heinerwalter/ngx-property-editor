@@ -1,7 +1,7 @@
-import { PropertyConfiguration } from '../property-views/property-configuration';
-import { PropertyEditorMode } from '../property-views/property-editor-mode';
-import { propertyTypeIsBoolean, propertyTypeIsDate, propertyTypeIsNumber, propertyTypeIsString } from '../property-views/property-type';
-import { PropertyFilter } from './property-table-filter';
+import { PropertyConfiguration } from '../../property-views/property-configuration';
+import { PropertyEditorMode } from '../../property-views/property-editor-mode';
+import { PropertyFilter } from '../property-table-filter';
+import { PropertyTypeController } from '../../property-views/controller/property-type-controller';
 
 /**
  * This module contains functions for evaluating filter expressions
@@ -35,7 +35,7 @@ export namespace PropertyConfigurationFilterController {
       mode,
       propertyFilter.filter);
   }
-  
+
   /**
    * Evaluates the given filter expression on a property value.
    * The property value is evaluated from the given `data` object
@@ -61,16 +61,16 @@ export namespace PropertyConfigurationFilterController {
     // Get property value
     const value = propertyConfiguration.getValue(data, mode);
 
-    if (propertyTypeIsBoolean(propertyConfiguration.propertyType)) {
+    if (PropertyTypeController.propertyTypeIsBoolean(propertyConfiguration.propertyType)) {
       const booleanValue = value as boolean | boolean[] | undefined;
       return evaluateBooleanFilter(booleanValue, filter);
-    } else if (propertyTypeIsDate(propertyConfiguration.propertyType)) {
+    } else if (PropertyTypeController.propertyTypeIsDate(propertyConfiguration.propertyType)) {
       const dateValue = value as Date | Date[] | undefined;
       return evaluateDateFilter(dateValue, filter);
-    } else if (propertyTypeIsNumber(propertyConfiguration.propertyType)) {
+    } else if (PropertyTypeController.propertyTypeIsNumber(propertyConfiguration.propertyType)) {
       const numberValue = value as number | number[] | undefined;
       return evaluateNumberFilter(numberValue, filter);
-    } else if (propertyTypeIsString(propertyConfiguration.propertyType)) {
+    } else if (PropertyTypeController.propertyTypeIsString(propertyConfiguration.propertyType)) {
       const stringValue = value as string | string[] | undefined;
       return evaluateStringFilter(stringValue, filter);
     }

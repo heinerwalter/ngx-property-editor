@@ -1,7 +1,7 @@
-import { PropertyTableColumn } from './property-table-column';
-import { PropertyConfiguration } from '../property-views/property-configuration';
-import { PropertyEditorMode } from '../property-views/property-editor-mode';
-import { PropertyFilter, PropertyTableFilter } from './property-table-filter';
+import { PropertyTableColumn } from '../property-table-column';
+import { PropertyConfiguration } from '../../property-views/property-configuration';
+import { PropertyEditorMode } from '../../property-views/property-editor-mode';
+import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
 
 /**
  * This module contains functions for evaluating filter expressions
@@ -31,7 +31,7 @@ export namespace PropertyTableFilterController {
     if (!columns?.length) return false;
     // Does the data object exist?
     if (!data || typeof data !== 'object') return false;
-  
+
     // Iterate over all columns and apply the filter on those columns to the data object
     for (const column of columns) {
       if (column.isGroup) {
@@ -72,22 +72,22 @@ export namespace PropertyTableFilterController {
 
     // Does the data object exist?
     if (!data || typeof data !== 'object') return false;
-  
+
     // Iterate over all filters and apply them to the data object
     for (const key of filterKeys) {
       const singleFilter: PropertyFilter = filter[key];
-  
+
       // Get filter expression
       const filterExpression: string = singleFilter.filter?.toString().toLowerCase();
       // Is the filter expression empty?
       if (!filterExpression) continue;
-  
+
       // Evaluate filter expression on the property value
       if (!singleFilter.property.evaluateFilter(data, mode, filterExpression))
         // One filter does not match
         return false;
     }
-  
+
     // All filters are matching
     return true;
   }
@@ -95,7 +95,7 @@ export namespace PropertyTableFilterController {
   /**
    * Generates the key of a sigle property table column filter
    * inside a `PropertyTableFilter` object.
-   * 
+   *
    * The key is the `propertyName` of the property configuration related
    * to the filtered table column. If it does not contain a property name,
    * a random string containing the column index is used as key instead.

@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { generatePropertyConfigurationsFromData, PropertyConfiguration } from '../property-configuration';
+import { PropertyConfiguration } from '../property-configuration';
 import { PropertyEditorMode } from '../property-editor-mode';
+import { PropertyConfigurationController } from '../controller/property-configuration-controller';
 
 /**
  * A component displaying configured properties of a `data` object
@@ -58,7 +59,8 @@ export class PropertyEditorComponent implements OnChanges {
   private generateConfiguration(): void {
     // Get properties configuration
     let configuration: PropertyConfiguration[] =
-      this.configuration || generatePropertyConfigurationsFromData(this.data, true);
+      this.configuration ||
+      PropertyConfigurationController.generatePropertyConfigurationsFromData(this.data, true);
 
     // Join items from disabled groups
     let modifiedConfiguration: PropertyConfiguration[] = [];

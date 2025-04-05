@@ -1,8 +1,8 @@
 import { PEGlobalFunctions } from '../../controller/pe-global-functions';
 import { Stringifier } from '../../controller/stringifier';
-import { PropertyConfigurationFilterController } from '../property-table/property-configuration-filter-controller';
+import { PropertyConfigurationFilterController } from '../property-table/controller/property-configuration-filter-controller';
 import { PropertyEditorMode } from './property-editor-mode';
-import { generatePropertyTypeFromData, PropertyType } from './property-type';
+import { PropertyType } from './property-type';
 
 /**
  * Some properties of `PropertyConfiguration` can be defined as constant type or
@@ -23,6 +23,15 @@ export type PropertyConfigurationHiddenType = boolean | 'initially-hidden';
  * Thus, a `PropertyConfiguration` instance can be passed to the `PropertyConfiguration` constructor, too.
  */
 export type PropertyConfigurationConstructorParameter = {
+  /**
+   * Is this property the primary key of the data?
+   *
+   * There must not be more than one property with `isPrimaryKey` set to true
+   * in an array of all property configurations. If there is none, the data
+   * array index is used as primary key instead.
+   */
+  isPrimaryKey?: boolean,
+
   /** Display the property value with this property name. */
   propertyName?: string,
   /** If defined this text is used instead of the `propertyName` as label. */
@@ -183,6 +192,8 @@ export type PropertyConfigurationConstructorParameter = {
  */
 export class PropertyConfiguration implements PropertyConfigurationConstructorParameter {
 
+  public isPrimaryKey: boolean = false;
+
   public propertyName?: string = undefined;
   public label?: ValueOrFunctionType<string> = undefined;
   public helpText?: string | undefined = undefined;
@@ -219,7 +230,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
   public constructor(configuration?: PropertyConfigurationConstructorParameter) {
     // Assign properties from configuration object if defined
     if (configuration) {
-      const booleanPropertyNames: string[] = ['hideIfEmpty', 'separator', 'isArray'];
+      const booleanPropertyNames: string[] = ['isPrimaryKey', 'hideIfEmpty', 'separator', 'isArray'];
 
       for (const propertyName in configuration) {
         // Skip properties which does not exist on configuration object or on this
@@ -457,7 +468,7 @@ export class PropertyConfiguration implements PropertyConfigurationConstructorPa
    * @param ignoreHideIfEmpty If true, `hideIfEmpty` is not evaluated.
    * @returns true, if this property is hidden.
    */
-  public isHidden(data: any | undefined, 
+  public isHidden(data: any | undefined,
                   mode: PropertyEditorMode,
                   ignoreHideIfEmpty: boolean = false): PropertyConfigurationHiddenType {
     // Evaluate `hideIfEmpty` (only in view mode)
@@ -679,28 +690,4 @@ export class PropertyConfigurationSeparator extends PropertyConfiguration {
     return 12;
   }
 
-}
-
-/**
- * Generates a `PropertyConfiguration` array from the properties of the given data object.
- * @param data A data object to be displayed by a property table or property editor.
- * @param editable If true, all properties are editable.
- */
-export function generatePropertyConfigurationsFromData(
-  data: any | undefined = undefined,
-  editable: boolean = false
-): PropertyConfiguration[] {
-  if (!data) return [];
-
-  return Object.getOwnPropertyNames(data)
-    .map(propertyName => {
-      const propertyType: PropertyType | undefined = generatePropertyTypeFromData(data[propertyName]);
-      return new PropertyConfiguration({
-        propertyName: propertyName,
-        propertyType: propertyType || 'string',
-        isArray: Array.isArray(data[propertyName]),
-        hidden: propertyType == undefined,
-        editable: editable,
-      });
-    });
 }

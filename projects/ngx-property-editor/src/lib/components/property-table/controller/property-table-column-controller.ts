@@ -1,5 +1,5 @@
-import { PropertyTableColumn } from './property-table-column';
-import { PropertyConfiguration } from '../property-views/property-configuration';
+import { PropertyTableColumn } from '../property-table-column';
+import { PropertyConfiguration } from '../../property-views/property-configuration';
 
 /**
  * This module provides functions to generate `PropertyTableColumns`
@@ -65,7 +65,7 @@ export namespace PropertyTableColumnController {
 
       column.children.push(...childColumns);
     }
-    
+
     return column;
   }
 
@@ -112,7 +112,7 @@ export namespace PropertyTableColumnController {
     for (const column of columns) {
       // Skip invisible columns
       if (!column.isVisible) continue;
-       
+
       if (column.isGroup) {
         // Get visible child columns
         const visibleChildColumns = generateVisibleColumns(column.children);
@@ -122,9 +122,9 @@ export namespace PropertyTableColumnController {
         // Create a duplicate of the column with only visible children
         const visibleColumn = column.cloneWithDifferentChildren(visibleChildColumns);
         visibleColumns.push(visibleColumn);
-        
+
       } else {
-        // Add visible column without children immediately to the array of visible columns 
+        // Add visible column without children immediately to the array of visible columns
         visibleColumns.push(column);
       }
     }

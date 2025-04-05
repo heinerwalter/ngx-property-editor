@@ -5,9 +5,9 @@ import { TableData, TableHeader, TableRow } from '../table-configuration';
 import { PropertyTableColumn } from '../property-table-column';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faColumns, faPen, faRotateBack, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { PropertyTableColumnController } from '../property-table-column-controller';
+import { PropertyTableColumnController } from '../controller/property-table-column-controller';
 import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
-import { PropertyTableFilterController } from '../property-table-filter-controller';
+import { PropertyTableFilterController } from '../controller/property-table-filter-controller';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
@@ -132,7 +132,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Updates the visible columns array 
+   * Updates the visible columns array
    */
   protected updateVisibleColumns(): void {
     // Generate visible columns

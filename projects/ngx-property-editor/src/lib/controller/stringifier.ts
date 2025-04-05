@@ -1,11 +1,9 @@
 'use strict';
 
+import { PropertyType } from '../components/property-views/property-type';
 import {
-  PropertyType, propertyTypeIsBoolean,
-  propertyTypeIsDate,
-  propertyTypeIsNumber,
-  propertyTypeIsString,
-} from '../components/property-views/property-type';
+  PropertyTypeController
+} from '../components/property-views/controller/property-type-controller';
 
 /**
  * This module provides utility functions to convert
@@ -740,13 +738,13 @@ export namespace Stringifier {
                                        includeUndefined: boolean = false): string {
     if (propertyType) {
       // Fix property type, if value type is not matching
-      if (typeof value === 'boolean' && !propertyTypeIsBoolean(propertyType))
+      if (typeof value === 'boolean' && !PropertyTypeController.propertyTypeIsBoolean(propertyType))
         propertyType = 'boolean';
-      if (value && value instanceof Date && !propertyTypeIsDate(propertyType))
+      if (value && value instanceof Date && !PropertyTypeController.propertyTypeIsDate(propertyType))
         propertyType = 'date';
-      if (typeof value === 'number' && !propertyTypeIsNumber(propertyType))
+      if (typeof value === 'number' && !PropertyTypeController.propertyTypeIsNumber(propertyType))
         propertyType = 'number';
-      if (typeof value === 'string' && !propertyTypeIsString(propertyType))
+      if (typeof value === 'string' && !PropertyTypeController.propertyTypeIsString(propertyType))
         propertyType = 'string';
     }
 

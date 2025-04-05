@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { generatePropertyConfigurationsFromData, PropertyConfiguration } from '../property-configuration';
+import { PropertyConfiguration } from '../property-configuration';
 import { TableData } from '../../property-table/table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
+import { PropertyConfigurationController } from '../controller/property-configuration-controller';
 
 /**
  * This component displays all property values of any object in a table
@@ -52,7 +53,7 @@ export class PropertyViewComponent implements OnInit, OnChanges {
    */
   private generateTableData(): void {
     let config: PropertyConfiguration[] = this.configuration?.length ? [...this.configuration]
-      : generatePropertyConfigurationsFromData(this.data);
+      : PropertyConfigurationController.generatePropertyConfigurationsFromData(this.data);
 
     // Extract disabled groups
     config = config.map(property => {
