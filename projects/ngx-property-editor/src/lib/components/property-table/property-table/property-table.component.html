@@ -2,14 +2,14 @@
 
   <!-- Editing: -->
 
-  <ng-container *ngIf="!isEditing">
+  <ng-container *ngIf="editable && !isEditing">
     <button ngb-btn buttonClass="btn-secondary"
             [icon]="iconEdit"
             ngbTooltip="Edit"
             (click)="startEditing()">
     </button>
   </ng-container>
-  <ng-container *ngIf="isEditing">
+  <ng-container *ngIf="editable && isEditing">
     <button ngb-btn buttonClass="btn-secondary"
             [icon]="iconSave"
             ngbTooltip="Save changes"
@@ -56,3 +56,26 @@
                          [columns]="columns"
                          (visibleColumnsChanged)="updateVisibleColumns()">
 </pe-table-column-chooser>
+
+
+<!-- Templates for special column cells: -->
+
+<ng-template #specialColumnCellTemplateSelection let-content="content">
+  <pe-boolean-input [noFormGroup]="true"
+                    type="checkbox">
+  </pe-boolean-input>
+</ng-template>
+
+<ng-template #specialColumnCellTemplateButtons let-content="content">
+  <a *ngIf="editable"
+     class="property-table-special-button-link"
+     ngbTooltip="Delete"
+     (click)="deleteRow(content)">
+    <fa-icon [icon]="iconDelete"></fa-icon>
+  </a>
+  <a class="property-table-special-button-link"
+     ngbTooltip="Show more"
+     (click)="onDetailLinkClick.emit(content)">
+    <fa-icon [icon]="iconGoto"></fa-icon>
+  </a>
+</ng-template>

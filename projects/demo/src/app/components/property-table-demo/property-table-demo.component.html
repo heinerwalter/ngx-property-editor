@@ -1,5 +1,8 @@
 <pe-property-table [configuration]="propertyConfigurations"
                    [data]="data"
+                   selectionMode="multiple"
+                   [showDetailLink]="true"
+                   (onDetailLinkClick)="onDetailLinkClick($event)"
                    [editable]="editable">
 </pe-property-table>
 

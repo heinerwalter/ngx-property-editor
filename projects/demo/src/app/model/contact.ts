@@ -241,6 +241,7 @@ export class Contact {
             },
             routerLinkTooltip: 'Click this button and an alert will be displayed.',
             editable: true,
+            hidden: 'initially-hidden',
           }),
         ]],
       }),

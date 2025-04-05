@@ -1,10 +1,17 @@
 import { PropertyConfiguration } from '../property-views/property-configuration';
+import { TemplateRef } from '@angular/core';
 
 /**
  * Decide whether a table cell should be displayed as
  * `<td>` (`'data'`) or `<th>` (`'header'`).
  */
 export type TableCellElementType = 'data' | 'header';
+
+/**
+ * Type of the table cell template context.
+ * @see TableCellBase.template
+ */
+export type TableCellTemplateContextType = { content: any };
 
 /**
  * Base definition of each single table cell (header and content).
@@ -33,6 +40,12 @@ type TableCellBase = {
    * @see showPropertyInput
    */
   onPropertyInputValueChanged?: ((newValue: any) => void) | undefined,
+
+  /**
+   * Optional Angular template used to fill the table cell with content, if defined.
+   * The cell `content` is passed to the template as context variable `content`.
+   */
+  template?: TemplateRef<TableCellTemplateContextType> | undefined,
 
   /** Optional cell element CSS class. */
   class?: string | undefined,

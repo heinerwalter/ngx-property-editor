@@ -7,20 +7,32 @@ pe-property-table {
     }
   }
 
-  &>pe-table>.property-table-container>.property-table {
+  // Property table style:
+  & > pe-table > .property-table-container > .property-table {
 
-    &>thead {
-      &>tr>.property-table-header-cell {
+    // Preserve white space and line breaks:
+    & > thead {
+      & > tr > .property-table-header-cell {
         white-space: pre;
         vertical-align: top;
       }
     }
 
-    &>tbody {
-      &>tr>.property-table-data-cell {
+    & > tbody {
+      & > tr > .property-table-data-cell {
         white-space: pre;
       }
     }
+
+    // Style the special buttons' column
+    .property-table-special-button-link {
+      display: inline-block;
+
+      &:not(:last-of-type) {
+        margin-right: 0.5em;
+      }
+    }
+
   }
 
 }

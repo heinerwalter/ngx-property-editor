@@ -1,13 +1,26 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration } from '../../property-views/property-configuration';
-import { TableData, TableHeader, TableRow } from '../table-configuration';
-import { PropertyTableColumn } from '../property-table-column';
+import { TableCellTemplateContextType, TableData, TableHeader, TableRow } from '../table-configuration';
+import { PropertyTableColumn, SpecialPropertyTableColumnType } from '../property-table-column';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faColumns, faPen, faRotateBack, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faColumns, faPen, faRotateBack, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PropertyTableColumnController } from '../controller/property-table-column-controller';
 import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
 import { PropertyTableFilterController } from '../controller/property-table-filter-controller';
+import { PropertyConfigurationController } from '../../property-views/controller/property-configuration-controller';
+import { PropertyTableSelectionMode } from '../property-table-selection-mode';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
@@ -34,6 +47,13 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    * Display these objects in the table.
    */
   @Input() public data: any[] | undefined = undefined;
+
+  /**
+   * Reference to the primary key property configuration which is an
+   * element of `configuration` with `isPrimaryKey == true`.
+   * If `undefined`, the data array index is used as primary key.
+   */
+  protected primaryKey: PropertyConfiguration | undefined = undefined;
 
   /**
    * All columns generated from the property `configuration`
@@ -82,10 +102,82 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
   // endregion
 
+  // region Special Columns
+
+  /**
+   * If true, a goto detail link (arrow icon ->) is displayed in the special buttons' column
+   * for navigating to the detail page of a data object (row).
+   * When the goto detail link is clicked, the `onDetailLinkClick` event is emitted.
+   * @see onDetailLinkClick
+   */
+  @Input() public showDetailLink: boolean = false;
+
+  /**
+   * This event is emitted when the goto detail link was clicked by the user.
+   * The data object of the row on which the goto detail link was clicked is passed as event argument.
+   * @see showDetailLink
+   */
+  @Output() public readonly onDetailLinkClick: EventEmitter<any> = new EventEmitter<any>();
+
+  /**
+   * Returns true, if the special buttons' column should be visible.
+   */
+  private showSpecialColumnButtons(): boolean {
+    return this.showDetailLink || // Show goto detail link
+      this.editable; // Show delete button
+  }
+
+  /** Special column definition for the row selection column. */
+  private specialColumnSelection: PropertyTableColumn =
+    PropertyTableColumn.createSpecialColumn('selection', -999999999);
+  /** Special column definition for the buttons' column. */
+  private specialColumnButtons: PropertyTableColumn =
+    PropertyTableColumn.createSpecialColumn('buttons', 999999999);
+
+  /** Reference to the special column cell template for the row selection column. */
+  @ViewChild('specialColumnCellTemplateSelection', { static: true })
+  protected specialColumnCellTemplateSelection?: TemplateRef<TableCellTemplateContextType>;
+  /** Reference to the special column cell template for the buttons' column. */
+  @ViewChild('specialColumnCellTemplateButtons', { static: true })
+  protected specialColumnCellTemplateButtons?: TemplateRef<TableCellTemplateContextType>;
+
+  /**
+   * Returns the special column cell template for the given special column type.
+   * @param specialColumnType A special property table column type.
+   */
+  private getSpecialColumnCellTemplate(
+    specialColumnType: SpecialPropertyTableColumnType,
+  ): TemplateRef<TableCellTemplateContextType> | undefined {
+    switch (specialColumnType) {
+      case 'selection':
+        return this.specialColumnCellTemplateSelection;
+      case 'buttons':
+        return this.specialColumnCellTemplateButtons;
+      default:
+        return undefined;
+    }
+  }
+
+  // endregion
+
+  // region Selection
+
+  /**
+   * Row selection mode.
+   */
+  @Input() public selectionMode: PropertyTableSelectionMode = 'none';
+
+  // endregion
+
+  // region Editing
+
   /** If true, the properties displayed in the table are editable by the user. */
   @Input() public editable: boolean = false;
 
+  // endregion
+
   // Icons used in the template
+  protected iconGoto: IconDefinition = faArrowRight;
   protected iconEdit: IconDefinition = faPen;
   protected iconDelete: IconDefinition = faTrash;
   protected iconSave: IconDefinition = faSave;
@@ -109,12 +201,39 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     // See ngOnInit().
     if (!this.isInitialized) return;
 
+    let hasGenerated = false;
+
+    // Generate columns
     if (changes.hasOwnProperty('configuration')) {
       this.generateColumns();
+      hasGenerated = true;
     }
-    if (changes.hasOwnProperty('data')) {
+
+    // Update visibility of special columns
+    if (!hasGenerated && changes.hasOwnProperty('selectionMode')) {
+      const isVisible: boolean = this.selectionMode != 'none';
+      if (this.specialColumnSelection.isVisible != isVisible) {
+        this.specialColumnSelection.isVisible = isVisible;
+        this.updateVisibleColumns();
+        hasGenerated = true;
+      }
+    }
+    if (!hasGenerated && (
+      changes.hasOwnProperty('showDetailLink') ||
+      changes.hasOwnProperty('editable'))) {
+      const isVisible: boolean = this.showSpecialColumnButtons();
+      if (this.specialColumnButtons.isVisible != isVisible) {
+        this.specialColumnButtons.isVisible = isVisible;
+        this.updateVisibleColumns();
+        hasGenerated = true;
+      }
+    }
+
+    // Generate table body only
+    if (!hasGenerated && changes.hasOwnProperty('data')) {
       this.generateTableBody(this.visibleColumns);
     }
+
   }
 
   /**
@@ -123,9 +242,19 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   private generateColumns(): void {
     if (!this.configuration?.length) {
       this.columns = [];
+      this.primaryKey = undefined;
     } else {
+
       // Generate columns
-      this.columns = PropertyTableColumnController.generateColumns(this.configuration);
+      const columns: PropertyTableColumn[] = PropertyTableColumnController.generateColumns(this.configuration);
+      // Add special columns
+      columns.unshift(this.specialColumnSelection);
+      columns.push(this.specialColumnButtons);
+      this.columns = columns;
+
+      // Search for a primary key
+      this.primaryKey = PropertyConfigurationController.getPrimaryKeyProperty(this.configuration);
+
     }
 
     this.updateVisibleColumns();
@@ -172,7 +301,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
      */
     function handleColumn(
       column: PropertyTableColumn,
-      tableHeaderRowIndex: number = 0
+      tableHeaderRowIndex: number = 0,
     ): void {
       // Generate a table header cell:
       tableHeader[tableHeaderRowIndex].push({
@@ -218,7 +347,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   private generateFilterRow(
     columns: PropertyTableColumn[],
-    tableHeader: TableHeader = []
+    tableHeader: TableHeader = [],
   ): void {
     if (!this.showFilterRow || !columns?.length) {
       this.filter = {};
@@ -250,6 +379,17 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         return;
       }
 
+      // Hide filter?
+      if (column.specialType || column.hideFilter) {
+        // Generate empty filter row cells.
+        filterRow.push({
+          elementType: 'header',
+          content: '',
+          class: 'property-table-filter-cell property-table-filter-cell-hidden',
+        });
+        return;
+      }
+
       // Generate filter key.
       const key: string = PropertyTableFilterController.generateColumnFilterKey(column.property, filterRow.length);
 
@@ -277,7 +417,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         // #3: Remove filters which remain visible from the `oldFilterKeys` array.
         oldFilterKeys.splice(index, 1);
       }
-    }
+    };
 
     // Iterate over all columns,
     // (#1) generate filter row cells
@@ -316,11 +456,11 @@ export class PropertyTableComponent implements OnInit, OnChanges {
      * @param tableRow The table row into which the cells should be added.
      * @param dataEntry An item of the `data` array which is displayed in the `tableRow`.
      */
-    function handleColumn(
+    const handleColumn = (
       column: PropertyTableColumn,
       tableRow: TableRow,
-      dataEntry: any
-    ): void {
+      dataEntry: any,
+    ): void => {
       if (column.isGroup) {
         // Generate cells for child columns, if the column is a group
         for (const child of column.children) {
@@ -328,16 +468,28 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         }
 
       } else {
-        // Generate a table body cell
-        tableRow.push({
-          elementType: 'data',
-          content: dataEntry,
-          propertyConfiguration: column.property,
-          showPropertyInput: undefined,
-          class: 'property-table-data-cell',
-        });
+        if (column.specialType) {
+          // Generate a special table body cell
+          tableRow.push({
+            elementType: 'data',
+            content: dataEntry,
+            template: this.getSpecialColumnCellTemplate(column.specialType),
+            showPropertyInput: true,
+            class: 'property-table-data-cell property-table-special-data-cell',
+          });
+
+        } else {
+          // Generate a table body cell
+          tableRow.push({
+            elementType: 'data',
+            content: dataEntry,
+            propertyConfiguration: column.property,
+            showPropertyInput: undefined,
+            class: 'property-table-data-cell',
+          });
+        }
       }
-    }
+    };
 
     // Generate body
     for (const dataEntry of this.data || []) {
@@ -376,7 +528,7 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    */
   private evaluateFilter(
     columns: PropertyTableColumn[],
-    dataEntry: any
+    dataEntry: any,
   ): boolean {
     // Evaluate table column filters
     if (!PropertyTableFilterController.evaluateFilters(dataEntry, this.filter))
@@ -394,6 +546,12 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   // region Editing
 
   protected startEditing(): void {
+    this.isEditing = true;
+  }
+
+  protected deleteRow(dataEntry: any): void {
+    // TODO: Delete row
+
     this.isEditing = true;
   }
 

@@ -58,6 +58,14 @@ export class PropertyTableDemoComponent {
   public readonly mode: PropertyEditorMode = 'table';
 
   /** If true, the properties displayed in the table are editable by the user. */
-  public editable: boolean = false;
+  public editable: boolean = true;
+
+  /**
+   * This method is called when the goto detail link was clicked by the user.
+   * @param row The data object of the row on which the goto detail link was clicked.
+   */
+  protected onDetailLinkClick(row: any): void {
+    alert('Details of a table row should be displayed.');
+  }
 
 }

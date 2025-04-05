@@ -70,8 +70,9 @@ export * from './lib/components/modal/about-dialog/about-dialog.component';
 export * from './lib/components/modal/about-dialog/version-info';
 // - property table
 export * from './lib/components/property-table/property-table-column';
-export * from './lib/components/property-table/table-configuration';
 export * from './lib/components/property-table/property-table-filter';
+export * from './lib/components/property-table/property-table-selection-mode';
+export * from './lib/components/property-table/table-configuration';
 export * from './lib/components/property-table/controller/property-configuration-filter-controller';
 export * from './lib/components/property-table/controller/property-table-column-controller';
 export * from './lib/components/property-table/controller/property-table-filter-controller';

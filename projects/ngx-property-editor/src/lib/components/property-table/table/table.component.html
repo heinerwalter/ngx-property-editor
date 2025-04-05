@@ -94,7 +94,12 @@
 
 <ng-template #cellTemplate let-cell="cell" let-index="index">
 
-  <ng-container *ngIf="getShowPropertyInput(cell)">
+  <ng-container *ngIf="cell.template"
+                [ngTemplateOutlet]="cell.template"
+                [ngTemplateOutletContext]="{ content: cell.content }">
+  </ng-container>
+
+  <ng-container *ngIf="!cell.template && getShowPropertyInput(cell)">
 
     <pe-property-input [configuration]="cell.propertyConfiguration"
                        [data]="cell.content"
@@ -105,7 +110,7 @@
 
   </ng-container>
 
-  <ng-container *ngIf="!getShowPropertyInput(cell)">
+  <ng-container *ngIf="!cell.template && !getShowPropertyInput(cell)">
 
     <pe-property-value *ngIf="cell.propertyConfiguration"
                        [configuration]="cell.propertyConfiguration"

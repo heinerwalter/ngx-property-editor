@@ -48,8 +48,10 @@ export namespace PropertyTableColumnController {
     // Build the column
     const column: PropertyTableColumn = new PropertyTableColumn(
       property,
-      property.isHidden(undefined, 'table', true) == false,
-      parentColumn);
+      {
+        isVisible: property.isHidden(undefined, 'table', true) == false,
+        parent: parentColumn,
+      });
 
     // Has the property a group?
     if (property.hasGroup) {
