@@ -1,5 +1,22 @@
+@import '../../../../../styles/variables.scss';
+
 .pagination-container {
   display: flex;
+  gap: $default-margin;
   justify-content: space-between;
   align-items: stretch;
+
+  //.pagination-page-size-select {}
+
+  .pagination {
+    .pagination-number-input {
+      display: inline-block;
+      max-width: 5em;
+    }
+
+    .pagination-btn-group {
+      display: inline-block;
+      margin-left: $default-margin;
+    }
+  }
 }

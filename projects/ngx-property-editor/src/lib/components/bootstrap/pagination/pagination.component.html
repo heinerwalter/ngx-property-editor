@@ -23,7 +23,8 @@
                      (valueChange)="changePage($event - 1)">
     </pe-number-input>
 
-    <ngb-btn-group *ngIf="pagigantionType != 'input'">
+    <ngb-btn-group *ngIf="pagigantionType != 'input'"
+                   class="pagination-btn-group">
       <ng-container *ngFor="let i of visiblePageOptions">
         <button *ngIf="i == 'ellipsis'"
                 ngb-btn
