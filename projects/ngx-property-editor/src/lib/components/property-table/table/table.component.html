@@ -10,7 +10,7 @@
 
 <ng-container *ngIf="pagination && data?.length">
   <pe-pagination [collectionSize]="data.length || 0"
-                 [pageSize]="pageSize"
+                 [(pageSize)]="pageSize"
                  [(page)]="currentPage">
   </pe-pagination>
 </ng-container>

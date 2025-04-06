@@ -17,8 +17,10 @@
                      class="pagination-number-input"
                      [noFormGroup]="true"
                      [placeholder]="'Page'"
-                     [value]="page"
-                     (valueChange)="changePage($event)">
+                     [min]="1"
+                     [max]="pageCount"
+                     [value]="page + 1"
+                     (valueChange)="changePage($event - 1)">
     </pe-number-input>
 
     <ngb-btn-group *ngIf="pagigantionType != 'input'">
@@ -32,7 +34,7 @@
         <button *ngIf="i != 'ellipsis'"
                 ngb-btn
                 buttonClass="btn-secondary"
-                [disabled]="page == i"
+                [active]="page == i"
                 (click)="changePage(i)">
           {{ (i + 1) }}
         </button>
