@@ -3,10 +3,12 @@ import { PropertyTableComponent } from './property-table/property-table.componen
 import { TableComponent } from './table/table.component';
 import { TableColumnChooserComponent } from './table-column-chooser/table-column-chooser.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 export const propertyTableComponents: Array<Type<any> | any[]> = [
   PropertyTableComponent,
   TableComponent,
   TableColumnChooserComponent,
+  PaginationComponent,
   ToolbarComponent,
 ];

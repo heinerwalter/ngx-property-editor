@@ -8,7 +8,6 @@ import { ColumnComponent } from './column/column.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RowComponent } from './row/row.component';
-import { PaginationComponent } from './pagination/pagination.component';
 
 export const bootstrapComponents: Array<Type<any> | any[]> = [
   ...itemViewComponents,
@@ -19,6 +18,5 @@ export const bootstrapComponents: Array<Type<any> | any[]> = [
   ColumnComponent,
   DropdownButtonComponent,
   LoginPageComponent,
-  PaginationComponent,
   RowComponent,
 ];

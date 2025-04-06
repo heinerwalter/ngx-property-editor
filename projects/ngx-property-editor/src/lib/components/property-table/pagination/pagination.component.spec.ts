@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationComponent } from './pagination.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ButtonComponent } from '../button/button.component';
+import { ButtonComponent } from '../../bootstrap/button/button.component';
 import { SelectInputComponent } from '../../input/select-input/select-input.component';
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../input/form-group/form-group.component';
-import { ButtonGroupComponent } from '../button-group/button-group.component';
+import { ButtonGroupComponent } from '../../bootstrap/button-group/button-group.component';
 import { NumberInputComponent } from '../../input/number-input/number-input.component';
 
 describe('PaginationComponent', () => {

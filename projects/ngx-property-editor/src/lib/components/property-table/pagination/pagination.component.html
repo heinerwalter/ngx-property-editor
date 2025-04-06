@@ -28,13 +28,13 @@
       <ng-container *ngFor="let i of visiblePageOptions">
         <button *ngIf="i == 'ellipsis'"
                 ngb-btn
-                buttonClass="btn-secondary"
+                buttonClass="btn-light"
                 [disabled]="true">
                 &hellip;
         </button>
         <button *ngIf="i != 'ellipsis'"
                 ngb-btn
-                buttonClass="btn-secondary"
+                buttonClass="btn-light"
                 [active]="page == i"
                 (click)="changePage(i)">
           {{ (i + 1) }}
