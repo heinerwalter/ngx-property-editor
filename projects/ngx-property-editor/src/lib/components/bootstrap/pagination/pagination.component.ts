@@ -24,9 +24,19 @@ export class PaginationComponent implements OnChanges {
    */
   @Output() public readonly pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  // region Visible Page Options
+  // region Pagination Options
 
+  /**
+   * Choose the pagination type:
+   * - 'buttons': A button group with page index buttons.
+   * - 'input': A numeric input for the user to enter a page number.
+   * - 'both': Input and buttons (default).
+   */
+  @Input() public pagigantionType: 'buttons' | 'input' | 'both' = 'both';
+
+  /** If true, a button for selecting the first and last page is always visible. */
   @Input() public showFirstAndLastPage: boolean = true;
+  /** This amount of pages before and after the current page is visible. */
   @Input() public showPagesBeforeAndAfter: number = 2;
 
   /**
@@ -41,7 +51,7 @@ export class PaginationComponent implements OnChanges {
 
   // endregion
 
-  // region Page Size
+  // region Page Size Options
 
   /** Current number of entries per page.  */
   @Input() public pageSize: number = 10;
@@ -63,7 +73,7 @@ export class PaginationComponent implements OnChanges {
    * This array contains page sizes from which the user can choose one in a select input.
    * @see showPageSizeSelector
    */
-  @Input() public pageSizeOptions: number[] = [ 5, 10, 20, 50, 100 ];
+  @Input() public pageSizeOptions: number[] = [ 1, 5, 10, 20, 50, 100 ];
 
   // endregion
 

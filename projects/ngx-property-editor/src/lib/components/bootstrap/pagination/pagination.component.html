@@ -6,24 +6,29 @@
                      [noFormGroup]="true"
                      [placeholder]="'Page size'"
                      [dataSource]="pageSizeOptions"
-                     [(value)]="pageSize"
+                     [value]="pageSize"
                      (valueChange)="changePageSize($event)">
     </pe-select-input>
   </div>
 
   <div class="pagination">
-    <ngb-pagination [collectionSize]="collectionSize"
-                    [pageSize]="pageSize"
-                    [page]="page"
-                    (pageChange)="changePage($event)"
-                    [maxSize]="5"
-                    [rotate]="true"
-                    [ellipses]="false"
-                    [boundaryLinks]="true">
-    </ngb-pagination>
-    <ngb-btn-group>
+
+    <pe-number-input *ngIf="pagigantionType != 'buttons'"
+                     class="pagination-number-input"
+                     [noFormGroup]="true"
+                     [placeholder]="'Page'"
+                     [value]="page"
+                     (valueChange)="changePage($event)">
+    </pe-number-input>
+
+    <ngb-btn-group *ngIf="pagigantionType != 'input'">
       <ng-container *ngFor="let i of visiblePageOptions">
-        <pe-input-group-text *ngIf="i == 'ellipsis'">&hellip;</pe-input-group-text>
+        <button *ngIf="i == 'ellipsis'"
+                ngb-btn
+                buttonClass="btn-secondary"
+                [disabled]="true">
+                &hellip;
+        </button>
         <button *ngIf="i != 'ellipsis'"
                 ngb-btn
                 buttonClass="btn-secondary"
@@ -33,6 +38,7 @@
         </button>
       </ng-container>
     </ngb-btn-group>
+
   </div>
 
 </div>
