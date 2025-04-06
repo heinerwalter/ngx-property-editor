@@ -76,9 +76,9 @@ export class TableComponent implements OnChanges {
   @Input() public pageSize: number = 10;
   /**
    * Only if `pagination` is true:
-   * The current page number (starting with 1).
+   * The current page number (starting with 0).
    */
-  protected currentPage: number = 1;
+  protected currentPage: number = 0;
 
   /**
    * Only if `pagination` is true:
@@ -96,7 +96,7 @@ export class TableComponent implements OnChanges {
     if (!this.data) return [];
     if (!this.pagination) return this.data;
 
-    const startIndex: number = (this.currentPage - 1) * this.pageSize;
+    const startIndex: number = (this.currentPage) * this.pageSize;
     return this.data.slice(startIndex, startIndex + this.pageSize);
   }
 
@@ -114,11 +114,11 @@ export class TableComponent implements OnChanges {
       changes.hasOwnProperty('pageSize')) {
       if (this.pageSize <= 0)
         this.pageSize = 10;
-      if (this.currentPage < 1)
-        this.currentPage = 1;
+      if (this.currentPage < 0)
+        this.currentPage = 0;
       const pageCount = this.pageCount;
-      if (this.currentPage > pageCount)
-        this.currentPage = pageCount;
+      if (this.currentPage >= pageCount)
+        this.currentPage = pageCount - 1;
     }
   }
 

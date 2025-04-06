@@ -73,7 +73,7 @@ export class PaginationComponent implements OnChanges {
    * This array contains page sizes from which the user can choose one in a select input.
    * @see showPageSizeSelector
    */
-  @Input() public pageSizeOptions: number[] = [ 1, 5, 10, 20, 50, 100 ];
+  @Input() public pageSizeOptions: number[] = [ 5, 10, 20, 50, 100 ];
 
   // endregion
 
