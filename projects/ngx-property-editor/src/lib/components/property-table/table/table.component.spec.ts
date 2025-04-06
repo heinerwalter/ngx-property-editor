@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../input/form-group/form-group.component';
 import { SelectInputComponent } from '../../input/select-input/select-input.component';
 import { ButtonComponent } from '../../bootstrap/button/button.component';
+import { ButtonGroupComponent } from '../../bootstrap/button-group/button-group.component';
+import { NumberInputComponent } from '../../input/number-input/number-input.component';
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -18,8 +20,10 @@ describe('TableComponent', () => {
         TableComponent,
         PaginationComponent,
         SelectInputComponent,
+        NumberInputComponent,
         FormGroupComponent,
         ButtonComponent,
+        ButtonGroupComponent,
       ],
       imports: [
         FormsModule,

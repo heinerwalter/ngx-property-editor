@@ -6,6 +6,8 @@ import { ButtonComponent } from '../button/button.component';
 import { SelectInputComponent } from '../../input/select-input/select-input.component';
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../input/form-group/form-group.component';
+import { ButtonGroupComponent } from '../button-group/button-group.component';
+import { NumberInputComponent } from '../../input/number-input/number-input.component';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -16,7 +18,9 @@ describe('PaginationComponent', () => {
       declarations: [
         PaginationComponent,
         ButtonComponent,
+        ButtonGroupComponent,
         SelectInputComponent,
+        NumberInputComponent,
         FormGroupComponent,
       ],
       imports: [
