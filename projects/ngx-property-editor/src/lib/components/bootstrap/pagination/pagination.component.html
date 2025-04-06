@@ -1,4 +1,4 @@
-<div class="pagination-container">
+<div class="pagination-container mt-3">
 
   <div *ngIf="showPageSizeSelector"
        class="pagination-page-size-select">
@@ -21,6 +21,18 @@
                     [ellipses]="false"
                     [boundaryLinks]="true">
     </ngb-pagination>
+    <ngb-btn-group>
+      <ng-container *ngFor="let i of visiblePageOptions">
+        <pe-input-group-text *ngIf="i == 'ellipsis'">&hellip;</pe-input-group-text>
+        <button *ngIf="i != 'ellipsis'"
+                ngb-btn
+                buttonClass="btn-secondary"
+                [disabled]="page == i"
+                (click)="changePage(i)">
+          {{ (i + 1) }}
+        </button>
+      </ng-container>
+    </ngb-btn-group>
   </div>
 
 </div>
