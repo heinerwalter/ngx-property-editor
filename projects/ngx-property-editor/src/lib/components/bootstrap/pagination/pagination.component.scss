@@ -17,6 +17,12 @@
     .pagination-btn-group {
       display: inline-block;
       margin-left: $default-margin;
+
+      button {
+        width: 2.5em;
+        text-align: center;
+        padding-inline: 0;
+      }
     }
   }
 }
