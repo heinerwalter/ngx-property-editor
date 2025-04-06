@@ -8,15 +8,11 @@
 <ng-container *ngIf="!addResponsiveContainer" [ngTemplateOutlet]="tableTemplate">
 </ng-container>
 
-<ng-container *ngIf="pagination && data && data.length > pageSize">
-  <ngb-pagination [collectionSize]="data.length || 0"
-                  [pageSize]="pageSize"
-                  [(page)]="currentPage"
-                  [maxSize]="5"
-                  [rotate]="true"
-                  [ellipses]="false"
-                  [boundaryLinks]="true">
-  </ngb-pagination>
+<ng-container *ngIf="pagination && data?.length">
+  <pe-pagination [collectionSize]="data.length || 0"
+                 [pageSize]="pageSize"
+                 [(page)]="currentPage">
+  </pe-pagination>
 </ng-container>
 
 
@@ -40,17 +36,18 @@
     <tbody *ngIf="data?.length">
 
     <ng-container *ngFor="let row of pageData; let i = index">
-      <tr [class.separator]="row.length == 0">
 
-        <ng-container *ngIf="row.length == 0 && i + 1 < data.length">
-          <td *ngFor="let cell of data[i + 1]"></td>
-        </ng-container>
+      <tr *ngIf="row.length == 0 && i + 1 < data.length"
+          [class.separator]="true">
+        <td *ngFor="let cell of data[i + 1]"></td>
+      </tr>
 
+      <tr *ngIf="row.length > 0">
         <ng-container [ngTemplateOutlet]="rowTemplate"
                       [ngTemplateOutletContext]="{row: row, index: i}">
         </ng-container>
-
       </tr>
+
     </ng-container>
 
     </tbody>

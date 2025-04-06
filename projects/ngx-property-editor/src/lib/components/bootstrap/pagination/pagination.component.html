@@ -1,0 +1,26 @@
+<div class="pagination-container">
+
+  <div *ngIf="showPageSizeSelector"
+       class="pagination-page-size-select">
+    <pe-select-input class="pagination-page-size-select-input"
+                     [noFormGroup]="true"
+                     [placeholder]="'Page size'"
+                     [dataSource]="pageSizeOptions"
+                     [(value)]="pageSize"
+                     (valueChange)="changePageSize($event)">
+    </pe-select-input>
+  </div>
+
+  <div class="pagination">
+    <ngb-pagination [collectionSize]="collectionSize"
+                    [pageSize]="pageSize"
+                    [page]="page"
+                    (pageChange)="changePage($event)"
+                    [maxSize]="5"
+                    [rotate]="true"
+                    [ellipses]="false"
+                    [boundaryLinks]="true">
+    </ngb-pagination>
+  </div>
+
+</div>
