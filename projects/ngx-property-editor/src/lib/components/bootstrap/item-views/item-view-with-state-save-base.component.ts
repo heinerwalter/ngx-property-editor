@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ItemDefinition } from './item-view-item-base.component';
 import { ItemViewBaseComponent } from './item-view-base.component';
+import { LocalStorageController } from '../../../controller/local-storage-controller';
 
 @Component({
   template: '',
@@ -14,8 +15,6 @@ export abstract class ItemViewWithStateSaveBaseComponent extends ItemViewBaseCom
    */
   @Input() public disableSaveLastActiveItem: boolean = false;
 
-  private readonly localStorageDefaultItemLabelKeyPrefix: string = 'item-view-default-item-';
-
   /**
    * Updates the `_defaultItemIndex` based on `defaultItemIndex` or
    * `defaultItemLabel` and the `_items` configuration.
@@ -25,7 +24,7 @@ export abstract class ItemViewWithStateSaveBaseComponent extends ItemViewBaseCom
    */
   protected override updateDefaultItemIndex(defaultLabel: string | undefined = undefined): void {
     if (!defaultLabel && !this.disableSaveLastActiveItem && this.id)
-      defaultLabel = localStorage.getItem(this.localStorageDefaultItemLabelKeyPrefix + this.id) || undefined;
+      defaultLabel = LocalStorageController.getString(LocalStorageController.KeyPrefix.ItemView_DefaultItemLabel, this.id) || undefined;
     super.updateDefaultItemIndex(defaultLabel);
   }
 
@@ -33,7 +32,7 @@ export abstract class ItemViewWithStateSaveBaseComponent extends ItemViewBaseCom
     super.onItemChanged(item, itemIndex);
 
     if (!this.disableSaveLastActiveItem && this.id && item?.label && !item.routerLink) {
-      localStorage.setItem(this.localStorageDefaultItemLabelKeyPrefix + this.id, item.label);
+      LocalStorageController.setString(LocalStorageController.KeyPrefix.ItemView_DefaultItemLabel, this.id, item.label);
     }
   }
 

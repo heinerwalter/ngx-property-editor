@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
-import { Stringifier } from '../../../controller/stringifier';
 import { ItemDefinition } from '../item-views/item-view-item-base.component';
+import { LocalStorageController } from 'projects/ngx-property-editor/src/public-api';
 
 /**
  * A box which is collapsed by default (only the header is visible)
@@ -45,15 +45,13 @@ export class CollapseComponent implements OnInit {
    */
   @Output() public readonly isCollapsedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private readonly localStorageDefaultIsCollapsedKeyPrefix: string = 'collapse-box-default-is-collapsed-';
-
   public ngOnInit(): void {
     // If possible, load the last isCollapsed state from local storage.
     // This is only done once after all properties (especially disableSaveLastIsCollapsed and id) are initialized.
     if (!this.disableSaveLastIsCollapsed && this.id) {
-      const isCollapsedString: string | null = localStorage.getItem(this.localStorageDefaultIsCollapsedKeyPrefix + this.id);
-      if (isCollapsedString) {
-        this.isCollapsed = Stringifier.stringToBoolean(isCollapsedString);
+      const isCollapsed: boolean | undefined = LocalStorageController.getBoolean(LocalStorageController.KeyPrefix.CollapseComponent_IsCollapsed, this.id);
+      if (isCollapsed != undefined) {
+        this.isCollapsed = isCollapsed;
       }
     }
   }
@@ -78,10 +76,8 @@ export class CollapseComponent implements OnInit {
     this.isCollapsedChange.emit(this.isCollapsed);
 
     if (!this.disableSaveLastIsCollapsed && this.id && this.isCollapsed != undefined) {
-      localStorage.setItem(this.localStorageDefaultIsCollapsedKeyPrefix + this.id, this.isCollapsed.toString());
+      LocalStorageController.setBoolean(LocalStorageController.KeyPrefix.CollapseComponent_IsCollapsed, this.id, this.isCollapsed);
     }
-
-
   }
 
 }
