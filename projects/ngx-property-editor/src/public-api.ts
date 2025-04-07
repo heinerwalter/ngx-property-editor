@@ -76,7 +76,7 @@ export * from './lib/components/property-table/table-configuration';
 export * from './lib/components/property-table/controller/property-configuration-filter-controller';
 export * from './lib/components/property-table/controller/property-table-column-controller';
 export * from './lib/components/property-table/controller/property-table-filter-controller';
-export * from './lib/components/property-table/controller/property-table-state-save-comtroller';
+export * from './lib/components/property-table/controller/property-table-state-save-controller';
 export * from './lib/components/property-table/pagination/pagination.component';
 export * from './lib/components/property-table/property-table/property-table.component';
 export * from './lib/components/property-table/table/table.component';
