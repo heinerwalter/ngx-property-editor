@@ -17,8 +17,8 @@ export namespace PropertyTableStateSaveController {
 
   export type ColumnState = { [propertyName: string]: SingleColumnState };
 
-  function getPropertyName(column: PropertyTableColumn): string {
-    return column.property?.propertyName || i.toString();
+  function getPropertyName(column: PropertyTableColumn, index: string | number): string {
+    return column.property?.propertyName || index.toString();
   }
  
   /**
@@ -28,15 +28,37 @@ export namespace PropertyTableStateSaveController {
    * @param column The state object of this table column will be generated.
    * @returns Column state as JSON object.
    */
-  function singleColumnStateToJson(column: PropertyTableColumn): SingleColumnState | undefined {
-    if (!column || column?.specialType) continue;
+  function singleColumnStateToJson(column: PropertyTableColumn, index: string): SingleColumnState | undefined {
+    if (!column || column?.specialType) return undefined;
 
     return {
-      propertyName: getPropertyName(column),
+      propertyName: getPropertyName(column, index),
       isVisible: column.isVisible,
-      order: column.index || undefined,
+      order: column.order || undefined,
       width: undefined,
     };
+  }
+
+  function restoreSingleColumnFromJson(column: PropertyTableColumn, state: SingleColumnState | undefined): boolean {
+    if (!state || typeof state !== 'object') return false;
+    if (!column || column?.specialType) return false;
+
+    let hasChanged: boolean = false;
+
+    if (state.isVisible != undefined) {
+      column.isVisible = state.isVisible;
+      hasChanged = true;
+    }
+    if (state.order != undefined) {
+      column.order = state.order;
+      hasChanged = true;
+    }
+    if (state.width != undefined) {
+      //column.width = state.width;
+      hasChanged = true;
+    }
+
+    return hasChanged;
   }
 
   /**
@@ -50,19 +72,20 @@ export namespace PropertyTableStateSaveController {
     const state: ColumnState = {}; 
     if (!columns?.length) return state;
  
-    function helper(columns: PropertyTableColumn[]): SingleColumnState[] {
+    function helper(columns: PropertyTableColumn[], index: string = ''): SingleColumnState[] {
       const array: SingleColumnState[] = [];
       if (!columns?.length) return array;
       
       for (let i = 0; i < columns.length; i++) {
         const column = columns[i];
+        const indexI = (index ? index + '-' : '') + i;
   
-        const columnsState = singleColumnStateToJson(column);
+        const columnsState = singleColumnStateToJson(column, indexI);
         if (columnsState)
           array.push(columnsState);
 
         if (column.isGroup) {
-          array.push(...helper(column.children));
+          array.push(...helper(column.children, indexI));
         }
       }
       
@@ -88,6 +111,42 @@ export namespace PropertyTableStateSaveController {
   export function saveColumnState(id: string, columns: PropertyTableColumn[]): boolean {
     const state = columnStateToJson(columns);
     return LocalStorageController.setJson(LocalStorageController.KeyPrefix.Table_ColumnState, id, state);
+  }
+
+  /**
+   * Restores the state of the given property table columns from
+   * the `localStorage`.
+   * @param id ID of the table element.
+   * @param columns The state of these table columns will be restored.
+   * @returns True, if the state of at least one column has been restored.
+   */
+  export function restoreColumnState(id: string, columns: PropertyTableColumn[]): boolean {
+    const state = LocalStorageController.getJson(LocalStorageController.KeyPrefix.Table_ColumnState, id);
+    if (!state || typeof state !== 'object') return false;
+
+    function helper(columns: PropertyTableColumn[], index: string = ''): boolean {
+      if (!columns?.length) return false;
+
+      let hasChanged: boolean = false;
+
+      for (let i = 0; i < columns.length; i++) {
+        const column = columns[i];
+        const indexI = (index ? index + '-' : '') + i;
+        const propertyName = getPropertyName(column, indexI);
+
+        if (state.hasOwnProperty(propertyName)) {
+          hasChanged = restoreSingleColumnFromJson(column, state[propertyName]) || hasChanged;
+        }
+
+        if (column.isGroup) {
+          hasChanged = helper(column.children, indexI) || hasChanged;
+        }
+      }
+
+      return hasChanged;
+    }
+
+    return helper(columns);
   }
 
 }

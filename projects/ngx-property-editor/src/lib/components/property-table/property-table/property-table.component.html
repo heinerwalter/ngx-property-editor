@@ -54,7 +54,7 @@
 
 <pe-table-column-chooser #columnChooser
                          [columns]="columns"
-                         (visibleColumnsChanged)="updateVisibleColumns()">
+                         (visibleColumnsChanged)="saveState(); updateVisibleColumns();">
 </pe-table-column-chooser>
 
 

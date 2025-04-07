@@ -21,6 +21,7 @@ import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
 import { PropertyTableFilterController } from '../controller/property-table-filter-controller';
 import { PropertyConfigurationController } from '../../property-views/controller/property-configuration-controller';
 import { PropertyTableSelectionMode } from '../property-table-selection-mode';
+import { PropertyTableStateSaveController } from '../controller/property-table-state-save-comtroller';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
@@ -35,7 +36,7 @@ import { PropertyTableSelectionMode } from '../property-table-selection-mode';
 export class PropertyTableComponent implements OnInit, OnChanges {
 
   /** ID attribute of the container element. */
-  @Input() public id: string = PEGlobalFunctions.generateRandomId();
+  @Input() public id: string | undefined = undefined;
 
   /**
    * Configuration of displayed properties of each table entry including name,
@@ -237,6 +238,22 @@ export class PropertyTableComponent implements OnInit, OnChanges {
   }
 
   /**
+   * Saves the current column state to the `localStorage`.
+   */
+  protected saveState(): void {
+    if (!this.id) return;
+    PropertyTableStateSaveController.saveColumnState(this.id, this.columns);
+  }
+
+  /**
+   * Restores the state of the given `columns` from the `localStorage`.
+   */
+  private restoreState(columns: PropertyTableColumn[]): void {
+    if (!this.id) return;
+    PropertyTableStateSaveController.restoreColumnState(this.id, columns);
+  }
+
+  /**
    * Generates the table `columns` from the given property `configuration`.
    */
   private generateColumns(): void {
@@ -247,9 +264,14 @@ export class PropertyTableComponent implements OnInit, OnChanges {
 
       // Generate columns
       const columns: PropertyTableColumn[] = PropertyTableColumnController.generateColumns(this.configuration);
+     
       // Add special columns
       columns.unshift(this.specialColumnSelection);
       columns.push(this.specialColumnButtons);
+
+      // Restore state
+      this.restoreState(columns);
+
       this.columns = columns;
 
       // Search for a primary key

@@ -43,7 +43,7 @@ export class PropertyTableColumn {
    * If two indices are equal, the columns are displayed in the
    * order of the columns array.
    */
-  public index: number;
+  public order: number;
 
   /**
    * Determines whether this column is hidden in the column chooser
@@ -129,7 +129,7 @@ export class PropertyTableColumn {
 
     this.specialType = params?.specialType;
     this.isVisible = params?.isVisible ?? true;
-    this.index = params?.index ?? 0;
+    this.order = params?.index ?? 0;
     this.hideInColumnChooser = params?.hideInColumnChooser ?? false;
     this.hideFilter = params?.hideFilter ?? false;
     this.parent = params?.parent;
@@ -174,7 +174,7 @@ export class PropertyTableColumn {
       {
         specialType: this.specialType,
         isVisible: this.isVisible,
-        index: this.index,
+        index: this.order,
         hideInColumnChooser: this.hideInColumnChooser,
         hideFilter: this.hideFilter,
         parent: this.parent,
