@@ -21,7 +21,7 @@ import { PropertyFilter, PropertyTableFilter } from '../property-table-filter';
 import { PropertyTableFilterController } from '../controller/property-table-filter-controller';
 import { PropertyConfigurationController } from '../../property-views/controller/property-configuration-controller';
 import { PropertyTableSelectionMode } from '../property-table-selection-mode';
-import { PropertyTableStateSaveController } from '../controller/property-table-state-save-comtroller';
+import { PropertyTableStateSaveController } from '../controller/property-table-state-save-controller';
 
 /**
  * A component displaying configured properties of multiple `data` objects as table.
