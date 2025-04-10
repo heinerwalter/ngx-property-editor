@@ -34,9 +34,31 @@ export class PaginationComponent implements OnChanges {
    */
   @Input() public pagigantionType: 'buttons' | 'input' | 'both' = 'both';
 
-  /** If true, a button for selecting the first and last page is always visible. */
+  /**
+   * If true, the total number of pages and entries
+   * is displayed in front of the pagination controls.
+   * @example "Page 1 of 5 (42 elements)"
+   */
+  @Input() public showInfoText: boolean = true;
+
+  /**
+   * Generates the info text for `showInfoText == true`.
+   * It contains the total number of pages and entries.
+   * @see showInfoText
+   */
+  protected get infoText(): string {
+    return `Page ${ this.page + 1 } of ${ this.pageCount } (${ this.collectionSize } elements)`;
+  }
+
+  /**
+   * Only if the pagination buttons are visible (see `pagigantionType`):
+   * If true, a button for selecting the first and last page is always visible.
+   */
   @Input() public showFirstAndLastPage: boolean = true;
-  /** This amount of pages before and after the current page is visible. */
+  /**
+   * Only if the pagination buttons are visible (see `pagigantionType`):
+   * This amount of pages before and after the current page is visible.
+   */
   @Input() public showPagesBeforeAndAfter: number = 2;
 
   /**

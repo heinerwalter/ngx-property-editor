@@ -13,6 +13,10 @@
 
   <div class="pagination">
 
+    <div *ngIf="showInfoText">
+      {{ infoText }}
+    </div>
+
     <pe-number-input *ngIf="pagigantionType != 'buttons'"
                      class="pagination-number-input"
                      [noFormGroup]="true"
