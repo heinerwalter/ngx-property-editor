@@ -9,8 +9,30 @@ export abstract class IconBaseComponent {
   /** Show this tooltip on the icon. */
   @Input() public tooltip: string | undefined = undefined;
 
-  /** If true, the icon is displayed on a <button> element (without a visible button with border etc.). */
+  /**
+   * If true, the icon is displayed on a HTML <button> element
+   * (without a visible button with border etc.).
+   */
   @Input() public button: boolean = false;
+
+  /**
+   * Override the `tabindex` attribute of the HTML button or icon element
+   * to change the order in which HTML elements are focused by the
+   * Tab key.
+   *
+   * The default order of the HTML document is used, when `tabindex` is `0`.
+   *
+   * The button cannot be reached via the Tab key, when the
+   * `tabindex` is negative. Alternatively, you can achieve this
+   * by ssigning `true` to the `disableTabIndex` property.
+   *
+   * The default value of this property is `undefined`.
+   * In that case the `tabindex` attribute value depends on whether
+   * the icon is displayed using a HTML <button> or <i> element.
+   * The default value for a <button> element is 0 (default tab order).
+   * The default value for an <i> element is -1 (not reachable via Tab key).
+   */
+  @Input() public tabindex: number | undefined = undefined;
 
   /**
    * If true, left padding is added to the icon.
@@ -34,7 +56,8 @@ export abstract class IconBaseComponent {
         class="icon-btn"
         [class.icon-padding-left]="paddingLeft"
         [class.icon-padding-right]="paddingRight"
-        [ngbTooltip]="tooltip || ''">
+        [ngbTooltip]="tooltip || ''"
+        [attr.tabindex]="tabindex ?? 0">
   <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
 </button>
 
@@ -42,7 +65,8 @@ export abstract class IconBaseComponent {
    class="icon"
    [class.icon-padding-left]="paddingLeft"
    [class.icon-padding-right]="paddingRight"
-   [ngbTooltip]="tooltip || ''">
+   [ngbTooltip]="tooltip || ''"
+   [attr.tabindex]="tabindex ?? -1">
   <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
 </i>
 

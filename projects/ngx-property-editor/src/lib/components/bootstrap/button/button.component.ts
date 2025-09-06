@@ -76,6 +76,20 @@ export class ButtonComponent implements OnInit, OnChanges {
    */
   @Input() public text: string | undefined = undefined;
 
+  /**
+   * Override the `tabindex` attribute of the HTML button element
+   * to change the order in which HTML elements are focused by the
+   * Tab key.
+   *
+   * The default order of the HTML document is used, when `tabindex` is `0`.
+   *
+   * The button cannot be reached via the Tab key, when the
+   * `tabindex` is negative. Alternatively, you can achieve this
+   * by ssigning `true` to the `disableTabIndex` property.
+   */
+  @HostBinding('attr.tabindex')
+  @Input() public tabindex: number = 0;
+
   public ngOnInit(): void {
     this.updateClass();
   }

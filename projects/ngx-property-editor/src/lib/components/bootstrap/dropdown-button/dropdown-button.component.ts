@@ -46,6 +46,19 @@ export class DropdownButtonComponent {
   @Input() public text: string | undefined = undefined;
 
   /**
+   * Override the `tabindex` attribute of the HTML dropdown button element
+   * to change the order in which HTML elements are focused by the
+   * Tab key.
+   *
+   * The default order of the HTML document is used, when `tabindex` is `0`.
+   *
+   * The button cannot be reached via the Tab key, when the
+   * `tabindex` is negative. Alternatively, you can achieve this
+   * by ssigning `true` to the `disableTabIndex` property.
+   */
+  @Input() public tabindex: number = 0;
+
+  /**
    * Define here where to display the menu relative to the button:
    * - `'dropdown'`:  Display menu below the button.
    * - `'dropup'`:    Display menu above the button.

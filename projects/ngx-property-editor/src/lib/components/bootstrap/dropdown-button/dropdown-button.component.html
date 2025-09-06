@@ -6,7 +6,8 @@
           type="button"
           class="btn {{buttonClass}}"
           [class.active]="active" [attr.aria-current]="active"
-          [class.disabled]="disabled" [attr.aria-disabled]="disabled">
+          [class.disabled]="disabled" [attr.aria-disabled]="disabled"
+          [attr.tabindex]="tabindex">
     <fa-icon *ngIf="icon" [icon]="icon"
             [style.padding-right]="text ? '0.5em' : ''">
     </fa-icon>
