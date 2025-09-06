@@ -61,7 +61,6 @@
     @include header-footer-bg();
 
     min-height: $navbar-height;
-    overflow: hidden;
 
     .container {
       padding: $navbar-padding;
