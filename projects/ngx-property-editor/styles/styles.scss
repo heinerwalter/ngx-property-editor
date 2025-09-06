@@ -29,8 +29,6 @@
 
 /* navbar and footer */
 
-// Define navbar any footer style with default $primary color
-header.header,
-footer.footer {
-  @include header-footer-bg();
-}
+// Define navbar and footer style with default $primary color
+@include header;
+@include footer;

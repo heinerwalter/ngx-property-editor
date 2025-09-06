@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { faLock, faLockOpen, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { NavbarItem } from '../types';
 
 @Component({

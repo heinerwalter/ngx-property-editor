@@ -1,33 +1,31 @@
 <header class="header">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-      <ng-container *ngIf="!hideNavbarItems">
+    <ng-container *ngIf="!hideNavbarItems">
 
-        <ul class="nav">
+      <ul class="nav">
 
-          <ng-container *ngIf="homeItem">
-            <pe-navbar-item [item]="homeItem"
-                            mode="icon-or-text"
-                            class="nav-link-home">
-            </pe-navbar-item>
-          </ng-container>
+        <ng-container *ngIf="homeItem">
+          <pe-navbar-item [item]="homeItem"
+                          mode="icon-or-text"
+                          class="nav-link-home">
+          </pe-navbar-item>
+        </ng-container>
 
-          <ng-container *ngFor="let item of items">
-            <pe-navbar-item [item]="item"
-                            mode="text">
-            </pe-navbar-item>
-          </ng-container>
+        <ng-container *ngFor="let item of items">
+          <pe-navbar-item [item]="item"
+                          mode="text">
+          </pe-navbar-item>
+        </ng-container>
 
-        </ul>
+      </ul>
 
-        <!--<div class="text-end">
-          <button ngb-btn buttonClass="btn-outline-light me-2">Login</button>
-          <button ngb-btn buttonClass="btn-warning">Sign-up</button>
-        </div>-->
+      <!--<div class="text-end">
+        <button ngb-btn buttonClass="btn-outline-light me-2">Login</button>
+        <button ngb-btn buttonClass="btn-warning">Sign-up</button>
+      </div>-->
 
-      </ng-container>
+    </ng-container>
 
-    </div>
   </div>
 </header>

@@ -1,2 +1,15 @@
 $default-margin: 1rem;
 $default-margin-small: 0.5 * $default-margin;
+
+
+// Header and footer
+
+/* Height of the navbar. */
+$navbar-height: 4rem;
+/* Vertical padding of the navbar. */
+$navbar-padding-v: 0.6rem;
+
+/* Height of the footer. */
+$footer-height: $navbar-height;
+/* Z-index of the footer. */
+$z-index-footer: 100;
