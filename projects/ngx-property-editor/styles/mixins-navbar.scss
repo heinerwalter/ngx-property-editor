@@ -11,12 +11,12 @@
   header.header {
 
     @include header-footer-bg();
-    
+
     min-height: $navbar-height;
-    padding-block: $navbar-padding-v;
+    overflow: hidden;
 
     .container {
-      margin-block: auto;
+      padding: $navbar-padding;
 
       .nav {
         align-content: space-around;
@@ -60,6 +60,11 @@
     // Set the fixed height of the footer here
     height: $footer-height;
     overflow: hidden;
+
+    .container {
+      padding: $footer-padding;
+    }
+
   }
 
   // Hide footer in print mode

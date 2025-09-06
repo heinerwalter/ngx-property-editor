@@ -7,9 +7,11 @@ $default-margin-small: 0.5 * $default-margin;
 /* Height of the navbar. */
 $navbar-height: 4rem;
 /* Vertical padding of the navbar. */
-$navbar-padding-v: 0.6rem;
+$navbar-padding: 1rem;
 
 /* Height of the footer. */
 $footer-height: $navbar-height;
+/* Vertical padding of the footer. */
+$ooter-padding: $navbar-padding;
 /* Z-index of the footer. */
 $z-index-footer: 100;
