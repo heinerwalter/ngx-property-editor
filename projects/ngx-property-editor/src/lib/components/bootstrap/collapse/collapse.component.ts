@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { ItemDefinition } from '../item-views/item-view-item-base.component';
-import { LocalStorageController } from 'projects/ngx-property-editor/src/public-api';
+import { LocalStorageController } from '../../../controller/local-storage-controller';
 
 /**
  * A box which is collapsed by default (only the header is visible)

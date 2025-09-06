@@ -87,7 +87,7 @@ export class ButtonComponent implements OnInit, OnChanges {
    * `tabindex` is negative. Alternatively, you can achieve this
    * by ssigning `true` to the `disableTabIndex` property.
    */
-  @HostBinding('attr.tabindex')
+  @HostBinding('tabindex')
   @Input() public tabindex: number = 0;
 
   public ngOnInit(): void {

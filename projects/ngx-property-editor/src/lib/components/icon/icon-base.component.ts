@@ -57,7 +57,7 @@ export abstract class IconBaseComponent {
         [class.icon-padding-left]="paddingLeft"
         [class.icon-padding-right]="paddingRight"
         [ngbTooltip]="tooltip || ''"
-        [attr.tabindex]="tabindex ?? 0">
+        [tabindex]="tabindex ?? 0">
   <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
 </button>
 
@@ -66,7 +66,7 @@ export abstract class IconBaseComponent {
    [class.icon-padding-left]="paddingLeft"
    [class.icon-padding-right]="paddingRight"
    [ngbTooltip]="tooltip || ''"
-   [attr.tabindex]="tabindex ?? -1">
+   [tabindex]="tabindex ?? -1">
   <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
 </i>
 

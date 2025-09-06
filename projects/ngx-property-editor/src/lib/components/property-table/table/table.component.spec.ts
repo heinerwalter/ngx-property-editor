@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableComponent } from './table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PaginationComponent } from 'projects/ngx-property-editor/src/public-api';
+import { PaginationComponent } from '../../property-table/pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
 import { FormGroupComponent } from '../../input/form-group/form-group.component';
 import { SelectInputComponent } from '../../input/select-input/select-input.component';
