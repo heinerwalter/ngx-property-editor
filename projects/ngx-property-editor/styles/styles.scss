@@ -3,6 +3,7 @@
 
 /* Custom styles */
 @import "mixins";
+@import "mixins-navbar";
 
 @include label;
 @include form-check-input;
@@ -14,4 +15,22 @@
 // Display readonly radio buttons like non-disabled radio buttons
 .form-check-input[readonly]:disabled {
   opacity: 1;
+}
+
+/* gradient */
+
+// Defines gradient background classes for all theme colors
+// (`.bg-gradient-primary` etc.).
+@each $color, $value in $theme-colors {
+  .bg-gradient-#{$color} {
+    @include bg-gradient($value, 5%, true);
+  }
+}
+
+/* navbar and footer */
+
+// Define navbar any footer style with default $primary color
+header.header,
+footer.footer {
+  @include header-footer-bg();
 }

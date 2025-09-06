@@ -1,0 +1,63 @@
+//@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "variables";
+@import "mixins";
+
+/**
+ * Sets the background and text color of header (navbar) and footer,
+ * and styles the nav-items/-links.
+ * @param $color The background color.
+ *        Default: $primary.
+ */
+@mixin header-footer-bg($color: $primary) {
+
+  @include bg-gradient($color, 7%);
+
+  .dropdown-menu {
+    background-color: $color;
+    color: color-contrast($color);
+
+    .dropdown-item:hover, .dropdown-item:focus {
+      color: inherit;
+      background: transparent;
+    }
+  }
+
+  a.nav-link {
+    color: color-contrast($color) !important;
+    position: relative;
+    padding: 0.5rem;
+
+    // Highlight hover and active links
+    &:before {
+      content: "";
+      background-color: color-contrast($color);
+      display: block;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      transition-property: left, width;
+      transition-timing-function: ease-in-out;
+      transition-duration: 0.3s;
+    }
+
+    &:hover:before,
+    &.active:before {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .nav-link-home a.active:not(:hover):before {
+    left: 50%;
+    width: 0;
+  }
+
+  .flex-separator {
+    flex-shrink: 10000;
+    flex-grow: 10000;
+  }
+
+}

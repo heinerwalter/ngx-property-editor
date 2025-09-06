@@ -23,3 +23,25 @@
   padding: 0;
   background: none;
 }
+
+
+/* gradient */
+
+/**
+ * Assigns a gradient background with the given color in the middle.
+ * @param $color The color at the middle of the gradient.
+ *               The gradient starts at $amount percent darker and goes to $amount percent lighter.
+ * @param $amount Percentage of which the `$color` is darkened and lightened at the edges of the gradient.
+ *                Default: 5% (slightly visible).
+ * @param $darkenWhenHovered If true, a `:hover` style with darker colors is added.
+ */
+@mixin bg-gradient($color, $amount: 5%, $darkenWhenHovered: false) {
+  background: linear-gradient(160deg, darken($color, $amount), lighten($color, $amount));
+  color: color-contrast($color);
+
+  @if $darkenWhenHovered {
+    &:hover, &.active {
+      background: linear-gradient(160deg, darken($color, $amount * 2), $color);
+    }
+  }
+}
