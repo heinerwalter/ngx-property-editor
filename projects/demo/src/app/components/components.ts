@@ -10,8 +10,10 @@ import { PropertyEditorDemoComponent } from './property-editor-demo/property-edi
 import { LoginPageDemoComponent } from './login-page-demo/login-page-demo.component';
 import { TerminalComponent } from './terminal/terminal.component';
 import { PropertyTypesDemoComponent } from './property-types-demo/property-types-demo.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 export const components: Array<Type<any> | any[]> = [
+  HomePageComponent,
   AllInputsDemoComponent,
   ContainerDemoAccordionComponent,
   ContainerDemoPagesComponent,

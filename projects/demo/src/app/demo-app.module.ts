@@ -13,6 +13,7 @@ import { PropertyEditorModule } from 'ngx-property-editor';
 
 import { DemoAppComponent } from './demo-app.component';
 import { components } from './components/components';
+import { routes } from './demo-routes';
 
 /**
  * Demo application module.
@@ -26,7 +27,7 @@ import { components } from './components/components';
     // Angular modules:
     BrowserModule, // Angular platform browser
     BrowserAnimationsModule, // Angular platform browser animations (required by Toastr)
-    RouterModule.forRoot([]), // Angular router
+    RouterModule.forRoot(routes, { useHash: true }), // Angular router
     FormsModule, // Angular forms
     // 3rd party modules:
     FontAwesomeModule, // FontAwesome
