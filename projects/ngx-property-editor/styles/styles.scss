@@ -3,7 +3,7 @@
 
 /* Custom styles */
 @import "mixins";
-@import "mixins-layout";
+@import "variables";
 
 @include label;
 @include form-check-input;

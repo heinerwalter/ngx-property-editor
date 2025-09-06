@@ -1,3 +1,5 @@
+@import "variables";
+
 /* input */
 
 // Show all labels with a slightly bolder font (medium)
@@ -44,4 +46,139 @@
       background: linear-gradient(160deg, darken($color, $amount * 2), $color);
     }
   }
+}
+
+
+/* layout (header and footer) */
+
+/**
+ * Defines the navbar style.
+ */
+@mixin header {
+
+  header.header {
+
+    @include header-footer-bg();
+
+    min-height: $navbar-height;
+    overflow: hidden;
+
+    .container {
+      padding: $navbar-padding;
+
+      .nav {
+        align-content: space-around;
+      }
+    }
+
+  }
+
+  // Hide navbar in print mode
+  @media print {
+    header {
+      display: none;
+    }
+  }
+
+}
+
+/**
+ * Defines the style of the footer.
+ */
+@mixin footer {
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    // Margin bottom by footer height
+    margin-bottom: $footer-height !important;
+  }
+
+  footer.footer {
+
+    @include header-footer-bg();
+
+    position: absolute;
+    z-index: $z-index-footer;
+    bottom: 0;
+    width: 100%;
+    // Set the fixed height of the footer here
+    height: $footer-height;
+    overflow: hidden;
+
+    .container {
+      padding: $footer-padding;
+    }
+
+  }
+
+  // Hide footer in print mode
+  @media print {
+    footer {
+      display: none;
+    }
+  }
+
+}
+
+/**
+ * Sets the background and text color of header (navbar) and footer,
+ * and styles the nav-items/-links.
+ * @param $color The background color.
+ *        Default: $primary.
+ */
+@mixin header-footer-bg($color: $primary) {
+
+  @include bg-gradient($color, 7%);
+
+  .dropdown-menu {
+    background-color: $color;
+    color: color-contrast($color);
+
+    .dropdown-item:hover, .dropdown-item:focus {
+      color: inherit;
+      background: transparent;
+    }
+  }
+
+  a.nav-link {
+    color: color-contrast($color) !important;
+    position: relative;
+    padding: 0.5rem;
+
+    // Highlight hover and active links
+    &:before {
+      content: "";
+      background-color: color-contrast($color);
+      display: block;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      transition-property: left, width;
+      transition-timing-function: ease-in-out;
+      transition-duration: 0.3s;
+    }
+
+    &:hover:before,
+    &.active:before {
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  .nav-link-home a.active:not(:hover):before {
+    left: 50%;
+    width: 0;
+  }
+
+  .flex-separator {
+    flex-shrink: 10000;
+    flex-grow: 10000;
+  }
+
 }
