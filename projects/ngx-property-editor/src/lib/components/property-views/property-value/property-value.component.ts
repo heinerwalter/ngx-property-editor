@@ -5,7 +5,7 @@ import { PropertyEditorMode } from '../property-editor-mode';
 import { CountrySelectInputComponent } from '../../input/special-input/country-input/country-select-input.component';
 
 
-type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'list' |
+type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'code' | 'list' |
   'url' | 'email' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
   'button';
 
@@ -151,10 +151,11 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         }
 
       case 'string-multiline':
+      case 'code':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         if (Array.isArray(this.value))
           this.value = this.value.join('\n');
-        return this.displayType = this.value ? 'text-multiline' : undefined;
+        return this.displayType = this.value ? propertyType : undefined;
 
       case 'url':
       case 'email':
