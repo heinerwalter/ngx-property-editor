@@ -34,6 +34,7 @@ import { IconSelectInputComponent } from '../../input/special-input/icon-select-
 import { RatingInputComponent } from '../../input/rating-input/rating-input.component';
 import { DifficultyInputComponent } from '../../input/difficulty-input/difficulty-input.component';
 import { SelectInputComponent } from '../../input/select-input/select-input.component';
+import { CodeInputComponent } from '../../input/code-input/code-input.component';
 import { ButtonInputComponent } from '../../input/button-input/button-input.component';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -298,6 +299,9 @@ export class PropertyInputComponent implements OnInit, OnChanges {
 
       case 'string-multiline':
         return createComponent(TextAreaInputComponent);
+
+      case 'code':
+        return createComponent(CodeInputComponent);
 
       case 'language':
         return createComponent(LanguageSelectInputComponent);
