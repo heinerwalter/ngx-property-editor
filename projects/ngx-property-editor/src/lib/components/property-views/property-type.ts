@@ -43,6 +43,8 @@ export type PropertyType =
   'color-class' |
   /** Internally a string property edited using a select input for selecting FontAwesome icons. */
   'icon' |
+  /** Internally a string property which is displayed as code (monospace font). */
+  'code' |
   /** Star rating (positive integer value). */
   'rating' |
   /** Difficulty icon rating (positive integer value). */
@@ -79,6 +81,7 @@ export const PropertyTypeOptions: PropertyType[] = [
   'color',
   'color-class',
   'icon',
+  'code',
   'rating',
   'difficulty',
   'select',
