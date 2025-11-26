@@ -779,6 +779,7 @@ export namespace Stringifier {
       case 'color':
       case 'color-class':
       case 'icon':
+      case 'code':
         return value?.toString();
 
       case 'password':
