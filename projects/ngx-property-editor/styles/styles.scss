@@ -1,10 +1,16 @@
-/* Import Bootstrap */
-// Don't import full bootstrap. Import variables or mixins instead when needed.
-//@import "../../../node_modules/bootstrap/scss/bootstrap";
+/* Import Bootstrap:
+ * Include functions first (so you can manipulate colors, SVGs, calc, etc) */
+@import "../../../node_modules/bootstrap/scss/functions";
 
-/* Custom styles */
+/* Include custom styles */
 @import "mixins";
 @import "variables";
+
+/* Import Bootstrap:
+ * Include remainder of required Bootstrap stylesheets */
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
 
 @include label;
 @include form-check-input;
