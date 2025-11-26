@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { InteractionService } from '../../../services/interaction-service/interaction.service';
+import { LoadingService } from '../../../services/loading-service/loading.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,9 +23,9 @@ export class ActivityIndicatorBackdropComponent implements OnDestroy {
   /** Loading label (default or provided by the `isLoadingSubscription`) */
   protected label: string = this.defaultLabel;
 
-  public constructor(public interactionService: InteractionService) {
+  public constructor(public loadingService: LoadingService) {
     // Start is-loading subscription from interactionService
-    this.isLoadingSubscription = interactionService.isLoading$
+    this.isLoadingSubscription = loadingService.isLoading$
       .subscribe((data) => this.updateIsLoading(data));
   }
 
