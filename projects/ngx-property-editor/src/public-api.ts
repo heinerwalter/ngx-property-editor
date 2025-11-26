@@ -63,6 +63,8 @@ export * from './lib/components/input/special-input/color-select-input/color-sel
 export * from './lib/components/input/special-input/country-input/country-select-input.component';
 export * from './lib/components/input/special-input/icon-select-input/icon-select-input.component';
 export * from './lib/components/input/special-input/language-input/language-select-input.component';
+// - layout
+export * from './lib/components/layout/activity-indicator-backdrop/activity-indicator-backdrop.component';
 // - modal
 export * from './lib/components/modal/modal/modal.component';
 export * from './lib/components/modal/movable-modal/movable-modal.component';
