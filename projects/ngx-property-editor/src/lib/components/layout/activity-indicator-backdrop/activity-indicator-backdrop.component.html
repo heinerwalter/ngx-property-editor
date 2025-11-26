@@ -1,0 +1,12 @@
+<div *ngIf="isLoading"
+     id="activity-indicator-backdrop"
+     class="text-primary">
+  <div id="activity-indicator-container">
+    <h4>
+      <span style="opacity: 0;">&hellip;</span>
+      <span>{{label}}</span>
+      <span>&hellip;</span>
+    </h4>
+    <div class="spinner spinner-border" role="status"></div>
+  </div>
+</div>

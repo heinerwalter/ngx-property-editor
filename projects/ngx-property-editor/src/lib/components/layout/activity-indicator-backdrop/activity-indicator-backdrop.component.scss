@@ -1,0 +1,35 @@
+@import "../../../../styles/variables";
+
+#activity-indicator-backdrop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-index-loading;
+
+  // Same backdrop color as SweetAlert2:
+  background-color: rgba(0, 0, 0, .4);
+
+  #activity-indicator-container {
+    text-align: center;
+    padding: $default-margin 2*$default-margin;
+    border-radius: 5px;
+    backdrop-filter: blur(1rem);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /*
+  // Make spinner larger:
+  .spinner {
+    min-width: min(10vw, 10vh);
+    min-height: min(10vw, 10vh);
+    border-width: 4px;
+  }
+  */
+}
