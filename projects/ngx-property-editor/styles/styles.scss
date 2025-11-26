@@ -1,5 +1,6 @@
 /* Import Bootstrap */
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+// Don't import full bootstrap. Import variables or mixins instead when needed.
+//@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 /* Custom styles */
 @import "mixins";
