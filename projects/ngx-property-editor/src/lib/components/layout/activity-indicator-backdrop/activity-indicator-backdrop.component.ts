@@ -19,7 +19,8 @@ export class ActivityIndicatorBackdropComponent implements OnDestroy {
   protected isLoading: boolean = false;
 
   /** Default loading label used if the `isLoadingSubscription` does not provide a label. */
-  private readonly defaultLabel: string = $localize`:@@activity-indicator.label.default:Laden`;
+  // TODO: $localize does not work in the library
+  private readonly defaultLabel: string = 'Laden'; // $localize`:@@activity-indicator.label.default:Laden`;
   /** Loading label (default or provided by the `isLoadingSubscription`) */
   protected label: string = this.defaultLabel;
 
