@@ -41,6 +41,7 @@ export namespace PropertyTypeController {
       case 'color':
       case 'color-class':
       case 'icon':
+      case 'code':
         return 'string';
 
       case 'select':
