@@ -155,7 +155,7 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         if (Array.isArray(this.value))
           this.value = this.value.join('\n');
-        return this.displayType = this.value ? propertyType : undefined;
+        return this.displayType = this.value ? (propertyType == 'string-multiline' ? 'text-multiline' : 'code') : undefined;
 
       case 'url':
       case 'email':
