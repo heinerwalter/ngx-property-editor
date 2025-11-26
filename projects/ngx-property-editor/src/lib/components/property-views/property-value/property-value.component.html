@@ -4,6 +4,16 @@
     <span [id]="id">{{ valueAsString }}</span>
   </ng-container>
 
+  <ng-container *ngIf="displayType == 'text-multiline'">
+    <div [id]="id" style="white-space: pre-wrap;">{{ valueAsString }}</div>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'code'">
+    <div [id]="id">
+      <pre><code>{{ valueAsString }}</code></pre>
+    </div>
+  </ng-container>
+
   <ng-container *ngIf="displayType == 'list'">
     <div class="property-value-list">
       <ng-container *ngFor="let item of valueAsArray; let i = index">
