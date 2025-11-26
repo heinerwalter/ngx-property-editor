@@ -55,6 +55,8 @@ export function getDemoPropertyTypeValues(propertyType: PropertyType): any[] {
       return ['danger', 'success', 'warning'];
     case 'icon':
       return ['pen', 'house', 'user'];
+    case 'code':
+      return ['<html>\n  <head>\n  </head>\n  <body>\n  </body>\n</html>', 'function helloWorld() {\n  console.log("Hello World!");\n}', '// Just some text'];
     case 'rating':
       return [5, 1, 3];
     case 'difficulty':
