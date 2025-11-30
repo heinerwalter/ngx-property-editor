@@ -43,7 +43,7 @@
     </p>
     <p *ngIf="version.websiteUrl">
       <fa-icon [icon]="iconWebsite"></fa-icon>
-      <a href="version.websiteUrl" target="_blank"
+      <a href="{{ version.websiteUrl }}" target="_blank"
       >{{ version.websiteTitle || 'Herstellerwebsite'}} öffnen&hellip;</a>
     </p>
   </div>
