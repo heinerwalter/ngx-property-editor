@@ -56,6 +56,9 @@ type TableCellBase = {
   /** Optional rowspan attribute value. */
   rowspan?: number | undefined,
 
+  /** Optional column width in pixel. */
+  width?: number | undefined,
+
   /** If defined, a goto-icon with this link is appended to the cell content. */
   routerLink?: any[] | string | undefined,
   /**

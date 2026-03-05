@@ -13,6 +13,30 @@ export type SpecialPropertyTableColumnType =
 
 
 /**
+ * Width related settngs of a column definition of the
+ * `PropertyTableComponent`.
+ */
+export class PropertyTableColumnWidth {
+
+  /** Column width in pixels, or "auto" to compute with from content. */
+  public width: number | "auto" = "auto";
+
+  /**
+   * Optional minimum width in pixels.
+   * Only used with automatic width computation (`width == "auto"`).
+   */
+  public minWidth: number | undefined = undefined;
+
+  /**
+   * Optional maximum width in pixels.
+   * Only used with automatic width computation (`width == "auto"`).
+   */
+  public maxWidth: number | undefined = undefined;
+
+};
+
+
+/**
  * Definition of a column of the `PropertyTableComponent`.
  */
 export class PropertyTableColumn {
@@ -109,6 +133,9 @@ export class PropertyTableColumn {
   }
 
   // endregion
+
+  /** Width related settings of the column. */
+  public width: PropertyTableColumnWidth = new PropertyTableColumnWidth();
 
   /**
    * Constructor creating a new `PropertyTableColumn` object with the given properties.

@@ -3,7 +3,9 @@
                    selectionMode="multiple"
                    [showDetailLink]="true"
                    (onDetailLinkClick)="onDetailLinkClick($event)"
-                   [editable]="editable">
+                   [editable]="editable"
+                   [minColumnWidth]="100"
+                   [maxColumnWidth]="400">
 </pe-property-table>
 
 <pe-collapse label="JSON Data"

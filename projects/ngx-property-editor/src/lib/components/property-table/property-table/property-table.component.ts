@@ -10,7 +10,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfiguration } from '../../property-views/property-configuration';
 import { TableCellTemplateContextType, TableData, TableHeader, TableRow } from '../table-configuration';
 import { PropertyTableColumn, SpecialPropertyTableColumnType } from '../property-table-column';
@@ -48,6 +47,18 @@ export class PropertyTableComponent implements OnInit, OnChanges {
    * Display these objects in the table.
    */
   @Input() public data: any[] | undefined = undefined;
+
+  /**
+   * Optional minimum width for all columns.
+   * If defined, this value overrides all settings from the `configuration`.
+   */
+  @Input() public minColumnWidth: number | undefined = undefined;
+
+  /**
+   * Optional maximum width for all columns.
+   * If defined, this value overrides all settings from the `configuration`.
+   */
+  @Input() public maxColumnWidth: number | undefined = undefined;
 
   /**
    * Reference to the primary key property configuration which is an
@@ -317,6 +328,41 @@ export class PropertyTableComponent implements OnInit, OnChanges {
     }
 
     /**
+     * Computes an optional fixed with in pixels of the given column.
+     * @param column The column definition.
+     * @returns Width in pixels or undefined.
+     */
+    const computeColumnWidth = (
+      column: PropertyTableColumn): number | undefined => {
+      // Handle special column types
+      switch (column.specialType) {
+        case 'selection':
+          return 35;
+        case 'buttons':
+          return undefined;
+      }
+
+      let width: number | undefined = undefined;
+      if (typeof column.width.width === "number") {
+        width = column.width.width;
+      } else {
+        width = column.width.minWidth;
+      }
+
+      // Override with global min and max values?
+      if (this.minColumnWidth != undefined && this.minColumnWidth > 0) {
+        if (width == undefined || width < this.minColumnWidth)
+          width = this.minColumnWidth;
+      }
+      if (this.maxColumnWidth != undefined && this.maxColumnWidth > 0) {
+        if (width != undefined && width > this.maxColumnWidth)
+          width = this.maxColumnWidth;
+      }
+
+      return width;
+    }
+
+    /**
      * Generates table header cells for the given column and all of its child columns.
      * @param column The column for which the header cell should be generated.
      * @param tableHeaderRowIndex The index of the table header row into which the column should be added.
@@ -334,6 +380,8 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         colspan: column.totalChildrenCount || undefined,
         // If the column is not a group, it should span all following header rows
         rowspan: !column.isGroup ? tableHeader.length - tableHeaderRowIndex : undefined,
+        // Optional: add fixed width.
+        width: computeColumnWidth(column),
       });
 
       // Add child columns, if the column is a group

@@ -1,7 +1,9 @@
-@import "../../../../../styles/styles";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
 
 pe-table > div.table-responsive > table,
 pe-table > table {
+
   & > thead, & > tbody {
 
     tr.separator {
@@ -27,6 +29,12 @@ pe-table > table {
       }
     }
 
+    /* Hide overflow from cells */
+    th, td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* Cells with <pe-property-input> */
     td.cell-with-input, th.cell-with-input {
       padding: 0;
@@ -42,4 +50,16 @@ pe-table > table {
     }
 
   }
+
+  // Preparation for resizable table columns
+  &.table-resizable {
+    table-layout: fixed;
+
+    & > thead, & > tbody {
+      & > th, & > td {
+        box-sizing: content-box;
+      }
+    }
+  }
+
 }

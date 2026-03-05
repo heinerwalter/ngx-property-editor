@@ -17,10 +17,12 @@
 
 
 <ng-template #tableTemplate>
-  <table [id]="id"
+  <table #table
+         [id]="id"
          [class.table-striped]="isStriped"
          [class.table-bordered]="isBordered"
          [class.table-hover]="isHover"
+         [class.table-resizable]="isResizable"
          class="table {{tableClass || ''}}">
 
     <thead *ngIf="header?.length">
@@ -63,7 +65,8 @@
     <ng-container *ngIf="cell.elementType == 'header'">
       <th [class]="cell.class || ''"
           [class.cell-with-input]="getShowPropertyInput(cell)"
-          [style]="cell.style || ''"
+          [style]="(cell.style || '')"
+          [style.width]="isResizable && (cell.width > 0) ? cell.width + 'px' : undefined"
           [attr.colspan]="cell.colspan || 1"
           [attr.rowspan]="cell.rowspan || 1">
         <ng-container [ngTemplateOutlet]="cellTemplate"

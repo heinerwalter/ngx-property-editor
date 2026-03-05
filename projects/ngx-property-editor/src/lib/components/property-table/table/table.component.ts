@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { Stringifier } from '../../../controller/stringifier';
 import { TableHeader, TableCell, TableData } from '../table-configuration';
@@ -44,6 +44,55 @@ export class TableComponent implements OnChanges {
    * hovered rows to be highlighted.
    */
   @Input() public isHover: boolean = true;
+  /**
+   * If true, the class `.table-resizable` is added which causes
+   * table column width to be fixed.
+   * 
+   * rows = table.querySelectorAll(':scope tbody > tr');
+   *
+   * Code to compute the maximum width of a table column
+   * (not working properly):
+
+rows = table.querySelectorAll(':scope tbody > tr');
+
+// Search for maximum cell width of each column
+maxCellWidth = [];
+maxColumnWidth = 300;
+
+for (let row of rows) {
+    cells = row.querySelectorAll(':scope > td.property-table-data-cell, :scope > th.property-table-data-cell');
+    
+    for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i];
+        // Compute required width of cell
+        let width = 0;
+        for (let child of cell?.children ?? [])
+            width += child.offsetWidth;
+        const style = cell.computedStyleMap();
+        width += style?.get('padding-left')?.value ?? 0;
+        width += style?.get('padding-right')?.value ?? 0;
+        // Store maximum width of column
+        while (maxCellWidth.length <= i)
+            maxCellWidth.push(0);
+        if (maxCellWidth[i] < width)
+            maxCellWidth[i] = width;
+    }
+}
+
+// Assign width to header
+headerRow = table.querySelector(':scope thead > tr');
+headerCells = headerRow.querySelectorAll(':scope > td.property-table-header-cell, :scope > th.property-table-header-cell');
+
+for (let i = 0; i < headerCells.length; i++) {
+    const cell = headerCells[i];
+    if (maxCellWidth.length <= i)
+        cell.style.width = undefined;
+    else
+        cell.style.width = Math.min(maxCellWidth[i], maxColumnWidth) + 'px';
+}
+
+   */
+  @Input() public isResizable: boolean = true;
   /** Optional class added to the table element. */
   @Input() public tableClass: string | undefined = undefined;
 
@@ -105,6 +154,14 @@ export class TableComponent implements OnChanges {
    * a <pe-property-input> element is displayed inside the cell for editing of the cell content.
    */
   @Input() public showPropertyInput: boolean = false;
+
+  /** Reference of the HTML table element. */
+  @ViewChild('table') protected tableRef?: HTMLTableElement;
+
+  /** Returns a reference of the HTML table element. */
+  public getTableElementRef(): HTMLTableElement | undefined {
+    return this.tableRef;
+  }
 
   public constructor() {
   }
