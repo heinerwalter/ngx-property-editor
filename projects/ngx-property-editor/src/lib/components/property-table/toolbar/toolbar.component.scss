@@ -1,5 +1,6 @@
 @import "../../../../../styles/variables";
-@import "../../../../../styles/styles";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
 
 .toolbar {
   margin-bottom: $default-margin;
