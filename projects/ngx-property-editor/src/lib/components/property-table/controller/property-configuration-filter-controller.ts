@@ -139,10 +139,24 @@ export namespace PropertyConfigurationFilterController {
 
     switch (filter) {
       case 'true':
+      case 'yes':
+      case 'y':
+      case '1':
+      case 'wahr':
+      case 'ja':
+      case 'j':
         return value == true;
       case 'false':
+      case 'no':
+      case 'n':
+      case '0':
+      case 'falsch':
+      case 'nein':
+      case 'n':
         return value == false;
       case 'undefined':
+      case 'undefiniert':
+      case 'leer':
         return value == undefined;
       default:
         return handleInvalidFilter();
