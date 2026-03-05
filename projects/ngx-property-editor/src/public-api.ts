@@ -83,6 +83,7 @@ export * from './lib/components/property-table/pagination/pagination.component';
 export * from './lib/components/property-table/property-table/property-table.component';
 export * from './lib/components/property-table/table/table.component';
 export * from './lib/components/property-table/table-column-chooser/table-column-chooser.component';
+export * from './lib/components/property-table/table-column-resizable/table-column-resizable.directive';
 export * from './lib/components/property-table/toolbar/toolbar.component';
 // - property views
 export * from './lib/components/property-views/property-configuration';

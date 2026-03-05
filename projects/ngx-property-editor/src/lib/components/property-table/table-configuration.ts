@@ -74,6 +74,11 @@ type TableCellBase = {
  * Definition of a single table header cell.
  */
 export type TableHeaderCell = TableCellBase & {
+  /**
+   * If true, a handle for resizing the column width
+   * is added to the header cell.
+   */
+  isResizable?: boolean | undefined,
 };
 
 /**

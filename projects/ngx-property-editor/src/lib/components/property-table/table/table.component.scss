@@ -1,6 +1,10 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
+
+$table-column-resizable-handle-width: 5px !default;
+
+
 pe-table > div.table-responsive > table,
 pe-table > table {
 
@@ -56,8 +60,26 @@ pe-table > table {
     table-layout: fixed;
 
     & > thead, & > tbody {
-      & > th, & > td {
-        box-sizing: content-box;
+      & > tr > th.table-column-is-resizable {
+        position: relative;
+
+        & > .table-column-resizable-handle {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: $table-column-resizable-handle-width;
+
+          cursor: ew-resize;
+          background-color: black;
+        }
+      }
+    }
+  }
+  &:not(.table-resizable) {
+    & > thead, & > tbody {
+      & > tr > th.table-column-is-resizable > .table-column-resizable-handle {
+        display: none;
       }
     }
   }

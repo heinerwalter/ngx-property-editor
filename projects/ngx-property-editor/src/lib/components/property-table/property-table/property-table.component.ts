@@ -380,8 +380,9 @@ export class PropertyTableComponent implements OnInit, OnChanges {
         colspan: column.totalChildrenCount || undefined,
         // If the column is not a group, it should span all following header rows
         rowspan: !column.isGroup ? tableHeader.length - tableHeaderRowIndex : undefined,
-        // Optional: add fixed width.
+        // Width:
         width: computeColumnWidth(column),
+        isResizable: !column.isGroup,
       });
 
       // Add child columns, if the column is a group

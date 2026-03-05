@@ -63,7 +63,8 @@
   <ng-container *ngFor="let cell of row; let c = index">
 
     <ng-container *ngIf="cell.elementType == 'header'">
-      <th [class]="cell.class || ''"
+      <th [peTableColumnResizable]="cell.isResizable"
+          [class]="cell.class || ''"
           [class.cell-with-input]="getShowPropertyInput(cell)"
           [style]="(cell.style || '')"
           [style.width]="isResizable && (cell.width > 0) ? cell.width + 'px' : undefined"
