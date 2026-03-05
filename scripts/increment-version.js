@@ -56,6 +56,8 @@ function assignVersion(path, version) {
   // Write package.json file
   writeJsonFile(path, fileContent);
 
+  console.log(`Incremented version of package ${fileContent.name} to ${newVersion}.`);
+
   return {
     oldVersion: oldVersion,
     newVersion: newVersion,
