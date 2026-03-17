@@ -92,7 +92,7 @@ for (let i = 0; i < headerCells.length; i++) {
 }
 
    */
-  @Input() public isResizable: boolean = true;
+  @Input() public isResizable: boolean = false;
   /** Optional class added to the table element. */
   @Input() public tableClass: string | undefined = undefined;
 
