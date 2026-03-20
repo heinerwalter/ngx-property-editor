@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PropertyConfiguration, PropertyEditorMode } from 'ngx-property-editor';
 import { Contact } from '../../model/contact';
+import { ContactGenerator } from '../../model/contact-generator';
 
 @Component({
   selector: 'demo-property-table-demo',
@@ -66,6 +67,10 @@ export class PropertyTableDemoComponent {
    */
   protected onDetailLinkClick(row: any): void {
     alert('Details of a table row should be displayed.');
+  }
+
+  protected generateRandomContacts(): void {
+    this.data = ContactGenerator.generateRandomContacts(100);
   }
 
 }

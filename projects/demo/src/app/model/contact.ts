@@ -19,7 +19,7 @@ const loremIpsum = new LoremIpsum({
 });
 
 
-type FriendType = {
+export type FriendType = {
   name?: string | undefined,
   type?: 'Brother' | 'Sister' | 'Friend' | 'Dog' | undefined,
 }
