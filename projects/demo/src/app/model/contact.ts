@@ -4,6 +4,20 @@ import {
   PropertyEditorMode,
 } from 'ngx-property-editor';
 import { Address } from './address';
+import { LoremIpsum } from "lorem-ipsum";
+
+
+const loremIpsum = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
+
 
 type FriendType = {
   name?: string | undefined,
@@ -20,6 +34,7 @@ export class Contact {
   public tel: string | undefined = undefined;
   public email: string | undefined = undefined;
   public favorite: boolean = false;
+  public bio: string | undefined = undefined;
   public indeterminateBoolean: boolean | undefined = undefined;
   public rating: number | undefined = undefined;
   public friends: FriendType[] = [];
@@ -45,6 +60,7 @@ export class Contact {
     tel?: string | undefined,
     email?: string | undefined,
     favorite?: boolean | undefined,
+    bio?: string | undefined,
     indeterminateBoolean?: boolean | undefined,
     rating?: number | undefined,
     friends?: FriendType[] | undefined,
@@ -60,6 +76,7 @@ export class Contact {
     this.tel = data?.tel;
     this.email = data?.email;
     this.favorite = data?.favorite || false;
+    this.bio = data?.bio || loremIpsum.generateParagraphs(1);
     this.indeterminateBoolean = data?.indeterminateBoolean;
     this.rating = data?.rating;
     this.friends = data?.friends || [];
@@ -169,6 +186,14 @@ export class Contact {
         label: 'E-Mail Address',
         propertyType: 'email',
         editable: true,
+      }),
+      new PropertyConfigurationSeparator(),
+      new PropertyConfiguration({
+        propertyName: 'bio',
+        label: 'Biography',
+        propertyType: 'string-multiline',
+        editable: true,
+        hidden: 'initially-hidden',
       }),
       new PropertyConfigurationSeparator(),
       new PropertyConfiguration({
