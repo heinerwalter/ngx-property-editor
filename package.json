@@ -15,7 +15,6 @@
   },
   "scripts": {
     "ng": "ng",
-    "link:demo": "npm link ./projects/ngx-property-editor",
     "start:demo": "ng serve demo",
     "build": "ng build ngx-property-editor && cd projects/ngx-property-editor && npm run build",
     "build:demo": "ng build demo --configuration production",
@@ -53,7 +52,8 @@
     "bootstrap": "^5.3.3",
     "chardet": "^2.1.0",
     "i18n-iso-countries": "^7.14.0",
-    "ngx-property-editor": "^0.17.24",
+    "lorem-ipsum": "^2.0.8",
+    "ngx-property-editor": "file:projects/ngx-property-editor",
     "ngx-toastr": "^19.0.0",
     "rxjs": "^7.8.2",
     "sweetalert2": "^11.14.5",

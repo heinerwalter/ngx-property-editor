@@ -99,7 +99,13 @@ function assignDependencyVersion(path, dependency, version) {
 }
 
 
-// Increment version of the library package.json file
+// Increment version of the library package.json file.
 const versions = incrementVersion(libraryPackagePath);
-// Assign old library version as dependency version
-assignDependencyVersion(rootPackagePath, 'ngx-property-editor', versions.oldVersion);
+
+// Assign new library version to root package.json file.
+assignVersion(rootPackagePath, versions.newVersion);
+
+// Assign old library version as dependency version.
+// This is not necessary, because the demo project uses
+// a file reference to the library.
+//assignDependencyVersion(rootPackagePath, 'ngx-property-editor', versions.oldVersion);
