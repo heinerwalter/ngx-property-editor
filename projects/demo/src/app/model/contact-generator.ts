@@ -3,9 +3,16 @@ import { Contact, FriendType } from './contact';
 
 export module ContactGenerator {
 
-const maleFirstNames = ['John', 'Michael', 'David', 'Robert', 'James', 'William', 'Daniel', 'Matthew', 'Christopher', 'Joseph'];
-const femaleFirstNames = ['Jane', 'Sarah', 'Emma', 'Lisa', 'Anna', 'Elizabeth', 'Susan', 'Laura', 'Jessica', 'Karen'];
-const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez'];
+let maleFirstNames = ['John', 'Michael', 'David', 'Robert', 'James', 'William', 'Daniel', 'Matthew', 'Christopher', 'Joseph'];
+let femaleFirstNames = ['Jane', 'Sarah', 'Emma', 'Lisa', 'Anna', 'Elizabeth', 'Susan', 'Laura', 'Jessica', 'Karen'];
+let lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez'];
+const peanutsMaleFirstNames = ['Charlie', 'Linus', 'Snoopy', 'Woodstock', 'Schroeder', 'Pigpen', 'Marble', 'Spike', 'Rerun', 'Faron', 'Andy', 'Olaf', 'Leland', 'Randy'];
+const peanutsFemaleFirstNames = ['Lucy', 'Sally', 'Marcie', 'Violet', 'Frieda', 'Eudora', 'Belle', 'Eleanor', 'Loretta', 'Lulu', 'Blossom'];
+const peanutsLastNames = ['Brown', 'Van Pelt', 'Davis', 'Swanson', 'Johnson', 'Smith', 'Garcia', 'Miller'];
+maleFirstNames = maleFirstNames.concat(peanutsMaleFirstNames);
+femaleFirstNames = femaleFirstNames.concat(peanutsFemaleFirstNames);
+lastNames = lastNames.concat(peanutsLastNames);
+
 const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose'];
 const streets = ['Main St', 'Oak Ave', 'Elm St', 'Maple Dr', 'Cedar Ln', 'Pine Rd', 'Birch Way', 'Ash Ct'];
 const hobbies = ['Reading', 'Gaming', 'Photography', 'Cooking', 'Gardening', 'Hiking', 'Painting', 'Music', 'Swimming', 'Traveling'];
