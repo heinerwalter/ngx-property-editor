@@ -13,34 +13,7 @@ export class PropertyTableDemoComponent {
   /**
    * Display the properties of these objects by a property table.
    */
-  public data: Contact[] = [
-    ...Contact.Contacts,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-    Contact.Snoopy,
-  ];
+  public data: Contact[] = Contact.Contacts;
 
   /**
    * Returns the `data` object as JSON string.
@@ -69,8 +42,24 @@ export class PropertyTableDemoComponent {
     alert('Details of a table row should be displayed.');
   }
 
+  private hasGenertedRandomContacts: boolean = false;
+
+  /**
+   * Generates random contacts and assigns them to the `data` property,
+   * which will be displayed in the table. When this method is called
+   * for the first time, it will generate 100 random contacts.
+   * When this method is called again, it will add 100 more random contacts.
+   */
   protected generateRandomContacts(): void {
-    this.data = ContactGenerator.generateRandomContacts(100);
+    if (!this.hasGenertedRandomContacts)
+      this.data = [];
+
+    this.data = [
+      ...this.data,
+      ...ContactGenerator.generateRandomContacts(100),
+    ];
+
+    this.hasGenertedRandomContacts = true;
   }
 
 }
