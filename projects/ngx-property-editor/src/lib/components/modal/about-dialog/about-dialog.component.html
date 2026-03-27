@@ -12,7 +12,7 @@
     </p>
     <p *ngIf="version.buildDate">
       <fa-icon [icon]="iconBuildDate"></fa-icon>
-      <span>Gebaut am {{version.buildDate | date: 'dd.MM.yyyy HH:MM'}}</span>
+      <span>Gebaut am {{version.buildDate | date: 'dd.MM.yyyy HH:mm'}}</span>
     </p>
     <ng-container *ngIf="!version.isRelease && version.gitCommit">
       <p>
