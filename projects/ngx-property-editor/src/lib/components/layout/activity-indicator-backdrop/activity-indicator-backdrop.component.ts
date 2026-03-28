@@ -3,7 +3,7 @@ import { LoadingService } from '../../../services/loading-service/loading.servic
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-activity-indicator-backdrop',
+  selector: 'pe-activity-indicator-backdrop',
   templateUrl: './activity-indicator-backdrop.component.html',
   styleUrls: ['./activity-indicator-backdrop.component.scss'],
 })
