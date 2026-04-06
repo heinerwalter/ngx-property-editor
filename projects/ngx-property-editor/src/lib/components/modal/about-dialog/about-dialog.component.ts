@@ -13,6 +13,7 @@ import {
   faV,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'pe-about-dialog',
@@ -34,6 +35,7 @@ export class AboutDialogComponent {
   protected readonly iconDevMode: IconDefinition = faPenRuler;
   protected readonly iconEmail: IconDefinition = faEnvelope;
   protected readonly iconWebsite: IconDefinition = faGlobe;
+  protected readonly iconSourceCode: IconDefinition = faGithub;
 
   /** Reference to the modal window component. */
   @ViewChild(ModalComponent) public modal?: ModalComponent;
