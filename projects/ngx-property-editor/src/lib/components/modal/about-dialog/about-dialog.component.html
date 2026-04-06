@@ -46,5 +46,10 @@
       <a href="{{ version.websiteUrl }}" target="_blank"
       >{{ version.websiteTitle || 'Herstellerwebsite'}} öffnen&hellip;</a>
     </p>
+    <p *ngIf="version.sourceCodeUrl">
+      <fa-icon [icon]="version.sourceCodeIcon ?? iconSourceCode"></fa-icon>
+      <a href="{{ version.sourceCodeUrl }}" target="_blank"
+      >Projekt auf {{ version.sourceCodeTitle || 'GitHub'}} öffnen&hellip;</a>
+    </p>
   </div>
 </pe-modal>
