@@ -1,4 +1,5 @@
 import { isDevMode } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * This class can store information on the built version of an application
@@ -15,11 +16,20 @@ export class VersionInfo {
   /** Email address of the author of this application. */
   public authorEmail: string | undefined = undefined;
 
-  /** Optional URL of an author or source code website. */
+  /** Optional URL of an author or company website. */
   public websiteUrl: string | undefined = undefined;
 
-  /** Optional title of an author or source code website. */
+  /** Optional title of an author or company website. */
   public websiteTitle: string | undefined = undefined;
+
+  /** Optional URL of a source code website (e.g. GitHub repository). */
+  public sourceCodeUrl: string | undefined = undefined;
+
+  /** Optional title of a source code website (by default "GitHub" is used). */
+  public sourceCodeTitle: string | undefined = undefined;
+
+  /** Optional icon of a source code website (by default the GitHub icon is used). */
+  public sourceCodeIcon: IconDefinition | undefined = undefined;
 
   /** The year in which development of this application started. */
   public copyrightYearStart: number | undefined = undefined;
@@ -85,6 +95,9 @@ export class VersionInfo {
     authorEmail?: string | undefined,
     websiteUrl?: string | undefined,
     websiteTitle?: string | undefined,
+    sourceCodeUrl?: string | undefined,
+    sourceCodeTitle?: string | undefined,
+    sourceCodeIcon?: IconDefinition | undefined,
     copyrightYearStart?: number | undefined,
     version?: string | undefined,
     gitCommit?: string | undefined,
@@ -98,6 +111,9 @@ export class VersionInfo {
     this.authorEmail = properties.authorEmail?.trim() || undefined;
     this.websiteUrl = properties.websiteUrl?.trim() || undefined;
     this.websiteTitle = properties.websiteTitle?.trim() || undefined;
+    this.sourceCodeUrl = properties.sourceCodeUrl?.trim() || undefined;
+    this.sourceCodeTitle = properties.sourceCodeTitle?.trim() || undefined;
+    this.sourceCodeIcon = properties.sourceCodeIcon || undefined;
     this.copyrightYearStart = properties.copyrightYearStart && properties.copyrightYearStart > 0 ? properties.copyrightYearStart : undefined;
     this.version = properties.version?.trim() || undefined;
     this.gitCommit = properties.gitCommit?.trim() || undefined;
