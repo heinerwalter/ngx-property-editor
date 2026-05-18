@@ -1,0 +1,42 @@
+:host {
+  display: inline-block;
+}
+
+.handle {
+  display: block;
+  position: relative;
+  width: 2em;
+  height: 2em;
+
+  fa-icon {
+    display: block;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    text-align: center;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .handle-up {
+    top: 0;
+    left: 0.5em;
+  }
+
+  .handle-down {
+    top: 1em;
+    left: 0.5em;
+  }
+
+  .handle-left {
+    top: 0.5em;
+    left: 0;
+  }
+
+  .handle-right {
+    top: 0.5em;
+    left: 1em;
+  }
+}

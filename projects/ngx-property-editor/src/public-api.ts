@@ -19,9 +19,14 @@ export * from './lib/components/bootstrap/item-views/pages/pages.component';
 export * from './lib/components/bootstrap/item-views/pages-item/pages-item.component';
 export * from './lib/components/bootstrap/item-views/tabs/tabs.component';
 export * from './lib/components/bootstrap/item-views/tabs-item/tabs-item.component';
+export * from './lib/components/bootstrap/footer/footer/footer.component';
 export * from './lib/components/bootstrap/navbar/types';
 export * from './lib/components/bootstrap/navbar/navbar/navbar.component';
 export * from './lib/components/bootstrap/navbar/navbar-item/navbar-item.component';
+// - hierarchy
+export * from './lib/components/hierarchy/hierarchy';
+export * from './lib/components/hierarchy/drag-drop-handle/drag-drop-handle.component';
+export * from './lib/components/hierarchy/hierarchy-input/hierarchy-input.component';
 // - icon
 export * from './lib/components/icon/check-icon/check-icon.component';
 export * from './lib/components/icon/color-icon/color-icon.component';

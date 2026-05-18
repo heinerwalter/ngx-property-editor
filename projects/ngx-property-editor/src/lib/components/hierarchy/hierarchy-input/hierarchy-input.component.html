@@ -1,0 +1,30 @@
+<ul *ngIf="value?.length"
+    class="list-group hierarchy-input">
+  <ng-container [ngTemplateOutlet]="templateItems"
+                [ngTemplateOutletContext]="{ items: value, level: 0, parentItems: undefined, parentIndex: undefined }">
+  </ng-container>
+</ul>
+
+
+<ng-template #templateItems
+             let-items="items"
+             let-level="level"
+             let-parentItems="parentItems"
+             let-parentIndex="parentIndex">
+  <ng-container *ngFor="let item of items; let i = index">
+
+    <li class="list-group-item hierarchy-input-item"
+        [attr.data-hierarchy-input-level]="level">
+      <pe-drag-drop-handle [style.margin-left]="(2.5 * level) + 'em'"
+                           (arrowClick)="onDragDropArrowClicked($event, item, items, i, parentItems, parentIndex)">
+      </pe-drag-drop-handle>
+      {{item?.name}}
+    </li>
+
+    <ng-container *ngIf="item?.children?.length"
+                  [ngTemplateOutlet]="templateItems"
+                  [ngTemplateOutletContext]="{ items: item.children, level: level + 1, parentItems: items, parentIndex: i }">
+    </ng-container>
+
+  </ng-container>
+</ng-template>

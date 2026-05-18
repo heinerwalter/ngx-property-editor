@@ -1,0 +1,52 @@
+<footer class="footer">
+  <div class="container">
+
+    <ng-container *ngIf="!hideFooterItems">
+
+      <ul class="nav">
+
+        <li class="nav-item" *ngIf="versionInfo">
+          <a class="nav-link"
+             [tabIndex]="0"
+             style="cursor: pointer;"
+             (click)="aboutDialog.show(); $event.preventDefault(); $event.stopPropagation();">
+           Version {{versionInfo.version}}
+         </a>
+        </li>
+
+        <span class="flex-separator"></span>
+
+        <li class="nav-item" *ngIf="imprintUrl">
+          <a class="nav-link"
+             [tabIndex]="1"
+             [href]="imprintUrl">
+             Impressum
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="privacyPolicyUrl">
+          <a class="nav-link"
+             [tabIndex]="2"
+             [href]="privacyPolicyUrl">
+            Datenschutzerklärung
+          </a>
+        </li>
+
+        <li class="nav-item" *ngFor="let link of links ?? []; let i = index">
+          <a class="nav-link"
+             [tabIndex]="3 + i"
+             [href]="link.url">
+            {{ link.name }}
+          </a>
+        </li>
+
+      </ul>
+
+    </ng-container>
+
+  </div>
+
+  <pe-about-dialog #aboutDialog [version]="versionInfo">
+  </pe-about-dialog>
+
+</footer>

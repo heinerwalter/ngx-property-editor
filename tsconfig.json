@@ -26,7 +26,7 @@
     "useDefineForClassFields": false,
     "resolveJsonModule": true,
     "lib": [
-      "ES2022",
+      "ESNext",
       "dom"
     ]
   },
