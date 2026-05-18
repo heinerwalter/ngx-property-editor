@@ -143,11 +143,13 @@
     }
   }
 
-  a.nav-link {
+  .nav-link {
     color: color-contrast($color) !important;
     position: relative;
     padding: 0.5rem;
+  }
 
+  a.nav-link {
     // Highlight hover and active links
     &:before {
       content: "";

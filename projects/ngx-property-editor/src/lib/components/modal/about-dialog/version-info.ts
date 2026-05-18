@@ -39,9 +39,14 @@ export class VersionInfo {
     return new Date().getFullYear();
   }
 
+  /** The year range from `copyrightYearStart` to `copyrightYearEnd` as a string. */
+  public get copyrightYearRange(): string {
+    return `${this.copyrightYearStart ? this.copyrightYearStart + ' – ' : ''}${this.copyrightYearEnd}`;
+  }
+
   /** The full copyright text. */
   public get copyright(): string {
-    return `Copyright ${this.copyrightYearStart ? this.copyrightYearStart + ' – ' : ''}${this.copyrightYearEnd}${this.author ? ' ' + this.author : ''}`;
+    return `Copyright ${this.copyrightYearRange}${this.author ? ' ' + this.author : ''}`;
   }
 
   /** The current application version like '1.0.0'. */

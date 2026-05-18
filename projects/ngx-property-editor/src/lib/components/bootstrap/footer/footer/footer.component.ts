@@ -17,7 +17,13 @@ export class FooterComponent {
    * When clicked on the version number, the `AboutDialogComponent` is opened in a modal window
    * with more information from the version info object.
    */
-  @Input() public readonly versionInfo: VersionInfo | undefined = undefined;
+  @Input() public versionInfo: VersionInfo | undefined = undefined;
+
+  /**
+   * If true, a copyright notice is displayed in the footer
+   * consisting of the copyright start year, the current year, and the name of the application.
+   */
+  @Input() public showCopyrightInFooter: boolean = true;
 
   /** URL to the imprint page that should be displayed in the footer. */
   @Input() public imprintUrl: string | undefined = undefined;
