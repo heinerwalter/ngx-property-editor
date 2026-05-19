@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {VersionInfo} from "ngx-property-editor";
 
 @Component({
   selector: 'demo-login-page-demo',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-page-demo.component.scss'],
 })
 export class LoginPageDemoComponent {
+
+  protected readonly versionInfo: VersionInfo = new VersionInfo({
+    version: '1.0.0',
+    buildDate: new Date(),
+  });
 
 }

@@ -1,7 +1,8 @@
 <div class="login-page-container container"
      [style]="containerStyle"
      [style.backgroundColor]="containerBackgroundColor">
-  <div class="row align-items-center justify-content-center h-100">
+  <div class="row align-items-center justify-content-center h-100 position-relative">
+
     <div class="login-form-container col col-md-6 col-lg-4"
          [style.padding]="'calc(var(--bs-gutter-x) * 0.5)'"
          [style.border]="'var(--bs-border-width) solid var(--bs-border-color)'"
@@ -30,5 +31,12 @@
     </button>
 
     </div>
+
+    <div *ngIf="versionInfo?.version"
+           class="login-page-footer position-absolute bottom-0 mb-2 text-muted">
+      {{ versionInfo?.version }}
+      <span *ngIf="versionInfo?.buildDate">({{versionInfo!.buildDate | date: 'dd.MM.yyyy'}})</span>
+    </div>
+
   </div>
 </div>

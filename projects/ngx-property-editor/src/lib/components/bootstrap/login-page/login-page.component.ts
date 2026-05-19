@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {VersionInfo} from "../../modal/about-dialog/version-info";
 
 @Component({
   selector: 'pe-login-page',
@@ -17,9 +18,9 @@ export class LoginPageComponent {
   /** Background color of the login form container element (class `.login-form-container`). */
   @Input() public formBackgroundColor: string | undefined = '#fff';
 
-  /** Label of the user name input element. */
+  /** Label of the username input element. */
   @Input() public labelUsername: string = 'Benutzername';
-  /** Placeholder of the user name input element. */
+  /** Placeholder of the username input element. */
   @Input() public placeholderUsername: string = 'Benutzername';
 
   /** Label of the password input element. */
@@ -30,19 +31,22 @@ export class LoginPageComponent {
   /** Label of the submit button. */
   @Input() public labelSubmit: string = 'Login';
 
-  /** Predefined value of the user name input element. */
+  /** Predefined value of the username input element. */
   @Input() public username: string | undefined = undefined;
   /** Predefined value of the password input element. */
   @Input() public password: string | undefined = undefined;
 
+  /** If defined, a small version number and build date will be displayed at the bottom of the login page. */
+  @Input() public versionInfo: VersionInfo | undefined = undefined;
+
   /**
-   * This event is emitted when the user changed the value of the user name input element.
-   * The new value is passed as event argument.
+   * This event is emitted when the user changed the value of the username input element.
+   * The new value is passed as an event argument.
    */
   @Output() public readonly usernameChange: EventEmitter<string | undefined> = new EventEmitter<string | undefined>();
   /**
    * This event is emitted when the user changed the value of the password input element.
-   * The new value is passed as event argument.
+   * The new value is passed as an event argument.
    */
   @Output() public readonly passwordChange: EventEmitter<string | undefined> = new EventEmitter<string | undefined>();
 
