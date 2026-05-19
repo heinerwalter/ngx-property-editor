@@ -5,9 +5,9 @@
 
       <ul class="nav">
 
-        <li class="nav-item" *ngIf="logoImageUrl">
+        <li class="nav-item nav-item-logo" *ngIf="logoImageUrl">
           <ng-container *ngIf="homeItem?.routerLink">
-            <a class="nav-link"
+            <a class="nav-link m-0 p-0"
                id="navbar-app-logo"
                [routerLink]="homeItem!.routerLink"
                [ngbTooltip]="homeItem!.title">
