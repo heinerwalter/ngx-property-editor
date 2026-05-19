@@ -27,7 +27,7 @@ export class CountryIconComponent extends IconBaseComponent implements OnChanges
    * If true, the country name is displayed after the icon.
    * If false, the country name is displayed as a tooltip on the icon.
    */
-  @Input() public showCountryName: boolean = true;
+  @Input() public showCountryName: boolean = false;
 
   /** Flag emoji string generated from the country code. */
   protected emoji: string | undefined;

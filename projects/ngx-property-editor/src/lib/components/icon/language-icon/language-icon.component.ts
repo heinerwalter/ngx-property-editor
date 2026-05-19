@@ -30,7 +30,7 @@ export class LanguageIconComponent extends IconBaseComponent implements OnChange
    * If true, the language name is displayed after the icon.
    * If false, the language name is displayed as a tooltip on the icon.
    */
-  @Input() public showLanguageName: boolean = true;
+  @Input() public showLanguageName: boolean = false;
 
   /** The human-readable name of the language code. Is filled by `ngOnChanges()`. */
   protected languageName: string | undefined = undefined;
