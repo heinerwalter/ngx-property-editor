@@ -16,9 +16,11 @@
 
   <ng-container *ngIf="displayType == 'list'">
     <div class="property-value-list">
-      <ng-container *ngFor="let item of valueAsArray; let i = index">
-        <div [id]="id + '-' + i" class="property-value-list-item">{{ item }}</div>
-      </ng-container>
+      <ul>
+        <ng-container *ngFor="let item of valueAsArray; let i = index">
+          <li [id]="id + '-' + i" class="property-value-list-item">{{ item }}</li>
+        </ng-container>
+      </ul>
     </div>
   </ng-container>
 
@@ -28,13 +30,15 @@
                     [ngTemplateOutletContext]="{ item: valueAsString }">
       </ng-container>
     </ng-container>
-    <span *ngIf="configuration?.isArray" [id]="id" class="property-value-list">
-      <div *ngFor="let item of valueAsArray; let i = index" [id]="id + '-' + i" class="property-value-list-item">
-        <ng-container [ngTemplateOutlet]="linkTemplate"
-                      [ngTemplateOutletContext]="{ item: item }">
-        </ng-container>
-      </div>
-    </span>
+    <div *ngIf="configuration?.isArray" [id]="id" class="property-value-list">
+      <ul>
+        <li *ngFor="let item of valueAsArray; let i = index" [id]="id + '-' + i" class="property-value-list-item">
+          <ng-container [ngTemplateOutlet]="linkTemplate"
+                        [ngTemplateOutletContext]="{ item: item }">
+          </ng-container>
+        </li>
+      </ul>
+    </div>
   </ng-container>
 
   <ng-template #linkTemplate let-item="item">
@@ -46,22 +50,37 @@
     <ng-container *ngIf="!configuration?.isArray">
       <i [id]="id" [class]="valueAsString"></i>
     </ng-container>
-    <ng-container *ngIf="configuration?.isArray">
+    <div *ngIf="configuration?.isArray" class="property-value-inline-list-with-gaps">
       <ng-container *ngFor="let item of valueAsArray; let i = index">
         <i [id]="id + '-' + i" [class]="item"></i>
       </ng-container>
-    </ng-container>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="displayType == 'language'">
     <ng-container *ngIf="!configuration?.isArray">
       <pe-language-icon [id]="id" [languageCode]="valueAsString"></pe-language-icon>
     </ng-container>
-    <ng-container *ngIf="configuration?.isArray">
+    <div *ngIf="configuration?.isArray" class="property-value-list">
       <ng-container *ngFor="let item of valueAsArray; let i = index">
-        <pe-language-icon [id]="id + '-' + i" [languageCode]="item"></pe-language-icon>
+        <div class="property-value-list-item with-gaps">
+          <pe-language-icon [id]="id + '-' + i" [languageCode]="item" [showLanguageName]="true"></pe-language-icon>
+        </div>
       </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="displayType == 'country'">
+    <ng-container *ngIf="!configuration?.isArray">
+      <pe-country-icon [id]="id" [countryCode]="valueAsString"></pe-country-icon>
     </ng-container>
+    <div *ngIf="configuration?.isArray" class="property-value-list">
+      <ng-container *ngFor="let item of valueAsArray; let i = index">
+        <div class="property-value-list-item with-gaps">
+          <pe-country-icon [id]="id + '-' + i" [countryCode]="item" [showCountryName]="true"></pe-country-icon>
+        </div>
+      </ng-container>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="displayType == 'color'">

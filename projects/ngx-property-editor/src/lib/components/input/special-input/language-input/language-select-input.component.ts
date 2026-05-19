@@ -47,7 +47,11 @@ export class LanguageSelectInputComponent extends SelectInputBase<string> implem
    */
   public static getLanguageName(languageCode: string): string | undefined {
     if (!languageCode) return undefined;
-    return languages.getName(languageCode, navigator.language);
+
+    let lang: string = navigator.language;
+    lang = lang?.split('-')[0];
+
+    return languages.getName(languageCode, lang);
   }
 
   /** Static data source containing all language codes and localized names. */
@@ -62,10 +66,13 @@ export class LanguageSelectInputComponent extends SelectInputBase<string> implem
 
     this.staticDataSource = [];
 
+    let lang: string = navigator.language;
+    lang = lang?.split('-')[0];
+
     // Build data source from all country codes
     const languagesDictionary: { [alpha2Key: string]: string } =
-      languages.getNames(navigator.language);
-    for (let languageCode in languagesDictionary) {
+      languages.getNames(lang);
+    for (const languageCode in languagesDictionary) {
       if (!languagesDictionary.hasOwnProperty(languageCode)) continue;
       this.staticDataSource.push({
         languageCode: languageCode.toLowerCase(),

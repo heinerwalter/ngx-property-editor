@@ -43,11 +43,19 @@ export class CountrySelectInputComponent extends SelectInputBase<string> impleme
    * Returns the human-readable name of the country with the given country code.
    * Returns undefined, if the given country code is invalid.
    * @param countryCode ISO 3166 country code (two character string).
+   * @param returnCountryCodeIfNotFound If true, the country code is returned if the country name is not found.
    * @returns Human-readable country name.
    */
-  public static getCountryName(countryCode: string): string | undefined {
+  public static getCountryName(countryCode: string, returnCountryCodeIfNotFound: boolean = true): string | undefined {
     if (!countryCode) return undefined;
-    return countries.getName(countryCode, navigator.language);
+
+    let lang: string = navigator.language;
+    lang = lang?.split('-')[0];
+
+    const name: string | undefined = countries.getName(countryCode, lang);
+    if (returnCountryCodeIfNotFound && !name)
+      return countryCode;
+    return name;
   }
 
   /** Static data source containing all country codes and localized names. */
@@ -62,9 +70,12 @@ export class CountrySelectInputComponent extends SelectInputBase<string> impleme
 
     this.staticDataSource = [];
 
+    let lang: string = navigator.language;
+    lang = lang?.split('-')[0];
+
     // Build data source from all country codes
     const countriesDictionary: { [alpha2Key: string]: string } =
-      countries.getNames(navigator.language, { select: 'official' });
+      countries.getNames(lang, { select: 'official' });
     for (let countryCode in countriesDictionary) {
       if (!countriesDictionary.hasOwnProperty(countryCode)) continue;
       this.staticDataSource.push({

@@ -6,7 +6,7 @@ import { CountrySelectInputComponent } from '../../input/special-input/country-i
 
 
 type PropertyValueComponentDisplayType = 'text' | 'text-multiline' | 'code' | 'list' |
-  'url' | 'email' | 'icon' | 'language' | 'color' | 'rating' | 'difficulty' |
+  'url' | 'email' | 'icon' | 'language' | 'country' | 'color' | 'rating' | 'difficulty' |
   'button';
 
 
@@ -167,7 +167,8 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         return this.displayType = 'language';
 
       case 'country':
-        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        // Country as text:
+        /*this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
         if (Array.isArray(this.value)) {
           this.value = this.value
             .map(item => CountrySelectInputComponent.getCountryName(item))
@@ -187,7 +188,11 @@ export class PropertyValueComponent implements OnInit, OnChanges {
         } else {
           this.value = undefined;
           return this.displayType = undefined;
-        }
+        }*/
+
+        // Country as icon:
+        this.value = this.configuration.getDisplayValue(this.data, this.mode, false);
+        return this.displayType = 'country';
 
       case 'icon':
         this.value = this.configuration.getDisplayValue(this.data, this.mode, false);

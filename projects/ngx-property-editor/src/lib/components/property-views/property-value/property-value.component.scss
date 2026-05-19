@@ -4,12 +4,26 @@
 }
 
 
+// Add gaps between inline lists like icons
+.property-value-inline-list-with-gaps > *:not(:last-child) {
+  margin-right: 0.5em;
+}
+
+
 // Style multiline lists, if class .property-value-list-type-block is assigned to <pe-property-value> (default!)
-:host/*.property-value-list-type-block*/ .property-value-list {
+:host /*.property-value-list-type-block*/ .property-value-list {
   display: block;
 
   .property-value-list-item {
     display: block;
+
+    &.with-gaps:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  li.property-value-list-item {
+    display: list-item;
   }
 }
 
