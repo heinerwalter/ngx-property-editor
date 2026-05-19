@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PropertyConfiguration } from '../property-configuration';
-import { TableData } from '../../property-table/table-configuration';
+import {TableCell, TableData} from '../../property-table/table-configuration';
 import { PEGlobalFunctions } from '../../../controller/pe-global-functions';
 import { PropertyConfigurationController } from '../controller/property-configuration-controller';
 
@@ -101,12 +101,16 @@ export class PropertyViewComponent implements OnInit, OnChanges {
             style: 'width: 1%;',
           },
           {
-            content: propertyValue,
             elementType: 'data',
             routerLink: routerLink,
             routerLinkIsExternal: routerLinkIsExternal,
             routerLinkTooltip: routerLinkTooltip,
-          },
+            // Display value as string:
+            content: propertyValue,
+            // Display value as PropertyValueComponent:
+            //content: this.data,
+            //propertyConfiguration: property,
+          } as TableCell,
         ]);
 
       }

@@ -71,7 +71,7 @@
         .nav-item.nav-item-logo {
           margin-block: -$navbar-padding / 2;
           img {
-            height: $navbar-height - $navbar-padding;
+            height: $navbar-height - ($navbar-padding / 2);
           }
         }
       }
