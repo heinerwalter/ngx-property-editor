@@ -221,12 +221,13 @@ export class InteractionService {
     confirmButtonText?: string | undefined,
     cancelButtonText?: string | undefined,
     isPasswordInput?: boolean,
+    isTextArea?: boolean,
   }): Promise<string | undefined> {
     const result = await this.alert('question', title, message, {
       showConfirmButton: true,
       showCancelButton: true,
       ...(options || {}),
-      input: options?.isPasswordInput ? 'password' : 'text',
+      input: options?.isPasswordInput ? 'password' : options?.isTextArea ? 'textarea' : 'text',
     });
 
     if (!result.isConfirmed) return undefined;
