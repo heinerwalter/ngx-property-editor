@@ -21,6 +21,7 @@
                       type="checkbox"
                       [isValid]="isValid"
                       [label]="evaluateDisplayPropertyName(item)"
+                      [allowHTMLInInlineLabel]="allowHTMLInDisplayValues"
                       [value]="value?.includes(evaluateValuePropertyName(item))"
                       (valueChange)="onItemValueChanged(item, $event)">
     </pe-boolean-input>

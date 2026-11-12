@@ -25,6 +25,14 @@ export class BooleanInputComponent extends InputBaseWithValue<boolean> implement
    */
   @Input() public allowIndeterminate: boolean = false;
 
+  /**
+   * Only applicable to `type == 'checkbox'` and `type == 'switch'`:
+   * If true, the label displayed after the checkbox
+   * will be considered as HTML code and rendered as such.
+   * Otherwise, the label will be rendered as plain text (default).
+   */
+  @Input() public allowHTMLInInlineLabel: boolean = false;
+
   // region Radio Input
 
   /**

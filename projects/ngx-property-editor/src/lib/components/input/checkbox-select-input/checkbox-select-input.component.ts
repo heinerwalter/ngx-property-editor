@@ -8,7 +8,17 @@ import { InputBaseWithValueAndDataSource } from '../input-base';
 })
 export class CheckboxSelectInputComponent extends InputBaseWithValueAndDataSource<any[]> {
 
+  /**
+   * If true, a "Select All" checkbox will be displayed at the bottom of the list of options.
+   */
   @Input() public showSelectAll: boolean = false;
+
+  /**
+   * If true, the display value of each option (see `displayPropertyName`)
+   * will be considered as HTML code and rendered as such.
+   * Otherwise, the display value will be rendered as plain text (default).
+   */
+  @Input() public allowHTMLInDisplayValues: boolean = false;
 
   public constructor() {
     super();

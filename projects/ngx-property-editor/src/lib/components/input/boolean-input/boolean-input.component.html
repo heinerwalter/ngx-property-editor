@@ -16,10 +16,15 @@
            [(ngModel)]="value"
            [indeterminate]="allowIndeterminate && value == undefined"
            (ngModelChange)="emitValueChange($event)">
-    <label *ngIf="label"
+    <label *ngIf="label && !allowHTMLInInlineLabel"
            class="form-check-label"
            [for]="id || label">
       {{label}}
+    </label>
+    <label *ngIf="label && allowHTMLInInlineLabel"
+           class="form-check-label"
+           [for]="id || label"
+           [innerHTML]="label">
     </label>
   </div>
 
