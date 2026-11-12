@@ -66,18 +66,34 @@ describe('Stringifier', () => {
 
   it('dateToString', () => {
     expect(Stringifier.dateToString(undefined)).toEqual('');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, false)).toEqual('01.01.2023');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, true)).toEqual('01.01.2023, 10:20');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, 'auto')).toEqual('01.01.2023, 10:20');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, false)).toEqual('');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, true)).toEqual('10:20');
-    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, 'auto')).toEqual('10:20');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, false)).toEqual('17.12.2023');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, true)).toEqual('17.12.2023, 00:00');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, 'auto')).toEqual('17.12.2023');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, false)).toEqual('');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, true)).toEqual('00:00');
-    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, 'auto')).toEqual('');
+
+    // UTC:
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), true, false, 'utc')).toEqual('01.01.2023');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), true, true, 'utc')).toEqual('01.01.2023, 10:20');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), true, 'auto', 'utc')).toEqual('01.01.2023, 10:20');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), false, false, 'utc')).toEqual('');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), false, true, 'utc')).toEqual('10:20');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 0, 1, 10, 20, 0)), false, 'auto', 'utc')).toEqual('10:20');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), true, false, 'utc')).toEqual('17.12.2023');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), true, true, 'utc')).toEqual('17.12.2023, 00:00');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), true, 'auto', 'utc')).toEqual('17.12.2023');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), false, false, 'utc')).toEqual('');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), false, true, 'utc')).toEqual('00:00');
+    expect(Stringifier.dateToString(new Date(Date.UTC(2023, 11, 17)), false, 'auto', 'utc')).toEqual('');
+
+    // Local:
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, false, 'local')).toEqual('01.01.2023');
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, true, 'local')).toEqual('01.01.2023, 10:20');
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), true, 'auto', 'local')).toEqual('01.01.2023, 10:20');
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, false, 'local')).toEqual('');
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, true, 'local')).toEqual('10:20');
+    expect(Stringifier.dateToString(new Date(2023, 0, 1, 10, 20, 0), false, 'auto', 'local')).toEqual('10:20');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, false, 'local')).toEqual('17.12.2023');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, true, 'local')).toEqual('17.12.2023, 00:00');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), true, 'auto', 'local')).toEqual('17.12.2023');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, false, 'local')).toEqual('');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, true, 'local')).toEqual('00:00');
+    expect(Stringifier.dateToString(new Date(2023, 11, 17), false, 'auto', 'local')).toEqual('');
   });
 
   it('dateToStringForFileName', () => {
@@ -299,14 +315,14 @@ describe('Stringifier', () => {
     expect(Stringifier.arrayToString([1])).toEqual('1');
     expect(Stringifier.arrayToString([1, 2, 3])).toEqual('1, 2, 3');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}])).toEqual('1, abc, -5, {}');
-    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]])).toEqual('01.01.2023, Ja, 100, [1, 2, 3]');
+    expect(Stringifier.arrayToString([new Date(Date.UTC(2023, 0, 1)), true, 100, [1, 2, 3]])).toEqual('01.01.2023, Ja, 100, [1, 2, 3]');
 
     expect(Stringifier.arrayToString([], false)).toEqual('');
     expect(Stringifier.arrayToString([], true)).toEqual('[]');
     expect(Stringifier.arrayToString([1], true)).toEqual('[1]');
     expect(Stringifier.arrayToString([1, 2, 3], true)).toEqual('[1, 2, 3]');
     expect(Stringifier.arrayToString([1, 'abc', -5, {}], true)).toEqual('[1, abc, -5, {}]');
-    expect(Stringifier.arrayToString([new Date(2023, 0, 1), true, 100, [1, 2, 3]], true)).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
+    expect(Stringifier.arrayToString([new Date(Date.UTC(2023, 0, 1)), true, 100, [1, 2, 3]], true)).toEqual('[01.01.2023, Ja, 100, [1, 2, 3]]');
 
     expect(Stringifier.arrayToString([], false, true)).toEqual('');
     expect(Stringifier.arrayToString([], true, true)).toEqual('[]');
@@ -434,12 +450,12 @@ describe('Stringifier', () => {
     expect(Stringifier.anyTypeToString(() => true)).toEqual('Ja');
     expect(Stringifier.anyTypeToString(() => 42)).toEqual('42');
     expect(Stringifier.anyTypeToString(() => 'My string')).toEqual('My string');
-    expect(Stringifier.anyTypeToString(() => new Date(2023, 10, 10))).toEqual('10.11.2023');
+    expect(Stringifier.anyTypeToString(() => new Date(Date.UTC(2023, 10, 10)))).toEqual('10.11.2023');
     expect(Stringifier.anyTypeToString((param: number) => param)).toEqual('');
 
-    expect(Stringifier.anyTypeToString(new Date(2023, 0, 1))).toEqual('01.01.2023');
-    expect(Stringifier.anyTypeToString(new Date(2023, 11, 31, 10, 11, 12))).toEqual('31.12.2023, 10:11');
-    expect(Stringifier.anyTypeToString(new Date(100, 10, 10))).toEqual('10.11.100');
+    expect(Stringifier.anyTypeToString(new Date(Date.UTC(2023, 0, 1)))).toEqual('01.01.2023');
+    expect(Stringifier.anyTypeToString(new Date(Date.UTC(2023, 11, 31, 10, 11, 12)))).toEqual('31.12.2023, 10:11');
+    expect(Stringifier.anyTypeToString(new Date(Date.UTC(100, 10, 10)))).toEqual('10.11.100');
 
     expect(Stringifier.anyTypeToString(new File([], 'filename.txt'))).toEqual('filename.txt');
 

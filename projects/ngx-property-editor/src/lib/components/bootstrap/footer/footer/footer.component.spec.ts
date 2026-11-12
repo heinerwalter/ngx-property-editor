@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { AboutDialogComponent } from '../about-dialog/about-dialog.component';
-import { AppServicesTestingModule } from '../../../services/app-services-testing.module.spec';
-import { ModalComponent } from '../../visual/modal/modal.component';
+import { AboutDialogComponent } from '../../../modal/about-dialog/about-dialog.component';
+import { ModalComponent } from '../../../modal/modal/modal.component';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -12,7 +11,6 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppServicesTestingModule,
       ],
       declarations: [
         FooterComponent,
