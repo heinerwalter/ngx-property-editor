@@ -38,6 +38,7 @@ export * from './lib/components/icon/language-icon/language-icon.component';
 export * from './lib/components/icon/minus-icon/minus-icon.component';
 export * from './lib/components/icon/plus-icon/plus-icon.component';
 export * from './lib/components/icon/question-icon/question-icon.component';
+export * from './lib/components/icon/reload-icon/reload-icon.component';
 export * from './lib/components/icon/validity-icon/validity-icon.component';
 export * from './lib/components/icon/xmark-icon/xmark-icon.component';
 // - input
