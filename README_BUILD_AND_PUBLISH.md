@@ -8,7 +8,12 @@ Run `npm run build` from the repository root to build the library project includ
 
 ## Publishing
 
-After building your library run `npm run publish` to publish a new version of the library to NPM. You need to be logged in to NPM before by running `npm adduser` (needs to be done only once).
+After building your library run `npm run publish` to publish a new version of the library to NPM.
+You can also run `npm run pic` which publishes the library first and upon success
+increments the version number in the `package.json` file and pushes the changes to the repository.
+
+You need to be logged in to NPM before by running `npm adduser` (needs to be done only once).
+If later an error occurs, you might try to run `npm login`.
 
 ## Running unit tests
 
@@ -18,7 +23,7 @@ The script `npm run test` opens a browser window to display the test results and
 
 The script `npm run test-headless` only writes the test results to the console and terminates with success or error after all tests were completed once. The headless version is especially suitable for automated testing.
 
-## Build and run demo application
+## Build and run the demo application
 
 Beside the library project this repository contains a demo application project which demonstrates all library features in a simple Angular web site.
 
